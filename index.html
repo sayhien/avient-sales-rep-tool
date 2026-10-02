@@ -1,4 +1,812 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hue, a sales assistant concept</title><meta http-equiv="refresh" content="0; url=prototype/"></head>
-<body><p><a href="prototype/">Open the prototype</a></p></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hue Design Challenge Presentation</title>
+<meta name="description" content="Design challenge presentation: Hue, a sales assistant concept for Avient Specialty Inks. By Loo Say Hien.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>html{color-scheme:light}body{margin:0;font:14px/1.4 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+/* Layout: a 1280 by 720 slide stage scaled to fit the window, with a slim control bar under it.
+   One light look on purpose, the same as the tool it presents. */
+:root{
+  --bg:#E9EFF4; --paper:#F4F8FB; --card:#FFFFFF; --ink:#303C40; --sub:#5F6F78; --ln:#DCE5EC;
+  --blue:#3274AE; --blue-d:#285F91; --avient:#0080E0; --soft:#E7F0F8; --soft-d:#D4E4F2;
+  --hred:#D9624F; --hyel:#EFBE46;
+  --amb50:#FFF3DD; --amb300:#EBCF9C; --amb800:#7F5410; --red50:#FDE9E7; --red300:#F0B6B0; --red700:#A3261C;
+  --shadow:0 18px 50px rgba(48,60,64,.14); --lift:0 4px 14px rgba(48,60,64,.10);
+  --fd:"Bricolage Grotesque","Figtree",system-ui,sans-serif;
+  --fb:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --fh:"Caveat","Segoe Print",cursive;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 18px/1.45 var(--fb);overflow:hidden}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--avient);outline-offset:2px}
+p,h1,h2,h3,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+
+.deck{position:fixed;left:0;right:0;top:0;bottom:calc(54px + env(safe-area-inset-bottom,0px));display:grid;place-items:center;overflow:hidden;padding-inline:16px}
+.fitbox{position:relative}
+.stage{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;background:var(--paper);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.slide{position:absolute;inset:0;padding:50px 66px 46px;display:flex;flex-direction:column;opacity:0;visibility:hidden;pointer-events:none;transform:translateX(28px);transition:opacity .34s ease,transform .46s cubic-bezier(.2,.8,.3,1),visibility 0s .34s}
+.slide.past{transform:translateX(-28px)}
+.slide.on{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
+.slide [data-a]{opacity:0;transform:translateY(16px)}
+.slide.on [data-a]{opacity:1;transform:none;transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.3,1);transition-delay:calc(var(--i,0)*65ms + 140ms)}
+
+/* type */
+.eyebrow{display:flex;align-items:center;gap:10px;font:700 13px/1 var(--fb);letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}
+.eyebrow svg{width:46px;height:18px;flex:none}
+.eyebrow .d{fill:var(--soft-d)} .eyebrow .d.on{fill:var(--blue)}
+.t{font:800 46px/1.04 var(--fd);letter-spacing:-.012em;margin-top:12px;text-wrap:balance}
+.lede{font-size:21px;line-height:1.42;color:var(--sub);margin-top:12px;max-width:62ch}
+.body{flex:1;min-height:0;margin-top:26px}
+.k{font:700 12.5px/1 var(--fb);letter-spacing:.09em;text-transform:uppercase;color:var(--sub)}
+h3{font:700 21px/1.2 var(--fd)}
+.small{font-size:15px;line-height:1.4;color:var(--sub)}
+b,strong{font-weight:700}
+
+/* blocks */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.mid{align-content:center}
+.dots.big li{font-size:20.5px;margin-top:14px;line-height:1.34}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:22px;padding:22px 24px}
+.card.soft{background:var(--soft);border-color:var(--soft)}
+.card.ink{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.card.ink .k{color:var(--soft-d)}
+.dots li{position:relative;padding-left:22px;margin-top:9px;line-height:1.36}
+.dots li::before{content:"";position:absolute;left:2px;top:.52em;width:9px;height:9px;border-radius:50%;background:var(--blue)}
+.dots.tight li{margin-top:6px;font-size:16.5px}
+.chip{display:inline-flex;align-items:center;gap:5px;font:600 13.5px/1.2 var(--fb);padding:4px 11px;border-radius:999px;border:1px solid var(--ln);background:var(--card);color:var(--ink);white-space:nowrap}
+.chip svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.chip.done{background:var(--soft)}
+.chip.warn{background:var(--amb50);border-color:var(--amb300);color:var(--amb800)}
+.chip.bad{background:var(--red50);border-color:var(--red300);color:var(--red700)}
+.chip.blue{background:var(--blue);border-color:var(--blue);color:var(--card)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.nb{width:30px;height:30px;border-radius:50%;background:var(--soft);color:var(--blue);display:inline-grid;place-items:center;font:700 14px var(--fd);flex:none}
+
+/* assistant mark */
+.hue{flex:none;overflow:visible}
+.hue circle{stroke:var(--card);stroke-width:.7}
+.hue .h1{fill:var(--blue)}.hue .h2{fill:var(--hred)}.hue .h3{fill:var(--hyel)}
+.hue .h0{fill:var(--card);stroke:none}
+.hue .hg{transform-origin:12px 12px}
+.hue.work .hg{animation:hspin 1.6s cubic-bezier(.6,.1,.4,.9) infinite}
+.hue.work .h1{animation:hb1 1.6s ease-in-out infinite}.hue.work .h2{animation:hb2 1.6s ease-in-out infinite}.hue.work .h3{animation:hb3 1.6s ease-in-out infinite}
+@keyframes hspin{to{transform:rotate(360deg)}}
+@keyframes hb1{50%{transform:translateY(-2.2px)}}
+@keyframes hb2{50%{transform:translate(-1.9px,1.1px)}}
+@keyframes hb3{50%{transform:translate(1.9px,1.1px)}}
+
+/* live prototype frames */
+.live{border:0;background:transparent;display:block}
+.phonebox{position:absolute;right:54px;top:26px;width:400px;height:668px}
+.phonebox .live{width:100%;height:100%}
+.withphone{padding-right:470px}
+.try{background:var(--soft);border-radius:20px;padding:16px 20px;margin-top:auto}
+.try ol{display:grid;gap:7px;margin-top:9px}
+.try li{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;font-size:17px;line-height:1.3}
+.widebox{flex:1;min-height:0;margin-top:8px}
+.widebox .live{width:100%;height:100%}
+
+/* cover */
+.cover{padding:0}
+.cover .left{position:absolute;left:66px;top:58px;bottom:58px;width:640px;display:flex;flex-direction:column}
+.cover h1{font:800 168px/.86 var(--fd);letter-spacing:-.03em;margin-top:22px;display:flex;align-items:center;gap:26px}
+.cover .tag{font:700 38px/1.1 var(--fd);color:var(--blue);margin-top:22px}
+.cover .lede{font-size:22px;max-width:30ch}
+.cover .by{margin-top:auto;font-size:17px;color:var(--sub)}
+.cover .by b{color:var(--ink);font-size:20px;display:block;margin-bottom:2px}
+.cover .band{position:absolute;left:0;bottom:0;width:100%;height:100%;pointer-events:none}
+.cover .phonebox{right:96px}
+
+/* journey */
+.journey{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;height:100%;grid-template-rows:104px 1fr}
+.jline{grid-column:1/-1;position:relative}
+.jline svg{width:100%;height:100%;overflow:visible}
+.jcol{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:7px;font-size:15px;line-height:1.34}
+.jcol h3{font-size:17px;line-height:1.15}
+.jcol.bad{border:2px solid var(--amb300);background:var(--amb50)}
+.jcol .help{margin-top:auto;padding-top:9px;border-top:1px solid var(--ln);font-size:14.5px;line-height:1.32}
+.jcol .help b{display:block;font:700 11.5px/1 var(--fb);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.jcol.bad .help{border-top-color:var(--amb300)}
+.jcol .feel{font:700 12px/1 var(--fb);letter-spacing:.07em;text-transform:uppercase;color:var(--sub)}
+
+/* tables */
+.tbl{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--ln);border-radius:20px;overflow:hidden;font-size:17px}
+.tbl th{font:700 12.5px/1 var(--fb);letter-spacing:.09em;text-transform:uppercase;color:var(--sub);text-align:left;padding:13px 18px;background:var(--soft)}
+.tbl td{padding:11px 18px;border-top:1px solid var(--ln);vertical-align:top;line-height:1.32}
+.tbl td:first-child{font-weight:700;white-space:nowrap}
+
+/* flow */
+.flow{display:flex;align-items:stretch;gap:10px}
+.flow .step{flex:1;background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:16px 18px;font-size:16px;line-height:1.36}
+.flow .step h3{font-size:17px;margin-bottom:5px}
+.flow .arr{align-self:center;color:var(--blue);flex:none}
+.flow .step.hi{background:var(--blue);border-color:var(--blue);color:var(--card)}
+
+/* chart */
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:100%}
+.chart text{font-family:var(--fb);fill:var(--sub)}
+.tipb{position:absolute;z-index:5;background:var(--ink);color:var(--card);border-radius:12px;padding:8px 12px;font-size:14px;line-height:1.3;pointer-events:none;max-width:260px;box-shadow:var(--lift)}
+.dot{cursor:pointer}
+.dot:hover circle,.dot:focus circle{stroke-width:3.5}
+
+/* control bar */
+.bar{position:fixed;left:0;right:0;bottom:0;height:calc(54px + env(safe-area-inset-bottom,0px));padding:0 16px env(safe-area-inset-bottom,0px);display:flex;align-items:center;gap:14px;background:var(--card);border-top:1px solid var(--ln);font-size:14px}
+.bar .who{display:flex;align-items:center;gap:8px;font-weight:700;white-space:nowrap}
+.bar .now{color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .prog{flex:1;min-width:40px;height:6px;border-radius:999px;background:var(--soft);overflow:hidden}
+.bar .prog i{display:block;height:100%;width:0;background:var(--blue);border-radius:999px;transition:width .35s ease}
+.bar .ctr{font-variant-numeric:tabular-nums;color:var(--sub);white-space:nowrap}
+.bbtn{border:1px solid var(--ln);background:var(--card);border-radius:999px;height:36px;min-width:36px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:6px;font:600 14px/1 var(--fb);cursor:pointer;transition:background-color .15s,border-color .15s,transform .12s}
+.bbtn .ic{width:18px;height:18px}
+.bbtn:active{transform:scale(.95)}
+.bbtn.pri{background:var(--blue);border-color:var(--blue);color:var(--card)}
+.bbtn[disabled]{opacity:.4;cursor:default}
+@media (hover:hover){.bbtn:hover{background:var(--soft);border-color:var(--soft-d)}.bbtn.pri:hover{background:var(--blue-d);border-color:var(--blue-d)}}
+@media (max-width:720px){.bar .who span,.bar .now,.bbtn .lbl{display:none}}
+
+/* overview */
+.over{position:fixed;inset:0;z-index:20;background:rgba(48,60,64,.5);display:grid;place-items:center;padding:16px}
+.over .panel{background:var(--paper);border-radius:22px;width:min(980px,100%);max-height:100%;overflow:auto;padding:22px 24px 26px;box-shadow:var(--shadow)}
+.over h2{font:800 26px/1.1 var(--fd);display:flex;justify-content:space-between;align-items:center}
+.over ol{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:16px}
+.over li button{width:100%;text-align:left;border:1px solid var(--ln);background:var(--card);border-radius:14px;padding:10px 12px;cursor:pointer;display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;font-size:15px;line-height:1.25}
+.over li button.cur{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+.over li small{display:block;color:var(--sub);font-size:12px;margin-top:2px}
+.over li i{font:700 13px var(--fd);font-style:normal;color:var(--blue)}
+@media (hover:hover){.over li button:hover{background:var(--soft)}}
+
+@media (prefers-reduced-motion: reduce){
+  .slide,.slide [data-a],.slide.on [data-a]{transition:none!important;transform:none!important}
+  .hue.work .hg,.hue.work circle{animation:none}
+}
+</style>
+
+<div class="deck" id="deck">
+<div class="fitbox" id="fitbox">
+<main class="stage" id="stage" aria-live="polite">
+
+<!-- 1 -->
+<section class="slide cover" data-title="Hue" data-phase="0">
+  <svg class="band" viewBox="0 0 1280 720" aria-hidden="true">
+    <g opacity=".9">
+      <rect x="-40" y="648" width="300" height="40" rx="20" fill="#3274AE"/><circle cx="296" cy="668" r="20" fill="#EFBE46"/>
+      <rect x="330" y="648" width="150" height="40" rx="20" fill="#303C40"/><rect x="494" y="648" width="220" height="40" rx="20" fill="#D4E4F2"/><circle cx="748" cy="668" r="20" fill="#D9624F"/>
+      <circle cx="1206" cy="60" r="20" fill="#D4E4F2"/><rect x="1240" y="40" width="120" height="40" rx="20" fill="#3274AE"/>
+    </g>
+  </svg>
+  <div class="left">
+    <p class="eyebrow" data-a>Design challenge · October 2026</p>
+    <h1 data-a><svg class="hue work" width="150" height="150" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg>Hue</h1>
+    <p class="tag" data-a>You sell. Hue keeps track.</p>
+    <p class="lede" data-a>A sales assistant concept for the sales reps of Avient Specialty Inks.</p>
+    <p class="by" data-a style="margin-bottom:62px"><b>Loo Say Hien</b>Concept with sample data. Not an official Avient product.</p>
+  </div>
+  <div class="phonebox" data-a><iframe class="live" title="The prototype, running" data-src="prototype/index.html?embed=1&chrome=0&device=phone&splash=1"></iframe></div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="The brief, and how I narrowed it" data-phase="0">
+  <p class="eyebrow" data-a>The brief</p>
+  <h2 class="t" data-a>The brief, and how I narrowed it</h2>
+  <div class="body g2 mid">
+    <div class="card" data-a>
+      <p class="k">The brief asks for a tool that lets sales reps</p>
+      <ul style="display:grid;gap:18px;margin-top:20px;font-size:24px;line-height:1.25;font-weight:600">
+        <li class="row" style="flex-wrap:nowrap"><span class="nb">1</span>Check sales progress</li>
+        <li class="row" style="flex-wrap:nowrap"><span class="nb">2</span>Prioritise high value deals</li>
+        <li class="row" style="flex-wrap:nowrap"><span class="nb">3</span>Spot stalled opportunities</li>
+        <li class="row" style="flex-wrap:nowrap"><span class="nb">4</span>Take fast action, without tedious manual documentation</li>
+      </ul>
+      <p class="small" style="margin-top:22px">It names no company and no industry, so the first decision was mine.</p>
+    </div>
+    <div class="card soft" data-a>
+      <p class="k">My scope</p>
+      <h3 style="font-size:32px;margin-top:10px">One company, one role, one job</h3>
+      <ul class="dots" style="margin-top:14px;font-size:19.5px">
+        <li><b>One company.</b> Avient Specialty Inks, which makes inks for textile screen printing.</li>
+        <li><b>One role.</b> A sales rep in Singapore who visits print shops.</li>
+        <li><b>One job.</b> Keep track of deals with the least effort.</li>
+      </ul>
+      <p style="margin-top:18px;font-size:18px;line-height:1.42">A real company gives real limits. Avient sells directly and through distributors, and its reps also give technical help. Every industry has different deals and buyers, which is too much for a first version.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="Four days, two diamonds" data-phase="0">
+  <p class="eyebrow" data-a>How I worked</p>
+  <h2 class="t" data-a>Four days, two diamonds</h2>
+  <div class="body" style="display:grid;align-content:center;gap:22px">
+    <svg data-a viewBox="0 0 1148 150" style="width:100%;height:176px" role="img" aria-label="The double diamond: discover, define, develop, deliver">
+      <polygon points="20,75 294,6 568,75 294,144" fill="#E7F0F8"/><polygon points="580,75 854,6 1128,75 854,144" fill="#E7F0F8"/>
+      <polygon points="20,75 294,6 294,144" fill="#D4E4F2"/><polygon points="580,75 854,6 854,144" fill="#D4E4F2"/>
+      <circle cx="20" cy="75" r="9" fill="#303C40"/><circle cx="574" cy="75" r="9" fill="#3274AE"/><circle cx="1128" cy="75" r="9" fill="#D9624F"/>
+      <g font-family="Bricolage Grotesque, Figtree, sans-serif" font-weight="800" font-size="24" fill="#303C40" text-anchor="middle">
+        <text x="190" y="83">Discover</text><text x="412" y="83">Define</text><text x="750" y="83">Develop</text><text x="968" y="83">Deliver</text>
+      </g>
+    </svg>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+      <div class="card" data-a style="padding:20px 22px"><p class="k">Day 1</p><h3 style="margin-top:8px">Understand</h3> <p style="margin-top:8px;font-size:16.5px;line-height:1.4">The job description, Avient's public pages, seven sales videos and a forum thread. A persona and a journey map.</p></div>
+      <div class="card" data-a style="padding:20px 22px"><p class="k">Day 2</p><h3 style="margin-top:8px">Frame</h3> <p style="margin-top:8px;font-size:16.5px;line-height:1.4">Five findings, one problem statement, five questions that start with "How might we".</p></div>
+      <div class="card" data-a style="padding:20px 22px"><p class="k">Day 3</p><h3 style="margin-top:8px">Imagine and choose</h3> <p style="margin-top:8px;font-size:16.5px;line-height:1.4">23 ideas scored for impact, effort and privacy risk. A core of five. A design system.</p></div>
+      <div class="card" data-a style="padding:20px 22px"><p class="k">Day 4</p><h3 style="margin-top:8px">Build and review</h3> <p style="margin-top:8px;font-size:16.5px;line-height:1.4">A working prototype on phone, tablet and computer, improved over five review rounds. A test plan.</p></div>
+    </div>
+    <p class="small" data-a style="background:var(--amb50);border:1px solid var(--amb300);color:var(--amb800);border-radius:16px;padding:12px 16px;font-size:16px"><b>An honest limit.</b> I have not interviewed sales reps yet. Every finding here comes from secondary sources, so I treat it as a guess to test. The test plan is near the end.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Meet Daniel Lim, sales rep" data-phase="1">
+  <p class="eyebrow" data-a>Discover</p>
+  <h2 class="t" data-a>Meet Daniel Lim, sales rep</h2>
+  <div class="body" style="display:grid;grid-template-columns:400px 1fr;gap:22px">
+    <div class="card ink" data-a style="display:flex;flex-direction:column">
+      <div class="row" style="flex-wrap:nowrap;gap:14px"><span style="width:64px;height:64px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font:800 24px var(--fd);flex:none">DL</span><div><h3 style="font-size:24px">Daniel Lim, 31</h3><p style="font-size:15px;opacity:.85">Sales rep, Avient Specialty Inks, Singapore</p></div></div>
+      <p style="font:500 30px/1.18 var(--fh);margin-top:20px">"I know the ink better than anyone. What I forget is who I owe a reply, and who has gone quiet."</p>
+      <ul class="dots tight" style="margin-top:auto">
+        <li>8 years in textile screen printing, 2 as a sales rep</li>
+        <li>About 40 customers and 30 open deals</li>
+        <li>On the road most days, working from his phone</li>
+        <li>WhatsApp, calls and email, in English, Mandarin and some Malay</li>
+      </ul>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;gap:16px">
+      <div class="card" data-a><p class="k">Goals</p><ul class="dots tight" style="margin-top:8px"><li>Reach his yearly sales target</li><li>Know what to do first each day</li><li>Be trusted as an expert, not a price quoter</li></ul></div>
+      <div class="card" data-a><p class="k">He will not accept</p><ul class="dots tight" style="margin-top:8px"><li>Long forms</li><li>Typing the same thing twice</li><li>Reminders about deals he knows are dead</li></ul></div>
+      <div class="card" data-a style="grid-column:1/-1;display:flex;flex-direction:column"><p class="k">Pain points</p>
+        <ul class="dots" style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:0 26px;font-size:18px">
+          <li>He writes up visits at night from memory, so details are lost.</li>
+          <li>He cannot tell which customers are waiting for a reply.</li>
+          <li>A customer who has gone quiet looks the same as one still testing the ink.</li>
+          <li>His notes are spread across chats, a notebook and his own spreadsheet.</li>
+        </ul>
+        <p class="small" style="margin-top:auto">Daniel is made up. He is built from the job description and general sales advice, so he is a guess to test with real reps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="One deal, six stages, two bad moments" data-phase="1">
+  <p class="eyebrow" data-a>Discover</p>
+  <h2 class="t" data-a>One deal, six stages, two bad moments</h2>
+  <div class="body" style="margin-top:14px">
+    <div class="journey">
+      <div class="jline" data-a>
+        <svg viewBox="0 0 1148 118" preserveAspectRatio="none" role="img" aria-label="How Daniel feels at each stage. Lowest right after a meeting and when a customer goes quiet.">
+          <line x1="0" y1="59" x2="1148" y2="59" stroke="#DCE5EC" stroke-width="1.5" stroke-dasharray="4 6"/>
+          <polyline points="88,66 282,32 476,92 670,74 864,100 1058,20" fill="none" stroke="#3274AE" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <g stroke="#F4F8FB" stroke-width="3"><circle cx="88" cy="66" r="8" fill="#3274AE"/><circle cx="282" cy="32" r="8" fill="#3274AE"/><circle cx="476" cy="92" r="10" fill="#7F5410"/><circle cx="670" cy="74" r="8" fill="#3274AE"/><circle cx="864" cy="100" r="10" fill="#7F5410"/><circle cx="1058" cy="20" r="8" fill="#3274AE"/></g>
+        </svg>
+      </div>
+      <div class="jcol" data-a><p class="feel">Rushed</p><h3>1. Plan the week</h3><p>The facts sit in four places, so he plans from memory.</p><p class="help"><b>A tool could</b>Make a week plan from his visits and promises.</p></div>
+      <div class="jcol" data-a><p class="feel">Focused</p><h3>2. Meet the customer</h3><p>He cannot write while he works, and typing on a phone looks rude.</p><p class="help"><b>A tool could</b>Take a note by voice, pen or photo, in seconds.</p></div>
+      <div class="jcol bad" data-a><p class="feel" style="color:var(--amb800)">Tired</p><h3>3. Right after the meeting</h3><p>Replies go out in chats and calls. Details are lost within hours.</p><span class="chip warn" style="align-self:flex-start">Worst moment</span><p class="help"><b>A tool could</b>Tidy the note into a next step and a date.</p></div>
+      <div class="jcol" data-a><p class="feel">Worried</p><h3>4. Follow up and quote</h3><p>Many small promises and no reminders.</p><p class="help"><b>A tool could</b>Keep a promise list and draft the replies.</p></div>
+      <div class="jcol bad" data-a><p class="feel" style="color:var(--amb800)">Unsure</p><h3>5. Customer goes quiet</h3><p>Silence can mean busy, still testing or lost. He cannot tell which.</p><span class="chip warn" style="align-self:flex-start">Worst moment</span><p class="help"><b>A tool could</b>Warn him with a reason and a next step.</p></div>
+      <div class="jcol" data-a><p class="feel">Proud</p><h3>6. Win and grow</h3><p>Why he won or lost is never written down.</p><p class="help"><b>A tool could</b>Show progress to target and what moves it.</p></div>
+    </div>
+  </div>
+  <p class="small" data-a style="margin-top:14px"><b style="color:var(--ink)">People around him:</b> Priya, his manager · Ryan, a distributor · Mei Ling, a technical specialist · Jasmine, a print shop owner. I design for Daniel only.</p>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="What I learned" data-phase="1">
+  <p class="eyebrow" data-a>Discover</p>
+  <h2 class="t" data-a>What I learned</h2>
+  <div class="body" style="display:grid;grid-template-columns:repeat(6,1fr);gap:18px;align-content:center">
+    <div class="card" data-a style="grid-column:span 2;padding:26px 28px"><h3 style="font-size:24px">The best information comes up in the meeting</h3><p style="margin-top:10px;font-size:17.5px;line-height:1.4">But there is no polite way to keep it. Typing on a phone looks like he is not listening.</p></div>
+    <div class="card" data-a style="grid-column:span 2;padding:26px 28px"><h3 style="font-size:24px">Fast replies win deals</h3><p style="margin-top:10px;font-size:17.5px;line-height:1.4">But only if he knows who is waiting for one.</p></div>
+    <div class="card" data-a style="grid-column:span 2;padding:26px 28px"><h3 style="font-size:24px">Quiet customers are the easiest to win back</h3><p style="margin-top:10px;font-size:17.5px;line-height:1.4">But nobody can see them, so old quotes are forgotten.</p></div>
+    <div class="card" data-a style="grid-column:span 3;padding:26px 28px"><h3 style="font-size:24px">Selling is personal, and a team effort</h3><p style="margin-top:10px;font-size:17.5px;line-height:1.4">The record should hold who decides and what they care about, so nobody asks the customer the same question twice.</p></div>
+    <div class="card" data-a style="grid-column:span 3;padding:26px 28px;background:var(--amb50);border-color:var(--amb300)"><h3 style="font-size:24px">Customers may not accept being recorded</h3><p style="margin-top:10px;font-size:17.5px;line-height:1.4">Reps in a forum say they record only with permission, and that handwritten notes build trust. Whether Singapore print shop owners agree is a guess to test.</p></div>
+  </div>
+  <p class="small" data-a>Sources: the job description, Avient's public pages, seven sales videos, and one forum thread where field reps discuss meeting notes.</p>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="The problem" data-phase="2">
+  <p class="eyebrow" data-a>Define</p>
+  <h2 class="t" data-a>The problem</h2>
+  <div class="body" style="display:grid;grid-template-columns:1fr 540px;gap:34px;align-items:center;align-content:center">
+    <div data-a>
+      <p style="font:700 37px/1.18 var(--fd);text-wrap:balance">Daniel's deal information is scattered across his phone and his head, and updating it takes time he does not have.</p>
+      <p style="font:700 37px/1.18 var(--fd);color:var(--blue);margin-top:22px;text-wrap:balance">So he cannot see which deals matter, and deals go quiet without him noticing.</p>
+    </div>
+    <table class="tbl" data-a style="font-size:18.5px">
+      <thead><tr><th>The brief asks for</th><th>In Daniel's words</th></tr></thead>
+      <tbody>
+        <tr><td>Check progress</td><td>"How far am I from my target?"</td></tr>
+        <tr><td>Prioritise</td><td>"Which deals matter most today?"</td></tr>
+        <tr><td>Spot stalled deals</td><td>"Which deals have gone quiet?"</td></tr>
+        <tr><td>Act fast, no<br>tedious notes</td><td>"What do I do next?" And nothing to write up at night.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="How might we" data-phase="2">
+  <p class="eyebrow" data-a>Define</p>
+  <h2 class="t" data-a>How might we</h2>
+  <ol class="body" style="display:grid;gap:14px;align-content:center;font-size:24px;line-height:1.3;font-weight:600">
+    <li class="card" data-a style="padding:19px 26px">let Daniel pass on what he learns by talking, without breaking his conversation with the customer?</li>
+    <li class="card" data-a style="padding:19px 26px">turn scattered notes, chats and old quotes into a clear picture of each customer?</li>
+    <li class="card" data-a style="padding:19px 26px">tell Daniel which deals matter most today, in a few seconds?</li>
+    <li class="card" data-a style="padding:19px 26px">make quiet deals easy to see, without nagging him?</li>
+    <li class="card" data-a style="padding:19px 26px">show how far he is from his target, and what would move it, without a report to fill in?</li>
+  </ol>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="23 ideas, one gate, five to build" data-phase="3">
+  <p class="eyebrow" data-a>Develop</p>
+  <h2 class="t" data-a>23 ideas, one gate, five to build</h2>
+  <div class="body" style="display:grid;grid-template-columns:600px 1fr;gap:24px;margin-top:18px">
+    <div class="card chart" id="chart" data-a style="padding:10px 12px 6px"></div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card soft" data-a style="padding:16px 20px"><h3>Privacy is a gate, not a trade</h3><p style="font-size:16.5px;line-height:1.38;margin-top:6px">Impact and effort can be traded against each other. Privacy cannot. A risky idea can break the law or a customer's trust, so any idea with a high privacy risk is parked until there is a safer version.</p></div>
+      <div class="card" data-a style="padding:16px 20px;flex:1"><p class="k">The core of five</p>
+        <ul class="dots tight" style="margin-top:6px">
+          <li><b>Monday plan and top three</b> for priorities</li>
+          <li><b>Home with the target view</b> for progress</li>
+          <li><b>Quiet deal warnings</b> for stalled deals</li>
+          <li><b>Capture and tidy up</b> for fast action</li>
+          <li><b>Customer record</b>, the base they all read from</li>
+        </ul>
+        <p class="k" style="margin-top:16px">Set aside</p>
+        <ul class="dots tight" style="margin-top:6px">
+          <li><b>Parked for privacy:</b> recording whole meetings, an always listening phone, smart glasses</li>
+          <li><b>Later:</b> product tips from Avient material. The notebook photo came back in review, for phones with no pen</li>
+        </ul>
+        <p class="small" style="margin-top:10px">18 of 23 pass the gate. Scores are my first guesses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Three questions set the structure" data-phase="3">
+  <p class="eyebrow" data-a>Develop</p>
+  <h2 class="t" data-a>Three questions set the structure</h2>
+  <div class="body g3 mid">
+    <div class="card" data-a><span class="chip blue">Home</span><h3 style="font-size:26px;margin-top:12px">"What do I do now?"</h3><p style="margin-top:10px;font-size:18px;line-height:1.4">The top three for today. Each has a reason and one next step he can start with a tap.</p></div>
+    <div class="card" data-a><span class="chip blue">Home</span><h3 style="font-size:26px;margin-top:12px">"Am I on track?"</h3><p style="margin-top:10px;font-size:18px;line-height:1.4">Sales against target, the customers that need attention, and open deals by stage.</p></div>
+    <div class="card" data-a><span class="chip">Records</span><h3 style="font-size:26px;margin-top:12px">"What do I know about this customer?"</h3><p style="margin-top:10px;font-size:18px;line-height:1.4">One page per customer: next step, deals, promises, people and timeline.</p></div>
+    <div class="card soft" data-a style="grid-column:span 2"><p class="k">How it changed</p><p style="margin-top:8px;font-size:18px;line-height:1.42">I first sketched three tabs: Brief, Dashboard and Records. In review, Brief and Dashboard became one Home with section links, because he should not switch screens to answer the first two questions. Every device now has the same three places: Home, Records and Settings.</p></div>
+    <div class="card ink" data-a><p class="k">The rule</p><p style="font:700 22px/1.25 var(--fd);margin-top:8px">A number earns its place only if it changes what Daniel does next.</p></div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Calm, light and wide" data-phase="3">
+  <p class="eyebrow" data-a>Develop</p>
+  <h2 class="t" data-a>Calm, light and wide</h2>
+  <div class="body g2">
+    <div class="card" data-a style="display:flex;flex-direction:column;gap:14px">
+      <p class="k">Colour, from the Avient logo</p>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;font-size:13px;line-height:1.25;color:var(--sub)">
+        <div><div style="height:66px;border-radius:14px;background:#0080E0"></div><b style="color:var(--ink);display:block;margin-top:6px">Logo blue</b>Too bright for buttons</div>
+        <div><div style="height:66px;border-radius:14px;background:#3274AE"></div><b style="color:var(--ink);display:block;margin-top:6px">Screen blue</b>Softened, for anything he taps</div>
+        <div><div style="height:66px;border-radius:14px;background:#303C40"></div><b style="color:var(--ink);display:block;margin-top:6px">Ink</b>The grey of the wordmark</div>
+        <div><div style="height:66px;border-radius:14px;background:#FFF3DD;border:1px solid #EBCF9C"></div><b style="color:var(--ink);display:block;margin-top:6px">Amber</b>Needs a look</div>
+        <div><div style="height:66px;border-radius:14px;background:#FDE9E7;border:1px solid #F0B6B0"></div><b style="color:var(--ink);display:block;margin-top:6px">Red</b>A problem</div>
+      </div>
+      <p style="font-size:16.5px;line-height:1.4"><b>No green.</b> The logo has green, but on a sales screen green reads as "good". I left it out so nothing looks safe by colour alone.</p>
+      <div style="margin-top:auto"><p class="k">Type</p><p style="font:800 34px/1.1 var(--fd);margin-top:8px">Good morning, Daniel</p><p style="font-size:16.5px;color:var(--sub);margin-top:4px">Bricolage Grotesque for headings, wide and friendly. Figtree for reading.</p></div>
+    </div>
+    <div style="display:grid;gap:14px;grid-template-rows:auto auto auto 1fr">
+      <div class="card" data-a><p class="k">Status is a word and an icon, never colour alone</p>
+        <div class="row" style="margin-top:12px">
+          <span class="chip done"><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Up to date</span>
+          <span class="chip warn"><svg viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17.2v.1"/></svg>Quiet 9 days</span>
+          <span class="chip bad"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Payment late</span>
+        </div>
+      </div>
+      <div class="card" data-a><p class="k">How I got here</p><p style="margin-top:8px;font-size:16.5px;line-height:1.4">I reviewed three rounds of directions. The first blue shouted, so it was softened. Numbered circles in three colours looked like status, so they became one pale blue.</p></div>
+      <div class="card" data-a><p class="k">Shape</p><div class="row" style="margin-top:10px"><span style="background:var(--blue);color:var(--card);border-radius:999px;padding:8px 18px;font:600 15px/1 var(--fb)">Send quote</span><span style="background:var(--soft);color:var(--blue);border-radius:999px;padding:8px 18px;font:600 15px/1 var(--fb)">Remind me</span><span style="border:1px solid var(--ln);border-radius:999px;padding:7px 18px;font:600 15px/1 var(--fb)">Not now</span></div><p style="margin-top:10px;font-size:16.5px;line-height:1.4">Pills for buttons, round corners for cards, borders and not shadows. Only floating things get a shadow.</p></div>
+      <div class="card soft" data-a><p class="k">Voice</p><p style="margin-top:8px;font-size:16.5px;line-height:1.4">A helpful colleague. Short sentences, always a reason, and one next step. "Quote sent 9 days ago, no reply yet."</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="Meet Hue, the assistant" data-phase="3">
+  <p class="eyebrow" data-a>Develop</p>
+  <h2 class="t" data-a>Meet Hue, the assistant</h2>
+  <div class="body" style="display:grid;grid-template-columns:380px 1fr;gap:24px">
+    <div class="card" data-a style="display:grid;place-items:center;text-align:center;gap:6px;align-content:center">
+      <svg class="hue work" width="190" height="190" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg>
+      <p style="font:800 54px/1 var(--fd);margin-top:14px">Hue</p>
+      <p style="color:var(--blue);font:700 20px/1.2 var(--fd)">You sell. Hue keeps track.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:center">
+      <div class="card" data-a><p class="k">The name</p><p style="margin-top:8px;font-size:18px;line-height:1.42">Hue, as in colour, because Avient sells inks. It is not a human name, so nobody mistakes it for a person.</p></div>
+      <div class="card" data-a><p class="k">The mark</p><p style="margin-top:8px;font-size:18px;line-height:1.42">Three ink discs in blue, red and yellow. It waves when the tool opens and turns while it works.</p></div>
+      <div class="card" data-a><p class="k">Where it shows</p><p style="margin-top:8px;font-size:18px;line-height:1.42">Beside anything Hue wrote or picked: the top three, the week plan, drafted messages, tidied notes, suggestions and warnings.</p></div>
+      <div class="card" data-a><p class="k">Its limits</p><p style="margin-top:8px;font-size:18px;line-height:1.42">Hue never sends or saves by itself. When it is unsure, it says "Please check". Daniel always has the last word.</p></div>
+      <div class="card soft" data-a style="grid-column:1/-1"><p class="k">Why give it a face</p><p style="margin-top:8px;font-size:18px;line-height:1.42">Daniel should feel that someone has his back. A named helper with a visible mark also makes it clear which words are his and which are the tool's.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="Five parts answer the four goals" data-phase="4">
+  <p class="eyebrow" data-a>Deliver</p>
+  <h2 class="t" data-a>Five parts answer the four goals</h2>
+  <div class="body" style="display:flex;flex-direction:column;gap:26px;justify-content:center">
+    <div class="flow" data-a>
+      <div class="step hi" style="padding-block:22px"><p class="k" style="color:var(--soft-d)">He puts in</p><h3 style="margin-top:8px">Capture and tidy up</h3><p>Talk, type, write or photograph a note. Hue pulls out the customer, the next step and the date.</p></div>
+      <svg class="ic arr" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="step"><p class="k">It remembers</p><h3 style="margin-top:8px">Customer record</h3><p>One page per customer. Everything else reads from it.</p></div>
+      <svg class="ic arr" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="step" style="flex:2.2"><p class="k">He gets back, on Home</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px">
+          <div><h3>Top three</h3><p>What to do today, each with a reason.</p></div>
+          <div><h3>Needs attention</h3><p>Quiet deals and late payments, by name.</p></div>
+          <div><h3>Sales progress</h3><p>How far from target, and what would move it.</p></div>
+        </div>
+      </div>
+    </div>
+    <table class="tbl" data-a style="font-size:17.5px">
+      <thead><tr><th>The brief</th><th>Check sales progress</th><th>Prioritise high value deals</th><th>Spot stalled deals</th><th>Fast action, no tedious notes</th></tr></thead>
+      <tbody><tr><td>Answered by</td><td>Sales progress</td><td>Top three, with a reason each</td><td>Needs attention</td><td>Capture and tidy up, drafts ready to send</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="slide withphone" data-title="Home: what to do now" data-phase="4">
+  <p class="eyebrow" data-a>Deliver · live prototype</p>
+  <h2 class="t" data-a>Home: what to do now</h2>
+  <ul class="dots big" data-a style="margin-top:12px">
+    <li>Hue greets him by the time of day, with the weather for his next visit.</li>
+    <li>The sales bar shows what is won and what open deals could add.</li>
+    <li>Three things for today. Each says why, and offers one next step.</li>
+    <li>The week plan is made from his visits and the promises in his notes.</li>
+  </ul>
+  <div class="try" data-a><p class="k" style="color:var(--blue)">Try it on the phone</p>
+    <ol><li><span class="nb">1</span>Tap "Detail" on the sales card.</li><li><span class="nb">2</span>Tap "Open draft" on the first task.</li><li><span class="nb">3</span>Tap "Show 3 more".</li></ol></div>
+  <div class="phonebox" data-a><iframe class="live" title="Live prototype: Home" data-src="prototype/index.html?embed=1&chrome=0&device=phone"></iframe></div>
+</section>
+
+<!-- 15 -->
+<section class="slide withphone" data-title="Capture in seconds, then tidy up" data-phase="4">
+  <p class="eyebrow" data-a>Deliver · live prototype</p>
+  <h2 class="t" data-a>Capture in seconds, then tidy up</h2>
+  <ul class="dots big" data-a style="margin-top:12px">
+    <li>One round button, near his thumb. Talk, Type, and Photo on phones or Write on tablets.</li>
+    <li>Hue pulls out the customer, the next step, the date and the deal stage.</li>
+    <li>It marks what it is unsure about with "Please check".</li>
+    <li>He confirms. The record, the week plan and the top three update.</li>
+  </ul>
+  <div class="try" data-a><p class="k" style="color:var(--blue)">Try it on the phone</p>
+    <ol><li><span class="nb">1</span>Tap the round button, then "Talk".</li><li><span class="nb">2</span>Tap "Stop and tidy up".</li><li><span class="nb">3</span>Check the fields, then tap "Save to record".</li></ol></div>
+  <div class="phonebox" data-a><iframe class="live" title="Live prototype: capture" data-src="prototype/index.html?embed=1&chrome=0&device=phone"></iframe></div>
+</section>
+
+<!-- 16 -->
+<section class="slide withphone" data-title="Quiet deals get noticed" data-phase="4">
+  <p class="eyebrow" data-a>Deliver · live prototype</p>
+  <h2 class="t" data-a>Quiet deals get noticed</h2>
+  <ul class="dots big" data-a style="margin-top:12px">
+    <li>The rule is simple and visible: days since last contact, against what is normal for that stage.</li>
+    <li>Each row names the customer, the reason and the value.</li>
+    <li>He can message, call, wait three days, or say "this is normal for this customer".</li>
+    <li>Late payments sit in the same list.</li>
+  </ul>
+  <div class="try" data-a><p class="k" style="color:var(--blue)">Try it on the phone</p>
+    <ol><li><span class="nb">1</span>Tap "Tuas Textile Print".</li><li><span class="nb">2</span>Read why Hue flagged it.</li><li><span class="nb">3</span>Tap "Message Rajesh", then send.</li></ol></div>
+  <div class="phonebox" data-a><iframe class="live" title="Live prototype: needs attention" data-src="prototype/index.html?embed=1&chrome=0&device=phone&jump=b-attn"></iframe></div>
+</section>
+
+<!-- 17 -->
+<section class="slide withphone" data-title="The customer record is the memory" data-phase="4">
+  <p class="eyebrow" data-a>Deliver · live prototype</p>
+  <h2 class="t" data-a>The customer record is the memory</h2>
+  <ul class="dots big" data-a style="margin-top:12px">
+    <li>The next step comes first, then deals, promises, people and the timeline.</li>
+    <li>Section links stay at the top, and each section has its own Add.</li>
+    <li>Hue's suggestion says where it came from.</li>
+    <li>Edit shows only the fields that can change.</li>
+  </ul>
+  <div class="try" data-a><p class="k" style="color:var(--blue)">Try it on the phone</p>
+    <ol><li><span class="nb">1</span>Tap "Timeline" in the links.</li><li><span class="nb">2</span>Tap "Add note", type a line, then "Save".</li><li><span class="nb">3</span>Tap "Back", then "Records" to filter the list.</li></ol></div>
+  <div class="phonebox" data-a><iframe class="live" title="Live prototype: customer record" data-src="prototype/index.html?embed=1&chrome=0&device=phone&rec=best"></iframe></div>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-title="One tool, three devices" data-phase="4" style="padding:34px 44px 14px">
+  <p class="eyebrow" data-a>Deliver · live prototype</p>
+  <div class="row" data-a style="justify-content:space-between;align-items:flex-end;flex-wrap:nowrap;gap:30px">
+    <h2 class="t" style="white-space:nowrap;font-size:38px">One tool, three devices</h2>
+    <p class="small" style="max-width:62ch;font-size:15.5px">Home, Records and Settings are the same everywhere. The phone is for the road, the tablet adds a pen for meetings, and the computer has room for a full table. Use the switch above the device.</p>
+  </div>
+  <div class="widebox" data-a><iframe class="live" title="Live prototype on phone, tablet and computer" data-src="prototype/index.html?embed=1&device=tablet"></iframe></div>
+</section>
+
+<!-- 19 -->
+<section class="slide withphone" data-title="Built for tired eyes and bright sun" data-phase="4">
+  <p class="eyebrow" data-a>Deliver · live prototype</p>
+  <h2 class="t" data-a>Built for tired eyes and bright sun</h2>
+  <ul class="dots big" data-a style="margin-top:12px">
+    <li><b>Text size</b> in four steps. Everything grows together, so nothing is cut off.</li>
+    <li><b>Stronger contrast</b> for sunlight and weak eyesight.</li>
+    <li><b>Status without colour.</b> A word and its own icon shape, for colour blindness.</li>
+    <li><b>Less motion</b>, and it follows the device setting.</li>
+    <li><b>Left or right.</b> The capture button moves to his thumb.</li>
+  </ul>
+  <div class="try" data-a><p class="k" style="color:var(--blue)">Try it on the phone</p>
+    <ol><li><span class="nb">1</span>Set the text size to "Largest".</li><li><span class="nb">2</span>Turn on "Stronger contrast".</li><li><span class="nb">3</span>Tap "Home" to see the change.</li></ol></div>
+  <div class="phonebox" data-a><iframe class="live" title="Live prototype: settings" data-src="prototype/index.html?embed=1&chrome=0&device=phone&tab=set"></iframe></div>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-title="Under the hood, in plain words" data-phase="4">
+  <p class="eyebrow" data-a>Deliver · for the technical reviewer</p>
+  <h2 class="t" data-a>Under the hood, in plain words</h2>
+  <div class="body" style="display:flex;flex-direction:column;gap:18px;margin-top:20px;justify-content:center">
+    <div class="flow" data-a>
+      <div class="step"><h3>1. Capture</h3><p><b>Talk:</b> speech becomes text. <b>Write:</b> pen strokes become text. <b>Photo:</b> text is read from the picture. <b>Type:</b> as it is.</p></div>
+      <svg class="ic arr" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="step hi"><h3>2. Tidy up</h3><p>A language model reads the note and fills five fields: customer, what happened, next step, date and deal stage. It flags what it is unsure about.</p></div>
+      <svg class="ic arr" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="step"><h3>3. Check</h3><p>Daniel sees the fields and his original words, fixes anything wrong, and saves. Nothing is saved without him.</p></div>
+      <svg class="ic arr" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="step"><h3>4. Rules</h3><p><b>Top three:</b> value, chance to close, days waiting. <b>Quiet:</b> days since contact against the normal wait for that stage.</p></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+      <div class="card" data-a style="padding:18px 20px"><p class="k">Weak signal</p><p style="font-size:16.5px;line-height:1.4;margin-top:8px">Notes are kept on the device and sent when the signal returns. Speech to text on the device would let him capture with no signal at all.</p></div>
+      <div class="card" data-a style="padding:18px 20px"><p class="k">Mixed languages</p><p style="font-size:16.5px;line-height:1.4;margin-top:8px">His speech mixes English, Mandarin and Singlish. Accuracy here is the biggest technical risk, so wrong guesses must be easy to fix.</p></div>
+      <div class="card" data-a style="padding:18px 20px"><p class="k">Privacy</p><p style="font-size:16.5px;line-height:1.4;margin-top:8px">It records his voice only, and asks before recording a customer. Customer details are personal data under Singapore law.</p></div>
+      <div class="card" data-a style="padding:18px 20px"><p class="k">Android and iPhone</p><p style="font-size:16.5px;line-height:1.4;margin-top:8px">The floating button suits Android. On iPhone it would sit in the tab bar. Reading the call list is stricter on iPhone.</p></div>
+    </div>
+    <p class="small" data-a><b style="color:var(--ink)">What the prototype fakes:</b> voice, pen and photo play sample notes, and nothing is really sent. The tidy up of typed notes is real but simple. An engineer should confirm the phone limits.</p>
+  </div>
+</section>
+
+<!-- 21 -->
+<section class="slide" data-title="How we will know it works" data-phase="4">
+  <p class="eyebrow" data-a>Deliver</p>
+  <h2 class="t" data-a>How we will know it works</h2>
+  <div class="body" style="margin-top:20px;display:grid;align-content:center">
+    <table class="tbl" data-a style="font-size:18.5px">
+      <thead><tr><th>Goal</th><th>What we measure</th><th>First target</th></tr></thead>
+      <tbody>
+        <tr><td>Check progress</td><td>He can say how far he is from his target</td><td>In under 10 seconds</td></tr>
+        <tr><td>Prioritise</td><td>Top three actions done by the end of the day</td><td>2 of 3, on most days</td></tr>
+        <tr><td>Spot stalled deals</td><td>Quiet deals acted on after a warning</td><td>8 in 10, within 2 working days</td></tr>
+        <tr><td>Act fast</td><td>Time to capture a note by voice</td><td>Under 30 seconds</td></tr>
+        <tr><td>No tedious notes</td><td>Notes captured on the day of the visit</td><td>9 in 10, and no writing at night</td></tr>
+        <tr><td>Trust in Hue</td><td>Tidied notes saved without a fix</td><td>7 in 10</td></tr>
+        <tr><td>Not too noisy</td><td>Warnings marked "this is normal"</td><td>Fewer than 3 in 10</td></tr>
+      </tbody>
+    </table>
+    <p class="small" data-a style="margin-top:14px">These targets are first guesses. The first week measures where he is today. The slower result to watch is the number of deals quiet for more than 30 days, and sales against target.</p>
+  </div>
+</section>
+
+<!-- 22 -->
+<section class="slide" data-title="The test I would run next" data-phase="4">
+  <p class="eyebrow" data-a>Deliver</p>
+  <h2 class="t" data-a>The test I would run next</h2>
+  <div class="body" style="display:grid;grid-template-columns:1.25fr 1fr;gap:20px;margin-top:20px">
+    <div class="card" data-a><p class="k">Six tasks, on their own phone</p>
+      <ol style="display:grid;gap:13px;margin-top:14px;font-size:18.5px;line-height:1.32">
+        <li style="display:grid;grid-template-columns:30px 1fr;gap:10px"><span class="nb">1</span>It is Monday morning. What would you do first, and why?</li>
+        <li style="display:grid;grid-template-columns:30px 1fr;gap:10px"><span class="nb">2</span>How far are you from your target, and what would move it?</li>
+        <li style="display:grid;grid-template-columns:30px 1fr;gap:10px"><span class="nb">3</span>You just left Ace Tees. Record what happened in under a minute.</li>
+        <li style="display:grid;grid-template-columns:30px 1fr;gap:10px"><span class="nb">4</span>Which customers have gone quiet? Deal with one of them.</li>
+        <li style="display:grid;grid-template-columns:30px 1fr;gap:10px"><span class="nb">5</span>Find what you promised Jasmine, and whether she pays on time.</li>
+        <li style="display:grid;grid-template-columns:30px 1fr;gap:10px"><span class="nb">6</span>The text is too small in the sun. Fix it.</li>
+      </ol>
+    </div>
+    <div style="display:grid;gap:14px;grid-template-rows:auto auto 1fr">
+      <div class="card" data-a style="padding:16px 20px"><p class="k">Who and how</p><p style="font-size:16.5px;line-height:1.38;margin-top:7px">Five field sales reps, 30 minutes each, thinking aloud. One print shop owner for the questions about recording.</p></div>
+      <div class="card" data-a style="padding:16px 20px"><p class="k">What I record</p><p style="font-size:16.5px;line-height:1.38;margin-top:7px">Done without help, time taken, mistakes, and how sure they felt. Pass: 4 of 5 reps finish each task alone.</p></div>
+      <div class="card soft" data-a style="padding:16px 20px"><p class="k">What I expect to be wrong about</p><ul class="dots tight" style="margin-top:4px"><li>Is the red and yellow in Hue's mark read as a warning?</li><li>Do they check the fields marked "Please check"?</li><li>Do they find "hold to talk"?</li><li>Is the weather line useful, or noise?</li></ul></div>
+    </div>
+  </div>
+  <p class="small" data-a style="margin-top:12px"><b style="color:var(--ink)">Status:</b> not run yet. So far the prototype has been through five design reviews, not a test with users.</p>
+</section>
+
+<!-- 23 -->
+<section class="slide" data-title="What could go wrong, and what comes next" data-phase="4">
+  <p class="eyebrow" data-a>Deliver</p>
+  <h2 class="t" data-a>What could go wrong, and what comes next</h2>
+  <div class="body g2 mid" style="margin-top:20px">
+    <div class="card" data-a><p class="k">Edge cases I designed for</p>
+      <ul class="dots" style="margin-top:8px;font-size:17.5px">
+        <li><b>Quiet is not always a problem.</b> A trial can take weeks, so the wait depends on the stage of the deal.</li>
+        <li><b>Too many alerts.</b> Few warnings, each dismissed in one tap. Hue learns what is normal for a customer.</li>
+        <li><b>Wrong guesses.</b> "Please check" chips, his original words kept, and one tap to fix.</li>
+        <li><b>The same customer twice.</b> A new record warns if the company is already there.</li>
+        <li><b>Recording.</b> His voice only. Never a customer without permission.</li>
+      </ul>
+    </div>
+    <div style="display:grid;gap:16px;grid-template-rows:1fr auto">
+      <div class="card" data-a><p class="k">Not built yet</p>
+        <ul class="dots" style="margin-top:8px;font-size:17.5px">
+          <li>Two sellers, one customer: show who last spoke to the shop, Daniel or a distributor.</li>
+          <li>Old quotes worth another try, with a message ready.</li>
+          <li>Email and missed calls added for him, with his permission.</li>
+          <li>WhatsApp chats he chooses to share.</li>
+          <li>A simple view for his manager.</li>
+        </ul>
+      </div>
+      <div class="card ink" data-a style="padding:16px 20px"><p class="k">First thing I would do</p><p style="font:700 20px/1.25 var(--fd);margin-top:6px">Run the test with five reps, then fix the top three problems before adding anything.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 24 -->
+<section class="slide" data-title="How I worked with Claude" data-phase="0">
+  <p class="eyebrow" data-a>Working method</p>
+  <h2 class="t" data-a>How I worked with Claude</h2>
+  <div class="body g3 mid" style="margin-top:20px">
+    <div class="card" data-a><p class="k">What I brought</p>
+      <ul class="dots" style="margin-top:8px"><li>The choice of company, place and role</li><li>The job description, seven sales videos and a forum thread</li><li>My sketches and reference dashboards</li><li>Feedback on every round</li></ul></div>
+    <div class="card" data-a><p class="k">What Claude did</p>
+      <ul class="dots" style="margin-top:8px"><li>Summarised my sources and drafted the persona, journey map and ideas for me to correct</li><li>Asked questions and argued its case</li><li>Wrote the prototype code and checked each flow in a test browser</li><li>Wrote this presentation from my working document</li></ul></div>
+    <div class="card soft" data-a><p class="k">What I decided</p>
+      <ul class="dots" style="margin-top:8px"><li>The method, and privacy as a gate</li><li>Pen notes on a tablet</li><li>The look: light, softened blue, no green</li><li>One floating capture button</li><li>One Home on every device</li><li>Hue's colours, and weather tied to his visits</li></ul></div>
+  </div>
+  <p class="small" data-a style="margin-top:14px;font-size:16px"><b style="color:var(--ink)">The limits.</b> The sources are secondary, and some summaries were made by a machine, so they need checking. The people and numbers in the prototype are made up.</p>
+</section>
+
+<!-- 25 -->
+<section class="slide cover" data-title="Thank you" data-phase="0">
+  <svg class="band" viewBox="0 0 1280 720" aria-hidden="true"><g opacity=".9">
+    <rect x="-40" y="648" width="300" height="40" rx="20" fill="#3274AE"/><circle cx="296" cy="668" r="20" fill="#EFBE46"/><rect x="330" y="648" width="150" height="40" rx="20" fill="#303C40"/><rect x="494" y="648" width="220" height="40" rx="20" fill="#D4E4F2"/><circle cx="748" cy="668" r="20" fill="#D9624F"/><rect x="782" y="648" width="260" height="40" rx="20" fill="#3274AE"/><circle cx="1076" cy="668" r="20" fill="#D4E4F2"/><rect x="1110" y="648" width="220" height="40" rx="20" fill="#303C40"/>
+  </g></svg>
+  <div class="left" style="width:1100px">
+    <p class="eyebrow" data-a>Questions</p>
+    <h1 data-a style="font-size:132px">Thank you</h1>
+    <p class="tag" data-a>You sell. Hue keeps track.</p>
+    <p class="lede" data-a style="max-width:54ch">I would like to hear where you think Daniel differs from your real sales reps. That is the first thing the test should find out.</p>
+    <p class="by" data-a style="margin-bottom:62px"><b>Loo Say Hien</b>Prototype and presentation: sayhien.github.io/avient-sales-rep-tool</p>
+  </div>
+</section>
+
+</main>
+</div>
+</div>
+
+<nav class="bar" aria-label="Slide controls">
+  <span class="who"><svg class="hue" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg><span>Hue</span></span>
+  <span class="now" id="now"></span>
+  <span class="prog" aria-hidden="true"><i id="prog"></i></span>
+  <button class="bbtn" id="b-over" aria-label="All slides"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span class="lbl">Slides</span></button>
+  <button class="bbtn" id="b-full" aria-label="Full screen"><svg class="ic" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  <button class="bbtn" id="b-prev" aria-label="Previous slide"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <span class="ctr" id="ctr"></span>
+  <button class="bbtn pri" id="b-next" aria-label="Next slide"><span class="lbl">Next</span><svg class="ic" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+</nav>
+
+<div class="over" id="over" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-label="All slides">
+    <h2>All slides <button class="bbtn" id="b-close" aria-label="Close"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></h2>
+    <ol id="olist"></ol>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var $=function(s){return document.querySelector(s)};
+var slides=[].slice.call(document.querySelectorAll('.slide')), n=slides.length, cur=-1;
+var stage=$('#stage'), fitbox=$('#fitbox'), over=$('#over');
+var PH=['','Discover','Define','Develop','Deliver'];
+
+/* small double diamond beside each label, showing where we are */
+slides.forEach(function(s){
+  var e=s.querySelector('.eyebrow'), p=+s.dataset.phase||0; if(!e||!p) return;
+  var pts=['2,9 12,2 12,16','12,2 22,9 12,16','24,9 34,2 34,16','34,2 44,9 34,16'];
+  e.insertAdjacentHTML('afterbegin','<svg viewBox="0 0 46 18" aria-hidden="true">'+pts.map(function(x,i){return '<polygon class="d'+(i+1===p?' on':'')+'" points="'+x+'"/>'}).join('')+'</svg>');
+  [].forEach.call(s.querySelectorAll('[data-a]'),function(el,i){el.style.setProperty('--i',i)});
+});
+slides.forEach(function(s){ if(!(+s.dataset.phase)) [].forEach.call(s.querySelectorAll('[data-a]'),function(el,i){el.style.setProperty('--i',i)}) });
+
+function fit(){
+  var d=$('#deck'), cs=getComputedStyle(d), w=d.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight), h=d.clientHeight-16, k=Math.max(.2,Math.min(w/1280,h/720));
+  fitbox.style.width=1280*k+'px'; fitbox.style.height=720*k+'px'; stage.style.transform='scale('+k+')';
+}
+function live(i,on){
+  var s=slides[i]; if(!s) return;
+  [].forEach.call(s.querySelectorAll('iframe[data-src]'),function(f){
+    if(on){ if(f.getAttribute('src')!==f.dataset.src) f.setAttribute('src',f.dataset.src); }
+    else setTimeout(function(){ if(cur!==i) f.setAttribute('src','about:blank') },700);
+  });
+}
+function go(i){
+  i=Math.max(0,Math.min(n-1,i)); if(i===cur) return;
+  var prev=cur; cur=i;
+  slides.forEach(function(s,j){ s.classList.toggle('on',j===i); s.classList.toggle('past',j<i); s.setAttribute('aria-hidden',String(j!==i)); });
+  live(prev,false); live(i,true);
+  $('#ctr').textContent=(i+1)+' / '+n; $('#prog').style.width=((i+1)/n*100)+'%';
+  $('#now').textContent=slides[i].dataset.title; $('#b-prev').disabled=i===0; $('#b-next').disabled=i===n-1;
+  try{ history.replaceState(null,'','#'+(i+1)); }catch(e){}
+}
+function next(){go(cur+1)} function prev(){go(cur-1)}
+function showOver(on){
+  over.hidden=!on;
+  if(on){ $('#olist').innerHTML=slides.map(function(s,i){return '<li><button data-go="'+i+'" class="'+(i===cur?'cur':'')+'"><i>'+(i+1)+'</i><span>'+s.dataset.title+(PH[+s.dataset.phase]?'<small>'+PH[+s.dataset.phase]+'</small>':'')+'</span></button></li>'}).join(''); var c=over.querySelector('.cur'); if(c) c.focus(); }
+}
+$('#b-next').addEventListener('click',next); $('#b-prev').addEventListener('click',prev);
+$('#b-over').addEventListener('click',function(){showOver(true)}); $('#b-close').addEventListener('click',function(){showOver(false)});
+over.addEventListener('click',function(e){ var b=e.target.closest('[data-go]'); if(b){ showOver(false); go(+b.dataset.go); } else if(e.target===over) showOver(false); });
+$('#b-full').addEventListener('click',function(){ var d=document.documentElement; try{ if(document.fullscreenElement) document.exitFullscreen(); else if(d.requestFullscreen) d.requestFullscreen().catch(function(){}); }catch(e){} });
+document.addEventListener('keydown',function(e){
+  if(e.metaKey||e.ctrlKey||e.altKey) return;
+  var typing=/INPUT|TEXTAREA|SELECT/.test((e.target&&e.target.tagName)||'');
+  if(e.key==='Escape'){ if(!over.hidden) showOver(false); return; }
+  if(typing||!over.hidden) return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'||(e.key===' '&&e.target.tagName!=='BUTTON')){ e.preventDefault(); next(); }
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); prev(); }
+  else if(e.key==='Home') go(0); else if(e.key==='End') go(n-1);
+  else if(e.key==='o'||e.key==='O') showOver(true);
+});
+/* the prototype passes arrow keys up when the presenter is clicking inside it */
+window.addEventListener('message',function(e){ var d=e.data; if(d&&d.hue==='nav'){ if(d.key==='ArrowRight'||d.key==='PageDown') next(); else prev(); } });
+/* swipe on touch screens, outside the live prototype */
+var sx=null; stage.addEventListener('pointerdown',function(e){ sx=e.pointerType==='touch'&&!e.target.closest('iframe')?e.clientX:null });
+stage.addEventListener('pointerup',function(e){ if(sx===null) return; var dx=e.clientX-sx; sx=null; if(dx<-60) next(); else if(dx>60) prev(); });
+window.addEventListener('resize',fit);
+window.addEventListener('hashchange',function(){ var h=parseInt(location.hash.slice(1),10); if(h>=1&&h<=n) go(h-1); });
+
+/* ideas chart: effort across, impact up. Dots carry the idea number. */
+(function(){
+  var el=$('#chart'); if(!el) return;
+  var core={10:1,19:1,12:1,13:1,1:1,2:1,3:1,20:1,21:1,16:1,17:1,18:1,11:1};
+  var D=[[1,'Two way voice assistant',5,3,2,'p'],[2,'Quick tags',4,1,1,'p'],[3,'Voice note in a lull',4,2,3,'p'],[4,'Notebook photo',3,2,1,'l'],[5,'Meeting recording',4,3,4,'x'],[6,'Share a WhatsApp chat',4,2,3,'p'],[7,'Email and call list',4,3,3,'p'],[8,'Always listening phone',3,4,5,'x'],[9,'Smart glasses',2,5,5,'x'],[10,'Monday plan and top three',5,2,1,'p'],[11,'Customer card',4,2,1,'p'],[12,'Target view',4,2,1,'p'],[13,'Quiet deal warnings',5,3,1,'p'],[14,'Old quote list',4,2,1,'p'],[15,'Promise list and drafts',4,3,2,'p'],[16,'Customer record',5,3,2,'p'],[17,'Records made for him',4,3,3,'p'],[18,'Edit by voice or tap',4,2,1,'p'],[19,'Home dashboard',4,3,1,'p'],[20,'Pen notes on a tablet',4,3,2,'p'],[21,'Automatic tidy up',5,3,2,'p'],[22,'Next step and sales tips',4,3,1,'p'],[23,'Product tips from Avient material',4,5,1,'l']];
+  var W=576,H=432,L=56,R=14,T=16,B=74, cw=(W-L-R)/5, ch=(H-T-B)/4;   /* impact 2..5 */
+  var cells={}; D.forEach(function(d){var k=d[3]+','+d[2];(cells[k]=cells[k]||[]).push(d)});
+  var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="23 ideas plotted by effort and impact. Three are parked for privacy risk."><g>';
+  for(var i=0;i<=4;i++){ var y=T+i*ch; s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="#DCE5EC"/>'; }
+  for(i=0;i<=5;i++){ var x=L+i*cw; s+='<line y1="'+T+'" y2="'+(H-B)+'" x1="'+x+'" x2="'+x+'" stroke="#DCE5EC"/>'; }
+  for(i=1;i<=5;i++) s+='<text x="'+(L+(i-.5)*cw)+'" y="'+(H-B+18)+'" text-anchor="middle" font-size="13">'+i+'</text>';
+  for(i=2;i<=5;i++) s+='<text x="'+(L-10)+'" y="'+(T+(5-i+.5)*ch+5)+'" text-anchor="end" font-size="13">'+i+'</text>';
+  s+='<text x="'+(L+(W-L-R)/2)+'" y="'+(H-B+36)+'" text-anchor="middle" font-size="13" font-weight="700">Effort to build (5 is hardest)</text>';
+  s+='<text transform="translate(16 '+(T+(H-T-B)/2)+') rotate(-90)" text-anchor="middle" font-size="13" font-weight="700">Impact for Daniel</text></g>';
+  Object.keys(cells).forEach(function(k){
+    var a=cells[k], e=+k.split(',')[0], im=+k.split(',')[1], cols=a.length>4?3:a.length>2?2:a.length, rows=Math.ceil(a.length/cols), r=a.length>4?11:13, gap=r*2+3;
+    var cx=L+(e-.5)*cw, cy=T+(5-im+.5)*ch;
+    a.forEach(function(d,j){
+      var c=j%cols, rw=Math.floor(j/cols), x=cx+(c-(cols-1)/2)*gap, y=cy+(rw-(rows-1)/2)*gap, t=d[5], isCore=t==='p'&&core[d[0]];
+      var fill=isCore?'#3274AE':t==='p'?'#E7F0F8':'#FFFFFF', stroke=t==='x'?'#A3261C':t==='l'?'#5F6F78':'#3274AE', dash=t==='l'?' stroke-dasharray="3 3"':'', tc=isCore?'#FFFFFF':'#303C40';
+      s+='<g class="dot" tabindex="0" data-tip="'+d[0]+'. '+d[1]+'|Impact '+d[2]+' · Effort '+d[3]+' · Privacy risk '+d[4]+'|'+(t==='x'?'Parked for privacy':t==='l'?'Later':isCore?'In the core of five':'Passes the gate')+'"><circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2"'+dash+'/>'+(t==='x'?'<line x1="'+(x-r*.7)+'" y1="'+(y+r*.7)+'" x2="'+(x+r*.7)+'" y2="'+(y-r*.7)+'" stroke="#A3261C" stroke-width="1.5"/>':'')+'<text x="'+x+'" y="'+(y+4.5)+'" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:'+tc+'">'+d[0]+'</text></g>';
+    });
+  });
+  var lg=[['#3274AE','#3274AE','','In the core of five'],['#E7F0F8','#3274AE','','Passes the gate'],['#FFFFFF','#5F6F78',' stroke-dasharray="3 3"','Later'],['#FFFFFF','#A3261C','','Parked for privacy']], lx=L;
+  lg.forEach(function(g,i){ s+='<circle cx="'+(lx+8)+'" cy="'+(H-16)+'" r="8" fill="'+g[0]+'" stroke="'+g[1]+'" stroke-width="2"'+g[2]+'/>'+(i===3?'<line x1="'+(lx+2.5)+'" y1="'+(H-10.5)+'" x2="'+(lx+13.5)+'" y2="'+(H-21.5)+'" stroke="#A3261C" stroke-width="1.5"/>':'')+'<text x="'+(lx+22)+'" y="'+(H-11.5)+'" font-size="13" style="fill:#303C40">'+g[3]+'</text>'; lx+=[150,140,74,0][i]; });
+  el.innerHTML=s+'</svg><div class="tipb" id="tipb" hidden></div>';
+  var tip=$('#tipb');
+  function show(g){ var p=g.dataset.tip.split('|'); tip.innerHTML='<b>'+p[0]+'</b><br>'+p[1]+'<br>'+p[2]; tip.hidden=false;
+    var cr=el.getBoundingClientRect(), gr=g.getBoundingClientRect(), k=cr.width/el.offsetWidth||1;
+    var x=(gr.left+gr.width/2-cr.left)/k, y=(gr.top-cr.top)/k; tip.style.left=Math.max(6,Math.min(el.offsetWidth-266,x-130))+'px'; tip.style.top=Math.max(4,y-tip.offsetHeight-8)+'px'; }
+  el.addEventListener('pointerover',function(e){ var g=e.target.closest('.dot'); if(g) show(g); });
+  el.addEventListener('pointerout',function(e){ if(e.target.closest('.dot')) tip.hidden=true; });
+  el.addEventListener('focusin',function(e){ var g=e.target.closest('.dot'); if(g) show(g); });
+  el.addEventListener('focusout',function(){ tip.hidden=true; });
+})();
+
+fit();
+var h0=parseInt(location.hash.slice(1),10); go(h0>=1&&h0<=n?h0-1:0);
+})();
+</script>
+</body>
+</html>
