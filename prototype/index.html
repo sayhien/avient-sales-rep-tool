@@ -693,6 +693,27 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .rgrid .card h3 .link{flex:none}
 .tl{grid-template-columns:66px 1fr auto}
 .prow{font-weight:500}
+/* ---------- round 11: three button levels, icon buttons, empty states ---------- */
+/* level 1, dark blue: the capture button and the main action of a sheet. Level 2, light blue: an action inside a section. Level 3, text: a list control such as Show more. */
+.btn-soft{color:var(--blue-d)}
+.btn-quiet{background:transparent;color:var(--blue-d);padding:6px 10px}
+.app .btn-quiet.wide{margin-top:4px}
+.ib{position:relative;border:0;background:none;width:28px;height:28px;margin:-6px -6px -6px 0;border-radius:999px;display:inline-grid;place-items:center;color:var(--blue-d);cursor:pointer;flex:none;padding:0}
+.ib::after{content:'';position:absolute;inset:-7px}
+.ib .ic{width:15px;height:15px}
+.ib:active{transform:scale(.92)}
+.rgrid .card h3 .ib{margin:-6px -6px -6px 0}
+.dv .ib{margin-left:2px}
+.estate{display:grid;justify-items:center;gap:6px;text-align:center;padding:22px 16px;border:1px dashed var(--ln-d);border-radius:16px;background:var(--white)}
+.estate h3{font:700 14px/18px var(--fd);margin:4px 0 0}
+.estate p{color:var(--sub);max-width:34ch;margin:0}
+.estate .btn{margin-top:6px}
+.estate .eic{width:44px;height:44px;border-radius:999px;background:var(--soft);color:var(--blue-d);display:grid;place-items:center}
+.estate .eic .ic{width:20px;height:20px}
+.estate.big{padding:34px 18px;margin-top:10px}
+.bhead{grid-template-columns:minmax(0,1fr)}
+.bhead>*{min-width:0}
+@media (hover:hover){ .btn-quiet:hover{background:var(--soft)} .ib:hover{background:var(--soft)} }
 /* inside the presentation */
 .embed body{background:transparent}
 .embed .top>div:first-child{display:none}
@@ -711,7 +732,7 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
   </div>
   <div class="ctl">
     <label class="wxsel" for="data-sel">Sample data
-      <select id="data-sel"><option value="8">8 customers</option><option value="70">70 customers</option></select>
+      <select id="data-sel"><option value="0">0 customers</option><option value="100">100 customers</option></select>
     </label>
     <label class="wxsel" for="time-sel">Sample time
       <select id="time-sel"><option value="">Your clock</option><option value="8:20">8:20 in the morning</option><option value="13:30">1:30 in the afternoon</option><option value="16:00">4:00 in the afternoon</option><option value="20:00">8:00 in the evening</option></select>
@@ -753,7 +774,7 @@ var LOGO='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAigAAACNCAMAAACqnXHDAAAA
 /* ---------- helpers ---------- */
 var $=function(s){return document.querySelector(s)};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-var money=function(k){return k>=1000?'S$'+(k/1000).toFixed(1).replace('.0','')+'M':'S$'+k+'k'};
+var money=function(k){return !k?'S$0':k>=1000?'S$'+(k/1000).toFixed(1).replace('.0','')+'M':'S$'+k+'k'};
 var I={
  mic:'<path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
  key:'<rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M7 10h.1M11 10h.1M15 10h.1M7.5 14h9"/>',
@@ -995,11 +1016,11 @@ function points(t){
 }
 
 /* ---------- large sample: 62 more customers, made by a fixed rule so they are the same on each load ---------- */
-var BASE={C:JSON.stringify(C),D:JSON.stringify(D),T:JSON.stringify(T)};
+var BASE={C:JSON.stringify(C),D:JSON.stringify(D),T:JSON.stringify(T),V:JSON.stringify(VISITS)};
 function fmtBack(n){ if(n<=0) return 'Today'; var d=new Date(2026,9,5-n); return DAYS3[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()] }
 function genData(n){
   var seed=20261005, r=function(){ seed=(seed*1664525+1013904223)>>>0; return seed/4294967296 }, pick=function(a){return a[Math.floor(r()*a.length)]}, ri=function(a,b){return a+Math.floor(r()*(b-a+1))};
-  var PRE=['Apex','Bayfront','Cedar','Dragonfly','Eastwind','Fabrik','Golden Loom','Harbourlight','Inkwell','Jade','Kampong','Lucky Thread','Mighty','Northstar','Orchid','Peak','Quickdry','Redhill','Sunbird','Tembusu','Urban Stitch','Vivid','Wavefront','Xpress','Yellow Brick','Zest','Banyan','Coral','Heron','Kite','Lantern','Mango','Nimbus','Otter','Pandan','Rambutan','Sampan','Kingfisher','Hibiscus','Monsoon','Pagoda','Raintree','Seabreeze','Tropic','Vanda','Wayang','Angsana','Bamboo','Cempaka','Evergreen','Frangipani','Gecko','Ixora','Jasper','Mynah','Nutmeg','Opal','Pelican','Marina','Keppel','Katong','Siglap','Seletar','Punggol'];
+  var PRE=['Apex','Bayfront','Cedar','Dragonfly','Eastwind','Fabrik','Golden Loom','Harbourlight','Inkwell','Jade','Kampong','Lucky Thread','Mighty','Northstar','Orchid','Peak','Quickdry','Redhill','Sunbird','Tembusu','Urban Stitch','Vivid','Wavefront','Xpress','Yellow Brick','Zest','Banyan','Coral','Heron','Kite','Lantern','Mango','Nimbus','Otter','Pandan','Rambutan','Sampan','Kingfisher','Hibiscus','Monsoon','Pagoda','Raintree','Seabreeze','Tropic','Vanda','Wayang','Angsana','Bamboo','Cempaka','Evergreen','Frangipani','Gecko','Ixora','Jasper','Mynah','Nutmeg','Opal','Pelican','Marina','Keppel','Katong','Siglap','Seletar','Punggol','Albatross','Brightside','Canopy','Dockside','Emerald','Foxglove','Granite','Harvest','Indigo','Juniper','Kestrel','Lotus','Maple','Neptune','Oasis','Pioneer','Quartz','Riverside','Saffron','Topaz','Unity','Vertex','Willow','Zenith','Atlas','Beacon','Compass','Dynasty'];
   var SUF={Printer:['Screen Print','Print Works','Printing','Silkscreen','Tees','Print House','Garment Print'],Brand:['Apparel','Sportswear','Activewear','Streetwear'],'Uniform maker':['Uniforms','Workwear'],Distributor:['Trading','Supplies']};
   var KIND=['Printer','Printer','Printer','Printer','Printer','Printer','Brand','Brand','Uniform maker','Distributor'];
   var SUR=['Tan','Lim','Lee','Ng','Ong','Wong','Goh','Chua','Koh','Teo','Chan','Yeo'], GIV=['Wei Ming','Hui Ling','Jia Hao','Shu Fen','Kai Xiang','Mei Xuan','Zhi Wei','Li Ting','Jun Jie','Xin Yi','Boon Kiat','Siew Lan'];
@@ -1023,7 +1044,7 @@ function genData(n){
       people.push({name:pn,call:call,role:k===0?pick(ROLE):pick(ROLE.slice(1)),phone:(r()<.5?'9':'8')+ri(100,999)+' '+ri(1000,9999),email:r()<.6?call.toLowerCase().replace(/[^a-z]/g,'')+'@'+dom:''}); }
     var c={id:id,keys:[name.toLowerCase().replace(/ pte ltd$/,'')],name:name,type:type,area:area,addr:ri(1,98)+' '+area+' '+pick(ROAD),bld:'',unit:r()<.7?'#0'+ri(1,9)+'-'+('0'+ri(1,40)).slice(-2):'',postal:postal,
       since:ri(2013,2026),terms:pick(['30 days','30 days','45 days','60 days','Cash','14 days']),last:ri(1,70),people:people,products:[],timeline:[],promises:[],files:[],tip:''};
-    if(i===6||i===22||i===40) c.late={amt:ri(3,12),days:ri(8,45)};
+    if(i===6||i===22||i===40||i===61||i===77) c.late={amt:ri(3,12),days:ri(8,45)};
     var nd=pick([0,0,0,1,1,1,2]), minTouch=999, call0=people[0].call;
     for(k=0;k<nd;k++){
       var stage=pick(['New','Sample','Sample','Trial','Quote','Quote','Lost']), d={id:id+'d'+(k+1),cust:id,name:pick(DN),value:ri(3,18),stage:stage};
@@ -1048,13 +1069,13 @@ function genData(n){
   }
   return {C:cs,D:ds,T:ts};
 }
-function loadData(big){
-  C.length=0; D.length=0; T.length=0;
-  JSON.parse(BASE.C).forEach(function(x){C.push(x)}); JSON.parse(BASE.D).forEach(function(x){D.push(x)}); JSON.parse(BASE.T).forEach(function(x){T.push(x)});
-  if(big){ var g=genData(62); g.C.forEach(function(x){C.push(x)}); g.D.forEach(function(x){D.push(x)}); g.T.forEach(function(x){T.push(x)}); }
+/* n = 0: a new user with no records. n = 8: the customers written by hand. n = 100: 92 more customers made by a rule. */
+function loadData(n){
+  C.length=0; D.length=0; T.length=0; VISITS.length=0; WONBASE=n?540:0;
+  if(n){ JSON.parse(BASE.C).forEach(function(x){C.push(x)}); JSON.parse(BASE.D).forEach(function(x){D.push(x)}); JSON.parse(BASE.T).forEach(function(x){T.push(x)}); JSON.parse(BASE.V).forEach(function(x){VISITS.push(x)}); }
+  if(n>8){ var g=genData(n-8); g.C.forEach(function(x){C.push(x)}); g.D.forEach(function(x){D.push(x)}); g.T.forEach(function(x){T.push(x)}); }
   var pts={}; T.forEach(function(t){pts[t.id]=points(t)}); T.sort(function(a,b){return pts[b.id]-pts[a.id]});
 }
-
 /* ---------- state ---------- */
 var S={device:'phone',tab:'brief',rec:null,sheet:null,wx:'storm',clock:'',dayAll:{},just:null,fan:false,more:false,plan:true,sales:false,done:{},stage:null,q:'',f:'all',sort:'name',edit:false,draft:null,attnAll:false,weekAll:false,recN:20,page:0,tlN:5,secAll:{},
        set:{size:'m',hc:false,rm:false,left:false,tips:true,warn:true,tidy:true,draft:true,top:true,wx:true,lang:'English'}};
@@ -1145,12 +1166,13 @@ function salesHTML(){
   var r=total?togo/total:9, frac=r<=.34?'a third':r<=.5?'half':r<=.67?'two thirds':r<=.8?'three quarters':'almost all';
   var paceT=pct>=PACE?' You are ahead of the plan for today, which is '+PACE+'%.':' To be on plan today, you need '+PACE+'%. You are at '+pct+'%.';
   var one=!togo?'<b>Target reached.</b> Everything from here is a bonus.':'<b>'+money(togo)+' to go.</b> '+(total>=togo?'Your open deals can cover it.':'Open deals cover '+money(total)+' of it.');
-  var xtra=!togo?'':(total>=togo?' You need about '+frac+' of them to close.':' New deals matter this month.')+paceT+(mine?' Closing '+esc(cust(mine.cust).name)+' ('+money(mine.value)+') takes you to '+Math.min(100,Math.round((w+mine.value)/TARGET*100))+'%.':'');
+  if(!C.length) one='<b>No sales yet.</b> Add your first deal to start.';
+  var xtra=!togo||!C.length?'':(total>=togo?' You need about '+frac+' of them to close.':' New deals matter this month.')+paceT+(mine?' Closing '+esc(cust(mine.cust).name)+' ('+money(mine.value)+') takes you to '+Math.min(100,Math.round((w+mine.value)/TARGET*100))+'%.':'');
   return '<div class="card sales'+(isO?' open':'')+'"><div class="sh2"><p class="lab">Sales this year</p>'+(wide?'':'<button class="link" data-act="sales" aria-expanded="'+S.sales+'"><span>'+(S.sales?'Less':'Detail')+'</span>'+ic('down')+'</button>')+'</div>'+
    '<div class="figrow"><p class="fig"><span id="fig-n">'+money(w)+'</span> <small>of '+money(TARGET)+' target</small></p><p class="pct">'+pct+'%</p></div>'+
    '<div class="meterw"><div class="meter" role="img" aria-label="'+pct+' percent of the target is won. Open deals worth '+money(total)+' could add the rest. The plan for today is '+PACE+' percent."><i class="mw" style="width:calc('+wonW+'% - 1px)" title="Won: '+money(w)+'"></i><i class="mo" style="left:calc('+wonW+'% + 1px);width:calc('+opW+'% - 1px)" title="Open deals: '+money(total)+'"></i></div><i class="pace" style="left:'+PACE+'%"></i><span class="pacel" style="left:'+PACE+'%">Today</span></div>'+
    '<p class="one">'+one+'<span class="xtra">'+xtra+'</span></p>'+
-   '<div class="fold'+(isO?' open':'')+'"><div>'+
+   '<div class="fold'+(isO&&C.length?' open':'')+'"><div>'+
    '<p class="legend"><span><i class="k kw"></i>Won '+money(w)+'</span><span><i class="k ko"></i>Open deals '+money(total)+'</span><span><i class="k kp"></i>Where you should be today, '+PACE+'%</span></p>'+
    '<div class="trio"><div><b>'+money(togo)+'</b><span>to go</span></div><div><b>'+money(total)+'</b><span>in open deals</span></div><div><b>87</b><span>days left</span></div></div>'+
    '</div></div></div>';
@@ -1158,7 +1180,7 @@ function salesHTML(){
 function weekRows(){
   var ps=[]; C.forEach(function(c){c.promises.forEach(function(p){ if(!p.done&&inWeek(p.iso)&&p.iso>TODAY) ps.push({iso:p.iso,t:p.t,who:c.name,when:'Promise',cust:c.id}) })});
   var all=VISITS.filter(function(v){return v.iso>TODAY&&inWeek(v.iso)}).concat(ps).sort(function(a,b){return a.iso<b.iso?-1:a.iso>b.iso?1:(a.when==='Promise'?1:0)-(b.when==='Promise'?1:0)||mins(a.when)-mins(b.when)});
-  if(!all.length) return '<p class="cap" style="border:0">Nothing more for this week.</p>';
+  if(!all.length) return '';
   var days=[], by={}; all.forEach(function(w){ if(!by[w.iso]){ by[w.iso]=[]; days.push(w.iso); } by[w.iso].push(w); });
   return days.map(function(iso){ var rows=by[iso], open=!!S.dayAll[iso], f=fmt(iso).split(' ');
     return (open?rows:rows.slice(0,3)).map(function(w,i){
@@ -1168,7 +1190,9 @@ function weekRows(){
    '<p class="cap">'+hue(13)+' '+AI+' made this from your visits and the promises in your notes.</p>';
 }
 function weekHTML(){
-  return sec('week','Later this week','<button class="link" data-act="plan" aria-expanded="'+S.plan+'">'+(S.plan?'Hide':'Show')+'</button>','<div class="fold'+(S.plan?' open':'')+'"><div><div class="card plan">'+weekRows()+'</div></div></div>');
+  var rows=weekRows();
+  if(!rows) return sec('week','Later this week','','<p class="empty">No visits or promises later this week.</p>');
+  return sec('week','Later this week','<button class="link" data-act="plan" aria-expanded="'+S.plan+'">'+(S.plan?'Hide':'Show')+'</button>','<div class="fold'+(S.plan?' open':'')+'"><div><div class="card plan">'+rows+'</div></div></div>');
 }
 function taskHTML(t){
   var done=S.done[t.id], d=deal(t.deal), chips='', write=t.act==='msg'&&!S.set.draft;
@@ -1177,7 +1201,7 @@ function taskHTML(t){
   return '<div class="task'+(done?' done':'')+(S.just===t.id?' pop':'')+'"><button class="tick" data-act="done" data-id="'+t.id+'" aria-pressed="'+!!done+'" aria-label="'+(done?'Done. Tap to undo: ':'Mark as done: ')+esc(t.title)+'">'+ic('tick')+'</button>'+
    '<div><button class="title" data-act="rec" data-id="'+t.cust+'">'+esc(t.title)+'</button><span class="why">'+(done?(done===2?'Done by your note.':'Done.'):esc(t.why))+'</span>'+
    (chips?'<span class="chips">'+chips+'</span>':'')+
-   (done?'':'<span class="acts"><button class="btn btn-primary" data-act="'+t.act+'" data-id="'+t.cust+'" data-deal="'+t.deal+'">'+(t.act==='call'?ic('phone'):t.act==='rec'?ic('file'):write?ic('msg'):hue(14,'w'))+(write?'Write message':t.label)+'</button></span>')+'</div></div>';
+   (done?'':'<span class="acts"><button class="btn btn-soft" data-act="'+t.act+'" data-id="'+t.cust+'" data-deal="'+t.deal+'">'+(t.act==='call'?ic('phone'):t.act==='rec'?ic('file'):write?ic('msg'):hue(14))+(write?'Write message':t.label)+'</button></span>')+'</div></div>';
 }
 /* a visit of today, as an item of the day. It has the time, the reason, the area and the weather for that part of the day */
 function visitHTML(v){
@@ -1190,7 +1214,7 @@ function visitHTML(v){
   return '<div class="task visit'+(done?' done':'')+(S.just===id?' pop':'')+'"><button class="tick" data-act="done" data-id="'+id+'" aria-pressed="'+!!done+'" aria-label="'+(done?'Done. Tap to undo: ':'Mark as done: ')+'Visit '+esc(c.name)+'">'+ic('tick')+'</button>'+
    '<div><button class="title" data-act="rec" data-id="'+v.cust+'"><span class="vt">'+v.when+'</span>Visit '+esc(c.name)+'</button><span class="why">'+(done?(done===2?'Done by your note.':'Done.'):esc(v.note||v.why))+'</span>'+
    (chips?'<span class="chips">'+chips+'</span>':'')+
-   (done?'':'<span class="acts">'+(past?'<button class="btn btn-primary" data-act="vnote" data-id="'+v.cust+'">'+ic('plus')+'Add a note about the visit</button>':'<button class="btn btn-soft" data-act="rec" data-id="'+v.cust+'">'+ic('file')+'Prepare for the visit</button>')+'</span>')+'</div></div>';
+   (done?'':'<span class="acts">'+(past?'<button class="btn btn-soft" data-act="vnote" data-id="'+v.cust+'">'+ic('plus')+'Add a note about the visit</button>':'<button class="btn btn-soft" data-act="rec" data-id="'+v.cust+'">'+ic('file')+'Prepare for the visit</button>')+'</span>')+'</div></div>';
 }
 var PUID=0;
 function dayTasks(){
@@ -1206,13 +1230,14 @@ function dayTasks(){
 function topHTML(){
   var on=S.set.top, list=dayTasks(), first=list.slice(0,3), rest=list.slice(3), vs=visitsToday();
   var doneN=first.filter(function(t){return S.done[t.id]}).length+vs.filter(function(v){return S.done['v-'+v.cust]}).length, total=first.length+vs.length;
-  return sec('top',hue(15)+'Today','<span class="count">'+doneN+' of '+total+' done</span>',
+  if(!C.length) return sec('top',hue(15)+'Today','','<div class="estate">'+hue(40)+'<h3>Nothing for today yet</h3><p>Add your first customer. Then '+AI+' shows your visits and your tasks here.</p><button class="btn btn-soft" data-act="newcust">'+ic('plus')+'New customer</button></div>');
+  return sec('top',hue(15)+'Today',total?'<span class="count">'+doneN+' of '+total+' done</span>':'',
    '<h3 class="grp">Visits<span class="count">In order of time</span></h3>'+
    '<div class="stack">'+(vs.map(visitHTML).join('')||'<p class="empty">No visits today.</p>')+'</div>'+
    '<h3 class="grp">Tasks<span class="count">'+(on?'Most important first':'In order of customer name')+'</span></h3>'+
    '<div class="stack">'+(first.map(taskHTML).join('')||'<p class="empty">No tasks for today.</p>')+'</div>'+
    (rest.length?'<div class="fold'+(S.more?' open':'')+'"><div><div class="stack" style="padding-top:6px">'+rest.map(taskHTML).join('')+'</div></div></div>'+
-   '<button class="btn btn-soft wide" data-act="more" data-n="'+rest.length+'" aria-expanded="'+S.more+'">'+(S.more?'Show fewer':'Show '+rest.length+' more')+'</button>':''));
+   '<button class="btn btn-quiet wide" data-act="more" data-n="'+rest.length+'" aria-expanded="'+S.more+'">'+(S.more?'Show fewer':'Show '+rest.length+' more')+'</button>':''));
 }
 function attnHTML(){
   var a=[];
@@ -1222,18 +1247,19 @@ function attnHTML(){
   var show=S.attnAll?a:a.slice(0,4);
   return sec('attn','Needs attention','<span class="count">'+(a.length?a.length+(a.length===1?' customer':' customers'):'')+'</span>','<div class="stack">'+
    (show.map(function(x){return '<button class="row" data-act="'+x.act+'" data-id="'+x.cust+'" data-deal="'+x.deal+'"><span><b>'+esc(cust(x.cust).name)+'</b><br><span class="r2">'+esc(x.why)+'</span></span><span class="rr"><span class="val">'+money(x.val)+'</span>'+x.chip+'</span></button>'}).join('')||'<p class="empty">Nothing needs attention.</p>')+'</div>'+
-   (a.length>4?'<button class="btn btn-soft wide" data-act="attnall" aria-expanded="'+S.attnAll+'">'+(S.attnAll?'Show fewer':'Show '+(a.length-4)+' more')+'</button>':'')+
+   (a.length>4?'<button class="btn btn-quiet wide" data-act="attnall" aria-expanded="'+S.attnAll+'">'+(S.attnAll?'Show fewer':'Show '+(a.length-4)+' more')+'</button>':'')+
    (S.set.warn?'':'<p class="cap" style="margin-top:6px">Quiet deal warnings are off. Turn them on in Settings.</p>'));
 }
 function dealsHTML(){
   var open=D.filter(isOpen), per=STAGES.map(function(s){var a=open.filter(function(d){return d.stage===s});return {s:s,n:a.length,v:sum(a)}});
   var max=Math.max.apply(null,per.map(function(p){return p.v}))||1;
   var list=open.filter(function(d){return !S.stage||d.stage===S.stage}).sort(function(a,b){return b.value-a.value});
+  if(!open.length) return sec('deals','Open deals','','<p class="empty">No open deals yet. '+(C.length?'Add a deal in a customer record.':'Your deals show here, by stage.')+'</p>');
   return sec('deals','Open deals','<span class="count">'+open.length+(open.length===1?' deal':' deals')+' · '+money(sum(open))+'</span>','<div class="card" style="padding-top:6px">'+
    per.map(function(p){return '<button class="st'+(S.stage===p.s?' on':'')+'" data-act="stage" data-id="'+p.s+'" aria-pressed="'+(S.stage===p.s)+'"><span class="sn">'+p.s+'</span><span class="sb"><i style="width:'+(p.v/max*100)+'%"></i></span><span class="sv">'+p.n+(p.n===1?' deal':' deals')+' · '+money(p.v)+'</span></button>'}).join('')+
    '<h3 class="sub3">'+(S.stage?S.stage+' deals <button class="link" data-act="stage" data-id="">Show all</button>':'Biggest first <span class="count">Tap a stage to filter</span>')+'</h3>'+
    (list.slice(0,5).map(function(d){var c=cust(d.cust);return '<button class="mini" data-act="rec" data-id="'+c.id+'"><span><b style="font-weight:600">'+esc(c.name)+'</b><br><span class="cap">'+esc(d.name)+' · '+d.stage+(S.set.warn&&isQuiet(d)?' · quiet '+d.touch+' days':'')+'</span></span><span class="val">'+money(d.value)+'</span></button>'}).join('')||'<p class="cap">No deals at this stage.</p>')+
-   (list.length>5?'<button class="btn btn-soft wide" data-act="alldeals" style="margin:6px 0 2px">See all '+list.length+' in Records</button>':'')+'</div>');
+   (list.length>5?'<button class="btn btn-quiet wide" data-act="alldeals" style="margin:6px 0 2px">See all '+list.length+' in Records</button>':'')+'</div>');
 }
 function briefHTML(){
   var hello=helloHTML(), sales=salesHTML(), top=topHTML(), week=weekHTML(), attn=attnHTML(), deals=dealsHTML();
@@ -1281,30 +1307,31 @@ function recRows(){
      (pages>1?'<div class="pager"><span class="count">'+(from+1)+' to '+Math.min(total,from+per)+' of '+total+'</span><span class="sp"></span><button class="btn btn-ghost" data-act="page" data-id="-1"'+(S.page===0?' disabled':'')+'>Previous</button><span class="count">Page '+(S.page+1)+' of '+pages+'</span><button class="btn btn-ghost" data-act="page" data-id="1"'+(S.page>=pages-1?' disabled':'')+'>Next</button></div>':'');
   }
   return a.slice(0,S.recN).map(function(c){return '<button class="row" data-act="rec" data-id="'+c.id+'"><span><b>'+esc(c.name)+'</b><br><span class="r2">'+esc(c.people[0].name)+(c.area?' · '+esc(c.area):'')+'</span></span><span class="rr"><span class="r2">'+ago(c.last)+'</span>'+custStatus(c)+'</span></button>'}).join('')+
-   (total>S.recN?'<button class="btn btn-soft wide" data-act="recmore">Show '+Math.min(20,total-S.recN)+' more</button><p class="cap ctr">'+S.recN+' of '+total+' shown</p>':'');
+   (total>S.recN?'<button class="btn btn-quiet wide" data-act="recmore">Show '+Math.min(20,total-S.recN)+' more</button><p class="cap ctr">'+S.recN+' of '+total+' shown</p>':'');
 }
 function recListHTML(){
   var q=S.q.trim().toLowerCase();
-  return '<div class="rtop"><h1>Records</h1><button class="btn btn-primary" data-act="newcust">'+ic('plus')+'New customer</button></div>'+
+  if(!C.length) return '<div class="rtop"><h1>Records</h1></div><div class="estate big"><span class="eic">'+ic('file')+'</span><h3>No customers yet</h3><p>Add your first customer. Only the company name is necessary.</p><button class="btn btn-soft" data-act="newcust">'+ic('plus')+'New customer</button></div>';
+  return '<div class="rtop"><h1>Records</h1><button class="btn btn-soft" data-act="newcust">'+ic('plus')+'New customer</button></div>'+
    '<label class="search">'+ic('search')+'<input id="q" type="search" placeholder="Search company, person or product" value="'+esc(S.q)+'" aria-label="Search company, person or product"></label>'+
    '<div class="filters" role="group" aria-label="Filter">'+FIL.map(function(f){var n=C.filter(function(c){return f[2](c)&&matchQ(c,q)}).length;return '<button class="pill'+(S.f===f[0]?' on':'')+'" data-act="filter" data-id="'+f[0]+'" aria-pressed="'+(S.f===f[0])+'">'+f[1]+' <span class="pn">'+n+'</span></button>'}).join('')+'</div>'+
    '<div class="sortrow"><label for="r-sort">Sort by</label><select id="r-sort">'+SORTS.map(function(s){return '<option value="'+s[0]+'"'+(S.sort===s[0]?' selected':'')+'>'+s[1]+'</option>'}).join('')+'</select><span class="count" id="rcount">'+recCount(recFiltered().length)+'</span></div>'+
    '<div class="stack" id="rlist">'+recRows()+'</div>';
 }
 function recordHTML(id){
-  var c=cust(id); if(!c) return '<p class="empty">Choose a customer to see the record.</p>';
+  var c=cust(id); if(!c) return '<p class="empty">'+(C.length?'Choose a customer to see the record.':'A customer record shows here.')+'</p>';
   var p0=c.people[0], close=S.device==='phone'?'<button class="backb" data-act="back">'+ic('back')+'Back</button>':S.device==='computer'?'<button class="backb" data-act="back">'+ic('x')+' Close</button>':'';
   var ds=D.filter(function(d){return d.cust===id}), next=c.promises.find(function(p){return !p.done}), vv=visitOf(id);
   var lim=function(k,a){return S.secAll[k]?a:a.slice(0,4)};
-  var moreB=function(k,n){return n>4?'<button class="btn btn-soft wide" data-act="secall" data-id="'+k+'" aria-expanded="'+!!S.secAll[k]+'" style="margin-top:8px">'+(S.secAll[k]?'Show fewer':'Show '+(n-4)+' more')+'</button>':''};
-  var add=function(k,l){return '<button class="link" data-act="add" data-id="'+k+'">'+ic('plus')+(l||'Add')+'</button>'};
-  var pen=function(k,i,l){return '<button class="link ed" data-act="edititem" data-id="'+k+'" data-i="'+i+'" aria-label="Edit '+esc(l)+'">'+ic('pen')+'Edit</button>'};
+  var moreB=function(k,n){return n>4?'<button class="btn btn-quiet wide" data-act="secall" data-id="'+k+'" aria-expanded="'+!!S.secAll[k]+'" style="margin-top:8px">'+(S.secAll[k]?'Show fewer':'Show '+(n-4)+' more')+'</button>':''};
+  var add=function(k,l){return '<button class="ib" data-act="add" data-id="'+k+'" title="Add" aria-label="Add a '+k+'">'+ic('plus')+'</button>'};
+  var pen=function(k,i,l){return '<button class="ib ed" data-act="edititem" data-id="'+k+'" data-i="'+i+'" title="Edit" aria-label="Edit '+esc(l)+'">'+ic('pen')+'</button>'};
   var NOTES={Visit:1,Call:1,Note:1,'Voice note':1,'Written note':1,'Photo note':1};
   var h=(close?'<div class="rbar">'+close+'</div>':'')+
    '<h1>'+esc(c.name)+'</h1><p class="sub">'+[esc(c.type),esc(c.area),'Customer since '+c.since].filter(Boolean).join(' · ')+'</p><div class="chips">'+(custStatus(c)||chip('done','Up to date'))+'</div>'+
    '<p class="next"><b>Next:</b> '+(next?esc(next.t)+' <span class="sub">· '+fmt(next.iso)+'</span>':'<span class="sub">Nothing promised yet</span>')+'</p>'+
    (vv?'<p class="next" style="margin-top:2px"><b>Visit:</b> '+fmt(vv.iso)+', '+vv.when+' <span class="sub">· '+esc(vv.why)+'</span></p>':'')+
-   '<div class="acts3">'+(p0.none?'':'<button class="btn btn-primary" data-act="call" data-id="'+id+'" aria-label="Call '+esc(p0.call)+'">'+ic('phone')+'Call</button><button class="btn btn-soft" data-act="msg" data-id="'+id+'">'+ic('msg')+'Message</button>')+
+   '<div class="acts3">'+(p0.none?'':'<button class="btn btn-soft" data-act="call" data-id="'+id+'" aria-label="Call '+esc(p0.call)+'">'+ic('phone')+'Call</button><button class="btn btn-soft" data-act="msg" data-id="'+id+'">'+ic('msg')+'Message</button>')+
    '<button class="btn btn-soft" data-act="cap" data-id="type" data-hint="'+id+'">'+ic('plus')+'Add note</button></div>';
   var secs=[['deals','Deals'],['promises','Promises'],['people','People'],['timeline','Timeline'],['company','Company'],['products','Products'],['files','Files']];
   var nav='<nav class="jump" aria-label="Sections">'+secs.map(function(s){return '<button class="pill" data-act="jump" data-id="s-'+s[0]+'">'+s[1]+'</button>'}).join('')+'</nav>';
@@ -1319,10 +1346,10 @@ function recordHTML(id){
      if(p.none) return '<p class="sub">No contact yet.</p>';
      var bits=[]; if(p.role) bits.push(esc(p.role)); if(p.phone) bits.push('<span style="user-select:text">'+esc(p.phone)+'</span>');
      return '<div class="item itemrow"><span><b>'+esc(p.name)+'</b>'+(i===0?'<span class="tag">Main contact</span>':'')+(bits.length?'<br><span class="cap">'+bits.join(' · ')+'</span>':'')+(p.email?'<br><span class="cap" style="user-select:text;overflow-wrap:anywhere">'+esc(p.email)+'</span>':'')+'</span>'+pen('person',i,p.name)+'</div>'}).join('')+moreB('people',c.people.length)+'</div>';
-  var tl='<div class="card span" id="s-timeline"><h3>Timeline <button class="link" data-act="cap" data-id="type" data-hint="'+id+'" aria-label="Add a note">'+ic('plus')+'Add</button></h3>'+c.timeline.slice(0,S.tlN).map(function(x,i){return '<div class="item tl"><span class="d"><b>'+esc(x.d)+'</b>'+esc(x.how)+'</span><span>'+esc(x.t)+(x.next?'<br><span class="cap">Next step: '+esc(x.next)+'</span>':'')+(x.ai?'<br><span class="byhue">'+hue(12)+'Tidied by '+AI+'</span>':'')+'</span>'+(NOTES[x.how]?pen('note',i,'note of '+x.d):'<span></span>')+'</div>'}).join('')+
-     (c.timeline.length>S.tlN?'<button class="btn btn-soft wide" data-act="tlmore" style="margin-top:8px">Show '+Math.min(10,c.timeline.length-S.tlN)+' earlier notes</button><p class="cap ctr">'+S.tlN+' of '+c.timeline.length+' shown</p>':'')+'</div>';
+  var tl='<div class="card span" id="s-timeline"><h3>Timeline <button class="ib" data-act="cap" data-id="type" data-hint="'+id+'" title="Add" aria-label="Add a note">'+ic('plus')+'</button></h3>'+c.timeline.slice(0,S.tlN).map(function(x,i){return '<div class="item tl"><span class="d"><b>'+esc(x.d)+'</b>'+esc(x.how)+'</span><span>'+esc(x.t)+(x.next?'<br><span class="cap">Next step: '+esc(x.next)+'</span>':'')+(x.ai?'<br><span class="byhue">'+hue(12)+'Tidied by '+AI+'</span>':'')+'</span>'+(NOTES[x.how]?pen('note',i,'note of '+x.d):'<span></span>')+'</div>'}).join('')+
+     (c.timeline.length>S.tlN?'<button class="btn btn-quiet wide" data-act="tlmore" style="margin-top:8px">Show '+Math.min(10,c.timeline.length-S.tlN)+' earlier notes</button><p class="cap ctr">'+S.tlN+' of '+c.timeline.length+' shown</p>':'')+'</div>';
   var al=addrLine(c);
-  var comp='<div class="card" id="s-company"><h3>Company <button class="link" data-act="editco">'+ic('pen')+'Edit</button></h3><dl class="dl"><dt>Type</dt><dd>'+esc(c.type)+'</dd><dt>Address</dt><dd>'+
+  var comp='<div class="card" id="s-company"><h3>Company <button class="ib" data-act="editco" title="Edit" aria-label="Edit the company details">'+ic('pen')+'</button></h3><dl class="dl"><dt>Type</dt><dd>'+esc(c.type)+'</dd><dt>Address</dt><dd>'+
      (al?esc(al)+'<br><a class="wxlink" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(mapQ(c))+'" target="_blank" rel="noopener">Open the map'+ic('out')+'</a>':'<button class="link" data-act="editco">'+ic('plus')+'Add the address</button>')+'</dd>'+
      (c.area?'<dt>Area</dt><dd>'+esc(c.area)+(c.postal?' <span class="cap">· from the postal code</span>':'')+'</dd>':'')+'<dt>Payment terms</dt><dd>'+esc(c.terms)+'</dd><dt>Payment</dt><dd>'+(c.late?chip('bad',money(c.late.amt)+' is '+c.late.days+' days late'):'On time')+'</dd><dt>Last spoke</dt><dd>You, '+ago(c.last).toLowerCase()+'</dd></dl></div>';
   var prod='<div class="card" id="s-products"><h3>Products '+add('product')+'</h3>'+(c.products.length?lim('products',c.products).map(function(p,i){return '<div class="item itemrow"><span class="prow">'+esc(p)+'</span>'+pen('product',i,p)+'</div>'}).join('')+moreB('products',c.products.length):'<p class="sub">None yet.</p>')+'<p class="cap" style="margin-top:6px">'+AI+' also adds products you name in your notes.</p></div>';
@@ -1439,6 +1466,9 @@ function fcheck(){
   return true;
 }
 function ferrP(id){ return '<p class="ferr" id="'+id+'-e" hidden></p>' }
+
+/* a note goes into a customer record. With no customer, the tool asks for the customer first. */
+function noCust(){ if(C.length) return false; S.sheet={kind:'newcust'}; toast('Add a customer first. Then you can add a note.'); return true; }
 
 /* ---------- sheets ---------- */
 function sheetHead(t){return '<div class="sh"><h2>'+t+'</h2><button class="xb" data-act="close" aria-label="Close">'+ic('x')+'</button></div>'}
@@ -1564,11 +1594,11 @@ function sheetHTML(){
      '<h3 id="g-visits">Weather</h3><dl>'+gi('Weather on Home','One sentence gives the weather that can delay a visit that is still to come today. When no visit is left today, it looks at tomorrow. One line gives the next three parts of the day. The forecast comes from the national weather service.')+
        gi(chip('warn','Storms. Leave 15 minutes early.'),'This mark shows on a visit when showers or storms can delay you.')+'</dl>'+
      '<h3 id="g-sales">Sales bar</h3><dl>'+gi('<i class="k kw"></i>Solid bar','The sales that you won this year.')+gi('<i class="k ko"></i>Striped bar','Your open deals. They can add to your sales.')+gi('<i class="k kp"></i>Line','Where you should be today, if sales are equal in each month.')+'</dl>'+
-     '<h3 id="g-forms">Forms</h3><dl>'+gi('<span class="link" style="padding:0">'+ic('plus')+'Add</span>','In the heading of each list. It adds one item to that list.')+gi('<span class="link" style="padding:0">'+ic('pen')+'Edit</span>','On each item that you can change. The Edit sheet has Save, Cancel and Remove. A sent message cannot change. A deal cannot be removed: set its stage to Lost.')+gi('(optional)','You can leave this field empty. All other fields are necessary.')+gi('Example: 9123 4567','The grey text in an empty field is an example. It shows the correct form.')+
+     '<h3 id="g-forms">Forms</h3><dl>'+gi('<span class="ib" style="margin:0">'+ic('plus')+'</span>Add','In the heading of each list. It adds one item to that list.')+gi('<span class="ib" style="margin:0">'+ic('pen')+'</span>Edit','On each item that you can change. The Edit sheet has Save, Cancel and Remove. A sent message cannot change. A deal cannot be removed: set its stage to Lost.')+gi('(optional)','You can leave this field empty. All other fields are necessary.')+gi('Example: 9123 4567','The grey text in an empty field is an example. It shows the correct form.')+
        gi('<span class="ferr">'+ic('x')+'<span>Red text below a field</span></span>','The value is not correct. The text says how to correct it.')+
        gi('Phone','8 digits for Singapore. For another country, start with + and the country code.')+gi('Amount','Singapore dollars. Numbers only. S$1,000 or more.')+gi('Date','Today or a later date.')+'</dl>'+
      '<h3 id="g-marks">Marks from '+AI+'</h3><dl>'+gi(hue(15)+AI+' mark',AI+' wrote or selected this item. You can change it.')+'</dl></div>'+
-     '<div class="acts"><button class="btn btn-primary" data-act="close">Close</button></div>';
+     '<div class="acts"><button class="btn btn-ghost" data-act="close">Close</button></div>';
   }
   return '<div class="scrim" data-scrim><div class="sheet"'+(s.kind==='guide'?' data-scroll="guide"':'')+' role="dialog" aria-modal="true">'+b+'</div></div>';
 }
@@ -1859,7 +1889,7 @@ var A={
     var t=T.find(function(x){return d&&x.deal===d.id}); if(t){S.done[t.id]=1; if(t.promise){var p=c.promises.find(function(x){return !x.done}); if(p)p.done=true;}}
     closeSheet(); toast('Sent to '+c.people[0].call+' and saved to the record.',c.id);
   },
-  cap:function(kind,_,b){ var hint=(b&&b.dataset.hint)||null; closeSheet(); S.fan=false; S.sheet={kind:kind,hint:hint}; },
+  cap:function(kind,_,b){ var hint=(b&&b.dataset.hint)||null; closeSheet(); S.fan=false; if(noCust()) return; S.sheet={kind:kind,hint:hint}; },
   stoptalk:function(){ var s=S.sheet; stopTalk(); if(!S.set.tidy){ S.sheet={kind:'type',hint:s.hint,text:s.raw}; return; } toReview('talk',s.raw,s.hint); return false },
   sample:function(){ var el=$('#t-text'); el.value=sampleFor($('#t-cust').value||S.sheet.hint||'best'); fshow(el); el.focus(); return false },
   tidy:function(){ if(!fcheck()) return false; toReview('type',$('#t-text').value.trim(),$('#t-cust').value||S.sheet.hint); return false },
@@ -1951,7 +1981,7 @@ screenEl.addEventListener('click',function(e){
 });
 screenEl.addEventListener('pointerdown',function(e){
   if(S.tour||!e.target.closest('[data-fab]')) return; held=false; clearTimeout(holdTimer);
-  holdTimer=setTimeout(function(){ held=true; S.fan=false; S.sheet={kind:'talk',hint:null}; render(); },480);
+  holdTimer=setTimeout(function(){ held=true; S.fan=false; if(!noCust()) S.sheet={kind:'talk',hint:null}; render(); },480);
 });
 ['pointerup','pointercancel','pointerleave'].forEach(function(ev){screenEl.addEventListener(ev,function(){clearTimeout(holdTimer); if(held){held=false;swallow=Date.now()+350}})});
 screenEl.addEventListener('contextmenu',function(e){ if(e.target.closest('[data-fab]')) e.preventDefault() });
@@ -1989,7 +2019,7 @@ document.addEventListener('keydown',function(e){
   var typing=/INPUT|TEXTAREA|SELECT/.test((e.target&&e.target.tagName)||'');
   if(S.tour){ if(e.key==='Escape') tourEnd(false); else if(e.key==='ArrowRight') tourAct('next'); else if(e.key==='ArrowLeft') tourAct('back'); return; }
   if(e.key==='Escape'){ if(S.sheet){closeSheet();render()} else if(S.fan){setFan(false)} else if(S.rec&&S.device!=='tablet'){S.rec=null;S.edit=false;render()} return; }
-  if(!typing&&!S.sheet&&S.device==='computer'&&(e.key==='n'||e.key==='N')&&!e.metaKey&&!e.ctrlKey&&!e.altKey){ e.preventDefault(); S.sheet={kind:'type',hint:S.rec}; render(); }
+  if(!typing&&!S.sheet&&S.device==='computer'&&(e.key==='n'||e.key==='N')&&!e.metaKey&&!e.ctrlKey&&!e.altKey){ e.preventDefault(); if(!noCust()) S.sheet={kind:'type',hint:S.rec}; render(); }
 });
 
 /* ---------- device switch and fit ---------- */
@@ -2016,11 +2046,12 @@ window.addEventListener('resize',function(){ fit(); tourPlace(); });
 screenEl.addEventListener('scroll',function(e){ var sc=e.target; if(sc&&sc.dataset&&sc.dataset.scroll){ revealCheck(sc); spyOne(sc); } },true);
 setInterval(revealAll,500);
 $('#wx-sel').addEventListener('change',function(e){ S.wx=e.target.value; render(); });
-var DATA=(QS.data==='8'||QS.data==='70')?QS.data:(QS.embed?'8':'70');
-$('#data-sel').value=DATA; loadData(DATA==='70');
+var DATA=/^(0|8|100)$/.test(QS.data||'')?QS.data:(QS.embed?'8':'100');
+if(DATA==='8'){ var o8=document.createElement('option'); o8.value='8'; o8.textContent='8 customers'; $('#data-sel').insertBefore(o8,$('#data-sel').lastElementChild); }
+$('#data-sel').value=DATA; loadData(+DATA);
 $('#data-sel').addEventListener('change',function(e){
   if(S.tour) tourEnd(false,true);
-  DATA=e.target.value; loadData(DATA==='70'); closeSheet();
+  DATA=e.target.value; loadData(+DATA); closeSheet();
   S.done={}; S.rec=null; S.q=''; S.f='all'; S.sort='name'; S.recN=20; S.page=0; S.tlN=5; S.secAll={}; S.dayAll={}; S.attnAll=false; S.weekAll=false; S.more=false; S.stage=null; S.fan=false;
   render(); toast('Sample data: '+DATA+' customers.');
 });
