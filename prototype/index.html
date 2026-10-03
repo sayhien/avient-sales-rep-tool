@@ -638,6 +638,45 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .gd .k{flex:none}
 .set .srow .cap{display:block}
 
+/* ---------- round 8: weather for the day, visits, field rules, guide links ---------- */
+.wxday{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:8px}
+.wxp{border:1px solid var(--ln);background:var(--veil2);border-radius:10px;padding:5px 6px;min-width:0}
+.wxp .lab{display:block}
+.wxp b{display:flex;align-items:center;column-gap:4px;flex-wrap:wrap;font:700 11.5px/15px var(--fb)}
+.wxp .ic{width:14px;height:14px}
+.wxp .tp{font-weight:500;color:var(--sub);font-variant-numeric:tabular-nums}
+.wxp.now{border-color:var(--blue);background:var(--white)}
+.wxp.now .lab{color:var(--blue);font-weight:700}
+.visits{margin-top:9px}
+.vrow{display:grid;grid-template-columns:56px 1fr auto;gap:8px;align-items:start;width:100%;text-align:left;border:1px solid var(--ln);background:var(--veil2);border-radius:12px;padding:7px 9px;margin-top:5px;cursor:pointer;font:500 12px/16px var(--fb);color:var(--ink)}
+.vrow .vt{font:700 11.5px/16px var(--fd);color:var(--blue);font-variant-numeric:tabular-nums}
+.vrow b{font-weight:600}
+.vrow small{display:block;font:500 10.5px/14px var(--fb);color:var(--sub)}
+.vrow small.vw{display:flex;gap:4px;align-items:flex-start;color:var(--amb800);font-weight:600;margin-top:2px}
+.vrow .vw .ic{width:12px;height:12px;margin-top:1px}
+.vrow>.ic{width:16px;height:16px;color:var(--sub);margin-top:1px}
+.vrow:active{transform:scale(.985)}
+.hero .date .wxlink{font-size:10.5px}
+.app.tablet .wxday,.app.computer .wxday{margin-top:12px}
+.app.tablet .wxp,.app.computer .wxp{padding:7px 10px}
+.app.tablet .visits,.app.computer .visits{margin-top:12px}
+.f .optl{font-weight:500}
+.f .hint{font-size:10.5px;line-height:14px;color:var(--sub)}
+.app .ferr{display:flex;gap:4px;align-items:flex-start;margin:0;color:var(--red700);font:600 11px/15px var(--fb)}
+.app .ferr[hidden]{display:none}
+.ferr .ic{width:13px;height:13px;margin-top:1px;stroke-width:2.2}
+.app input.bad,.app textarea.bad,.app select.bad{border-color:var(--red700);box-shadow:0 0 0 1px var(--red700)}
+.inpre{position:relative;display:block}
+.inpre>span{position:absolute;left:10px;top:0;bottom:0;display:flex;align-items:center;font:600 12.5px/17.5px var(--fb);color:var(--sub);pointer-events:none}
+.app .inpre input{padding-left:32px;font-variant-numeric:tabular-nums}
+.fgroup{font:700 12.5px/16px var(--fd);margin:16px 0 0}
+.app input[type=file]{padding:6px}
+.sheet[data-scroll]{position:relative}
+.gtop{position:sticky;top:-14px;z-index:3;background:var(--white);margin:-14px -14px 0;padding:14px 14px 0;border-bottom:1px solid var(--ln)}
+.gtop .sh{margin-bottom:0}
+.gtop .jump{position:static;margin:6px -14px 0;padding:4px 14px 8px;background:none;border:0}
+.gd h3{scroll-margin-top:96px}
+@media (hover:hover){ .vrow:hover{background:var(--white);border-color:var(--ln-d)} }
 /* inside the presentation */
 .embed body{background:transparent}
 .embed .top>div:first-child{display:none}
@@ -659,7 +698,7 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
       <select id="data-sel"><option value="8">8 customers</option><option value="70">70 customers</option></select>
     </label>
     <label class="wxsel" for="wx-sel">Sample weather
-      <select id="wx-sel"><option value="sunny">Sunny</option><option value="cloudy">Cloudy</option><option value="showers">Showers</option><option value="storm">Thunderstorms</option></select>
+      <select id="wx-sel"><option value="sunny">Dry day</option><option value="cloudy">Cloudy day</option><option value="showers">Showers in the afternoon</option><option value="storm" selected>Storms in the afternoon</option></select>
     </label>
     <div class="seg" role="group" aria-label="Device">
       <button id="dev-phone" data-dev="phone" aria-pressed="true">Phone</button>
@@ -729,40 +768,42 @@ function inWeek(iso){return !!iso&&iso>=TODAY&&iso<='2026-10-11'}
 /* ---------- sample data ---------- */
 var C=[
  {id:'best',keys:['best printing'],name:'Best Printing Pte Ltd',type:'Printer',area:'Ubi',addr:'10 Ubi Crescent',bld:'Ubi Techpark',unit:'#03-12',postal:'408564',since:2021,terms:'30 days',last:2,
-  people:[{name:'Jasmine Teo',call:'Jasmine',role:'Purchasing manager',phone:'9123 4567'},{name:'Kelvin Ng',call:'Kelvin',role:'Production supervisor',phone:'9234 5678'}],
+  people:[{name:'Jasmine Teo',call:'Jasmine',role:'Purchasing manager',phone:'9123 4567',email:'jasmine@bestprinting.example'},{name:'Kelvin Ng',call:'Kelvin',role:'Production supervisor',phone:'9234 5678',email:''},
+   {name:'Lim Wei Chong',call:'Mr Lim',role:'Owner',phone:'9111 2233',email:'weichong@bestprinting.example'},{name:'Nurul Huda',call:'Nurul',role:'Accounts',phone:'6744 1200',email:'accounts@bestprinting.example'}],
   products:['Wilflex white','Wilflex colours','Rutland special effects'],
   timeline:[{d:'Sat 3 Oct',how:'Message',t:'Jasmine asked for a price on Wilflex white, 200 kg a month.'},{d:'Tue 22 Sep',how:'Visit',t:'Kelvin said the current white needs two passes on dark shirts. Open to a test.'},{d:'Mon 7 Sep',how:'Call',t:'Reorder of colours confirmed.'}],
-  promises:[{t:'Send price for Wilflex white',iso:'2026-10-05'}],files:['Price list 2026.pdf','Colour chart.jpg'],
+  promises:[{t:'Send price for Wilflex white',iso:'2026-10-05'},{t:'Bring a white ink sample for Kelvin',iso:'2026-10-14'},{t:'Send the safety data sheet',iso:'2026-09-24',done:true}],
+  files:['Price list 2026.pdf','Colour chart.jpg','Order Aug.pdf','Order Jun.pdf','Press photo.jpg','Safety data sheet.pdf'],
   tip:'Jasmine usually replies to messages before 10 am. A short message works better than a call.'},
  {id:'ace',keys:['ace tees'],name:'Ace Tees',type:'Printer',area:'Kaki Bukit',addr:'25 Kaki Bukit Road 4',bld:'Synergy',unit:'#05-08',postal:'417800',since:2023,terms:'30 days',last:9,
-  people:[{name:'Mei Ling Koh',call:'Mei Ling',role:'Owner',phone:'9345 6789'}],
+  people:[{name:'Mei Ling Koh',call:'Mei Ling',role:'Owner',phone:'9345 6789',email:'meiling@acetees.example'}],
   products:['Wilflex colours','Water based range (asked)'],
   timeline:[{d:'Sat 26 Sep',how:'Email',t:'Quote sent for the water based range, S$48k a year.'},{d:'Thu 17 Sep',how:'Visit',t:'Mei Ling wants to move to water based inks for a sportswear brand.'}],
   promises:[],files:['Quote 26 Sep.pdf'],tip:'Mei Ling decides alone. She prefers a quick message first, then a visit.'},
  {id:'tuas',keys:['tuas textile'],name:'Tuas Textile Print',type:'Printer',area:'Tuas',addr:'8 Tuas Avenue 12',bld:'',unit:'',postal:'639028',since:2019,terms:'60 days',last:16,
-  people:[{name:'Rajesh Kumar',call:'Rajesh',role:'Production head',phone:'9456 7890'},{name:'Siti Aminah',call:'Siti',role:'Purchasing',phone:'9567 8901'}],
+  people:[{name:'Rajesh Kumar',call:'Rajesh',role:'Production head',phone:'9456 7890',email:'rajesh@tuastextile.example'},{name:'Siti Aminah',call:'Siti',role:'Purchasing',phone:'9567 8901',email:''},{name:'Lim Ah Seng',call:'Mr Lim',role:'Owner',phone:'6861 2020',email:''}],
   products:['Wilflex colours','Low cure white (on trial)'],
   timeline:[{d:'Sat 19 Sep',how:'Visit',t:'Trial of low cure white started on line 2. Rajesh will share wash test results.'},{d:'Wed 2 Sep',how:'Call',t:'Agreed a trial of 20 kg.'}],
-  promises:[],files:['Trial plan.pdf'],tip:'Trials here usually take 2 weeks. Rajesh shares results faster when you visit.'},
+  promises:[],files:['Trial plan.pdf','Wash test photo.jpg','Order Jul.pdf'],tip:'Trials here usually take 2 weeks. Rajesh shares results faster when you visit.'},
  {id:'kian',keys:['kian seng'],name:'Kian Seng Trading',type:'Distributor',area:'Johor Bahru',addr:'Jalan Tampoi, 81200 Johor Bahru, Malaysia',bld:'',unit:'',postal:'',since:2018,terms:'45 days',last:4,late:{amt:18,days:30},
-  people:[{name:'Tan Boon Huat',call:'Mr Tan',role:'Director',phone:'+60 12 345 6789'}],
+  people:[{name:'Tan Boon Huat',call:'Mr Tan',role:'Director',phone:'+60 12 345 6789',email:'boonhuat@kianseng.example'},{name:'Tan Mei Yun',call:'Mei Yun',role:'Accounts',phone:'+60 7 234 5678',email:'accounts@kianseng.example'}],
   products:['Wilflex white','Wilflex colours','Union Ink'],
   timeline:[{d:'Thu 1 Oct',how:'Call',t:'Mr Tan asked for a quote on the next stock order, S$64k.'}],
-  promises:[],files:['Statement Sep.pdf'],tip:'Ask about the late payment before you confirm the new order.'},
+  promises:[],files:['Statement Sep.pdf','Statement Aug.pdf','Order Jul.pdf','Price list 2026.pdf'],tip:'Ask about the late payment before you confirm the new order.'},
  {id:'lion',keys:['lion city'],name:'Lion City Sportswear',type:'Brand',area:'Paya Lebar',addr:'60 Paya Lebar Road',bld:'Paya Lebar Square',unit:'#08-20',postal:'409051',since:2025,terms:'30 days',last:3,
-  people:[{name:'Farah Ismail',call:'Farah',role:'Merchandiser',phone:'9678 9012'}],
+  people:[{name:'Farah Ismail',call:'Farah',role:'Merchandiser',phone:'9678 9012',email:'farah@lioncity.example'}],
   products:['Water based range (samples)'],
   timeline:[{d:'Fri 2 Oct',how:'Visit',t:'Samples dropped off. Farah will test on polyester jerseys.'}],
   promises:[{t:'Send colour chart to Farah',iso:'2026-10-07'}],files:[],tip:''},
  {id:'lab',keys:['print lab'],name:'Print Lab SG',type:'Printer',area:'',addr:'',bld:'',unit:'',postal:'',since:2026,terms:'Not set',last:1,
-  people:[{name:'Ong Wei Jie',call:'Wei Jie',role:'Founder',phone:'9789 0123'}],products:[],
+  people:[{name:'Ong Wei Jie',call:'Wei Jie',role:'Founder',phone:'9789 0123',email:''}],products:[],
   timeline:[{d:'Sun 4 Oct',how:'Message',t:'Wei Jie found us online and asked about starter kits.'}],promises:[],files:[],tip:''},
  {id:'bukit',keys:['bukit batok'],name:'Bukit Batok Screen Works',type:'Printer',area:'Bukit Batok',addr:'2 Bukit Batok Street 23',bld:'Bukit Batok Connection',unit:'#02-04',postal:'659554',since:2022,terms:'30 days',last:12,
-  people:[{name:'Ahmad Rahman',call:'Ahmad',role:'Owner',phone:'9890 1234'}],products:['Wilflex colours'],
+  people:[{name:'Ahmad Rahman',call:'Ahmad',role:'Owner',phone:'9890 1234',email:''}],products:['Wilflex colours'],
   timeline:[{d:'Wed 23 Sep',how:'Visit',t:'Left samples of Rutland special effects.'}],promises:[],files:[],tip:''},
  {id:'merlion',keys:['merlion uniforms','merlion'],name:'Merlion Uniforms',type:'Uniform maker',area:'Woodlands',addr:'11 Woodlands Close',bld:'Woodlands 11',unit:'#06-30',postal:'737853',since:2020,terms:'30 days',last:21,
-  people:[{name:'Priya Nair',call:'Priya',role:'Operations manager',phone:'9901 2345'}],products:['Wilflex white','Wilflex colours'],
-  timeline:[{d:'Mon 14 Sep',how:'Email',t:'Order confirmed, S$72k.'}],promises:[],files:['Order Sep.pdf'],
+  people:[{name:'Priya Nair',call:'Priya',role:'Operations manager',phone:'9901 2345',email:'priya@merlionuniforms.example'},{name:'Gopal Krishnan',call:'Gopal',role:'Purchasing',phone:'9012 3456',email:''}],products:['Wilflex white','Wilflex colours'],
+  timeline:[{d:'Mon 14 Sep',how:'Email',t:'Order confirmed, S$72k.'},{d:'Mon 6 Jul',how:'Email',t:'Order confirmed, S$68k.'},{d:'Tue 28 Apr',how:'Email',t:'Order confirmed, S$70k.'}],promises:[],files:['Order Sep.pdf','Order Jul.pdf','Order Apr.pdf'],
   tip:'They reorder about every 10 weeks. The next order may be due in late November.'}
 ];
 var D=[
@@ -777,13 +818,19 @@ var D=[
 ];
 var T=[
  {id:'t1',cust:'best',deal:'d1',title:'Send the price to Jasmine',why:'Best Printing asked for a price on Wilflex white 2 days ago. The deal is worth S$86k.',act:'msg',label:'Open draft',promise:true},
- {id:'t2',cust:'tuas',deal:'d3',title:'Ask Rajesh about the trial',why:'The trial at Tuas Textile Print started 16 days ago, with no result yet. It is your biggest open deal, S$120k.',act:'call',label:'Call Rajesh'},
+ {id:'t2',cust:'tuas',deal:'d3',title:'Get the trial result from Rajesh',why:'You visit Tuas Textile Print today at 3 pm. The trial started 16 days ago, with no result yet. It is your biggest open deal, S$120k.',act:'prep',label:'Prepare for the visit'},
  {id:'t3',cust:'ace',deal:'d2',title:'Follow up with Mei Ling',why:'Quote of S$48k sent to Ace Tees 9 days ago, no reply yet.',act:'msg',label:'Open draft'},
  {id:'t4',cust:'lion',deal:'d5',title:'Send the colour chart to Farah',why:'You promised it to Lion City Sportswear by Wednesday.',act:'msg',label:'Open draft',promise:true},
  {id:'t5',cust:'kian',deal:'d4',title:'Ask Mr Tan about the late payment',why:'Kian Seng Trading owes S$18k, 30 days late, and wants a new order of S$64k.',act:'call',label:'Call Mr Tan',bad:'Payment late'},
  {id:'t6',cust:'bukit',deal:'d7',title:'Check in with Ahmad',why:'Samples left at Bukit Batok Screen Works 12 days ago, no word since.',act:'msg',label:'Open draft'}
 ];
-var VISITS=[{iso:'2026-10-05',t:'Visit Merlion Uniforms',when:'3 pm',cust:'merlion'},{iso:'2026-10-06',t:'Visit Tuas Textile Print',when:'10 am',cust:'tuas'},{iso:'2026-10-07',t:'Visit Best Printing',when:'2 pm',cust:'best'},{iso:'2026-10-08',t:'Visit Lion City Sportswear',when:'11 am',cust:'lion'}];
+var VISITS=[
+ {iso:'2026-10-05',t:'Visit Merlion Uniforms',when:'10:30 am',part:0,cust:'merlion',why:'Routine visit'},
+ {iso:'2026-10-05',t:'Visit Tuas Textile Print',when:'3 pm',part:1,cust:'tuas',why:'Trial result'},
+ {iso:'2026-10-07',t:'Visit Best Printing',when:'2 pm',part:1,cust:'best',why:'Bring the quote'},
+ {iso:'2026-10-08',t:'Visit Lion City Sportswear',when:'11 am',part:0,cust:'lion',why:'Sample test'}];
+function visitsToday(){ return VISITS.filter(function(v){return v.iso===TODAY}) }
+function visitOf(id){ return VISITS.filter(function(v){return v.cust===id&&v.iso>=TODAY})[0]||null }
 var MSG={
  d1:'Hi Jasmine, thanks for asking. For Wilflex white at 200 kg a month, the price is [price] per kg. I will bring the full quote when I visit on Wednesday at 2 pm. Daniel',
  d2:'Hi Mei Ling, just checking on the quote for the water based range that I sent on 26 Sep. I can drop by this week with samples if that helps. Daniel',
@@ -901,9 +948,9 @@ function liveSuggest(q){
    }).catch(function(){ clearTimeout(t) });
 }
 function addrFields(c){
-  return '<div class="f"><label for="c-addr">Address</label><input id="c-addr" type="text" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="c-sug" placeholder="Postal code or street name" value="'+esc(c?addrText(c):'')+'">'+
-   '<div id="c-sug"></div><div id="c-map"></div></div>'+
-   '<div class="f"><label for="c-unit">Unit number</label><input id="c-unit" type="text" autocomplete="off" placeholder="Example: #03-12" value="'+esc(c?c.unit||'':'')+'"></div>';
+  return '<div class="f"><label for="c-addr">Address <span class="optl">(optional)</span></label><input id="c-addr" data-ft="addr" type="text" maxlength="120" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="c-sug" aria-describedby="c-addr-e" placeholder="Example: 408564 or Ubi Crescent" value="'+esc(c?addrText(c):'')+'">'+
+   ferrP('c-addr')+'<div id="c-sug"></div><div id="c-map"></div></div>'+
+   fld('c-unit','Unit number','unit',{val:c?c.unit||'':''});
 }
 var cust=function(id){return C.find(function(c){return c.id===id})};
 var deal=function(id){return D.find(function(d){return d.id===id})};
@@ -918,7 +965,7 @@ var CHANCE={New:.2,Sample:.4,Trial:.6,Quote:.8};
 function points(t){
   var d=deal(t.deal), c=cust(t.cust); if(!d||!c||!isOpen(d)) return 0;
   var base=d.value*CHANCE[d.stage], wait=0; if(c.late) base/=3;
-  if(c.promises.some(function(p){return !p.done&&p.iso&&p.iso<=TODAY})) wait+=50;
+  if(c.promises.some(function(p){return !p.done&&p.iso&&p.iso<=TODAY})||VISITS.some(function(v){return v.iso===TODAY&&v.cust===c.id})) wait+=50;
   if(d.wait==='you') wait+=Math.min(30,d.touch*10);
   else { var over=d.touch-(d.limit||LIMIT[d.stage]); if(over>0) wait+=Math.min(30,over*5); }
   return base+wait;
@@ -941,16 +988,16 @@ function genData(n){
           Message:['{p} sent a photo of a cracked print.','Sent the price list for 2026.','{p} asked for the safety data sheet.','Shared a tip to lower the cure temperature.'],
           Email:['Quote sent.','Order confirmed.','Sent the trial plan.','Statement of account sent.']};
   var DN=['Wilflex colours supply','Wilflex white supply','Low cure white','Water based range','Special effects job','Starter kit','Stock order','Uniform reorder','Jersey prints','School order'];
-  var PROM=['Send the price list','Bring colour samples','Send the safety data sheet','Arrange a technician visit','Send the quote','Call about the trial result'];
-  var FILES=['Price list 2026.pdf','Quote.pdf','Colour chart.jpg','Trial plan.pdf','Order.pdf','Press photo.jpg','Statement.pdf'];
+  var PROM=['Send the price list','Bring colour samples','Send the safety data sheet','Arrange a technician visit','Send the quote','Call about the trial result','Check the stock level','Bring the new colour chart','Send the wash test report'];
+  var FILES=['Price list 2026.pdf','Quote Sep.pdf','Colour chart.jpg','Trial plan.pdf','Order Aug.pdf','Press photo.jpg','Statement Sep.pdf','Safety data sheet.pdf','Wash test photo.jpg','Order Jun.pdf','Sample request.pdf','Site photo.jpg'];
   var LAST={New:'First message',Sample:'Samples left',Trial:'Trial started',Quote:'Quote sent'};
   var cs=[], ds=[], ts=[], i, k;
   for(i=0;i<n;i++){
     var type=pick(KIND), name=PRE[i%PRE.length]+' '+pick(SUF[type])+(r()<.4?' Pte Ltd':''), id='g'+(i+1);
     var postal=pick(SEC)+('000'+ri(1,9999)).slice(-4), area=sectorArea(postal);
-    var people=[], np=pick([1,1,1,2,2,3]), used={};
+    var people=[], np=pick([1,1,2,2,3,4,6]), used={}, dom=PRE[i%PRE.length].toLowerCase().replace(/[^a-z]/g,'')+'.example';
     for(k=0;k<np;k++){ var pn, call; if(r()<.6){ call=pick(GIV); pn=pick(SUR)+' '+call; } else { var o=pick(OTH); pn=o[0]; call=o[1]; } if(used[pn]) continue; used[pn]=1;
-      people.push({name:pn,call:call,role:k===0?pick(ROLE):pick(ROLE.slice(1)),phone:(r()<.5?'9':'8')+ri(100,999)+' '+ri(1000,9999)}); }
+      people.push({name:pn,call:call,role:k===0?pick(ROLE):pick(ROLE.slice(1)),phone:(r()<.5?'9':'8')+ri(100,999)+' '+ri(1000,9999),email:r()<.6?call.toLowerCase().replace(/[^a-z]/g,'')+'@'+dom:''}); }
     var c={id:id,keys:[name.toLowerCase().replace(/ pte ltd$/,'')],name:name,type:type,area:area,addr:ri(1,98)+' '+area+' '+pick(ROAD),bld:'',unit:r()<.7?'#0'+ri(1,9)+'-'+('0'+ri(1,40)).slice(-2):'',postal:postal,
       since:ri(2013,2026),terms:pick(['30 days','30 days','45 days','60 days','Cash','14 days']),last:ri(1,70),people:people,products:[],timeline:[],promises:[],files:[],tip:''};
     if(i===6||i===22||i===40) c.late={amt:ri(3,12),days:ri(8,45)};
@@ -962,11 +1009,13 @@ function genData(n){
       ds.push(d);
     }
     if(minTouch<999) c.last=minTouch;
-    var pc=pick([0,1,2,2,3]), rs=RANGES.slice(); for(k=0;k<pc;k++) c.products.push(rs.splice(Math.floor(r()*rs.length),1)[0]);
+    var pc=pick([0,1,2,3,4,6]), rs=RANGES.slice(); for(k=0;k<pc;k++) c.products.push(rs.splice(Math.floor(r()*rs.length),1)[0]);
     var len=pick([1,2,3,3,4,5,6,8,10,14,20,30]), day=c.last;
     for(k=0;k<len;k++){ var how=pick(['Visit','Call','Message','Email','Visit','Call']); c.timeline.push({d:fmtBack(day),how:how,t:pick(TL[how]).replace('{p}',call0)}); day+=ri(3,24); }
-    var npr=pick([0,0,0,0,1]); for(k=0;k<npr;k++) c.promises.push({t:pick(PROM),iso:isoAdd(ri(1,21))});
-    var nf=pick([0,0,1,2,3,5]); c.files=FILES.slice(0,nf);
+    var npr=pick([0,0,1,1,2,3,5]), pl=PROM.slice(), po=[], pd=[];
+    for(k=0;k<npr;k++){ var pt=pl.splice(Math.floor(r()*pl.length),1)[0], px=r(); if(px<.72) pd.push({t:pt,iso:isoAdd(-ri(2,40)),done:true}); else po.push({t:pt,iso:isoAdd(px<.77?ri(1,6):ri(8,40))}); }
+    po.sort(function(a,b){return a.iso<b.iso?-1:1}); c.promises=po.concat(pd);
+    var nf=pick([0,0,1,2,3,5,9]), fl=FILES.slice(); for(k=0;k<nf;k++) c.files.push(fl.splice(Math.floor(r()*fl.length),1)[0]);
     cs.push(c);
     var od=ds.filter(function(x){return x.cust===id&&x.stage!=='Lost'}).sort(function(a,b){return b.value-a.value}), need=od.filter(function(x){return x.wait==='you'||x.touch>LIMIT[x.stage]})[0];
     if(c.late&&od[0]) ts.push({id:'t'+id,cust:id,deal:od[0].id,title:'Ask '+call0+' about the late payment',why:name+' owes S$'+c.late.amt+'k, '+c.late.days+' days late.',act:'call',label:'Call '+call0,bad:'Payment late'});
@@ -984,7 +1033,7 @@ function loadData(big){
 }
 
 /* ---------- state ---------- */
-var S={device:'phone',tab:'brief',rec:null,sheet:null,wx:'sunny',just:null,fan:false,more:false,plan:true,sales:false,done:{},stage:null,q:'',f:'all',sort:'name',edit:false,draft:null,attnAll:false,weekAll:false,recN:20,page:0,tlN:5,
+var S={device:'phone',tab:'brief',rec:null,sheet:null,wx:'storm',just:null,fan:false,more:false,plan:true,sales:false,done:{},stage:null,q:'',f:'all',sort:'name',edit:false,draft:null,attnAll:false,weekAll:false,recN:20,page:0,tlN:5,secAll:{},
        set:{size:'m',hc:false,rm:false,left:false,tips:true,warn:true,tidy:true,draft:true,top:true,wx:true,lang:'English'}};
 var app=$('#app'), screenEl=$('#screen'), toastEl=$('#toast');
 var talkTimer=null, toastTimer=null, holdTimer=null, held=false, swallow=0, tidyTimers=[], addrT=null, addrT2=null;
@@ -1021,12 +1070,11 @@ function tidy(raw,hint){
 }
 
 /* ---------- brief pieces ---------- */
-var WX={
- sunny:{temp:'33°C',icon:'sun',lead:'Sunny in ',tip:' An easy drive.'},
- cloudy:{temp:'30°C',icon:'cloud',lead:'Cloudy but dry in ',tip:''},
- showers:{temp:'28°C',icon:'rain',lead:'Showers near ',tip:' Keep an umbrella in the car.'},
- storm:{temp:'27°C',icon:'bolt',lead:'Thunderstorms near ',tip:' Leave 15 minutes early.'}
-};
+var WXK={sun:{w:'Sunny',icon:'sun',fx:'sunny'},cloud:{w:'Cloudy',icon:'cloud',fx:'cloudy'},rain:{w:'Showers',icon:'rain',fx:'showers',tip:'Keep an umbrella in the car.'},storm:{w:'Storms',icon:'bolt',fx:'storm',tip:'Leave 15 minutes early.'}};
+/* four sample days. Each day has three parts, like the forecast of the national weather service: morning, afternoon, evening. */
+var WX={sunny:[['sun',31],['sun',33],['cloud',29]],cloudy:[['cloud',29],['cloud',30],['cloud',28]],showers:[['cloud',29],['rain',28],['cloud',27]],storm:[['sun',31],['storm',27],['cloud',28]]};
+var PARTS=['Morning','Afternoon','Evening'];
+function partNow(){ var hr=new Date().getHours(); return hr<12?0:hr<18?1:2 }
 function wxFx(k){
   var t=Date.now()/1000, ph=function(dur,off){return '-'+((t+off)%dur).toFixed(2)+'s'}, h='', i;
   if(k==='sunny') h='<i class="sun"></i><i class="ring"></i><i class="ring r2"></i>';
@@ -1037,13 +1085,16 @@ function wxFx(k){
 }
 function sec(id,title,right,body){ return '<section class="bsec" id="b-'+id+'"><h2 class="sec"><span class="hl">'+title+'</span>'+(right||'')+'</h2>'+body+'</section>'; }
 function helloHTML(){
-  var hr=new Date().getHours(), part=hr<12?'morning':hr<18?'afternoon':'evening', wxOn=S.set.wx, w=WX[S.wx], el=Date.now()-greetAt, hi=el<4000;
-  var v=VISITS[0], vc=cust(v.cust);
-  return '<header class="hero'+(wxOn?' wx-'+S.wx:'')+'" aria-label="Greeting'+(wxOn?' and weather':'')+'">'+(wxOn?wxFx(S.wx):'')+'<div class="hero-in">'+
-   '<p class="date"><span>Monday 5 October · Singapore</span>'+(wxOn?'<span class="temp">'+ic(w.icon)+w.temp+'</span>':'')+'</p>'+
-   '<h1 class="greet">'+hue(26,hi?'hi':'',hi?'style="--d:-'+el+'ms"':'')+'<span>Good '+part+', Daniel</span></h1>'+
-   (wxOn?'<p class="wxline">'+w.lead+esc(vc.area)+' at '+v.when+', when you visit '+esc(vc.name)+'.'+w.tip+' <a class="wxlink" href="https://www.weather.gov.sg/" target="_blank" rel="noopener">Full forecast'+ic('out')+'</a></p>':'<p class="wxline">Your next visit is '+esc(vc.name)+' at '+v.when+'.</p>')+
-   (S.device==='phone'?'':'<button class="nextv" data-act="rec" data-id="'+v.cust+'"><span><span class="lab">Next visit</span><br><b>'+esc(vc.name)+'</b> <span class="sub">· '+fmt(v.iso)+', '+v.when+' · '+esc(vc.area)+'</span></span>'+ic('go')+'</button>')+
+  var pn=partNow(), part=PARTS[pn].toLowerCase(), wxOn=S.set.wx, day=WX[S.wx], now=WXK[day[pn][0]], el=Date.now()-greetAt, hi=el<4000, vs=visitsToday();
+  var strip=!wxOn?'':'<div class="wxday" role="group" aria-label="Weather today">'+day.map(function(p,i){var k=WXK[p[0]];
+    return '<div class="wxp'+(i===pn?' now':'')+'" role="img" aria-label="'+PARTS[i]+(i===pn?', now':'')+': '+k.w+', '+p[1]+' degrees"><span class="lab">'+(i===pn?'Now':PARTS[i])+'</span><b>'+ic(k.icon)+'<span>'+k.w+'</span><span class="tp">'+p[1]+'°</span></b></div>'}).join('')+'</div>';
+  var rows=vs.map(function(v){var c=cust(v.cust), k=WXK[day[v.part][0]];
+    return '<button class="vrow" data-act="rec" data-id="'+v.cust+'"><span class="vt">'+v.when+'</span><span><b>'+esc(c.name)+'</b><small>'+[esc(c.area),esc(v.why)].filter(Boolean).join(' · ')+'</small>'+
+     (wxOn&&k.tip?'<small class="vw">'+ic(k.icon)+'<span>'+k.w+'. '+k.tip+'</span></small>':'')+'</span>'+ic('go')+'</button>'}).join('');
+  return '<header class="hero'+(wxOn?' wx-'+now.fx:'')+'" aria-label="Greeting'+(wxOn?', weather':'')+' and visits today">'+(wxOn?wxFx(now.fx):'')+'<div class="hero-in">'+
+   '<p class="date"><span>Monday 5 October · Singapore</span>'+(wxOn?'<a class="wxlink" href="https://www.weather.gov.sg/" target="_blank" rel="noopener">Full forecast'+ic('out')+'</a>':'')+'</p>'+
+   '<h1 class="greet">'+hue(26,hi?'hi':'',hi?'style="--d:-'+el+'ms"':'')+'<span>Good '+part+', Daniel</span></h1>'+strip+
+   '<div class="visits"><p class="lab">'+(vs.length?'Visits today':'No visits today')+'</p>'+rows+'</div>'+
    '</div></header>';
 }
 function salesHTML(){
@@ -1075,13 +1126,14 @@ function weekHTML(){
   return sec('week','This week','<button class="link" data-act="plan" aria-expanded="'+S.plan+'">'+(S.plan?'Hide':'Show')+'</button>','<div class="fold'+(S.plan?' open':'')+'"><div><div class="card plan">'+weekRows()+'</div></div></div>');
 }
 function taskHTML(t){
-  var done=S.done[t.id], d=deal(t.deal), chips='', write=t.act==='msg'&&!S.set.draft;
+  var done=S.done[t.id], d=deal(t.deal), chips='', write=t.act==='msg'&&!S.set.draft, vt=visitsToday().filter(function(v){return v.cust===t.cust})[0];
+  if(!done&&vt) chips+='<span class="chip">'+ic('pin')+'Visit today, '+vt.when+'</span>';
   if(!done&&d&&isQuiet(d)) chips+=chip('warn','Quiet for '+d.touch+' days');
   if(!done&&t.bad) chips+=chip('bad',t.bad);
   return '<div class="task'+(done?' done':'')+(S.just===t.id?' pop':'')+'"><button class="tick" data-act="done" data-id="'+t.id+'" aria-pressed="'+!!done+'" aria-label="'+(done?'Done. Tap to undo: ':'Mark as done: ')+esc(t.title)+'">'+ic('tick')+'</button>'+
    '<div><button class="title" data-act="rec" data-id="'+t.cust+'">'+esc(t.title)+'</button><span class="why">'+(done?(done===2?'Done by your note.':'Done.'):esc(t.why))+'</span>'+
    (chips?'<span class="chips">'+chips+'</span>':'')+
-   (done?'':'<span class="acts"><button class="btn btn-primary" data-act="'+t.act+'" data-deal="'+t.deal+'">'+(t.act==='call'?ic('phone'):write?ic('msg'):hue(14,'w'))+(write?'Write message':t.label)+'</button></span>')+'</div></div>';
+   (done?'':'<span class="acts"><button class="btn btn-primary" data-act="'+t.act+'" data-deal="'+t.deal+'">'+(t.act==='call'?ic('phone'):t.act==='prep'?ic('pin'):write?ic('msg'):hue(14,'w'))+(write?'Write message':t.label)+'</button></span>')+'</div></div>';
 }
 function topList(){ return S.set.top?T:T.slice().sort(function(a,b){return cust(a.cust).name.localeCompare(cust(b.cust).name)}) }
 function topHTML(){
@@ -1168,12 +1220,15 @@ function recListHTML(){
 function recordHTML(id){
   var c=cust(id); if(!c) return '<p class="empty">Choose a customer to see the record.</p>';
   var p0=c.people[0], close=S.device==='phone'?'<button class="backb" data-act="back">'+ic('back')+'Back</button>':S.device==='computer'?'<button class="backb" data-act="back">'+ic('x')+' Close</button>':'';
-  var ds=D.filter(function(d){return d.cust===id}), next=c.promises.find(function(p){return !p.done});
+  var ds=D.filter(function(d){return d.cust===id}), next=c.promises.find(function(p){return !p.done}), vv=visitOf(id);
+  var lim=function(k,a){return S.secAll[k]?a:a.slice(0,4)};
+  var moreB=function(k,n){return n>4?'<button class="btn btn-soft wide" data-act="secall" data-id="'+k+'" aria-expanded="'+!!S.secAll[k]+'" style="margin-top:8px">'+(S.secAll[k]?'Show fewer':'Show '+(n-4)+' more')+'</button>':''};
   var add=function(k,l){return '<button class="link" data-act="add" data-id="'+k+'">'+ic('plus')+(l||'Add')+'</button>'};
   var pen=function(k,i,l){return '<button class="ed" data-act="edititem" data-id="'+k+'" data-i="'+i+'" aria-label="Edit '+esc(l)+'">'+ic('pen')+'</button>'};
   var h=(close?'<div class="rbar">'+close+'</div>':'')+
    '<h1>'+esc(c.name)+'</h1><p class="sub">'+[esc(c.type),esc(c.area),'Customer since '+c.since].filter(Boolean).join(' · ')+'</p><div class="chips">'+(custStatus(c)||chip('done','Up to date'))+'</div>'+
    '<p class="next"><b>Next:</b> '+(next?esc(next.t)+' <span class="sub">· '+fmt(next.iso)+'</span>':'<span class="sub">Nothing promised yet</span>')+'</p>'+
+   (vv?'<p class="next" style="margin-top:2px"><b>Visit:</b> '+fmt(vv.iso)+', '+vv.when+' <span class="sub">· '+esc(vv.why)+'</span></p>':'')+
    '<div class="acts3">'+(p0.none?'':'<button class="btn btn-primary" data-act="call" data-id="'+id+'" aria-label="Call '+esc(p0.call)+'">'+ic('phone')+'Call</button><button class="btn btn-soft" data-act="msg" data-id="'+id+'">'+ic('msg')+'Message</button>')+
    '<button class="btn btn-soft" data-act="cap" data-id="type" data-hint="'+id+'">'+ic('plus')+'Add note</button></div>';
   var secs=[['deals','Deals'],['promises','Promises'],['people','People'],['timeline','Timeline'],['company','Company'],['products','Products'],['files','Files']];
@@ -1184,10 +1239,11 @@ function recordHTML(id){
       (w||l?'<div class="chips">'+(w?chip('done','Won'):'<span class="chip">Lost</span>')+'</div>':'<div class="steps">'+STAGES.map(function(s,k){return '<i class="'+(k<=i?'on':'')+'"></i>'}).join('')+'</div><div class="stepl">'+STAGES.map(function(s,k){return k===i?'<b>'+s+'</b>':'<span>'+s+'</span>'}).join('')+'</div>')+
       '<p class="cap" style="margin-top:4px">'+esc(d.last)+' · '+ago(d.touch).toLowerCase()+(d.wait==='you'&&!w&&!l?' · your move':'')+'</p>'+
       (S.set.warn&&isQuiet(d)?'<div class="chips"><button class="chip chip-warn" data-act="warn" data-deal="'+d.id+'">'+ic('warn')+'Quiet for '+d.touch+' days. See why</button></div>':'')+'</div>'}).join(''):'<p class="sub">No deals yet.</p>')+'</div>';
-  var proms='<div class="card" id="s-promises"><h3>Promises '+add('promise')+'</h3>'+(c.promises.length?c.promises.map(function(p,i){return '<div class="item itemrow"><button class="prom'+(p.done?' done':'')+'" data-act="prom" data-id="'+i+'" aria-pressed="'+!!p.done+'"><span class="box">'+(p.done?ic('tick'):'')+'</span><span><span class="pt">'+esc(p.t)+'</span><br><span class="cap">'+(p.done?'Done':'Due '+fmt(p.iso))+'</span></span></button>'+pen('promise',i,p.t)+'</div>'}).join(''):'<p class="sub">Nothing promised yet. '+AI+' adds the promises it finds in your notes.</p>')+'</div>';
-  var people='<div class="card" id="s-people"><h3>People '+add('person')+'</h3>'+c.people.map(function(p,i){
+  var proms='<div class="card" id="s-promises"><h3>Promises '+add('promise')+'</h3>'+(c.promises.length?lim('promises',c.promises).map(function(p,i){return '<div class="item itemrow"><button class="prom'+(p.done?' done':'')+'" data-act="prom" data-id="'+i+'" aria-pressed="'+!!p.done+'"><span class="box">'+(p.done?ic('tick'):'')+'</span><span><span class="pt">'+esc(p.t)+'</span><br><span class="cap">'+(p.done?'Done':'Due '+fmt(p.iso))+'</span></span></button>'+pen('promise',i,p.t)+'</div>'}).join('')+moreB('promises',c.promises.length):'<p class="sub">Nothing promised yet. '+AI+' adds the promises it finds in your notes.</p>')+'</div>';
+  var people='<div class="card" id="s-people"><h3>People '+add('person')+'</h3>'+lim('people',c.people).map(function(p,i){
      if(p.none) return '<p class="sub">No contact yet.</p>';
-     return '<div class="item itemrow"><span><b>'+esc(p.name)+'</b>'+(i===0?'<span class="tag">Main contact</span>':'')+'<br><span class="cap">'+[esc(p.role),'<span style="user-select:text">'+esc(p.phone)+'</span>'].filter(function(x,k){return k?p.phone:p.role}).join(' · ')+'</span></span>'+pen('person',i,p.name)+'</div>'}).join('')+'</div>';
+     var bits=[]; if(p.role) bits.push(esc(p.role)); if(p.phone) bits.push('<span style="user-select:text">'+esc(p.phone)+'</span>');
+     return '<div class="item itemrow"><span><b>'+esc(p.name)+'</b>'+(i===0?'<span class="tag">Main contact</span>':'')+(bits.length?'<br><span class="cap">'+bits.join(' · ')+'</span>':'')+(p.email?'<br><span class="cap" style="user-select:text;overflow-wrap:anywhere">'+esc(p.email)+'</span>':'')+'</span>'+pen('person',i,p.name)+'</div>'}).join('')+moreB('people',c.people.length)+'</div>';
   var tl='<div class="card span" id="s-timeline"><h3>Timeline <button class="link" data-act="cap" data-id="type" data-hint="'+id+'">'+ic('plus')+'Add note</button></h3>'+c.timeline.slice(0,S.tlN).map(function(x){return '<div class="item tl"><span class="d"><b>'+esc(x.d)+'</b>'+esc(x.how)+'</span><span>'+esc(x.t)+(x.next?'<br><span class="cap">Next step: '+esc(x.next)+'</span>':'')+(x.ai?'<br><span class="byhue">'+hue(12)+'Tidied by '+AI+'</span>':'')+'</span></div>'}).join('')+
      (c.timeline.length>S.tlN?'<button class="btn btn-soft wide" data-act="tlmore" style="margin-top:8px">Show '+Math.min(10,c.timeline.length-S.tlN)+' earlier notes</button><p class="cap ctr">'+S.tlN+' of '+c.timeline.length+' shown</p>':'')+'</div>';
   var al=addrLine(c);
@@ -1195,7 +1251,7 @@ function recordHTML(id){
      (al?esc(al)+'<br><a class="wxlink" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(mapQ(c))+'" target="_blank" rel="noopener">Open the map'+ic('out')+'</a>':'<button class="link" data-act="editco">'+ic('plus')+'Add the address</button>')+'</dd>'+
      (c.area?'<dt>Area</dt><dd>'+esc(c.area)+(c.postal?' <span class="cap">· from the postal code</span>':'')+'</dd>':'')+'<dt>Payment terms</dt><dd>'+esc(c.terms)+'</dd><dt>Payment</dt><dd>'+(c.late?chip('bad',money(c.late.amt)+' is '+c.late.days+' days late'):'On time')+'</dd><dt>Last spoke</dt><dd>You, '+ago(c.last).toLowerCase()+'</dd></dl></div>';
   var prod='<div class="card" id="s-products"><h3>Products '+add('product')+'</h3>'+(c.products.length?'<div class="chips" style="margin-top:0">'+c.products.map(function(p){return '<span class="chip">'+esc(p)+'</span>'}).join('')+'</div>':'<p class="sub">None yet.</p>')+'<p class="cap" style="margin-top:6px">'+AI+' also adds products you name in your notes.</p></div>';
-  var files='<div class="card" id="s-files"><h3>Files '+add('file')+'</h3>'+(c.files.length?c.files.map(function(f){return '<div class="item filerow">'+ic('file')+esc(f)+'</div>'}).join(''):'<p class="sub">No files yet. Add a quote, a photo or a price list.</p>')+'</div>';
+  var files='<div class="card" id="s-files"><h3>Files '+add('file')+'</h3>'+(c.files.length?lim('files',c.files).map(function(f){return '<div class="item filerow">'+ic('file')+esc(f)+'</div>'}).join('')+moreB('files',c.files.length):'<p class="sub">No files yet. Add a quote, a photo or a price list.</p>')+'</div>';
   return h+nav+'<div class="rgrid">'+tip+deals+proms+people+comp+tl+prod+files+'</div>';
 }
 
@@ -1222,7 +1278,7 @@ function settingsHTML(){
    row('top','Select my top three',AI+' puts the three most important tasks first. The list is new at the start of each day.')+
    row('warn','Warn me when a deal goes quiet','A warning shows when a customer does not reply for longer than usual.')+
    row('tips','Suggestions in customer records','A short tip from your past notes with that customer.')+
-   row('wx','Weather for my next visit','One line in the greeting on Home.')+'</div>'+
+   row('wx','Weather for my day','Morning, afternoon and evening on Home. A warning shows when rain can delay a visit.')+'</div>'+
    '<h2 class="sec">Help</h2><div class="card set">'+
    '<div class="srow"><span><b>Guide</b><span class="cap">What the words, filters and marks mean.</span></span><button class="btn btn-soft" data-act="guide">Open</button></div>'+
    '<div class="srow"><span><b>Tour</b><span class="cap">Shows the main features in one minute.</span></span><button class="btn btn-soft" data-act="tour">Start</button></div></div>';
@@ -1239,6 +1295,74 @@ function setFan(on){
   S.fan=on; var w=app.querySelector('.fabwrap'), sc=app.querySelector('.fanscrim'), f=$('#fab');
   if(w) w.classList.toggle('open',on); if(sc) sc.classList.toggle('on',on); if(f) f.setAttribute('aria-expanded',String(on));
 }
+
+/* ---------- fields: one set of rules for each type of field ---------- */
+var FT={
+ company:{ex:'Best Printing Pte Ltd',max:80,min:2,cap:'words',need:'Add the company name.'},
+ person:{ex:'Jasmine Teo',max:60,min:2,cap:'words',need:'Add the name of the person.'},
+ role:{ex:'Purchasing manager',max:40,cap:'sentences'},
+ phone:{ex:'9123 4567',max:20,type:'tel',mode:'tel',hint:'8 digits. For another country, start with + and the country code.'},
+ email:{ex:'jasmine@company.com',max:80,type:'email',mode:'email',cap:'off'},
+ money:{ex:'48,000',max:11,mode:'numeric',pre:'S$',need:'Add the amount.',hint:'Numbers only. An estimate is sufficient.'},
+ unit:{ex:'#03-12',max:10,cap:'off'},
+ deal:{ex:'Wilflex colours supply',max:60,min:3,cap:'sentences',need:'Say what the deal is for.'},
+ promise:{ex:'Send the price list',max:120,min:3,cap:'sentences',need:'Say what you promised.'},
+ next:{ex:'Send the quote',max:120,min:3,cap:'sentences'},
+ product:{ex:'Glitter ink',max:60,min:2,cap:'sentences',need:'Type the product name.'},
+ date:{type:'date',need:'Select a date.'},
+ addr:{}, note:{}, pick:{}
+};
+/* one field: label, the word "optional" when it can stay empty, an example, a hint when the form is not clear, and a place for the error */
+function fld(id,label,t,o){
+  o=o||{}; var f=FT[t], hint=o.hint||f.hint||'';
+  var inp='<input id="'+id+'" data-ft="'+t+'" type="'+(f.type||'text')+'"'+(o.req?' data-req aria-required="true"':'')+(f.mode?' inputmode="'+f.mode+'"':'')+(f.max?' maxlength="'+f.max+'"':'')+
+    ' autocomplete="off"'+(f.cap?' autocapitalize="'+f.cap+'"':'')+(f.cap==='sentences'?'':' spellcheck="false"')+(f.ex?' placeholder="Example: '+f.ex+'"':'')+(o.min?' min="'+o.min+'"':'')+(o.was?' data-was="'+esc(o.was)+'"':'')+
+    ' value="'+esc(o.val==null?'':o.val)+'" aria-describedby="'+id+'-e'+(hint?' '+id+'-h':'')+'">';
+  return '<div class="f"><label for="'+id+'">'+label+(o.req?'':' <span class="optl">(optional)</span>')+(o.chip||'')+'</label>'+(f.pre?'<span class="inpre"><span>'+f.pre+'</span>'+inp+'</span>':inp)+
+    (hint?'<span class="hint" id="'+id+'-h">'+hint+'</span>':'')+'<p class="ferr" id="'+id+'-e" hidden></p></div>';
+}
+/* the error text for one field, or nothing when the value is correct */
+function fmsg(el){
+  var t=el.dataset.ft, f=FT[t]||{}, v=el.value.trim(), dg=v.replace(/\D/g,'');
+  if(!v) return el.hasAttribute('data-req')?(el.dataset.need||f.need||'This field is necessary.'):'';
+  if(f.min&&v.length<f.min) return 'Use '+f.min+' characters or more.';
+  if(t==='person'&&/\d/.test(v)) return 'A name has no numbers.';
+  if(t==='phone'){
+    if(v.charAt(0)==='+') return dg.length<8||dg.length>15?'With a country code, a number has 8 to 15 digits.':'';
+    if(dg.length!==8) return 'A Singapore number has 8 digits. You typed '+dg.length+'.';
+    if(!/^[3689]/.test(dg)) return 'A Singapore number starts with 3, 6, 8 or 9.';
+  }
+  if(t==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'An email address looks like this: name@company.com.';
+  if(t==='money'&&+dg<1000) return 'The smallest amount is S$1,000.';
+  if(t==='unit'&&!/^#?\d{1,3}-\d{1,5}[A-Za-z]?$/.test(v)) return 'Write the unit like this: #03-12.';
+  if(t==='date'&&el.min&&v<el.min&&v!==el.dataset.was) return 'Select today or a later date.';
+  if(t==='addr'&&/^\d+$/.test(v)&&v.length!==6) return 'A Singapore postal code has 6 digits.';
+  return '';
+}
+function fset(el,m){
+  var e=document.getElementById(el.id+'-e'); el.classList.toggle('bad',!!m);
+  if(m) el.setAttribute('aria-invalid','true'); else el.removeAttribute('aria-invalid');
+  if(e){ e.innerHTML=m?ic('x')+'<span>'+esc(m)+'</span>':''; e.hidden=!m; }
+  return !m;
+}
+function fshow(el){ return fset(el,fmsg(el)) }
+/* tidy the value when he leaves the field: one space between words, the usual form for a phone number and a unit */
+function fnorm(el){
+  if(el.tagName!=='INPUT'||el.type==='date'||el.type==='file') return;
+  var t=el.dataset.ft, v=el.value.trim().replace(/\s+/g,' '), dg=v.replace(/\D/g,'');
+  if(t==='phone'){ if(v.charAt(0)!=='+'&&dg.length===8) v=dg.slice(0,4)+' '+dg.slice(4); else if(/^\+65/.test(v.replace(/\s/g,''))&&dg.length===10) v='+65 '+dg.slice(2,6)+' '+dg.slice(6); }
+  if(t==='unit'){ v=v.toUpperCase(); if(/^\d{1,3}-\d{1,5}[A-Z]?$/.test(v)) v='#'+v; }
+  if(t==='email') v=v.toLowerCase();
+  if(v!==el.value) el.value=v;
+}
+/* checks each field in the open sheet, shows each error, and goes to the first one */
+function fcheck(){
+  var bad=null;
+  app.querySelectorAll('.sheet [data-ft]').forEach(function(el){ if(el.closest('[hidden]')) return; fnorm(el); if(!fshow(el)&&!bad) bad=el; });
+  if(bad){ try{bad.focus({preventScroll:true})}catch(e){} try{bad.scrollIntoView({block:'nearest'})}catch(e){} return false; }
+  return true;
+}
+function ferrP(id){ return '<p class="ferr" id="'+id+'-e" hidden></p>' }
 
 /* ---------- sheets ---------- */
 function sheetHead(t){return '<div class="sh"><h2>'+t+'</h2><button class="xb" data-act="close" aria-label="Close">'+ic('x')+'</button></div>'}
@@ -1258,9 +1382,8 @@ function sheetHTML(){
   else if(s.kind==='msg'){
     var p=c.people[0], text=!S.set.draft?'':(d&&MSG[d.id])||('Hi '+p.call+', just checking in'+(d?' on '+d.name.toLowerCase():'')+'. Is there anything you need from me? Daniel');
     b=sheetHead('Message to '+esc(p.call))+'<p class="sub">'+esc(c.name)+' · <span style="user-select:text">'+esc(p.phone)+'</span></p>'+
-     '<div class="f"><label for="m-text">'+(S.set.draft?hue(14)+'Drafted by '+AI+' from your notes. Change anything.':'Your message')+'</label><textarea id="m-text" rows="6" placeholder="Write your message.">'+esc(text)+'</textarea></div>'+
+     '<div class="f"><label for="m-text">'+(S.set.draft?hue(14)+'Drafted by '+AI+' from your notes. Change anything.':'Your message')+'</label><textarea id="m-text" data-ft="note" data-req data-need="Write a message before you send." maxlength="1000" rows="6" aria-describedby="m-text-e" placeholder="Example: Hi '+esc(p.call||'Jasmine')+', here is the price that you asked for.">'+esc(text)+'</textarea>'+ferrP('m-text')+'</div>'+
      (S.set.draft&&d&&d.id==='d5'?'<div class="chips"><span class="chip">'+ic('file')+'Colour chart.jpg</span></div>':'')+
-     '<p class="err" id="m-err" hidden></p>'+
      '<div class="acts"><button class="btn btn-primary" data-act="send">Send and save to record</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
      '<p class="note">Prototype: no real message is sent.</p>';
   }
@@ -1279,9 +1402,9 @@ function sheetHTML(){
   else if(s.kind==='type'){
     var ty=S.set.tidy;
     b=sheetHead('Type a note')+'<p class="sub">'+(ty?'Write it your way. Save it as it is, or let '+AI+' tidy it up first.':'Write it your way, then save it.')+'</p>'+
-     '<div class="f"><label for="t-cust">Customer</label><select id="t-cust">'+custOptions(s.hint||'',ty?'Let '+AI+' find the customer':'Choose a customer')+'</select></div>'+
-     '<div class="f"><label for="t-text">Your note</label><textarea id="t-text" rows="5" placeholder="Example: Spoke to Jasmine at Best Printing. She is happy with the price. Send the formal quote by tomorrow.">'+esc(s.text||'')+'</textarea></div>'+
-     '<div class="chips"><button class="chip" data-act="sample">Use a sample note</button></div><p class="err" id="t-err" hidden></p>'+
+     '<div class="f"><label for="t-cust">Customer'+(ty?' <span class="optl">(optional)</span>':'')+'</label><select id="t-cust" data-ft="pick" aria-describedby="t-cust-e">'+custOptions(s.hint||'',ty?'Let '+AI+' find the customer':'Choose a customer')+'</select>'+ferrP('t-cust')+'</div>'+
+     '<div class="f"><label for="t-text">Your note</label><textarea id="t-text" data-ft="note" data-req data-need="Type a note first, or use the sample note." maxlength="2000" rows="5" aria-describedby="t-text-e" placeholder="Example: Spoke to Jasmine at Best Printing. She is happy with the price. Send the formal quote by tomorrow.">'+esc(s.text||'')+'</textarea>'+ferrP('t-text')+'</div>'+
+     '<div class="chips"><button class="chip" data-act="sample">Use a sample note</button></div>'+
      '<div class="acts">'+(ty?'<button class="btn btn-primary" data-act="tidy">'+hue(14,'w')+'Tidy up</button><button class="btn btn-soft" data-act="saveraw">Save</button>':'<button class="btn btn-primary" data-act="saveraw">Save</button>')+(S.device==='computer'?'<button class="btn btn-ghost" data-act="cap" data-id="talk"'+(s.hint?' data-hint="'+s.hint+'"':'')+'>'+ic('mic')+'Talk</button>':'')+'<button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
      (ty?'<p class="note">Save keeps your words as they are and you are done. Tidy up lets '+AI+' find the customer, the next step and the date, then shows them for you to check.</p>':'');
   }
@@ -1302,61 +1425,70 @@ function sheetHTML(){
   else if(s.kind==='review'){
     var r=S.draft, dd=r.deal?deal(r.deal):null, src={talk:'your voice note',type:'your typed note',write:'your handwriting',photo:'your photo'}[r.src];
     b=sheetHead('Check and save')+'<p class="byhue">'+hue(14)+'Tidied by '+AI+' from '+src+'</p><p class="sub">Change anything that is wrong.</p>'+
-     '<div class="f"><label for="r-cust">Customer '+(r.cust&&r.sure?'':chip('warn','Please choose'))+'</label><select id="r-cust">'+custOptions(r.cust,'Choose a customer')+'</select></div>'+
-     '<div class="f"><label for="r-sum">What happened</label><textarea id="r-sum" rows="4">'+esc(r.summary)+'</textarea></div>'+
-     '<div class="f"><label for="r-next">Next step</label><input id="r-next" type="text" value="'+esc(r.next)+'" placeholder="None found. Add one if needed."></div>'+
-     '<div class="f"><label for="r-due">Due '+(r.dueCheck?chip('warn','Please check'):'')+'</label><input id="r-due" type="date" value="'+esc(r.iso)+'" min="2026-10-05">'+(r.dueCheck?'<span class="cap">You said "'+esc(r.dueCheck)+'". '+AI+' took the coming one, '+fmt(r.iso)+'.</span>':(r.iso?'':'<span class="cap">No date found in your note.</span>'))+'</div>'+
+     '<div class="f"><label for="r-cust">Customer '+(r.cust&&r.sure?'':chip('warn','Please choose'))+'</label><select id="r-cust" data-ft="pick" data-req data-need="Choose a customer. Then the note goes to the correct record." aria-describedby="r-cust-e">'+custOptions(r.cust,'Choose a customer')+'</select>'+ferrP('r-cust')+'</div>'+
+     '<div class="f"><label for="r-sum">What happened</label><textarea id="r-sum" data-ft="note" data-req data-need="Say what happened." maxlength="2000" rows="4" aria-describedby="r-sum-e" placeholder="Example: Jasmine is happy with the price.">'+esc(r.summary)+'</textarea>'+ferrP('r-sum')+'</div>'+
+     fld('r-next','Next step','next',{val:r.next,hint:r.next?'':AI+' found no next step in your note.'})+
+     '<div class="f"><label for="r-due">Date of the next step '+(r.dueCheck?chip('warn','Please check'):'')+'</label><input id="r-due" data-ft="date" type="date" value="'+esc(r.iso)+'" min="2026-10-05" aria-describedby="r-due-e">'+(r.dueCheck?'<span class="cap">You said "'+esc(r.dueCheck)+'". '+AI+' took the coming one, '+fmt(r.iso)+'.</span>':(r.iso?'':'<span class="cap">No date found in your note.</span>'))+ferrP('r-due')+'</div>'+
      (dd?'<div class="f"><label for="r-stage">Deal stage: '+esc(dd.name)+'</label><select id="r-stage">'+STAGES.concat(['Won','Lost']).map(function(x){return '<option'+(x===r.stageTo?' selected':'')+'>'+x+'</option>'}).join('')+'</select><span class="cap">'+(r.stageTo!==dd.stage?'Was '+dd.stage+'. '+AI+' suggests this from your note.':'No change.')+'</span></div>':'')+
-     '<p class="err" id="r-err" hidden></p>'+
      '<div class="acts"><button class="btn btn-primary" data-act="save">Save to record</button><button class="btn btn-ghost" data-act="close">Discard</button></div>'+
      '<details class="raw"><summary>Your original words</summary><p>'+esc(r.raw)+'</p></details>';
   }
   else if(s.kind==='newcust'){
-    b=sheetHead('New customer')+'<p class="sub">Only the name is necessary. You can add the other details later.</p>'+
-     '<div class="f"><label for="n-name">Company name</label><input id="n-name" type="text" autocomplete="off"></div><div id="n-dup"></div>'+
+    b=sheetHead('New customer')+'<p class="sub">Only the company name is necessary. You can add the other details later.</p>'+
+     fld('n-name','Company name','company',{req:1})+'<div id="n-dup"></div>'+
      '<div class="f"><label for="n-type">Type</label><select id="n-type">'+TYPES.map(function(x){return '<option>'+x+'</option>'}).join('')+'</select></div>'+
      addrFields(null)+
-     '<div class="f"><label for="n-person">Main contact</label><input id="n-person" type="text"></div>'+
-     '<div class="f"><label for="n-phone">Phone</label><input id="n-phone" type="tel"></div><p class="err" id="n-err" hidden></p>'+
+     '<h3 class="fgroup">Main contact</h3>'+
+     fld('n-person','Name','person')+fld('n-phone','Phone','phone')+fld('n-email','Email','email')+
      '<div class="acts"><button class="btn btn-primary" data-act="create">Create record</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>';
   }
   else if(s.kind==='company'){
     c=cust(S.rec||'best');
     b=sheetHead('Edit company')+'<p class="sub">'+esc(c.name)+'</p>'+
-     '<div class="f"><label for="e-name">Company name</label><input id="e-name" type="text" autocomplete="off" value="'+esc(c.name)+'"></div>'+
+     fld('e-name','Company name','company',{req:1,val:c.name})+
      '<div class="f"><label for="e-type">Type</label><select id="e-type">'+TYPES.map(function(x){return '<option'+(x===c.type?' selected':'')+'>'+x+'</option>'}).join('')+'</select></div>'+
      addrFields(c)+
      '<div class="f"><label for="e-terms">Payment terms</label><select id="e-terms">'+TERMS.map(function(x){return '<option'+(x===c.terms?' selected':'')+'>'+x+'</option>'}).join('')+'</select></div>'+
-     '<p class="err" id="e-err" hidden></p>'+
      '<div class="acts"><button class="btn btn-primary" data-act="saveco">Save</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>';
   }
   else if(s.kind==='add'){
-    var w=s.what, cc=cust(S.rec||'best'), ed=s.i!=null, body='', v=function(x){return esc(x==null?'':x)};
+    var w=s.what, cc=cust(S.rec||'best'), ed=s.i!=null, body='';
     var it=!ed?null:w==='person'?cc.people[+s.i]:w==='deal'?deal(s.i):w==='promise'?cc.promises[+s.i]:null;
     var title=(ed?'Edit ':'Add a ')+w+(ed&&w==='person'?': '+esc(it.name):'');
-    if(w==='product') body='<div class="f"><label for="a-1">Product range</label><select id="a-1">'+RANGES.map(function(x){return '<option>'+x+'</option>'}).join('')+'<option value="">Other, type it below</option></select></div><div class="f"><label for="a-2">Other product</label><input id="a-2" type="text"></div>';
-    if(w==='file') body='<div class="f"><label for="a-file">Choose a file or a photo</label><input id="a-file" type="file"></div><div class="chips"><button class="chip" data-act="samplefile">Use a sample file</button></div><p class="note">Prototype: only the file name is kept.</p>';
-    if(w==='person') body='<div class="f"><label for="a-1">Name</label><input id="a-1" type="text" value="'+v(it&&it.name)+'"></div><div class="f"><label for="a-2">Role</label><input id="a-2" type="text" value="'+v(it&&it.role)+'"></div><div class="f"><label for="a-3">Phone</label><input id="a-3" type="tel" value="'+v(it&&it.phone)+'"></div>'+
+    if(w==='product') body='<div class="f"><label for="a-1">Product range</label><select id="a-1" data-ft="pick" aria-describedby="a-1-e">'+RANGES.map(function(x){return '<option>'+x+'</option>'}).join('')+'<option value="">Other product</option></select>'+ferrP('a-1')+'</div>'+
+      '<div id="a-2w" hidden>'+fld('a-2','Product name','product',{req:1})+'</div>';
+    if(w==='file') body='<div class="f"><label for="a-file">Choose a file or a photo</label><input id="a-file" type="file" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" aria-describedby="a-file-h a-file-e"><span class="hint" id="a-file-h">A photo, a PDF or an office file. 10 MB or smaller.</span>'+ferrP('a-file')+'</div>'+
+      '<div class="chips"><button class="chip" data-act="samplefile">Use a sample file</button></div><p class="note">Prototype: only the file name is kept.</p>';
+    if(w==='person') body=fld('a-1','Name','person',{req:1,val:it&&it.name})+fld('a-2','Role','role',{val:it&&it.role})+fld('a-3','Phone','phone',{val:it&&it.phone})+fld('a-4','Email','email',{val:it&&it.email})+
       (ed&&+s.i===0?'<p class="note">This person is the main contact. To change that, edit another person.</p>':cc.people[0].none?'':'<label class="chk"><input type="checkbox" id="a-main"> Make this person the main contact</label>');
-    if(w==='deal') body='<div class="f"><label for="a-1">What is the deal for</label><input id="a-1" type="text" placeholder="Example: Wilflex colours supply" value="'+v(it&&it.name)+'"></div><div class="f"><label for="a-money">Worth a year, in Singapore dollars</label><input id="a-money" type="text" inputmode="numeric" autocomplete="off" placeholder="Example: 48,000" value="'+(it?(it.value*1000).toLocaleString('en-US'):'')+'"></div><div class="f"><label for="a-3">Stage</label><select id="a-3">'+STAGES.concat(ed?['Won','Lost']:[]).map(function(x){return '<option'+(it&&it.stage===x?' selected':'')+'>'+x+'</option>'}).join('')+'</select></div>'+
+    if(w==='deal') body=fld('a-1','What is the deal for','deal',{req:1,val:it&&it.name})+fld('a-money','Worth each year','money',{req:1,val:it?(it.value*1000).toLocaleString('en-US'):''})+
+      '<div class="f"><label for="a-3">Stage</label><select id="a-3">'+STAGES.concat(ed?['Won','Lost']:[]).map(function(x){return '<option'+(it&&it.stage===x?' selected':'')+'>'+x+'</option>'}).join('')+'</select></div>'+
       (ed?'<p class="note">A deal is not removed. If the customer says no, set the stage to Lost.</p>':'');
-    if(w==='promise') body='<div class="f"><label for="a-1">What did you promise</label><input id="a-1" type="text" value="'+v(it&&it.t)+'"></div><div class="f"><label for="a-2">Due</label><input id="a-2" type="date" min="2026-10-05" value="'+v(it&&it.iso)+'"></div>';
-    b=sheetHead(title)+'<p class="sub">'+esc(cc.name)+'</p>'+body+'<p class="err" id="a-err" hidden></p><div class="acts">'+(w==='file'?'':'<button class="btn btn-primary" data-act="addsave">'+(ed?'Save':'Add')+'</button>')+'<button class="btn btn-ghost" data-act="close">Cancel</button>'+
+    if(w==='promise') body=fld('a-1','What did you promise','promise',{req:1,val:it&&it.t})+fld('a-2','Due','date',{req:1,val:it&&it.iso,min:'2026-10-05',was:it&&it.iso});
+    b=sheetHead(title)+'<p class="sub">'+esc(cc.name)+'</p>'+body+'<div class="acts">'+(w==='file'?'':'<button class="btn btn-primary" data-act="addsave">'+(ed?'Save':'Add')+'</button>')+'<button class="btn btn-ghost" data-act="close">Cancel</button>'+
       (ed&&(w==='person'||w==='promise')?'<span class="sp"></span><button class="btn btn-danger'+(s.sure?' sure':'')+'" data-act="rmitem">'+(s.sure?'Tap again to remove':'Remove')+'</button>':'')+'</div>';
   }
   else if(s.kind==='guide'){
     var gi=function(t,d){return '<div><dt>'+t+'</dt><dd>'+d+'</dd></div>'};
-    b=sheetHead('Guide')+'<p class="sub">What the words, filters and marks mean.</p><div class="gd">'+
-     '<h3>Status</h3><dl>'+gi(chip('done','Up to date'),'Nothing waits for you or for the customer.')+gi(chip('warn','Quiet 9 days'),'The customer did not reply for longer than usual.')+gi(chip('bad','Payment late'),'A payment is past its due date.')+
+    var GS=[['g-status','Status'],['g-filters','Filters'],['g-stages','Deal stages'],['g-top','Top three'],['g-visits','Visits'],['g-sales','Sales bar'],['g-forms','Forms'],['g-marks','Marks']];
+    b='<div class="gtop">'+sheetHead('Guide')+'<nav class="jump" aria-label="Sections of the guide">'+GS.map(function(x){return '<button class="pill" data-act="gjump" data-id="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</nav></div>'+
+     '<p class="sub" style="margin-top:10px">What the words, filters and marks mean.</p><div class="gd">'+
+     '<h3 id="g-status" style="margin-top:10px">Status</h3><dl>'+gi(chip('done','Up to date'),'Nothing waits for you or for the customer.')+gi(chip('warn','Quiet 9 days'),'The customer did not reply for longer than usual.')+gi(chip('bad','Payment late'),'A payment is past its due date.')+
        gi('Your move','The customer waits for your reply.')+gi(chip('warn','Please check'),AI+' is not sure about this field. Check it before you save.')+'</dl>'+
-     '<h3>Filters in Records</h3><dl>'+FIL.slice(1).map(function(f){return gi(f[1],FDESC[f[0]])}).join('')+'</dl>'+
-     '<h3>Deal stages</h3><dl>'+gi('New','First contact. The usual wait for a reply is 3 days.')+gi('Sample','The customer has samples. The usual wait is 7 days.')+gi('Trial','The customer tests the ink on the press. The usual wait is 14 days.')+gi('Quote','You sent a price. The usual wait is 5 days.')+gi('Won and Lost','The deal is closed. A lost deal stays in the record.')+'</dl>'+
-     '<h3>'+hue(14)+' Top three</h3><p>'+AI+' gives points to each task. A task gets more points when the deal is worth more, when the deal is near an order, and when the customer waits longer. The three tasks with the most points come first. '+AI+' makes the list at the start of each day. A done task stays in the list until the next morning. Tap the tick again to undo it.</p>'+
-     '<h3>Sales bar</h3><dl>'+gi('<i class="k kw"></i>Solid bar','The sales that you won this year.')+gi('<i class="k ko"></i>Striped bar','Your open deals. They can add to your sales.')+gi('<i class="k kp"></i>Line','Where you should be today, if sales are equal in each month.')+'</dl>'+
-     '<h3>Marks from '+AI+'</h3><dl>'+gi(hue(15)+AI+' mark',AI+' wrote or selected this item. You can change it.')+'</dl></div>'+
+     '<h3 id="g-filters">Filters in Records</h3><dl>'+FIL.slice(1).map(function(f){return gi(f[1],FDESC[f[0]])}).join('')+'</dl>'+
+     '<h3 id="g-stages">Deal stages</h3><dl>'+gi('New','First contact. The usual wait for a reply is 3 days.')+gi('Sample','The customer has samples. The usual wait is 7 days.')+gi('Trial','The customer tests the ink on the press. The usual wait is 14 days.')+gi('Quote','You sent a price. The usual wait is 5 days.')+gi('Won and Lost','The deal is closed. A lost deal stays in the record.')+'</dl>'+
+     '<h3 id="g-top">'+hue(14)+' Top three</h3><p>'+AI+' gives points to each task. A task gets more points when the deal is worth more, when the deal is near an order, and when the customer waits longer. A promise or a visit that is due today adds points. The three tasks with the most points come first. '+AI+' makes the list at the start of each day. A done task stays in the list until the next morning. Tap the tick again to undo it.</p>'+
+     '<h3 id="g-visits">Visits and weather</h3><dl>'+gi('Visits today','They come from your calendar. Tap a visit to open the customer record.')+
+       gi('<span class="chip">'+ic('pin')+'Visit today, 3 pm</span>','This mark shows on a task when you visit that customer today. A visit to a customer with no open deal has no task.')+
+       gi('Weather','Morning, afternoon and evening, from the national weather service. A warning shows below a visit when showers or storms can delay you.')+'</dl>'+
+     '<h3 id="g-sales">Sales bar</h3><dl>'+gi('<i class="k kw"></i>Solid bar','The sales that you won this year.')+gi('<i class="k ko"></i>Striped bar','Your open deals. They can add to your sales.')+gi('<i class="k kp"></i>Line','Where you should be today, if sales are equal in each month.')+'</dl>'+
+     '<h3 id="g-forms">Forms</h3><dl>'+gi('(optional)','You can leave this field empty. All other fields are necessary.')+gi('Example: 9123 4567','The grey text in an empty field is an example. It shows the correct form.')+
+       gi('<span class="ferr">'+ic('x')+'<span>Red text below a field</span></span>','The value is not correct. The text says how to correct it.')+
+       gi('Phone','8 digits for Singapore. For another country, start with + and the country code.')+gi('Amount','Singapore dollars. Numbers only. S$1,000 or more.')+gi('Date','Today or a later date.')+'</dl>'+
+     '<h3 id="g-marks">Marks from '+AI+'</h3><dl>'+gi(hue(15)+AI+' mark',AI+' wrote or selected this item. You can change it.')+'</dl></div>'+
      '<div class="acts"><button class="btn btn-primary" data-act="close">Close</button></div>';
   }
-  return '<div class="scrim" data-scrim><div class="sheet" role="dialog" aria-modal="true">'+b+'</div></div>';
+  return '<div class="scrim" data-scrim><div class="sheet"'+(s.kind==='guide'?' data-scroll="guide"':'')+' role="dialog" aria-modal="true">'+b+'</div></div>';
 }
 
 /* ---------- render ---------- */
@@ -1432,11 +1564,14 @@ function revealCheck(sc){
 }
 function revealAll(){ app.querySelectorAll('[data-scroll]').forEach(revealCheck) }
 function spyOne(sc){
-  var nav=sc.querySelector('.jump'); if(!nav||S.device!=='phone') return;
-  var line=sc.getBoundingClientRect().top+nav.getBoundingClientRect().height+26, cur=null, pills=nav.querySelectorAll('[data-id]');
+  var nav=sc.querySelector('.jump'), guide=sc.dataset.scroll==='guide'; if(!nav||(S.device!=='phone'&&!guide)) return;
+  var bar=guide?sc.querySelector('.gtop'):nav;
+  var line=sc.getBoundingClientRect().top+bar.getBoundingClientRect().height+26, cur=null, pills=nav.querySelectorAll('[data-id]');
   pills.forEach(function(b){ var el=sc.querySelector('#'+b.dataset.id); if(el&&el.getBoundingClientRect().top<=line) cur=b.dataset.id; });
   if(pills.length&&sc.scrollTop>4&&sc.scrollTop+sc.clientHeight>=sc.scrollHeight-4) cur=pills[pills.length-1].dataset.id;
+  if(guide&&!cur&&pills.length) cur=pills[0].dataset.id;
   pills.forEach(function(b){ b.classList.toggle('on',b.dataset.id===cur) });
+  var on=nav.querySelector('.on'); if(guide&&on){ var l=on.offsetLeft-nav.offsetLeft, r2=l+on.offsetWidth; if(l<nav.scrollLeft+8) nav.scrollLeft=l-8; else if(r2>nav.scrollLeft+nav.clientWidth-8) nav.scrollLeft=r2-nav.clientWidth+8; }
 }
 function spyAll(){ app.querySelectorAll('[data-scroll]').forEach(spyOne) }
 function countUp(){
@@ -1601,8 +1736,11 @@ function tourEnd(done,quiet){
 /* ---------- actions ---------- */
 var A={
   tab:function(id){S.tab=id;if(S.device!=='tablet')S.rec=null;S.fan=false;S.edit=false},
-  rec:function(id){closeSheet();S.fan=false;S.edit=false;S.tlN=5;S.rec=id;if(S.device==='tablet')S.tab='rec';toastEl.hidden=true},
+  rec:function(id){closeSheet();S.fan=false;S.edit=false;S.tlN=5;S.secAll={};S.rec=id;if(S.device==='tablet')S.tab='rec';toastEl.hidden=true},
   back:function(){S.rec=null;S.edit=false},
+  prep:function(_,dl){ A.rec(deal(dl).cust) },
+  secall:function(k){ S.secAll[k]=!S.secAll[k] },
+  gjump:function(id,_,b){ var sc=b.closest('.sheet'), el=sc&&sc.querySelector('#'+id), bar=sc&&sc.querySelector('.gtop'); if(el){ var y=el.offsetTop-(bar?bar.offsetHeight:0)-8; try{ sc.scrollTo({top:y,behavior:S.set.rm?'auto':'smooth'}) }catch(e){ sc.scrollTop=y } } return false },
   replay:function(){splash();return false},
   tour:function(){tourStart();return false},
   plan:function(_,__,b){ S.plan=!S.plan; b.closest('.bsec').querySelector('.fold').classList.toggle('open',S.plan); b.textContent=S.plan?'Hide':'Show'; b.setAttribute('aria-expanded',String(S.plan)); setTimeout(revealAll,320); return false },
@@ -1629,30 +1767,30 @@ var A={
   snooze:function(_,dl){var d=deal(dl);d.snooze=true;closeSheet();toast('Hidden until Thursday. '+cust(d.cust).name+' will come back then.')},
   normal:function(_,dl){var d=deal(dl);d.limit=d.touch+7;closeSheet();toast('Noted. '+AI+' will wait longer before warning you about '+cust(d.cust).name+'.')},
   send:function(){
-    var s=S.sheet, c=cust(s.cust), d=s.deal?deal(s.deal):null, text=$('#m-text').value.trim(), err=$('#m-err');
-    if(!text){err.textContent='Write a message before you send.';err.hidden=false;return false}
-    if(text.indexOf('[price]')>-1){err.textContent='Add the price before you send. Replace [price] with your number.';err.hidden=false;return false}
+    if(!fcheck()) return false;
+    var s=S.sheet, c=cust(s.cust), d=s.deal?deal(s.deal):null, el=$('#m-text'), text=el.value.trim();
+    if(text.indexOf('[price]')>-1){ fset(el,'Add the price before you send. Replace [price] with your number.'); el.focus(); return false }
     c.timeline.unshift({d:'Today',how:'Message',t:'You: '+text}); markTouched(c,d); if(d){d.wait='them';d.last='Message sent';}
     var t=T.find(function(x){return d&&x.deal===d.id}); if(t){S.done[t.id]=1; if(t.promise){var p=c.promises.find(function(x){return !x.done}); if(p)p.done=true;}}
     closeSheet(); toast('Sent to '+c.people[0].call+' and saved to the record.',c.id);
   },
   cap:function(kind,_,b){ var hint=(b&&b.dataset.hint)||null; closeSheet(); S.fan=false; S.sheet={kind:kind,hint:hint}; },
   stoptalk:function(){ var s=S.sheet; stopTalk(); if(!S.set.tidy){ S.sheet={kind:'type',hint:s.hint,text:s.raw}; return; } toReview('talk',s.raw,s.hint); return false },
-  sample:function(){ var el=$('#t-text'); el.value=sampleFor($('#t-cust').value||S.sheet.hint||'best'); el.focus(); return false },
-  tidy:function(){ var v=$('#t-text').value.trim(), err=$('#t-err'); if(!v){err.textContent='Type a note first, or use the sample note.';err.hidden=false;return false} toReview('type',v,$('#t-cust').value||S.sheet.hint); return false },
+  sample:function(){ var el=$('#t-text'); el.value=sampleFor($('#t-cust').value||S.sheet.hint||'best'); fshow(el); el.focus(); return false },
+  tidy:function(){ if(!fcheck()) return false; toReview('type',$('#t-text').value.trim(),$('#t-cust').value||S.sheet.hint); return false },
   saveraw:function(){
-    var v=$('#t-text').value.trim(), err=$('#t-err'), id=$('#t-cust').value;
-    if(!v){err.textContent='Type a note first, or use the sample note.';err.hidden=false;return false}
-    var c=id?cust(id):findCust(v.toLowerCase(),null);
-    if(!c){err.textContent='Choose a customer so the note goes to the right record.';err.hidden=false;return false}
+    if(!fcheck()) return false;
+    var v=$('#t-text').value.trim(), sel=$('#t-cust'), id=sel.value, c=id?cust(id):findCust(v.toLowerCase(),null);
+    if(!c){ fset(sel,'Choose a customer. Then the note goes to the correct record.'); sel.focus(); return false }
     c.timeline.unshift({d:'Today',how:'Note',t:v}); markTouched(c,openOf(c.id)[0]||null);
     closeSheet(); toast('Saved to '+c.name+' as you wrote it.',c.id);
   },
   tidyhand:function(){ if(!S.set.tidy){ S.sheet={kind:'type',hint:null,text:SAMPLE.lion}; return; } toReview(S.sheet.kind,SAMPLE.lion,null); return false },
   clearpad:function(){ var cv=$('#w-pad'); cv.getContext('2d').clearRect(0,0,cv.width,cv.height); $('#w-hand').hidden=true; return false },
   save:function(){
-    readDraft(); var r=S.draft, id=$('#r-cust').value, err=$('#r-err');
-    if(!id){err.textContent='Choose a customer so the note goes to the right record.';err.hidden=false;return false}
+    if(!fcheck()) return false;
+    readDraft(); var r=S.draft, id=$('#r-cust').value, due=$('#r-due');
+    if(r.next&&!r.iso){ fset(due,'Add a date for the next step. Then it shows in your week.'); due.focus(); return false }
     var c=cust(id), d=r.deal&&deal(r.deal).cust===id?deal(r.deal):null;
     c.timeline.unshift({d:'Today',how:{talk:'Voice note',type:'Note',write:'Written note',photo:'Photo note'}[r.src],t:r.summary,ai:true,next:r.next?(r.next+(r.iso?' · '+fmt(r.iso):'')):''});
     if(r.next) c.promises.unshift({t:r.next,iso:r.iso});
@@ -1664,10 +1802,11 @@ var A={
   },
   newcust:function(){S.sheet={kind:'newcust'}},
   create:function(){
-    var name=$('#n-name').value.trim(), err=$('#n-err'); if(!name){err.textContent='Add the company name.';err.hidden=false;return false}
-    var person=$('#n-person').value.trim(), none=!person, id='n'+C.length;
+    if(!fcheck()) return false;
+    var name=$('#n-name').value.trim(), pe=$('#n-person'), person=pe.value.trim(), phone=$('#n-phone').value.trim(), email=$('#n-email').value.trim(), none=!person, id='n'+C.length;
+    if(none&&(phone||email)){ fset(pe,'Add the name of this person.'); pe.focus(); return false }
     var nc={id:id,keys:[name.toLowerCase()],name:name,type:$('#n-type').value,area:'',addr:'',bld:'',unit:'',postal:'',since:2026,terms:'Not set',last:0,
-      people:[{name:none?'No contact yet':person,call:none?'':person.split(' ')[0],none:none,role:'',phone:$('#n-phone').value.trim()}],products:[],timeline:[{d:'Today',how:'Created',t:'Record created.'}],promises:[],files:[],tip:''};
+      people:[{name:none?'No contact yet':person,call:none?'':person.split(' ')[0],none:none,role:'',phone:phone,email:email}],products:[],timeline:[{d:'Today',how:'Created',t:'Record created.'}],promises:[],files:[],tip:''};
     applyAddr(nc,$('#c-addr').value,$('#c-unit').value.trim()); C.push(nc);
     closeSheet(); S.q=''; S.f='all'; S.rec=id; if(S.device!=='computer')S.tab='rec'; toast('Record created for '+name+'.');
   },
@@ -1675,24 +1814,27 @@ var A={
   edititem:function(what,_,b){S.sheet={kind:'add',what:what,i:b.dataset.i}},
   editco:function(){S.sheet={kind:'company'}},
   saveco:function(){
-    var c=cust(S.rec||'best'), g=function(id){return $('#'+id).value.trim()}, err=$('#e-err');
-    if(!g('e-name')){err.textContent='Add the company name.';err.hidden=false;return false}
+    if(!fcheck()) return false;
+    var c=cust(S.rec||'best'), g=function(id){return $('#'+id).value.trim()};
     c.name=g('e-name'); c.keys=[c.name.toLowerCase().replace(/ pte ltd$/,'')]; c.type=g('e-type'); c.terms=g('e-terms');
     applyAddr(c,g('c-addr'),g('c-unit'));
     closeSheet(); toast('Company details saved.');
   },
   samplefile:function(){ var c=cust(S.rec||'best'); c.files.unshift('Quote 5 Oct.pdf'); closeSheet(); toast('File added.') },
   addsave:function(){
-    var sh=S.sheet, w=sh.what, ed=sh.i!=null, c=cust(S.rec||'best'), g=function(id){var el=$('#'+id);return el?el.value.trim():''}, err=$('#a-err'), bad=function(m){err.textContent=m;err.hidden=false;return false};
-    if(w==='product'){ var p=g('a-2')||g('a-1'); if(!p) return bad('Choose a product or type one.'); if(c.products.indexOf(p)<0) c.products.push(p); }
-    if(w==='person'){ if(!g('a-1')) return bad('Add the name.');
-      var np={name:g('a-1'),call:g('a-1').split(' ')[0],role:g('a-2'),phone:g('a-3')}, mainEl=$('#a-main'), main=!!(mainEl&&mainEl.checked);
+    if(!fcheck()) return false;
+    var sh=S.sheet, w=sh.what, ed=sh.i!=null, c=cust(S.rec||'best'), g=function(id){var el=$('#'+id);return el?el.value.trim():''};
+    if(w==='product'){ var p=g('a-1')||g('a-2'), pel=g('a-1')?$('#a-1'):$('#a-2');
+      if(c.products.some(function(x){return x.toLowerCase()===p.toLowerCase()})){ fset(pel,'This product is already in the record.'); return false }
+      c.products.push(p); }
+    if(w==='person'){
+      var np={name:g('a-1'),call:g('a-1').split(' ')[0],role:g('a-2'),phone:g('a-3'),email:g('a-4')}, mainEl=$('#a-main'), main=!!(mainEl&&mainEl.checked);
       if(ed){ var old=c.people[+sh.i]; if(old.call&&np.name.indexOf(old.call.replace('Mr ',''))>-1) np.call=old.call; c.people[+sh.i]=np; if(main&&+sh.i>0){ c.people.splice(+sh.i,1); c.people.unshift(np); } }
       else if(c.people[0].none) c.people[0]=np; else if(main) c.people.unshift(np); else c.people.push(np); }
-    if(w==='deal'){ if(!g('a-1')) return bad('Say what the deal is for.'); var val=Math.round((+g('a-money').replace(/[^\d]/g,'')||0)/1000);
+    if(w==='deal'){ var val=Math.round((+g('a-money').replace(/[^\d]/g,'')||0)/1000);
       if(ed){ var d=deal(sh.i); d.name=g('a-1'); d.value=val; if(g('a-3')!==d.stage){ d.stage=g('a-3'); d.last='Moved to '+d.stage; d.touch=0; } }
       else D.push({id:'d'+(D.length+1),cust:c.id,name:g('a-1'),value:val,stage:g('a-3'),touch:0,wait:'you',last:'Deal added'}); }
-    if(w==='promise'){ if(!g('a-1')) return bad('Say what you promised.'); if(ed){ c.promises[+sh.i].t=g('a-1'); c.promises[+sh.i].iso=g('a-2'); } else c.promises.unshift({t:g('a-1'),iso:g('a-2')}); }
+    if(w==='promise'){ if(ed){ c.promises[+sh.i].t=g('a-1'); c.promises[+sh.i].iso=g('a-2'); } else c.promises.unshift({t:g('a-1'),iso:g('a-2')}); }
     closeSheet(); toast(ed?'Changes saved.':'Added to '+c.name+'.');
   },
   rmitem:function(){
@@ -1725,16 +1867,32 @@ screenEl.addEventListener('contextmenu',function(e){ if(e.target.closest('[data-
 screenEl.addEventListener('input',function(e){
   if(e.target.id==='q'){ S.q=e.target.value; S.recN=20; S.page=0; var l=$('#rlist'); if(l) l.innerHTML=recRows(); var rc=$('#rcount'); if(rc) rc.textContent=recCount(recFiltered().length); }
   if(e.target.id==='c-addr'&&S.sheet) addrInput(e.target.value);
-  if(e.target.id==='a-money'){ var dg=e.target.value.replace(/[^\d]/g,'').slice(0,9); e.target.value=dg?Number(dg).toLocaleString('en-US'):''; }
+  var ft=e.target.dataset?e.target.dataset.ft:'';
+  if(ft==='phone'){ var pv=e.target.value, cl=pv.replace(/[^\d+ ]/g,'').replace(/(?!^)\+/g,''); if(cl!==pv){ var pos=Math.max(0,(e.target.selectionStart||cl.length)-(pv.length-cl.length)); e.target.value=cl; try{e.target.setSelectionRange(pos,pos)}catch(_){} } }
+  if(ft==='money'){ var dg=e.target.value.replace(/[^\d]/g,'').slice(0,9); e.target.value=dg?Number(dg).toLocaleString('en-US'):''; }
+  if(ft&&e.target.classList.contains('bad')) fshow(e.target);
   if(e.target.id==='n-name'){ var v=e.target.value.trim().toLowerCase(), box=$('#n-dup'), m=v.length>2?C.find(function(c){var n=c.name.toLowerCase();return n.indexOf(v)>-1||v.indexOf(n.replace(/ pte ltd$/,''))>-1}):null;
     box.innerHTML=m?'<p class="alert">'+esc(m.name)+' is already in your records. <button data-act="rec" data-id="'+m.id+'">Open it</button></p>':''; }
 });
+/* a field is checked when he leaves it, but not when the next tap is on a button: the button does the check */
+var tapAt=0;
+screenEl.addEventListener('pointerdown',function(e){ if(e.target.closest('.sheet button, .sheet .chk')) tapAt=Date.now() },true);
+screenEl.addEventListener('focusout',function(e){
+  var el=e.target; if(!S.sheet||!el.dataset||!el.dataset.ft||Date.now()-tapAt<700) return;
+  if(!el.value.trim()&&!el.classList.contains('bad')) return;
+  fnorm(el); fshow(el);
+});
 screenEl.addEventListener('change',function(e){
   var t=e.target;
+  if(t.id==='a-1'&&S.sheet&&S.sheet.what==='product'){ var w2=$('#a-2w'); if(w2){ w2.hidden=!!t.value; fset(t,''); if(!t.value){ try{$('#a-2').focus()}catch(_){} } } }
+  if(t.dataset&&t.dataset.ft==='pick'&&t.classList.contains('bad')) fshow(t);
   if(t.id==='r-cust'){ readDraft(); var r=S.draft, id=t.value, d=id?openOf(id)[0]:null; r.cust=id; r.sure=!!id; r.deal=d?d.id:''; r.stageTo=d?d.stage:null; render(); }
   if(t.id==='r-sort'){ S.sort=t.value; S.page=0; render(); }
   if(t.id==='s-lang'){ S.set.lang=t.value; toast('Voice language: '+t.value+'.'); }
-  if(t.id==='a-file'&&t.files&&t.files[0]){ var c=cust(S.rec||'best'); c.files.unshift(t.files[0].name); closeSheet(); render(); toast('File added.'); }
+  if(t.id==='a-file'&&t.files&&t.files[0]){ var f0=t.files[0];
+    if(!/\.(pdf|docx?|xlsx?|pptx?|jpe?g|png|heic|webp|gif)$/i.test(f0.name)){ fset(t,'This file type does not work here. Use a photo, a PDF or an office file.'); t.value=''; return; }
+    if(f0.size>10*1024*1024){ fset(t,'This file is larger than 10 MB. Choose a smaller file.'); t.value=''; return; }
+    var c=cust(S.rec||'best'); c.files.unshift(f0.name); closeSheet(); render(); toast('File added.'); }
 });
 document.addEventListener('keydown',function(e){
   var typing=/INPUT|TEXTAREA|SELECT/.test((e.target&&e.target.tagName)||'');
@@ -1772,7 +1930,7 @@ $('#data-sel').value=DATA; loadData(DATA==='70');
 $('#data-sel').addEventListener('change',function(e){
   if(S.tour) tourEnd(false,true);
   DATA=e.target.value; loadData(DATA==='70'); closeSheet();
-  S.done={}; S.rec=null; S.q=''; S.f='all'; S.sort='name'; S.recN=20; S.page=0; S.tlN=5; S.attnAll=false; S.weekAll=false; S.more=false; S.stage=null; S.fan=false;
+  S.done={}; S.rec=null; S.q=''; S.f='all'; S.sort='name'; S.recN=20; S.page=0; S.tlN=5; S.secAll={}; S.attnAll=false; S.weekAll=false; S.more=false; S.stage=null; S.fan=false;
   render(); toast('Sample data: '+DATA+' customers.');
 });
 window.__tidy=tidy;
