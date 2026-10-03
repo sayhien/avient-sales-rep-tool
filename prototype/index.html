@@ -639,27 +639,7 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .set .srow .cap{display:block}
 
 /* ---------- round 8: weather for the day, visits, field rules, guide links ---------- */
-.wxday{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:8px}
-.wxp{border:1px solid var(--ln);background:var(--veil2);border-radius:10px;padding:5px 6px;min-width:0}
-.wxp .lab{display:block}
-.wxp b{display:flex;align-items:center;column-gap:4px;flex-wrap:wrap;font:700 11.5px/15px var(--fb)}
-.wxp .ic{width:14px;height:14px}
-.wxp .tp{font-weight:500;color:var(--sub);font-variant-numeric:tabular-nums}
-.wxp.now{border-color:var(--blue);background:var(--white)}
-.wxp.now .lab{color:var(--blue);font-weight:700}
-.visits{margin-top:9px}
-.vrow{display:grid;grid-template-columns:56px 1fr auto;gap:8px;align-items:start;width:100%;text-align:left;border:1px solid var(--ln);background:var(--veil2);border-radius:12px;padding:7px 9px;margin-top:5px;cursor:pointer;font:500 12px/16px var(--fb);color:var(--ink)}
-.vrow .vt{font:700 11.5px/16px var(--fd);color:var(--blue);font-variant-numeric:tabular-nums}
-.vrow b{font-weight:600}
-.vrow small{display:block;font:500 10.5px/14px var(--fb);color:var(--sub)}
-.vrow small.vw{display:flex;gap:4px;align-items:flex-start;color:var(--amb800);font-weight:600;margin-top:2px}
-.vrow .vw .ic{width:12px;height:12px;margin-top:1px}
-.vrow>.ic{width:16px;height:16px;color:var(--sub);margin-top:1px}
-.vrow:active{transform:scale(.985)}
 .hero .date .wxlink{font-size:10.5px}
-.app.tablet .wxday,.app.computer .wxday{margin-top:12px}
-.app.tablet .wxp,.app.computer .wxp{padding:7px 10px}
-.app.tablet .visits,.app.computer .visits{margin-top:12px}
 .f .optl{font-weight:500}
 .f .hint{font-size:10.5px;line-height:14px;color:var(--sub)}
 .app .ferr{display:flex;gap:4px;align-items:flex-start;margin:0;color:var(--red700);font:600 11px/15px var(--fb)}
@@ -676,7 +656,6 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .gtop .sh{margin-bottom:0}
 .gtop .jump{position:static;margin:6px -14px 0;padding:4px 14px 8px;background:none;border:0}
 .gd h3{scroll-margin-top:96px}
-@media (hover:hover){ .vrow:hover{background:var(--white);border-color:var(--ln-d)} }
 /* ---------- round 9: your day, the week by day, five weather ideas ---------- */
 .grp{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font:700 11.5px/15px var(--fb);color:var(--ink);margin:12px 2px 6px}
 .sec + .grp{margin-top:0}
@@ -691,54 +670,13 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .wk>small{padding-top:1px}
 .wxblock{margin-top:8px}
 .app.tablet .hero .wxblock,.app.computer .hero .wxblock{margin-top:auto;padding-top:14px}
-.wxday{margin-top:0}
-.fx.mini .sun,.fx.mini .ring{right:-7px;top:-10px;width:30px;height:30px}
-.fx.mini .cl{top:3px;width:34px;height:10px;box-shadow:8px -5px 0 2px currentColor,19px -2px 0 -1px currentColor}
-.fx.mini .cl.c1{top:17px}
-.fx.mini .cl.c2{top:60%}
-.fx.mini .drop{height:8px;opacity:.3}
-.fx.mini .bolt{right:9px;top:3px;width:9px;height:18px}
-/* idea 1: three skies */
-.wxday.sky .wxp{position:relative;overflow:hidden;isolation:isolate;background:var(--white)}
-.wxday.sky .wxp>:not(.fx){position:relative;z-index:1}
-.wxday.sky .wxp.wx-sunny{background:linear-gradient(215deg,var(--amb50),var(--white) 62%)}
-.wxday.sky .wxp.wx-cloudy{background:linear-gradient(200deg,var(--soft),var(--white))}
-.wxday.sky .wxp.wx-showers{background:linear-gradient(200deg,var(--ln),var(--white) 80%)}
-.wxday.sky .wxp.wx-storm{background:linear-gradient(200deg,var(--wxg),var(--soft) 85%)}
-.wxday.sky .wxp.now{box-shadow:inset 0 0 0 1px var(--blue)}
-/* idea 2: now is large */
-.wxnow{display:flex;align-items:center;gap:6px;font:700 13.5px/18px var(--fb)}
-.wxnow .ic{width:18px;height:18px}
-.wxnow .tp,.wxlater .tp{font-weight:500;color:var(--sub);font-variant-numeric:tabular-nums}
-.wxlater{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
-.wxlater .chip{background:var(--veil2);font-weight:600}
-/* idea 3: one sky for the day */
-.wxband{position:relative;display:grid;grid-template-columns:repeat(3,1fr);height:36px;border-radius:10px;overflow:hidden;border:1px solid var(--ln);isolation:isolate}
-.wxband .z{position:relative;overflow:hidden}
-.wxband .nowline{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--ink);z-index:2}
-.wxlabels{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:4px}
-.wxlabels>div{min-width:0;padding:0 3px}
-.wxlabels .lab{display:block}
-.wxlabels b{display:flex;align-items:center;column-gap:4px;flex-wrap:wrap;font:700 11.5px/15px var(--fb)}
-.wxlabels .ic{width:14px;height:14px}
-.wxlabels .tp{font-weight:500;color:var(--sub);font-variant-numeric:tabular-nums}
-.wxlabels .now .lab{color:var(--blue);font-weight:700}
-/* idea 4: tap a part */
-.wxtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:var(--veil2);border:1px solid var(--ln);border-radius:999px;padding:3px}
-.wxtabs button{border:0;background:none;border-radius:999px;padding:4px 4px;font:600 11px/15px var(--fb);color:var(--ink);cursor:pointer;display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0 4px;min-width:0}
-.wxtabs .tp{font-weight:500;font-variant-numeric:tabular-nums;opacity:.8}
-.wxtabs .tl{display:inline-flex;align-items:center;gap:4px}
-.app.phone .wxtabs{border-radius:14px}
-.app.phone .wxtabs button{border-radius:11px;flex-direction:column;padding:3px 4px}
-.wxtabs button[aria-pressed="true"]{background:var(--blue);color:var(--white)}
-.wxtabs .ic{width:13px;height:13px}
-.app .wxblock .wxline{margin-top:6px;margin-bottom:0}
-/* idea 5: the weather that matters */
+/* weather: one sentence for the visit that rain can delay, and one line for the three parts of the day */
 .wxrow{display:flex;flex-wrap:wrap;gap:3px 12px;margin-top:6px;font:600 11px/15px var(--fb);color:var(--sub)}
 .wxrow span{display:inline-flex;align-items:center;gap:4px;font-variant-numeric:tabular-nums}
 .wxrow .ic{width:13px;height:13px}
 .wxrow .now{color:var(--blue)}
 .wxline .ic{width:14px;height:14px;vertical-align:-2px;margin-right:3px}
+.app .wxblock .wxline{margin-top:0;margin-bottom:0}
 /* inside the presentation */
 .embed body{background:transparent}
 .embed .top>div:first-child{display:none}
@@ -758,9 +696,6 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
   <div class="ctl">
     <label class="wxsel" for="data-sel">Sample data
       <select id="data-sel"><option value="8">8 customers</option><option value="70">70 customers</option></select>
-    </label>
-    <label class="wxsel" for="wxi-sel">Weather idea
-      <select id="wxi-sel"><option value="1">1 Three skies</option><option value="2">2 Now is large</option><option value="3">3 One sky for the day</option><option value="4">4 Tap a part</option><option value="5">5 Weather for your visits</option></select>
     </label>
     <label class="wxsel" for="wx-sel">Sample weather
       <select id="wx-sel"><option value="sunny">Dry day</option><option value="cloudy">Cloudy day</option><option value="showers">Showers in the afternoon</option><option value="storm" selected>Storms in the afternoon</option></select>
@@ -1099,7 +1034,7 @@ function loadData(big){
 }
 
 /* ---------- state ---------- */
-var S={device:'phone',tab:'brief',rec:null,sheet:null,wx:'storm',wxi:1,wxSel:null,just:null,fan:false,more:false,plan:true,sales:false,done:{},stage:null,q:'',f:'all',sort:'name',edit:false,draft:null,attnAll:false,weekAll:false,recN:20,page:0,tlN:5,secAll:{},
+var S={device:'phone',tab:'brief',rec:null,sheet:null,wx:'storm',just:null,fan:false,more:false,plan:true,sales:false,done:{},stage:null,q:'',f:'all',sort:'name',edit:false,draft:null,attnAll:false,weekAll:false,recN:20,page:0,tlN:5,secAll:{},
        set:{size:'m',hc:false,rm:false,left:false,tips:true,warn:true,tidy:true,draft:true,top:true,wx:true,lang:'English'}};
 var app=$('#app'), screenEl=$('#screen'), toastEl=$('#toast');
 var talkTimer=null, toastTimer=null, holdTimer=null, held=false, swallow=0, tidyTimers=[], addrT=null, addrT2=null;
@@ -1141,47 +1076,26 @@ var WXK={sun:{w:'Sunny',icon:'sun',fx:'sunny'},cloud:{w:'Cloudy',icon:'cloud',fx
 var WX={sunny:[['sun',31],['sun',33],['cloud',29]],cloudy:[['cloud',29],['cloud',30],['cloud',28]],showers:[['cloud',29],['rain',28],['cloud',27]],storm:[['sun',31],['storm',27],['cloud',28]]};
 var PARTS=['Morning','Afternoon','Evening'];
 function partNow(){ var hr=new Date().getHours(); return hr<12?0:hr<18?1:2 }
-function wxFx(k,mini){
+function wxFx(k){
   var t=Date.now()/1000, ph=function(dur,off){return '-'+((t+off)%dur).toFixed(2)+'s'}, h='', i;
   if(k==='sunny') h='<i class="sun"></i><i class="ring"></i><i class="ring r2"></i>';
-  else for(i=0;i<(mini?2:3);i++) h+='<i class="cl c'+i+'" style="animation-delay:'+ph(38+i*9,i*13)+'"></i>';
-  if(k==='showers'||k==='storm'){ var n=(k==='storm'?24:14)/(mini?2:1); for(i=0;i<n;i++){ var du=0.7+(i%5)*0.09; h+='<i class="drop" style="left:'+((i*37+11)%104)+'%;animation-duration:'+du.toFixed(2)+'s;animation-delay:'+ph(du,i*0.23)+'"></i>'; } }
+  else for(i=0;i<3;i++) h+='<i class="cl c'+i+'" style="animation-delay:'+ph(38+i*9,i*13)+'"></i>';
+  if(k==='showers'||k==='storm'){ var n=k==='storm'?24:14; for(i=0;i<n;i++){ var du=0.7+(i%5)*0.09; h+='<i class="drop" style="left:'+((i*37+11)%104)+'%;animation-duration:'+du.toFixed(2)+'s;animation-delay:'+ph(du,i*0.23)+'"></i>'; } }
   if(k==='storm') h+='<i class="flash" style="animation-delay:'+ph(7,0)+'"></i><svg class="bolt" style="animation-delay:'+ph(7,0)+'" viewBox="0 0 20 40"><path d="M11 0L2 22h7L6 40l12-24h-7z"/></svg>';
-  return '<div class="fx'+(mini?' mini':'')+'">'+h+'</div>';
+  return '<div class="fx">'+h+'</div>';
 }
 function sec(id,title,right,body){ return '<section class="bsec" id="b-'+id+'"><h2 class="sec"><span class="hl">'+title+'</span>'+(right||'')+'</h2>'+body+'</section>'; }
+/* greeting and weather. The large drawing shows the weather that can delay a visit of today. If no visit is in the rain, it shows the weather now.
+   One line below gives the three parts of the day. */
 function helloHTML(){
-  var pn=partNow(), part=PARTS[pn].toLowerCase(), wxOn=S.set.wx, day=WX[S.wx], idea=S.wxi, el=Date.now()-greetAt, hi=el<4000, vs=visitsToday();
-  var K=function(i){return WXK[day[i][0]]}, TP=function(i){return day[i][1]+'°'}, L=function(i){return i===pn?'Now':PARTS[i]};
-  var say=function(i){return PARTS[i]+(i===pn?', now':'')+': '+K(i).w+', '+day[i][1]+' degrees'};
-  var cell=function(i){return '<span class="lab">'+L(i)+'</span><b>'+ic(K(i).icon)+'<span>'+K(i).w+'</span><span class="tp">'+TP(i)+'</span></b>'};
+  var pn=partNow(), part=PARTS[pn].toLowerCase(), wxOn=S.set.wx, day=WX[S.wx], el=Date.now()-greetAt, hi=el<4000, vs=visitsToday();
+  var K=function(i){return WXK[day[i][0]]}, TP=function(i){return day[i][1]+'°'};
   var bg='', body='';
-  if(wxOn&&idea===1){
-    body='<div class="wxday sky" role="group" aria-label="Weather today">'+[0,1,2].map(function(i){return '<div class="wxp wx-'+K(i).fx+(i===pn?' now':'')+'" role="img" aria-label="'+say(i)+'">'+wxFx(K(i).fx,1)+cell(i)+'</div>'}).join('')+'</div>';
-  }
-  if(wxOn&&idea===2){
-    bg=K(pn).fx;
-    body='<p class="wxnow">'+ic(K(pn).icon)+'<span>'+K(pn).w+' now</span><span class="tp">'+TP(pn)+'</span></p><p class="wxlater">'+[0,1,2].filter(function(i){return i!==pn}).map(function(i){return '<span class="chip">'+ic(K(i).icon)+PARTS[i]+': '+K(i).w+' <span class="tp">'+TP(i)+'</span></span>'}).join('')+'</p>';
-  }
-  if(wxOn&&idea===3){
-    var col={sunny:'var(--amb50)',cloudy:'var(--soft)',showers:'var(--ln)',storm:'var(--wxg)'}, d=new Date(), hrs=d.getHours()+d.getMinutes()/60, x=Math.max(1.5,Math.min(98.5,(hrs-6)/18*100));
-    body='<div class="wxband" role="img" aria-label="Weather today. '+[0,1,2].map(say).join('. ')+'." style="background:linear-gradient(90deg,'+col[K(0).fx]+' 0 26%,'+col[K(1).fx]+' 40% 60%,'+col[K(2).fx]+' 74% 100%)">'+
-      [0,1,2].map(function(i){return '<div class="z wx-'+K(i).fx+'">'+wxFx(K(i).fx,1)+'</div>'}).join('')+'<i class="nowline" style="left:'+x.toFixed(1)+'%"></i></div>'+
-      '<div class="wxlabels">'+[0,1,2].map(function(i){return '<div class="'+(i===pn?'now':'')+'">'+cell(i)+'</div>'}).join('')+'</div>';
-  }
-  if(wxOn&&idea===4){
-    var sp=S.wxSel==null?pn:S.wxSel, k=K(sp), pv=vs.filter(function(v){return v.part===sp}), line;
-    if(!pv.length) line='You have no visits in the '+PARTS[sp].toLowerCase()+'.';
-    else line=pv.map(function(v){var n=esc(cust(v.cust).name);return k.fx==='storm'?'Leave 15 minutes early for your '+v.when+' visit to '+n+'.':k.fx==='showers'?'Keep an umbrella in the car for your '+v.when+' visit to '+n+'.':'A dry drive to '+n+' at '+v.when+'.'}).join(' ');
+  if(wxOn){
+    var rank={storm:2,showers:1}, hit=vs.filter(function(v){return rank[K(v.part).fx]}).sort(function(a,b){return rank[K(b.part).fx]-rank[K(a.part).fx]})[0], k=hit?K(hit.part):K(pn);
     bg=k.fx;
-    body='<div class="wxtabs" role="group" aria-label="Part of the day">'+[0,1,2].map(function(i){return '<button data-act="wxpart" data-id="'+i+'" aria-pressed="'+(i===sp)+'" aria-label="'+say(i)+'"><span class="tl">'+ic(K(i).icon)+L(i)+'</span><span class="tp">'+TP(i)+'</span></button>'}).join('')+'</div>'+
-      '<p class="wxline"><b>'+k.w+', '+TP(sp)+'.</b> '+line+'</p>';
-  }
-  if(wxOn&&idea===5){
-    var rank={storm:2,showers:1}, hit=vs.filter(function(v){return rank[K(v.part).fx]}).sort(function(a,b){return rank[K(b.part).fx]-rank[K(a.part).fx]})[0], k5=hit?K(hit.part):K(pn);
-    bg=k5.fx;
-    body='<p class="wxline">'+ic(k5.icon)+(hit?'<b>'+k5.w+' at '+hit.when+'</b>, when you visit '+esc(cust(hit.cust).name)+'. '+k5.tip:(vs.length?'<b>No rain at your visits today.</b> '+k5.w+' now.':'<b>'+k5.w+' now.</b>'))+'</p>'+
-      '<p class="wxrow" role="group" aria-label="Weather today">'+[0,1,2].map(function(i){return '<span class="'+(i===pn?'now':'')+'" role="img" aria-label="'+say(i)+'">'+ic(K(i).icon)+L(i)+' '+TP(i)+'</span>'}).join('')+'</p>';
+    body='<p class="wxline">'+ic(k.icon)+(hit?'<b>'+k.w+' at '+hit.when+'</b>, when you visit '+esc(cust(hit.cust).name)+'. '+k.tip:(vs.length?'<b>No rain at your visits today.</b> '+k.w+' now.':'<b>'+k.w+' now.</b>'))+'</p>'+
+      '<p class="wxrow" role="group" aria-label="Weather today">'+[0,1,2].map(function(i){return '<span class="'+(i===pn?'now':'')+'" role="img" aria-label="'+PARTS[i]+(i===pn?', now':'')+': '+K(i).w+', '+day[i][1]+' degrees">'+ic(K(i).icon)+(i===pn?'Now':PARTS[i])+' '+TP(i)+'</span>'}).join('')+'</p>';
   }
   return '<header class="hero'+(bg?' wx-'+bg:'')+'" aria-label="Greeting'+(wxOn?' and weather':'')+'">'+(bg?wxFx(bg):'')+'<div class="hero-in">'+
    '<p class="date"><span>Monday 5 October · Singapore</span>'+(wxOn?'<a class="wxlink" href="https://www.weather.gov.sg/" target="_blank" rel="noopener">Full forecast'+ic('out')+'</a>':'')+'</p>'+
@@ -1401,7 +1315,7 @@ function settingsHTML(){
    row('top','Put my tasks in order',AI+' puts the three most important tasks first in Today. The order is new at the start of each day.')+
    row('warn','Warn me when a deal goes quiet','A warning shows when a customer does not reply for longer than usual.')+
    row('tips','Suggestions in customer records','A short tip from your past notes with that customer.')+
-   row('wx','Weather for my day','Morning, afternoon and evening on Home. A warning shows when rain can delay a visit.')+'</div>'+
+   row('wx','Weather for my day','The weather that can delay a visit, and the morning, afternoon and evening.')+'</div>'+
    '<h2 class="sec">Help</h2><div class="card set">'+
    '<div class="srow"><span><b>Guide</b><span class="cap">What the words, filters and marks mean.</span></span><button class="btn btn-soft" data-act="guide">Open</button></div>'+
    '<div class="srow"><span><b>Tour</b><span class="cap">Shows the main features in one minute.</span></span><button class="btn btn-soft" data-act="tour">Start</button></div></div>';
@@ -1605,7 +1519,7 @@ function sheetHTML(){
        gi('Visits','The visits of today, in order of time. They come from your calendar. A task for a customer that you visit today is part of the visit.')+
        gi('Done','Tap the circle when an item is done. A done item stays in the list until the next morning. Tap the tick again to undo it.')+
        gi('Later this week','Your visits and promises from tomorrow to Sunday. Each day shows one time.')+'</dl>'+
-     '<h3 id="g-visits">Weather</h3><dl>'+gi('Weather on Home','Morning, afternoon and evening, from the national weather service.')+
+     '<h3 id="g-visits">Weather</h3><dl>'+gi('Weather on Home','One sentence gives the weather that can delay a visit of today. One line gives the morning, the afternoon and the evening. The forecast comes from the national weather service.')+
        gi(chip('warn','Storms. Leave 15 minutes early.'),'This mark shows on a visit when showers or storms can delay you.')+'</dl>'+
      '<h3 id="g-sales">Sales bar</h3><dl>'+gi('<i class="k kw"></i>Solid bar','The sales that you won this year.')+gi('<i class="k ko"></i>Striped bar','Your open deals. They can add to your sales.')+gi('<i class="k kp"></i>Line','Where you should be today, if sales are equal in each month.')+'</dl>'+
      '<h3 id="g-forms">Forms</h3><dl>'+gi('(optional)','You can leave this field empty. All other fields are necessary.')+gi('Example: 9123 4567','The grey text in an empty field is an example. It shows the correct form.')+
@@ -1865,7 +1779,6 @@ var A={
   rec:function(id){closeSheet();S.fan=false;S.edit=false;S.tlN=5;S.secAll={};S.rec=id;if(S.device==='tablet')S.tab='rec';toastEl.hidden=true},
   back:function(){S.rec=null;S.edit=false},
   secall:function(k){ S.secAll[k]=!S.secAll[k] },
-  wxpart:function(id){ S.wxSel=+id },
   gjump:function(id,_,b){ var sc=b.closest('.sheet'), el=sc&&sc.querySelector('#'+id), bar=sc&&sc.querySelector('.gtop'); if(el){ var y=el.offsetTop-(bar?bar.offsetHeight:0)-8; try{ sc.scrollTo({top:y,behavior:S.set.rm?'auto':'smooth'}) }catch(e){ sc.scrollTop=y } } return false },
   replay:function(){splash();return false},
   tour:function(){tourStart();return false},
@@ -2054,9 +1967,6 @@ window.addEventListener('resize',function(){ fit(); tourPlace(); });
 screenEl.addEventListener('scroll',function(e){ var sc=e.target; if(sc&&sc.dataset&&sc.dataset.scroll){ revealCheck(sc); spyOne(sc); } },true);
 setInterval(revealAll,500);
 $('#wx-sel').addEventListener('change',function(e){ S.wx=e.target.value; render(); });
-$('#wxi-sel').addEventListener('change',function(e){ S.wxi=+e.target.value; S.wxSel=null; render(); });
-if(/^[1-5]$/.test(QS.wxi||'')){ S.wxi=+QS.wxi; }
-$('#wxi-sel').value=String(S.wxi);
 var DATA=(QS.data==='8'||QS.data==='70')?QS.data:(QS.embed?'8':'70');
 $('#data-sel').value=DATA; loadData(DATA==='70');
 $('#data-sel').addEventListener('change',function(e){
