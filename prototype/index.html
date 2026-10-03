@@ -155,8 +155,11 @@ button.chip{cursor:pointer}
 
 /* Task card */
 .task{display:grid;grid-template-columns:28px 1fr;gap:10px;background:var(--white);border:1px solid var(--ln);border-radius:16px;padding:10px 12px}
-.num{width:28px;height:28px;border-radius:999px;border:0;display:grid;place-items:center;background:var(--soft);color:var(--blue);font:700 12px var(--fd);cursor:pointer;padding:0}
-.num .ic{width:15px;height:15px;stroke-width:2.4}
+.tick{width:26px;height:26px;margin-top:1px;border-radius:999px;border:1.5px solid var(--ln-d);display:grid;place-items:center;background:var(--white);color:var(--sub);cursor:pointer;padding:0}
+.tick .ic{width:14px;height:14px;stroke-width:2.6;opacity:.45}
+.task.done .tick{background:var(--blue);border-color:var(--blue);color:var(--white)}
+.task.done .tick .ic{opacity:1}
+.app .donecap{margin:6px 2px 0}
 .title{display:block;border:0;background:none;padding:0;text-align:left;font:600 12.5px/17.5px var(--fb);cursor:pointer;color:var(--ink)}
 .why{display:block;color:var(--sub);font-size:11px;line-height:15px;margin-top:1px}
 .task.done .title{color:var(--sub);text-decoration:line-through}
@@ -178,7 +181,8 @@ button.chip{cursor:pointer}
 .pn{font-weight:500;opacity:.8}
 .sortrow{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .sortrow label{font:600 10.5px/14px var(--fb);color:var(--sub);white-space:nowrap}
-.app .sortrow select{width:auto;min-width:0;flex:0 1 auto;padding-block:5px}
+.app .sortrow select{width:auto;min-width:0;max-width:100%;flex:0 0 auto;padding-block:5px;padding-right:42px}
+.sortrow{flex-wrap:wrap}
 .sortrow .count{margin-left:auto;white-space:nowrap}
 .pill{border:1px solid var(--ln);background:var(--white);border-radius:999px;padding:4px 11px;font:600 11px/14px var(--fb);cursor:pointer;color:var(--sub);white-space:nowrap}
 .pill.on{background:var(--soft);border-color:var(--soft);color:var(--blue)}
@@ -240,7 +244,7 @@ button.chip{cursor:pointer}
 .f label,.f .l{font:600 10.5px/14px var(--fb);color:var(--sub);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .app input,.app select,.app textarea{font:500 12.5px/17.5px var(--fb);color:var(--ink);border:1px solid var(--ln);border-radius:10px;padding:7px 9px;background:var(--white);width:100%;min-width:0}
 .app textarea{resize:none}
-.app select{appearance:none;-webkit-appearance:none;padding-right:32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235F6F78' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;background-size:14px 14px;text-overflow:ellipsis}
+.app select{appearance:none;-webkit-appearance:none;padding-right:38px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235F6F78' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;background-size:14px 14px;text-overflow:ellipsis}
 .app .search input{border:0;background:none;outline:0;padding:8px 0;border-radius:0}
 .app .note{font-size:11px;line-height:15px;color:var(--sub);margin-top:8px}
 .app .err{color:var(--red700);font-weight:600;font-size:11px;line-height:15px;margin-top:6px}
@@ -280,7 +284,7 @@ button.chip{cursor:pointer}
 .cols.one{grid-template-columns:minmax(0,520px)}
 .pg{flex:1;min-width:0;min-height:0;overflow-y:auto;padding:14px 16px 24px}
 .app.tablet .pg{padding-bottom:76px}
-.narrow{max-width:540px}
+.narrow{max-width:560px;margin-inline:auto}
 .tnav{display:flex;gap:2px;margin-left:10px}
 .tnav button{border:0;background:none;border-radius:999px;padding:6px 12px;font:600 11.5px/14px var(--fb);color:var(--sub);cursor:pointer}
 .tnav button.on{background:var(--soft);color:var(--blue)}
@@ -417,7 +421,12 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .meter{position:relative;height:12px;border-radius:999px;background:var(--soft);margin-top:8px;overflow:hidden}
 .meter .mw{position:absolute;left:0;top:0;bottom:0;background:var(--blue);border-radius:999px 4px 4px 999px}
 .meter .mo{position:absolute;top:0;bottom:0;border-radius:4px 999px 999px 4px;background:repeating-linear-gradient(135deg,var(--blue) 0 2px,transparent 2px 6px);opacity:.55}
-.meter b{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--white);opacity:.9;pointer-events:none}
+.meterw{position:relative;margin-top:8px;padding-bottom:14px}
+.meterw .meter{margin-top:0}
+.pace{position:absolute;top:-3px;height:18px;width:2px;margin-left:-1px;border-radius:2px;background:var(--ink)}
+.pacel{position:absolute;top:17px;transform:translateX(-50%);font:600 9.5px/12px var(--fb);color:var(--sub);white-space:nowrap}
+.sales .one{margin-top:3px}
+.k.kp{width:2px;height:12px;border-radius:2px;background:var(--ink)}
 .app .one{margin-top:8px;font-size:11.5px;line-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .one .xtra{display:none;color:var(--sub)}
 .sales.open .one{white-space:normal}
@@ -454,7 +463,8 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 
 /* hover and press */
 .app button,.app a,.seg button{transition:background-color .15s ease,border-color .15s ease,color .15s ease,transform .12s ease,box-shadow .15s ease,filter .15s ease}
-.btn:active,.pill:active,.num:active,.xb:active,.link:active,.backb:active,.segc button:active,.tabs button:active,.rail button:active,.tnav button:active,.seg button:active,button.chip:active{transform:scale(.95)}
+.app .btn,.app .tick,.tour .btn{transition:transform .12s ease,box-shadow .15s ease}
+.btn:active,.pill:active,.tick:active,.ed:active,.xb:active,.link:active,.backb:active,.segc button:active,.tabs button:active,.rail button:active,.tnav button:active,.seg button:active,button.chip:active{transform:scale(.95)}
 .row:active,.wk:active,.st:active,.mini:active,.opt:active,.nextv:active{transform:scale(.985)}
 .fab:active{transform:scale(.92)}
 .jump .pill.on{background:var(--soft);border-color:var(--soft);color:var(--blue)}
@@ -473,7 +483,10 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
   .tabs button.on:hover,.rail button.on:hover,.tnav button.on:hover{color:var(--blue)}
   .rail button.on:hover,.tnav button.on:hover{background:var(--soft)}
   .segc button[aria-pressed="true"]:hover{color:var(--white)}
-  .num:hover{background:var(--soft-d)}
+  .tick:hover{border-color:var(--blue);color:var(--blue);background:var(--soft)}
+  .tick:hover .ic{opacity:1}
+  .task.done .tick:hover{background:var(--blue-d);border-color:var(--blue-d);color:var(--white)}
+  .ed:hover{background:var(--soft);color:var(--blue)}
   .xb:hover{background:var(--soft);color:var(--ink)}
   .fab:hover{transform:translateY(-2px);box-shadow:var(--float-d)}
   .fan button:hover i{filter:brightness(.95)}
@@ -542,7 +555,7 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .drawer.out{animation:drawerOut .22s ease forwards;pointer-events:none}
 .dscrim.in{animation:fadeIn .2s ease}
 .dscrim.out{animation:fadeOut .2s ease forwards;pointer-events:none}
-.task.pop .num{animation:pop .4s cubic-bezier(.3,1.7,.5,1)}
+.task.pop .tick{animation:pop .4s cubic-bezier(.3,1.7,.5,1)}
 .screen.fab-l .toast{left:68px;right:10px}
 .dev[data-device="computer"] .toast,.dev[data-device="tablet"] .screen.fab-l .toast,.dev[data-device="computer"] .screen.fab-l .toast{left:0;right:0}
 .toast{animation:toastIn .3s cubic-bezier(.2,.9,.3,1)}
@@ -551,6 +564,52 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
   .screen *,.screen *::before,.screen *::after{animation:none!important;transition:none!important}
   .cl.c0{left:6%}.cl.c1{left:46%}.cl.c2{left:68%}
 }
+
+/* ---------- round 6: record editing, address and map, tour ---------- */
+.ed{border:0;background:none;padding:4px;border-radius:8px;color:var(--sub);cursor:pointer;display:inline-grid;place-items:center;flex:none}
+.ed .ic{width:14px;height:14px}
+.itemrow{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.itemrow>span{min-width:0}
+.itemrow .prom{flex:1}
+.dv{display:inline-flex;align-items:center;gap:4px}
+.app .fdesc{margin:-2px 2px 8px}
+.btn-danger{background:transparent;border:1px solid var(--red300);color:var(--red700);padding:6px 13px}
+.btn-danger.sure{background:var(--red700);border-color:var(--red700);color:var(--white)}
+.app input[type=checkbox]{width:16px;height:16px;padding:0;margin:0;accent-color:var(--blue);flex:none}
+.chk{display:flex;align-items:center;gap:8px;margin-top:10px;font-weight:600;cursor:pointer}
+.app .found{display:flex;gap:7px;align-items:flex-start;margin-top:6px;padding:8px 10px;border-radius:12px;background:var(--soft);font-size:11.5px;line-height:16px}
+.found .ic{width:15px;height:15px;color:var(--blue);margin-top:1px}
+.found b{font-weight:600}
+.mapbox{position:relative;height:150px;border-radius:12px;overflow:hidden;border:1px solid var(--ln);margin-top:6px;background:var(--mist)}
+.mapbox>iframe,.mapbox>svg{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.mlab{position:absolute;left:8px;top:8px;display:inline-flex;align-items:center;gap:4px;background:var(--white);border:1px solid var(--ln);border-radius:999px;padding:2px 9px 2px 6px;font:600 10.5px/14px var(--fb);box-shadow:var(--menu)}
+.mlab .ic{width:12px;height:12px;color:var(--blue)}
+.dl dd .wxlink{font-size:11px}
+
+.tour{position:absolute;inset:0;z-index:25;overflow:hidden;animation:fadeIn .25s ease;font:500 12.5px/17.5px var(--fb);color:var(--ink)}
+.tour.bye{animation:fadeOut .2s ease forwards;pointer-events:none}
+.tprobe{position:absolute;left:0;top:0;width:100px;height:1px;visibility:hidden;pointer-events:none}
+.tspot{position:absolute;border-radius:18px;box-shadow:0 0 0 2400px rgba(31,40,43,.64);pointer-events:none;transition:left .45s cubic-bezier(.3,.8,.3,1),top .45s cubic-bezier(.3,.8,.3,1),width .45s cubic-bezier(.3,.8,.3,1),height .45s cubic-bezier(.3,.8,.3,1),border-radius .3s ease}
+.tspot.round{border-radius:999px}
+.tspot::after{content:"";position:absolute;inset:-3px;border-radius:inherit;border:2px solid var(--white);animation:tring 1.9s ease-out infinite}
+.tspot.none::after{display:none}
+@keyframes tring{0%{inset:-3px;opacity:.95}70%,100%{inset:-11px;opacity:0}}
+.tcard{position:absolute;width:268px;max-width:calc(100% - 20px);background:var(--white);border-radius:18px;padding:12px 14px;box-shadow:0 14px 34px rgba(31,40,43,.3);transition:left .45s cubic-bezier(.3,.8,.3,1),top .45s cubic-bezier(.3,.8,.3,1)}
+.tcard h2{font:700 15px/19px var(--fd);margin:7px 0 3px;text-wrap:balance}
+.tcard p{margin:0}
+.tbody{animation:fadeUp .3s ease}
+.thead{display:flex;align-items:center;gap:6px;font:600 10.5px/14px var(--fb);color:var(--sub)}
+.tskip{margin-left:auto;border:0;background:none;font:600 11px/14px var(--fb);color:var(--sub);cursor:pointer;padding:2px 4px;border-radius:6px}
+.tskip:hover{color:var(--ink);text-decoration:underline}
+.tfoot{display:flex;align-items:center;gap:6px;margin-top:11px}
+.tdots{display:flex;gap:4px}
+.tdots i{width:6px;height:6px;border-radius:999px;background:var(--ln-d);transition:width .3s ease,background-color .3s ease}
+.tdots i.on{width:16px;background:var(--blue)}
+.tarrow{position:absolute;width:14px;height:14px;margin-left:-7px;background:var(--white);transform:rotate(45deg);border-radius:3px}
+.tarrow.up{top:-6px}.tarrow.down{bottom:-6px}.tarrow.side{left:-6px;margin-left:0;margin-top:-7px}.tarrow.off{display:none}
+.tcard.mid{width:284px;padding:22px 18px 18px;text-align:center}
+.tcard.mid h2{font-size:18px;line-height:22px;margin-top:10px}
+.tcard.mid .tfoot{justify-content:center;margin-top:14px}
 
 /* inside the presentation */
 .embed body{background:transparent}
@@ -587,6 +646,7 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
         <div class="app phone" id="app"></div>
         <div class="toast" id="toast" role="status" hidden></div>
         <div class="splash" id="splash" hidden></div>
+        <div class="tour" id="tour" hidden></div>
       </div>
     </div>
   </div>
@@ -610,6 +670,7 @@ var I={
  mic:'<path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
  key:'<rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M7 10h.1M11 10h.1M15 10h.1M7.5 14h9"/>',
  pen:'<path d="M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19z"/>',
+ pin:'<path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>',
  cam:'<path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
  plus:'<path d="M12 5v14M5 12h14"/>', x:'<path d="M6 6l12 12M18 6L6 18"/>', tick:'<path d="M5 12l4 4 10-10"/>',
  warn:'<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17.2v.1"/>', back:'<path d="M15 5l-7 7 7 7"/>',
@@ -637,39 +698,39 @@ function inWeek(iso){return !!iso&&iso>=TODAY&&iso<='2026-10-11'}
 
 /* ---------- sample data ---------- */
 var C=[
- {id:'best',keys:['best printing'],name:'Best Printing Pte Ltd',type:'Printer',area:'Ubi',addr:'10 Ubi Crescent, #03-12',since:2021,terms:'30 days',last:2,
+ {id:'best',keys:['best printing'],name:'Best Printing Pte Ltd',type:'Printer',area:'Ubi',addr:'10 Ubi Crescent',bld:'Ubi Techpark',unit:'#03-12',postal:'408564',since:2021,terms:'30 days',last:2,
   people:[{name:'Jasmine Teo',call:'Jasmine',role:'Purchasing manager',phone:'9123 4567'},{name:'Kelvin Ng',call:'Kelvin',role:'Production supervisor',phone:'9234 5678'}],
   products:['Wilflex white','Wilflex colours','Rutland special effects'],
   timeline:[{d:'Sat 3 Oct',how:'Message',t:'Jasmine asked for a price on Wilflex white, 200 kg a month.'},{d:'Tue 22 Sep',how:'Visit',t:'Kelvin said the current white needs two passes on dark shirts. Open to a test.'},{d:'Mon 7 Sep',how:'Call',t:'Reorder of colours confirmed.'}],
   promises:[{t:'Send price for Wilflex white',iso:'2026-10-05'}],files:['Price list 2026.pdf','Colour chart.jpg'],
   tip:'Jasmine usually replies to messages before 10 am. A short message works better than a call.'},
- {id:'ace',keys:['ace tees'],name:'Ace Tees',type:'Printer',area:'Kaki Bukit',addr:'25 Kaki Bukit Road 4, #05-08',since:2023,terms:'30 days',last:9,
+ {id:'ace',keys:['ace tees'],name:'Ace Tees',type:'Printer',area:'Kaki Bukit',addr:'25 Kaki Bukit Road 4',bld:'Synergy',unit:'#05-08',postal:'417800',since:2023,terms:'30 days',last:9,
   people:[{name:'Mei Ling Koh',call:'Mei Ling',role:'Owner',phone:'9345 6789'}],
   products:['Wilflex colours','Water based range (asked)'],
   timeline:[{d:'Sat 26 Sep',how:'Email',t:'Quote sent for the water based range, S$48k a year.'},{d:'Thu 17 Sep',how:'Visit',t:'Mei Ling wants to move to water based inks for a sportswear brand.'}],
   promises:[],files:['Quote 26 Sep.pdf'],tip:'Mei Ling decides alone. She prefers a quick message first, then a visit.'},
- {id:'tuas',keys:['tuas textile'],name:'Tuas Textile Print',type:'Printer',area:'Tuas',addr:'8 Tuas Avenue 12',since:2019,terms:'60 days',last:16,
+ {id:'tuas',keys:['tuas textile'],name:'Tuas Textile Print',type:'Printer',area:'Tuas',addr:'8 Tuas Avenue 12',bld:'',unit:'',postal:'639028',since:2019,terms:'60 days',last:16,
   people:[{name:'Rajesh Kumar',call:'Rajesh',role:'Production head',phone:'9456 7890'},{name:'Siti Aminah',call:'Siti',role:'Purchasing',phone:'9567 8901'}],
   products:['Wilflex colours','Low cure white (on trial)'],
   timeline:[{d:'Sat 19 Sep',how:'Visit',t:'Trial of low cure white started on line 2. Rajesh will share wash test results.'},{d:'Wed 2 Sep',how:'Call',t:'Agreed a trial of 20 kg.'}],
   promises:[],files:['Trial plan.pdf'],tip:'Trials here usually take 2 weeks. Rajesh shares results faster when you visit.'},
- {id:'kian',keys:['kian seng'],name:'Kian Seng Trading',type:'Distributor',area:'Johor Bahru',addr:'Jalan Tampoi, Johor Bahru',since:2018,terms:'45 days',last:4,late:{amt:18,days:30},
+ {id:'kian',keys:['kian seng'],name:'Kian Seng Trading',type:'Distributor',area:'Johor Bahru',addr:'Jalan Tampoi, 81200 Johor Bahru, Malaysia',bld:'',unit:'',postal:'',since:2018,terms:'45 days',last:4,late:{amt:18,days:30},
   people:[{name:'Tan Boon Huat',call:'Mr Tan',role:'Director',phone:'+60 12 345 6789'}],
   products:['Wilflex white','Wilflex colours','Union Ink'],
   timeline:[{d:'Thu 1 Oct',how:'Call',t:'Mr Tan asked for a quote on the next stock order, S$64k.'}],
   promises:[],files:['Statement Sep.pdf'],tip:'Ask about the late payment before you confirm the new order.'},
- {id:'lion',keys:['lion city'],name:'Lion City Sportswear',type:'Brand',area:'Paya Lebar',addr:'60 Paya Lebar Road, #08-20',since:2025,terms:'30 days',last:3,
+ {id:'lion',keys:['lion city'],name:'Lion City Sportswear',type:'Brand',area:'Paya Lebar',addr:'60 Paya Lebar Road',bld:'Paya Lebar Square',unit:'#08-20',postal:'409051',since:2025,terms:'30 days',last:3,
   people:[{name:'Farah Ismail',call:'Farah',role:'Merchandiser',phone:'9678 9012'}],
   products:['Water based range (samples)'],
   timeline:[{d:'Fri 2 Oct',how:'Visit',t:'Samples dropped off. Farah will test on polyester jerseys.'}],
   promises:[{t:'Send colour chart to Farah',iso:'2026-10-07'}],files:[],tip:''},
- {id:'lab',keys:['print lab'],name:'Print Lab SG',type:'Printer',area:'Bukit Merah',addr:'Not added yet',since:2026,terms:'Not set',last:1,
+ {id:'lab',keys:['print lab'],name:'Print Lab SG',type:'Printer',area:'',addr:'',bld:'',unit:'',postal:'',since:2026,terms:'Not set',last:1,
   people:[{name:'Ong Wei Jie',call:'Wei Jie',role:'Founder',phone:'9789 0123'}],products:[],
   timeline:[{d:'Sun 4 Oct',how:'Message',t:'Wei Jie found us online and asked about starter kits.'}],promises:[],files:[],tip:''},
- {id:'bukit',keys:['bukit batok'],name:'Bukit Batok Screen Works',type:'Printer',area:'Bukit Batok',addr:'2 Bukit Batok Street 23, #02-04',since:2022,terms:'30 days',last:12,
+ {id:'bukit',keys:['bukit batok'],name:'Bukit Batok Screen Works',type:'Printer',area:'Bukit Batok',addr:'2 Bukit Batok Street 23',bld:'Bukit Batok Connection',unit:'#02-04',postal:'659554',since:2022,terms:'30 days',last:12,
   people:[{name:'Ahmad Rahman',call:'Ahmad',role:'Owner',phone:'9890 1234'}],products:['Wilflex colours'],
   timeline:[{d:'Wed 23 Sep',how:'Visit',t:'Left samples of Rutland special effects.'}],promises:[],files:[],tip:''},
- {id:'merlion',keys:['merlion uniforms','merlion'],name:'Merlion Uniforms',type:'Uniform maker',area:'Woodlands',addr:'11 Woodlands Close, #06-30',since:2020,terms:'30 days',last:21,
+ {id:'merlion',keys:['merlion uniforms','merlion'],name:'Merlion Uniforms',type:'Uniform maker',area:'Woodlands',addr:'11 Woodlands Close',bld:'Woodlands 11',unit:'#06-30',postal:'737853',since:2020,terms:'30 days',last:21,
   people:[{name:'Priya Nair',call:'Priya',role:'Operations manager',phone:'9901 2345'}],products:['Wilflex white','Wilflex colours'],
   timeline:[{d:'Mon 14 Sep',how:'Email',t:'Order confirmed, S$72k.'}],promises:[],files:['Order Sep.pdf'],
   tip:'They reorder about every 10 weeks. The next order may be due in late November.'}
@@ -710,7 +771,82 @@ var HAND='Lion City Sportswear\nFarah wants colour chart\n+ price for 200 kg\nCa
 var RANGES=['Wilflex white','Wilflex colours','Low cure white','Water based range','Rutland special effects','Union Ink'];
 var STAGES=['New','Sample','Trial','Quote'], LIMIT={New:3,Sample:7,Trial:14,Quote:5};
 var NORMAL={New:'A new lead usually gets a first reply within 3 days.',Sample:'Customers usually come back about samples within 7 days.',Trial:'A trial usually gives a result within 14 days.',Quote:'Customers usually reply to a quote within 5 days.'};
-var WONBASE=540, TARGET=900;
+var WONBASE=540, TARGET=900, PACE=76; /* 5 October is day 278 of 365, so 76% of the year has passed */
+var TYPES=['Printer','Distributor','Brand','Uniform maker'], TERMS=['Not set','Cash','14 days','30 days','45 days','60 days'];
+
+/* ---------- address: postal code to street, area and map ---------- */
+/* A small sample table, so the search also works with no network. The web version also asks OneMap, the free Singapore address service. */
+var POSTAL={'408564':['10 Ubi Crescent','Ubi Techpark','Ubi'],'417800':['25 Kaki Bukit Road 4','Synergy','Kaki Bukit'],'639028':['8 Tuas Avenue 12','','Tuas'],
+ '409051':['60 Paya Lebar Road','Paya Lebar Square','Paya Lebar'],'659554':['2 Bukit Batok Street 23','Bukit Batok Connection','Bukit Batok'],'737853':['11 Woodlands Close','Woodlands 11','Woodlands'],
+ '159303':['1 Jalan Kilang Timor','Pacific Tech Centre','Bukit Merah'],'408732':['71 Ubi Road 1','Oxley Bizhub','Ubi']};
+var SECT=[[1,6,'Raffles Place'],[7,8,'Tanjong Pagar'],[9,10,'Telok Blangah'],[11,11,'Pasir Panjang'],[12,13,'Clementi'],[14,16,'Queenstown'],[17,17,'Beach Road'],[18,19,'Bugis'],[20,21,'Little India'],[22,23,'Orchard'],
+ [24,27,'Bukit Timah'],[28,30,'Novena'],[31,33,'Toa Payoh'],[34,37,'Macpherson'],[38,39,'Geylang'],[40,40,'Eunos'],[41,41,'Kaki Bukit'],[42,45,'Katong'],[46,48,'Bedok'],[49,50,'Changi'],[51,52,'Tampines'],
+ [53,53,'Hougang'],[54,54,'Sengkang'],[55,55,'Serangoon'],[56,56,'Ang Mo Kio'],[57,57,'Bishan'],[58,59,'Upper Bukit Timah'],[60,62,'Jurong'],[63,63,'Tuas'],[64,64,'Jurong West'],[65,66,'Bukit Batok'],
+ [67,67,'Bukit Panjang'],[68,68,'Choa Chu Kang'],[69,71,'Lim Chu Kang'],[72,72,'Kranji'],[73,73,'Woodlands'],[75,75,'Sembawang'],[76,76,'Yishun'],[77,78,'Upper Thomson'],[79,80,'Seletar'],[81,81,'Changi'],[82,82,'Punggol']];
+function sectorArea(code){ var n=+String(code).slice(0,2), m=SECT.find(function(x){return n>=x[0]&&n<=x[1]}); return m?m[2]:'' }
+function addrLine(c){ return [c.addr,c.unit,c.bld,c.postal?'Singapore '+c.postal:''].filter(Boolean).join(', ') }
+function mapQ(c){ return c.postal?'Singapore '+c.postal:c.addr }
+function addrParse(v){
+  v=(v||'').trim(); var m=v.match(/(^|\D)(\d{6})(?!\d)/), a={q:v,postal:'',street:'',bld:'',area:'',known:false};
+  if(m){ a.postal=m[2]; var k=POSTAL[a.postal], rest=v.replace(m[2],'').replace(/singapore/i,'').replace(/^[\s,]+|[\s,]+$/g,'').replace(/\s{2,}/g,' ');
+    if(k){a.street=k[0];a.bld=k[1];a.area=k[2];a.known=true} else {a.street=rest;a.area=sectorArea(a.postal)} }
+  else a.street=v;
+  return a;
+}
+function addrInit(c){ return {q:c.postal||c.addr,postal:c.postal,street:c.addr,bld:c.bld||'',area:c.area,known:true} }
+function addrValue(c){ return c.postal?(POSTAL[c.postal]?c.postal:(c.addr?c.addr+' ':'')+c.postal):c.addr }
+function applyAddr(c,text,unit,sa){
+  var a=addrParse(text);
+  if(a.postal){ if(!a.street&&sa&&sa.postal===a.postal&&sa.street){a.street=sa.street;a.bld=sa.bld||''} c.postal=a.postal; c.addr=a.street; c.bld=a.bld; c.area=a.area; }
+  else { var same=!c.postal&&a.street===c.addr; c.postal=''; c.addr=a.street; c.bld=''; if(!same) c.area=''; }
+  c.unit=unit;
+}
+var MAPMODE=QS.map||(((/github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname))||location.protocol==='file:')&&navigator.onLine!==false?'live':'sample');
+function mapDraw(q,label){
+  var h=7,i; for(i=0;i<q.length;i++) h=(h*31+q.charCodeAt(i))>>>0;
+  var r=function(){ h=(h*1103515245+12345)>>>0; return ((h>>>8)%1000)/1000 };
+  var a=18+r()*22, b=112+r()*22, c=40+r()*50, d=236+r()*50, t=(r()-.5)*14, o='<rect width="320" height="150" fill="#E9EFF3"/>';
+  o+='<path d="M'+(238+r()*30)+' 0Q'+(262+r()*30)+' 52 320 '+(58+r()*30)+'V0z" fill="#CFE2F1"/>';
+  var cols=[0,c+8,168,d+8], rows=[a+8,92,b+8];
+  for(i=0;i<12;i++){ var cx=cols[i%4]+6+r()*10, cy=(i<4?a-34:i<8?rows[0]:rows[1])+4+r()*6, w=30+r()*40, hh=14+r()*14; o+='<rect x="'+cx.toFixed(1)+'" y="'+cy.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+hh.toFixed(1)+'" rx="3" fill="#F8FAFC" stroke="#DBE4EA"/>'; }
+  o+='<g fill="none" stroke="#FFFFFF" stroke-linecap="round"><path stroke-width="9" d="M-10 '+a.toFixed(1)+'L330 '+(a+t).toFixed(1)+'"/><path stroke-width="9" d="M-10 '+b.toFixed(1)+'L330 '+(b-t).toFixed(1)+'"/>'+
+     '<path stroke-width="8" d="M'+c.toFixed(1)+' -10L'+(c+t).toFixed(1)+' 160"/><path stroke-width="8" d="M'+d.toFixed(1)+' -10L'+(d-t).toFixed(1)+' 160"/><path stroke-width="13" d="M-10 84L330 '+(84+t/2).toFixed(1)+'"/><path stroke-width="11" d="M160 -10L160 160"/></g>';
+  o+='<g transform="translate(160 84)"><ellipse cy="1" rx="9" ry="3.5" fill="rgba(48,60,64,.28)"/><path d="M0 0c-9-11-15-17-15-25a15 15 0 0 1 30 0c0 8-6 14-15 25z" fill="#3274AE" stroke="#FFFFFF" stroke-width="2"/><circle cy="-25" r="5.5" fill="#FFFFFF"/></g>';
+  return '<svg viewBox="0 0 320 150" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample map with a pin at '+esc(label||q)+'">'+o+'</svg>'+(label?'<span class="mlab">'+ic('pin')+esc(label)+'</span>':'');
+}
+function mapSet(el,q,label){
+  if(!el||el.dataset.q===q) return; el.dataset.q=q;
+  el.innerHTML=MAPMODE==='live'
+   ?'<div class="mapbox"><iframe title="Map of '+esc(q)+'" loading="lazy" src="https://www.google.com/maps?q='+encodeURIComponent(q)+'&z=16&output=embed"></iframe></div><span class="cap">Check the pin. Is this the correct place?</span>'
+   :'<div class="mapbox">'+mapDraw(q,label)+'</div><span class="cap">Sample map. The web version shows the real map.</span>';
+}
+function addrShow(){
+  var sh=S.sheet, f=$('#c-found'), mp=$('#c-map'); if(!sh||!f||!mp) return; var a=sh.addr;
+  if(!a||!a.q){ f.innerHTML=''; mp.innerHTML=''; mp.dataset.q=''; return; }
+  if(a.postal){
+    f.innerHTML='<p class="found">'+ic('pin')+'<span>'+(a.street?'<b>'+esc(a.street)+'</b>'+(a.bld?', '+esc(a.bld):'')+'<br>':'')+'Singapore '+a.postal+(a.area?' · Area: '+esc(a.area):'')+
+      (a.street?'':'<br><span class="cap">'+AI+' did not find the street. Type it before the postal code.</span>')+'</span></p>';
+    mapSet(mp,'Singapore '+a.postal,a.area||'Singapore');
+  } else if(a.q.length>=6){ f.innerHTML=''; mapSet(mp,a.q,''); }
+  else { f.innerHTML=''; mp.innerHTML=''; mp.dataset.q=''; }
+}
+function liveLookup(code){
+  if(MAPMODE!=='live'||!window.fetch) return;
+  var ctl=window.AbortController?new AbortController():null, t=setTimeout(function(){ if(ctl) ctl.abort() },3500);
+  fetch('https://www.onemap.gov.sg/api/common/elastic/search?searchVal='+code+'&returnGeom=N&getAddrDetails=Y&pageNum=1',ctl?{signal:ctl.signal}:{})
+   .then(function(r){return r.json()}).then(function(j){
+     clearTimeout(t); var x=((j&&j.results)||[]).filter(function(y){return y.POSTAL===code})[0], sh=S.sheet;
+     if(!x||!sh||!sh.addr||sh.addr.postal!==code||sh.addr.known||sh.addr.street) return;
+     var tc=function(v){return String(v||'').toLowerCase().replace(/\b[a-z]/g,function(ch){return ch.toUpperCase()})}, nil=function(v){return !v||v==='NIL'};
+     var st=tc(((nil(x.BLK_NO)?'':x.BLK_NO+' ')+(nil(x.ROAD_NAME)?'':x.ROAD_NAME)).trim());
+     if(st){ sh.addr.street=st; sh.addr.bld=nil(x.BUILDING)?'':tc(x.BUILDING); addrShow(); }
+   }).catch(function(){ clearTimeout(t) });
+}
+function addrFields(c){
+  return '<div class="f"><label for="c-addr">Address</label><input id="c-addr" type="text" autocomplete="off" placeholder="Type the postal code, for example 159303" value="'+esc(c?addrValue(c):'')+'">'+
+   '<span class="cap">'+AI+' finds the street and the area from the postal code.</span><div id="c-found" aria-live="polite"></div><div id="c-map"></div></div>'+
+   '<div class="f"><label for="c-unit">Unit number</label><input id="c-unit" type="text" autocomplete="off" placeholder="Example: #03-12" value="'+esc(c?c.unit||'':'')+'"></div>';
+}
 
 var cust=function(id){return C.find(function(c){return c.id===id})};
 var deal=function(id){return D.find(function(d){return d.id===id})};
@@ -724,7 +860,7 @@ var won=function(){return WONBASE+sum(D.filter(function(d){return d.stage==='Won
 var S={device:'phone',tab:'brief',rec:null,sheet:null,wx:'sunny',just:null,fan:false,more:false,plan:true,sales:false,done:{},stage:null,q:'',f:'all',sort:'name',edit:false,draft:null,
        set:{size:'m',hc:false,rm:false,left:false,tips:true,warn:true,lang:'English',brief:'8:00 am'}};
 var app=$('#app'), screenEl=$('#screen'), toastEl=$('#toast');
-var talkTimer=null, toastTimer=null, holdTimer=null, held=false, swallow=0, tidyTimers=[];
+var talkTimer=null, toastTimer=null, holdTimer=null, held=false, swallow=0, tidyTimers=[], addrT=null;
 
 /* ---------- tidy up: pulls customer, next step and date out of a note ---------- */
 var DATE_RE=/\b(today|tomorrow|next week|sunday|monday|tuesday|wednesday|thursday|friday|saturday|sun|mon|tue|tues|wed|thu|thur|thurs|fri|sat)\b/i;
@@ -788,14 +924,15 @@ function salesHTML(){
   var pct=Math.round(w/TARGET*100), wonW=Math.min(100,w/TARGET*100), opW=Math.max(0,Math.min(100-wonW,total/TARGET*100));
   var mine=open.filter(function(d){return d.wait==='you'}).sort(function(a,b){return b.value-a.value})[0]||open.slice().sort(function(a,b){return b.value-a.value})[0];
   var r=total?togo/total:9, frac=r<=.34?'a third':r<=.5?'half':r<=.67?'two thirds':r<=.8?'three quarters':'almost all';
+  var paceT=pct>=PACE?' You are ahead of the plan for today, which is '+PACE+'%.':' To be on plan today, you need '+PACE+'%. You are at '+pct+'%.';
   var one=!togo?'<b>Target reached.</b> Everything from here is a bonus.':'<b>'+money(togo)+' to go.</b> '+(total>=togo?'Your open deals can cover it.':'Open deals cover '+money(total)+' of it.');
-  var xtra=!togo?'':(total>=togo?' You need about '+frac+' of them to close.':' New deals matter this month.')+(mine?' Closing '+esc(cust(mine.cust).name)+' ('+money(mine.value)+') takes you to '+Math.min(100,Math.round((w+mine.value)/TARGET*100))+'%.':'');
+  var xtra=!togo?'':(total>=togo?' You need about '+frac+' of them to close.':' New deals matter this month.')+paceT+(mine?' Closing '+esc(cust(mine.cust).name)+' ('+money(mine.value)+') takes you to '+Math.min(100,Math.round((w+mine.value)/TARGET*100))+'%.':'');
   return '<div class="card sales'+(isO?' open':'')+'"><div class="sh2"><p class="lab">Sales this year</p>'+(wide?'':'<button class="link" data-act="sales" aria-expanded="'+S.sales+'"><span>'+(S.sales?'Less':'Detail')+'</span>'+ic('down')+'</button>')+'</div>'+
    '<div class="figrow"><p class="fig"><span id="fig-n">'+money(w)+'</span> <small>of '+money(TARGET)+' target</small></p><p class="pct">'+pct+'%</p></div>'+
-   '<div class="meter" role="img" aria-label="'+pct+' percent of the target is won. Open deals worth '+money(total)+' could add the rest."><i class="mw" style="width:calc('+wonW+'% - 1px)" title="Won: '+money(w)+'"></i><i class="mo" style="left:calc('+wonW+'% + 1px);width:calc('+opW+'% - 1px)" title="Open deals: '+money(total)+'"></i><b style="left:25%"></b><b style="left:50%"></b><b style="left:75%"></b></div>'+
+   '<div class="meterw"><div class="meter" role="img" aria-label="'+pct+' percent of the target is won. Open deals worth '+money(total)+' could add the rest. The plan for today is '+PACE+' percent."><i class="mw" style="width:calc('+wonW+'% - 1px)" title="Won: '+money(w)+'"></i><i class="mo" style="left:calc('+wonW+'% + 1px);width:calc('+opW+'% - 1px)" title="Open deals: '+money(total)+'"></i></div><i class="pace" style="left:'+PACE+'%"></i><span class="pacel" style="left:'+PACE+'%">Today</span></div>'+
    '<p class="one">'+one+'<span class="xtra">'+xtra+'</span></p>'+
    '<div class="fold'+(isO?' open':'')+'"><div>'+
-   '<p class="legend"><span><i class="k kw"></i>Won '+money(w)+'</span><span><i class="k ko"></i>Open deals '+money(total)+'</span><span class="sub">Marks at 25, 50 and 75%</span></p>'+
+   '<p class="legend"><span><i class="k kw"></i>Won '+money(w)+'</span><span><i class="k ko"></i>Open deals '+money(total)+'</span><span><i class="k kp"></i>Where you should be today, '+PACE+'%</span></p>'+
    '<div class="trio"><div><b>'+money(togo)+'</b><span>to go</span></div><div><b>'+money(total)+'</b><span>in open deals</span></div><div><b>87</b><span>days left</span></div></div>'+
    '</div></div></div>';
 }
@@ -809,19 +946,20 @@ function weekHTML(){
   return sec('week','This week','<button class="link" data-act="plan" aria-expanded="'+S.plan+'">'+(S.plan?'Hide':'Show')+'</button>','<div class="fold'+(S.plan?' open':'')+'"><div><div class="card plan">'+weekRows()+'</div></div></div>');
 }
 function taskHTML(t){
-  var done=S.done[t.id], d=deal(t.deal), n=T.indexOf(t)+1, chips='';
-  if(!done&&isQuiet(d)) chips+=chip('warn','Quiet for '+d.touch+' days');
+  var done=S.done[t.id], d=deal(t.deal), chips='';
+  if(!done&&d&&isQuiet(d)) chips+=chip('warn','Quiet for '+d.touch+' days');
   if(!done&&t.bad) chips+=chip('bad',t.bad);
-  return '<div class="task'+(done?' done':'')+(S.just===t.id?' pop':'')+'"><button class="num" data-act="done" data-id="'+t.id+'" aria-label="'+(done?'Mark as not done':'Mark as done')+'">'+(done?ic('tick'):n)+'</button>'+
+  return '<div class="task'+(done?' done':'')+(S.just===t.id?' pop':'')+'"><button class="tick" data-act="done" data-id="'+t.id+'" aria-pressed="'+!!done+'" aria-label="'+(done?'Done. Tap to undo: ':'Mark as done: ')+esc(t.title)+'">'+ic('tick')+'</button>'+
    '<div><button class="title" data-act="rec" data-id="'+t.cust+'">'+t.title+'</button><span class="why">'+(done?(done===2?'Done by your note.':'Done.'):t.why)+'</span>'+
    (chips?'<span class="chips">'+chips+'</span>':'')+
    (done?'':'<span class="acts"><button class="btn btn-primary" data-act="'+t.act+'" data-deal="'+t.deal+'">'+(t.act==='call'?ic('phone'):hue(14,'w'))+t.label+'</button></span>')+'</div></div>';
 }
 function topHTML(){
-  var doneN=T.slice(0,3).filter(function(t){return S.done[t.id]}).length;
+  var doneN=T.slice(0,3).filter(function(t){return S.done[t.id]}).length, anyDone=T.some(function(t){return S.done[t.id]});
   return sec('top',hue(15)+'Your top three today','<span class="count">'+doneN+' of 3 done</span>','<div class="stack">'+T.slice(0,3).map(taskHTML).join('')+'</div>'+
    '<div class="fold'+(S.more?' open':'')+'"><div><div class="stack" style="padding-top:6px">'+T.slice(3).map(taskHTML).join('')+'</div></div></div>'+
-   '<button class="btn btn-soft wide" data-act="more" aria-expanded="'+S.more+'">'+(S.more?'Show top three only':'Show 3 more')+'</button>');
+   '<button class="btn btn-soft wide" data-act="more" aria-expanded="'+S.more+'">'+(S.more?'Show top three only':'Show 3 more')+'</button>'+
+   (anyDone?'<p class="cap donecap">A done task stays here until tomorrow morning. Tap the tick again to undo it.</p>':''));
 }
 function attnHTML(){
   var a=[];
@@ -857,6 +995,11 @@ var FIL=[
  ['open','Open deals',function(c){return openOf(c.id).length>0}],
  ['cold','Not spoken in 2 weeks',function(c){return c.last>=14}]
 ];
+var FDESC={move:'The customer waits for you. A deal needs your reply, or you made a promise that is still open.',
+ quiet:'The customer did not reply for longer than usual: 3 days for a new deal, 7 days for samples, 14 days for a trial, 5 days for a quote.',
+ late:'A payment is past its due date.',
+ open:'The customer has a deal that is not won or lost yet.',
+ cold:'You had no call, message, visit or note with this customer for 14 days or more.'};
 var SORTS=[['name','Name, A to Z'],['open','Biggest deals first'],['old','Longest since contact'],['recent','Most recent contact']];
 function custStatus(c){
   var s=''; if(c.late) s+=chip('bad','Payment late');
@@ -875,38 +1018,26 @@ function recRows(){
   if(S.device==='computer'){
     var th=function(k,l,n){return '<th'+(n?' class="n"':'')+'><button data-act="sort" data-id="'+k+'" class="'+(S.sort===k?'on':'')+'">'+l+(S.sort===k?' ↓':'')+'</button></th>'};
     return '<div class="tblwrap"><table class="tbl"><thead><tr>'+th('name','Customer')+'<th>Main contact</th><th>Area</th>'+th('open','Open deals',1)+'<th>Next step</th>'+th('recent','Last spoke',1)+'<th>Status</th></tr></thead><tbody>'+
-     a.map(function(c){var o=sum(openOf(c.id)), nx=c.promises.find(function(p){return !p.done});return '<tr data-act="rec" data-id="'+c.id+'"><td><button data-act="rec" data-id="'+c.id+'">'+esc(c.name)+'</button><br><span class="cap">'+esc(c.type)+'</span></td><td class="nw">'+esc(c.people[0].name)+'</td><td class="nw">'+esc(c.area)+'</td><td class="n">'+(o?money(o):'None')+'</td><td>'+(nx?esc(nx.t)+'<br><span class="cap">'+fmt(nx.iso)+'</span>':'<span class="cap">None</span>')+'</td><td class="n">'+ago(c.last)+'</td><td>'+(custStatus(c)||'<span class="cap">Up to date</span>')+'</td></tr>'}).join('')+'</tbody></table></div>';
+     a.map(function(c){var o=sum(openOf(c.id)), nx=c.promises.find(function(p){return !p.done});return '<tr data-act="rec" data-id="'+c.id+'"><td><button data-act="rec" data-id="'+c.id+'">'+esc(c.name)+'</button><br><span class="cap">'+esc(c.type)+'</span></td><td class="nw">'+esc(c.people[0].name)+'</td><td class="nw">'+(esc(c.area)||'<span class="cap">None</span>')+'</td><td class="n">'+(o?money(o):'None')+'</td><td>'+(nx?esc(nx.t)+'<br><span class="cap">'+fmt(nx.iso)+'</span>':'<span class="cap">None</span>')+'</td><td class="n">'+ago(c.last)+'</td><td>'+(custStatus(c)||'<span class="cap">Up to date</span>')+'</td></tr>'}).join('')+'</tbody></table></div>';
   }
-  return a.map(function(c){return '<button class="row" data-act="rec" data-id="'+c.id+'"><span><b>'+esc(c.name)+'</b><br><span class="r2">'+esc(c.people[0].name)+' · '+esc(c.area)+'</span></span><span class="rr"><span class="r2">'+ago(c.last)+'</span>'+custStatus(c)+'</span></button>'}).join('');
+  return a.map(function(c){return '<button class="row" data-act="rec" data-id="'+c.id+'"><span><b>'+esc(c.name)+'</b><br><span class="r2">'+esc(c.people[0].name)+(c.area?' · '+esc(c.area):'')+'</span></span><span class="rr"><span class="r2">'+ago(c.last)+'</span>'+custStatus(c)+'</span></button>'}).join('');
 }
 function recListHTML(){
   var q=S.q.trim().toLowerCase();
   return '<div class="rtop"><h1>Records</h1><button class="btn btn-primary" data-act="newcust">'+ic('plus')+'New customer</button></div>'+
    '<label class="search">'+ic('search')+'<input id="q" type="search" placeholder="Search company, person or product" value="'+esc(S.q)+'" aria-label="Search company, person or product"></label>'+
-   '<div class="filters" role="group" aria-label="Filter">'+FIL.map(function(f){var n=C.filter(function(c){return f[2](c)&&matchQ(c,q)}).length;return '<button class="pill'+(S.f===f[0]?' on':'')+'" data-act="filter" data-id="'+f[0]+'" aria-pressed="'+(S.f===f[0])+'">'+f[1]+' <span class="pn">'+n+'</span></button>'}).join('')+'</div>'+
+   '<div class="filters" role="group" aria-label="Filter">'+FIL.map(function(f){var n=C.filter(function(c){return f[2](c)&&matchQ(c,q)}).length;return '<button class="pill'+(S.f===f[0]?' on':'')+'" data-act="filter" data-id="'+f[0]+'" aria-pressed="'+(S.f===f[0])+'">'+f[1]+' <span class="pn">'+n+'</span></button>'}).join('')+'</div>'+(FDESC[S.f]?'<p class="cap fdesc">'+FDESC[S.f]+'</p>':'')+
    '<div class="sortrow"><label for="r-sort">Sort by</label><select id="r-sort">'+SORTS.map(function(s){return '<option value="'+s[0]+'"'+(S.sort===s[0]?' selected':'')+'>'+s[1]+'</option>'}).join('')+'</select><span class="count" id="rcount">'+recCount(recFiltered().length)+'</span></div>'+
    '<div class="stack" id="rlist">'+recRows()+'</div>';
 }
 function recordHTML(id){
   var c=cust(id); if(!c) return '<p class="empty">Choose a customer to see the record.</p>';
   var p0=c.people[0], close=S.device==='phone'?'<button class="backb" data-act="back">'+ic('back')+'Back</button>':S.device==='computer'?'<button class="backb" data-act="back">'+ic('x')+' Close</button>':'';
-  if(S.edit){
-    return '<div class="rbar"><h1>Edit details</h1></div><p class="sub">'+esc(c.name)+'</p><div class="card" style="margin-top:10px">'+
-     '<div class="f" style="margin-top:0"><label for="e-name">Company name</label><input id="e-name" type="text" value="'+esc(c.name)+'"></div>'+
-     '<div class="f"><label for="e-type">Type</label><select id="e-type">'+['Printer','Distributor','Brand','Uniform maker'].map(function(x){return '<option'+(x===c.type?' selected':'')+'>'+x+'</option>'}).join('')+'</select></div>'+
-     '<div class="f"><label for="e-area">Area</label><input id="e-area" type="text" value="'+esc(c.area)+'"></div>'+
-     '<div class="f"><label for="e-addr">Address</label><input id="e-addr" type="text" value="'+esc(c.addr)+'"></div>'+
-     '<div class="f"><label for="e-terms">Payment terms</label><input id="e-terms" type="text" value="'+esc(c.terms)+'"></div></div>'+
-     '<div class="card" style="margin-top:8px"><div class="f" style="margin-top:0"><label for="e-pn">Main contact</label><input id="e-pn" type="text" value="'+esc(p0.none?'':p0.name)+'"></div>'+
-     '<div class="f"><label for="e-pr">Role</label><input id="e-pr" type="text" value="'+esc(p0.role)+'"></div>'+
-     '<div class="f"><label for="e-pp">Phone</label><input id="e-pp" type="tel" value="'+esc(p0.phone)+'"></div></div>'+
-     '<div class="acts"><button class="btn btn-primary" data-act="saveedit">Save changes</button><button class="btn btn-ghost" data-act="canceledit">Cancel</button></div>'+
-     '<p class="note">Deals, promises, people, products and files are changed in their own sections.</p>';
-  }
   var ds=D.filter(function(d){return d.cust===id}), next=c.promises.find(function(p){return !p.done});
   var add=function(k,l){return '<button class="link" data-act="add" data-id="'+k+'">'+ic('plus')+(l||'Add')+'</button>'};
-  var h='<div class="rbar">'+close+'<span class="sp"></span><button class="link" data-act="edit">Edit details</button></div>'+
-   '<h1>'+esc(c.name)+'</h1><p class="sub">'+esc(c.type)+' · '+esc(c.area)+' · Customer since '+c.since+'</p><div class="chips">'+(custStatus(c)||chip('done','Up to date'))+'</div>'+
+  var pen=function(k,i,l){return '<button class="ed" data-act="edititem" data-id="'+k+'" data-i="'+i+'" aria-label="Edit '+esc(l)+'">'+ic('pen')+'</button>'};
+  var h=(close?'<div class="rbar">'+close+'</div>':'')+
+   '<h1>'+esc(c.name)+'</h1><p class="sub">'+[esc(c.type),esc(c.area),'Customer since '+c.since].filter(Boolean).join(' · ')+'</p><div class="chips">'+(custStatus(c)||chip('done','Up to date'))+'</div>'+
    '<p class="next"><b>Next:</b> '+(next?esc(next.t)+' <span class="sub">· '+fmt(next.iso)+'</span>':'<span class="sub">Nothing promised yet</span>')+'</p>'+
    '<div class="acts3">'+(p0.none?'':'<button class="btn btn-primary" data-act="call" data-id="'+id+'" aria-label="Call '+esc(p0.call)+'">'+ic('phone')+'Call</button><button class="btn btn-soft" data-act="msg" data-id="'+id+'">'+ic('msg')+'Message</button>')+
    '<button class="btn btn-soft" data-act="cap" data-id="type" data-hint="'+id+'">'+ic('plus')+'Add note</button></div>';
@@ -914,16 +1045,19 @@ function recordHTML(id){
   var nav='<nav class="jump" aria-label="Sections">'+secs.map(function(s){return '<button class="pill" data-act="jump" data-id="s-'+s[0]+'">'+s[1]+'</button>'}).join('')+'</nav>';
   var tip=c.tip&&S.set.tips?'<div class="card tip span"><h3><span>'+hue(16)+AI+' suggests</span></h3><p>'+esc(c.tip)+'</p><p class="cap" style="margin-top:4px">Based on your past notes with this customer.</p></div>':'';
   var deals='<div class="card" id="s-deals"><h3>Deals '+add('deal')+'</h3>'+(ds.length?ds.map(function(d){var i=STAGES.indexOf(d.stage), w=d.stage==='Won', l=d.stage==='Lost';
-     return '<div class="item"><div class="dealh"><b>'+esc(d.name)+'</b><span class="val" style="font:700 12.5px/16px var(--fd)">'+money(d.value)+'</span></div>'+
+     return '<div class="item"><div class="dealh"><b>'+esc(d.name)+'</b><span class="dv"><span class="val" style="font:700 12.5px/16px var(--fd)">'+money(d.value)+'</span>'+pen('deal',d.id,d.name)+'</span></div>'+
       (w||l?'<div class="chips">'+(w?chip('done','Won'):'<span class="chip">Lost</span>')+'</div>':'<div class="steps">'+STAGES.map(function(s,k){return '<i class="'+(k<=i?'on':'')+'"></i>'}).join('')+'</div><div class="stepl">'+STAGES.map(function(s,k){return k===i?'<b>'+s+'</b>':'<span>'+s+'</span>'}).join('')+'</div>')+
       '<p class="cap" style="margin-top:4px">'+esc(d.last)+' · '+ago(d.touch).toLowerCase()+(d.wait==='you'&&!w&&!l?' · your move':'')+'</p>'+
       (S.set.warn&&isQuiet(d)?'<div class="chips"><button class="chip chip-warn" data-act="warn" data-deal="'+d.id+'">'+ic('warn')+'Quiet for '+d.touch+' days. See why</button></div>':'')+'</div>'}).join(''):'<p class="sub">No deals yet.</p>')+'</div>';
-  var proms='<div class="card" id="s-promises"><h3>Promises '+add('promise')+'</h3>'+(c.promises.length?c.promises.map(function(p,i){return '<div class="item"><button class="prom'+(p.done?' done':'')+'" data-act="prom" data-id="'+i+'" aria-pressed="'+!!p.done+'"><span class="box">'+(p.done?ic('tick'):'')+'</span><span><span class="pt">'+esc(p.t)+'</span><br><span class="cap">'+(p.done?'Done':'Due '+fmt(p.iso))+'</span></span></button></div>'}).join(''):'<p class="sub">Nothing promised yet. '+AI+' adds the promises it finds in your notes.</p>')+'</div>';
+  var proms='<div class="card" id="s-promises"><h3>Promises '+add('promise')+'</h3>'+(c.promises.length?c.promises.map(function(p,i){return '<div class="item itemrow"><button class="prom'+(p.done?' done':'')+'" data-act="prom" data-id="'+i+'" aria-pressed="'+!!p.done+'"><span class="box">'+(p.done?ic('tick'):'')+'</span><span><span class="pt">'+esc(p.t)+'</span><br><span class="cap">'+(p.done?'Done':'Due '+fmt(p.iso))+'</span></span></button>'+pen('promise',i,p.t)+'</div>'}).join(''):'<p class="sub">Nothing promised yet. '+AI+' adds the promises it finds in your notes.</p>')+'</div>';
   var people='<div class="card" id="s-people"><h3>People '+add('person')+'</h3>'+c.people.map(function(p,i){
      if(p.none) return '<p class="sub">No contact yet.</p>';
-     return '<div class="item"><b>'+esc(p.name)+'</b>'+(i===0?'<span class="tag">Main contact</span>':'')+'<br><span class="cap">'+[esc(p.role),'<span style="user-select:text">'+esc(p.phone)+'</span>'].filter(function(x,k){return k?p.phone:p.role}).join(' · ')+'</span></div>'}).join('')+'</div>';
+     return '<div class="item itemrow"><span><b>'+esc(p.name)+'</b>'+(i===0?'<span class="tag">Main contact</span>':'')+'<br><span class="cap">'+[esc(p.role),'<span style="user-select:text">'+esc(p.phone)+'</span>'].filter(function(x,k){return k?p.phone:p.role}).join(' · ')+'</span></span>'+pen('person',i,p.name)+'</div>'}).join('')+'</div>';
   var tl='<div class="card span" id="s-timeline"><h3>Timeline <button class="link" data-act="cap" data-id="type" data-hint="'+id+'">'+ic('plus')+'Add note</button></h3>'+c.timeline.map(function(x){return '<div class="item tl"><span class="d"><b>'+esc(x.d)+'</b>'+esc(x.how)+'</span><span>'+esc(x.t)+(x.next?'<br><span class="cap">Next step: '+esc(x.next)+'</span>':'')+(x.ai?'<br><span class="byhue">'+hue(12)+'Tidied by '+AI+'</span>':'')+'</span></div>'}).join('')+'</div>';
-  var comp='<div class="card" id="s-company"><h3>Company <button class="link" data-act="edit">Edit</button></h3><dl class="dl"><dt>Type</dt><dd>'+esc(c.type)+'</dd><dt>Address</dt><dd>'+esc(c.addr)+'</dd><dt>Payment terms</dt><dd>'+esc(c.terms)+'</dd><dt>Payment</dt><dd>'+(c.late?chip('bad',money(c.late.amt)+' is '+c.late.days+' days late'):'On time')+'</dd><dt>Last spoke</dt><dd>You, '+ago(c.last).toLowerCase()+'</dd></dl></div>';
+  var al=addrLine(c);
+  var comp='<div class="card" id="s-company"><h3>Company <button class="link" data-act="editco">'+ic('pen')+'Edit</button></h3><dl class="dl"><dt>Type</dt><dd>'+esc(c.type)+'</dd><dt>Address</dt><dd>'+
+     (al?esc(al)+'<br><a class="wxlink" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(mapQ(c))+'" target="_blank" rel="noopener">Open the map'+ic('out')+'</a>':'<button class="link" data-act="editco">'+ic('plus')+'Add the address</button>')+'</dd>'+
+     (c.area?'<dt>Area</dt><dd>'+esc(c.area)+(c.postal?' <span class="cap">· from the postal code</span>':'')+'</dd>':'')+'<dt>Payment terms</dt><dd>'+esc(c.terms)+'</dd><dt>Payment</dt><dd>'+(c.late?chip('bad',money(c.late.amt)+' is '+c.late.days+' days late'):'On time')+'</dd><dt>Last spoke</dt><dd>You, '+ago(c.last).toLowerCase()+'</dd></dl></div>';
   var prod='<div class="card" id="s-products"><h3>Products '+add('product')+'</h3>'+(c.products.length?'<div class="chips" style="margin-top:0">'+c.products.map(function(p){return '<span class="chip">'+esc(p)+'</span>'}).join('')+'</div>':'<p class="sub">None yet.</p>')+'<p class="cap" style="margin-top:6px">'+AI+' also adds products you name in your notes.</p></div>';
   var files='<div class="card" id="s-files"><h3>Files '+add('file')+'</h3>'+(c.files.length?c.files.map(function(f){return '<div class="item filerow">'+ic('file')+esc(f)+'</div>'}).join(''):'<p class="sub">No files yet. Add a quote, a photo or a price list.</p>')+'</div>';
   return h+nav+'<div class="rgrid">'+tip+deals+proms+people+comp+tl+prod+files+'</div>';
@@ -950,7 +1084,8 @@ function settingsHTML(){
    '<div class="srow"><span><b>Suggestions in customer records</b></span>'+sw('tips',s.tips)+'</div>'+
    '<div class="srow"><span><b>Warn me when a deal goes quiet</b></span>'+sw('warn',s.warn)+'</div>'+
    '<div class="srow stackd"><label for="s-brief"><b>Top three ready each morning at</b></label>'+sel('s-brief',['7:00 am','7:30 am','8:00 am','8:30 am'],s.brief)+'</div></div>'+
-   '<h2 class="sec">About</h2><div class="card set"><div class="srow"><span><b>Opening screen</b><span class="cap">Shows once a day, the first time you open '+AI+'.</span></span><button class="btn btn-soft" data-act="replay">Show it</button></div></div>';
+   '<h2 class="sec">About</h2><div class="card set"><div class="srow"><span><b>Opening screen</b><span class="cap">Shows once a day, the first time you open '+AI+'.</span></span><button class="btn btn-soft" data-act="replay">Show it</button></div>'+
+   '<div class="srow"><span><b>Tour</b><span class="cap">Shows the main features in one minute.</span></span><button class="btn btn-soft" data-act="tour">Start</button></div></div>';
 }
 
 /* ---------- capture button ---------- */
@@ -1037,22 +1172,37 @@ function sheetHTML(){
      '<details class="raw"><summary>Your original words</summary><p>'+esc(r.raw)+'</p></details>';
   }
   else if(s.kind==='newcust'){
-    b=sheetHead('New customer')+'<p class="sub">Only the name is needed. Add the rest later, or let your notes fill it in.</p>'+
+    b=sheetHead('New customer')+'<p class="sub">Only the name is necessary. You can add the other details later.</p>'+
      '<div class="f"><label for="n-name">Company name</label><input id="n-name" type="text" autocomplete="off"></div><div id="n-dup"></div>'+
-     '<div class="f"><label for="n-type">Type</label><select id="n-type"><option>Printer</option><option>Distributor</option><option>Brand</option></select></div>'+
-     '<div class="f"><label for="n-area">Area</label><input id="n-area" type="text" placeholder="Example: Ubi"></div>'+
+     '<div class="f"><label for="n-type">Type</label><select id="n-type">'+TYPES.map(function(x){return '<option>'+x+'</option>'}).join('')+'</select></div>'+
+     addrFields(null)+
      '<div class="f"><label for="n-person">Main contact</label><input id="n-person" type="text"></div>'+
      '<div class="f"><label for="n-phone">Phone</label><input id="n-phone" type="tel"></div><p class="err" id="n-err" hidden></p>'+
      '<div class="acts"><button class="btn btn-primary" data-act="create">Create record</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>';
   }
+  else if(s.kind==='company'){
+    c=cust(S.rec||'best');
+    b=sheetHead('Edit company')+'<p class="sub">'+esc(c.name)+'</p>'+
+     '<div class="f"><label for="e-name">Company name</label><input id="e-name" type="text" autocomplete="off" value="'+esc(c.name)+'"></div>'+
+     '<div class="f"><label for="e-type">Type</label><select id="e-type">'+TYPES.map(function(x){return '<option'+(x===c.type?' selected':'')+'>'+x+'</option>'}).join('')+'</select></div>'+
+     addrFields(c)+
+     '<div class="f"><label for="e-terms">Payment terms</label><select id="e-terms">'+TERMS.map(function(x){return '<option'+(x===c.terms?' selected':'')+'>'+x+'</option>'}).join('')+'</select></div>'+
+     '<p class="err" id="e-err" hidden></p>'+
+     '<div class="acts"><button class="btn btn-primary" data-act="saveco">Save</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>';
+  }
   else if(s.kind==='add'){
-    var w=s.what, cn=esc(cust(S.rec||'best').name), body='', title={product:'Add a product',file:'Add a file',person:'Add a person',deal:'Add a deal',promise:'Add a promise'}[w];
+    var w=s.what, cc=cust(S.rec||'best'), ed=s.i!=null, body='', v=function(x){return esc(x==null?'':x)};
+    var it=!ed?null:w==='person'?cc.people[+s.i]:w==='deal'?deal(s.i):w==='promise'?cc.promises[+s.i]:null;
+    var title=(ed?'Edit ':'Add a ')+w+(ed&&w==='person'?': '+esc(it.name):'');
     if(w==='product') body='<div class="f"><label for="a-1">Product range</label><select id="a-1">'+RANGES.map(function(x){return '<option>'+x+'</option>'}).join('')+'<option value="">Other, type it below</option></select></div><div class="f"><label for="a-2">Other product</label><input id="a-2" type="text"></div>';
     if(w==='file') body='<div class="f"><label for="a-file">Choose a file or a photo</label><input id="a-file" type="file"></div><div class="chips"><button class="chip" data-act="samplefile">Use a sample file</button></div><p class="note">Prototype: only the file name is kept.</p>';
-    if(w==='person') body='<div class="f"><label for="a-1">Name</label><input id="a-1" type="text"></div><div class="f"><label for="a-2">Role</label><input id="a-2" type="text"></div><div class="f"><label for="a-3">Phone</label><input id="a-3" type="tel"></div>';
-    if(w==='deal') body='<div class="f"><label for="a-1">What is the deal for</label><input id="a-1" type="text" placeholder="Example: Wilflex colours supply"></div><div class="f"><label for="a-money">Worth a year, in Singapore dollars</label><input id="a-money" type="text" inputmode="numeric" autocomplete="off" placeholder="Example: 48,000"></div><div class="f"><label for="a-3">Stage</label><select id="a-3">'+STAGES.map(function(x){return '<option>'+x+'</option>'}).join('')+'</select></div>';
-    if(w==='promise') body='<div class="f"><label for="a-1">What did you promise</label><input id="a-1" type="text"></div><div class="f"><label for="a-2">Due</label><input id="a-2" type="date" min="2026-10-05"></div>';
-    b=sheetHead(title)+'<p class="sub">'+cn+'</p>'+body+'<p class="err" id="a-err" hidden></p><div class="acts">'+(w==='file'?'':'<button class="btn btn-primary" data-act="addsave">Add</button>')+'<button class="btn btn-ghost" data-act="close">Cancel</button></div>';
+    if(w==='person') body='<div class="f"><label for="a-1">Name</label><input id="a-1" type="text" value="'+v(it&&it.name)+'"></div><div class="f"><label for="a-2">Role</label><input id="a-2" type="text" value="'+v(it&&it.role)+'"></div><div class="f"><label for="a-3">Phone</label><input id="a-3" type="tel" value="'+v(it&&it.phone)+'"></div>'+
+      (ed&&+s.i===0?'<p class="note">This person is the main contact. To change that, edit another person.</p>':cc.people[0].none?'':'<label class="chk"><input type="checkbox" id="a-main"> Make this person the main contact</label>');
+    if(w==='deal') body='<div class="f"><label for="a-1">What is the deal for</label><input id="a-1" type="text" placeholder="Example: Wilflex colours supply" value="'+v(it&&it.name)+'"></div><div class="f"><label for="a-money">Worth a year, in Singapore dollars</label><input id="a-money" type="text" inputmode="numeric" autocomplete="off" placeholder="Example: 48,000" value="'+(it?(it.value*1000).toLocaleString('en-US'):'')+'"></div><div class="f"><label for="a-3">Stage</label><select id="a-3">'+STAGES.concat(ed?['Won','Lost']:[]).map(function(x){return '<option'+(it&&it.stage===x?' selected':'')+'>'+x+'</option>'}).join('')+'</select></div>'+
+      (ed?'<p class="note">A deal is not removed. If the customer says no, set the stage to Lost.</p>':'');
+    if(w==='promise') body='<div class="f"><label for="a-1">What did you promise</label><input id="a-1" type="text" value="'+v(it&&it.t)+'"></div><div class="f"><label for="a-2">Due</label><input id="a-2" type="date" min="2026-10-05" value="'+v(it&&it.iso)+'"></div>';
+    b=sheetHead(title)+'<p class="sub">'+esc(cc.name)+'</p>'+body+'<p class="err" id="a-err" hidden></p><div class="acts">'+(w==='file'?'':'<button class="btn btn-primary" data-act="addsave">'+(ed?'Save':'Add')+'</button>')+'<button class="btn btn-ghost" data-act="close">Cancel</button>'+
+      (ed&&(w==='person'||w==='promise')?'<span class="sp"></span><button class="btn btn-danger'+(s.sure?' sure':'')+'" data-act="rmitem">'+(s.sure?'Tap again to remove':'Remove')+'</button>':'')+'</div>';
   }
   return '<div class="scrim" data-scrim><div class="sheet" role="dialog" aria-modal="true">'+b+'</div></div>';
 }
@@ -1143,8 +1293,9 @@ function after(){
   var s=S.sheet; if(!s) return;
   if(s.kind==='talk'&&!talkTimer) startTalk();
   if(s.kind==='write') bindPad();
+  if($('#c-addr')){ if(!s.addr) s.addr=addrParse($('#c-addr').value); addrShow(); }
   var f=app.querySelector('.sheet textarea, .sheet input[type=text]');
-  if(f&&(s.kind==='type'||s.kind==='newcust'||s.kind==='add')) { try{f.focus({preventScroll:true})}catch(e){} }
+  if(f&&(s.kind==='type'||s.kind==='newcust'||(s.kind==='add'&&s.i==null))) { try{f.focus({preventScroll:true})}catch(e){} }
 }
 var toastTimer2=null;
 function toast(text,id){
@@ -1196,7 +1347,7 @@ function readDraft(){
 function markTouched(c,d){ c.last=0; if(d){d.touch=0;d.snooze=false;} }
 function applySettings(){
   var base={phone:1.15,tablet:1.08,computer:1}[S.device], f={s:.9,m:1,l:1.14,xl:1.28}[S.set.size], z=(base*f).toFixed(3);
-  app.style.zoom=z; toastEl.style.zoom=z; $('#splash').style.zoom=z;
+  app.style.zoom=z; toastEl.style.zoom=z; $('#splash').style.zoom=z; $('#tour').style.zoom=z;
   screenEl.classList.toggle('hc',S.set.hc); screenEl.classList.toggle('rm',S.set.rm); screenEl.classList.toggle('fab-l',S.set.left);
 }
 
@@ -1214,7 +1365,82 @@ function hideSplash(){
   var el=$('#splash'); if(el.hidden||el.classList.contains('out')) return; clearTimeout(splashT); el.classList.add('out');
   splashT2=setTimeout(function(){el.hidden=true},motionOK()?380:0);
   greetAt=Date.now(); introPending=true; render();
+  if(tourWanted()){ tourAuto=false; setTimeout(function(){ if(!S.tour&&!S.sheet) tourStart() },1100); }
   setTimeout(function(){ if(Date.now()-greetAt>=3900) { var g=app.querySelector('.hue.hi'); if(g) g.classList.remove('hi'); } },4100);
+}
+
+/* ---------- tour: shows the main features the first time, and again from Settings ---------- */
+var TOUR=[
+ {mid:1,t:'Hello, Daniel. I am '+AI+'.',b:'I keep track of your deals, so you can sell. This short tour shows the main features. It takes one minute.'},
+ {sel:'.sales',t:'Your sales progress',b:'The solid bar shows the sales that you won. The striped bar shows your open deals. The line shows where you should be today.'},
+ {sel:'#b-top .task',scroll:1,t:'Your top three',b:AI+' selects three tasks each morning. Each task gives the reason and one next step. Tap the circle when a task is done.'},
+ {sel:function(){return S.device==='computer'?'.topbar .btn-primary':'#fab'},round:function(){return S.device!=='computer'},t:'Add a note in seconds',
+  b:function(){return S.device==='computer'?'Select New note, or press N. '+AI+' tidies the note and finds the next step.':'Tap the round button to talk, type or '+(S.device==='tablet'?'write with the pen':'take a photo')+'. Hold the button to talk immediately. '+AI+' tidies the note for you.'}},
+ {sel:'#b-attn',scroll:1,t:'Customers that need you',b:AI+' warns you when a customer is quiet for too long, or when a payment is late. Tap a row to see the reason.'},
+ {sel:'[data-act=tab][data-id=rec]',pad:3,t:'Customer records',b:'Each customer has one page. Your notes, deals and promises go there.'},
+ {sel:'[data-act=tab][data-id=set]',pad:3,t:'Settings',b:'Change the text size and the contrast here. You can also start this tour again.'}
+];
+var tourEl=$('#tour'), tourTs=[], tourAuto=true;
+function tourSeen(set){
+  try{ if(set) localStorage.setItem('hue-tour','1'); return localStorage.getItem('hue-tour')==='1'; }
+  catch(e){ if(set&&!/hue-tour/.test(window.name||'')) window.name=(window.name||'')+'|hue-tour'; return /hue-tour/.test(window.name||''); }
+}
+function tourWanted(){ if(!tourAuto) return false; if(QS.tour==='1') return true; if(QS.tour==='0'||QS.embed||QS.splash==='0') return false; return !tourSeen(); }
+function tourSel(st){ var q=typeof st.sel==='function'?st.sel():st.sel; return q?app.querySelector(q):null }
+function tourStart(){
+  closeSheet(); S.fan=false; S.tab='brief'; if(S.device!=='tablet') S.rec=null; S.tour={i:0}; toastEl.hidden=true; render();
+  app.querySelectorAll('[data-scroll]').forEach(function(sc){sc.scrollTop=0});
+  tourEl.className='tour'; tourEl.hidden=false;
+  tourEl.innerHTML='<i class="tprobe"></i><div class="tspot none"></div><div class="tcard" role="dialog" aria-modal="true" aria-label="Tour of '+AI+'"></div>';
+  tourShow();
+}
+function tourShow(){
+  var i=S.tour.i, n=TOUR.length-1, st=TOUR[i], card=tourEl.querySelector('.tcard'), txt=typeof st.b==='function'?st.b():st.b;
+  card.className='tcard'+(st.mid?' mid':'');
+  card.innerHTML='<div class="tbody">'+(st.mid
+    ?hue(54,'hi')+'<h2>'+st.t+'</h2><p>'+txt+'</p><div class="tfoot"><button class="btn btn-primary" data-tour="next">Start the tour</button><button class="btn btn-ghost" data-tour="skip">Not now</button></div>'
+    :'<div class="thead">'+hue(16)+'<span>Step '+i+' of '+n+'</span><button class="tskip" data-tour="skip">Close the tour</button></div><h2>'+st.t+'</h2><p>'+txt+'</p>'+
+     '<div class="tfoot"><span class="tdots" aria-hidden="true">'+TOUR.slice(1).map(function(_,k){return '<i class="'+(k===i-1?'on':'')+'"></i>'}).join('')+'</span><span class="sp"></span>'+
+     (i>1?'<button class="btn btn-ghost" data-tour="back">Back</button>':'')+'<button class="btn btn-primary" data-tour="next">'+(i===n?'Done':'Next')+'</button></div>')+
+    '</div><i class="tarrow off"></i>';
+  var el=tourSel(st), sc=el&&el.closest('[data-scroll]');
+  if(sc){ if(st.scroll){ try{el.scrollIntoView({block:'center'})}catch(e){} } else sc.scrollTop=0; revealAll(); }
+  tourTs.forEach(clearTimeout); tourTs=[setTimeout(tourPlace,60),setTimeout(tourPlace,420),setTimeout(tourPlace,760)];
+  tourPlace();
+  var nb=card.querySelector('[data-tour=next]'); try{ nb.focus({preventScroll:true}) }catch(e){}
+}
+function tourPlace(){
+  if(!S.tour||tourEl.hidden) return;
+  var st=TOUR[S.tour.i], spot=tourEl.querySelector('.tspot'), card=tourEl.querySelector('.tcard'), arrow=card.querySelector('.tarrow'), probe=tourEl.querySelector('.tprobe');
+  /* u = how many units of the measured boxes fit in one layout pixel of the tour layer. This holds for any zoom and any device scale. */
+  var o=tourEl.getBoundingClientRect(), u=probe.getBoundingClientRect().width/100||1, W=o.width/u, H=o.height/u;
+  var k=(probe.offsetWidth||100)/100, cw=card.offsetWidth/k, ch=card.offsetHeight/k, el=tourSel(st);
+  if(!el){ spot.className='tspot none'; spot.style.cssText='left:'+(W/2)+'px;top:'+(H/2)+'px;width:0;height:0'; card.style.left=((W-cw)/2)+'px'; card.style.top=Math.max(10,(H-ch)/2)+'px'; arrow.className='tarrow off'; return; }
+  var r=el.getBoundingClientRect(), pad=st.pad==null?5:st.pad, round=typeof st.round==='function'?st.round():st.round;
+  var x=(r.left-o.left)/u-pad, y=(r.top-o.top)/u-pad, w=r.width/u+pad*2, h=r.height/u+pad*2;
+  if(x<3){w-=3-x;x=3} if(y<3){h-=3-y;y=3} if(x+w>W-3) w=W-3-x; if(y+h>H-3) h=H-3-y;
+  spot.className='tspot'+(round?' round':''); spot.style.cssText='left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+h+'px';
+  var left, top, dir;
+  if(W>560&&x+w<W*.2&&h<H*.4){ left=x+w+14; top=Math.min(Math.max(y+h/2-ch/2,10),H-ch-10); dir='side'; arrow.style.left=''; arrow.style.top=Math.min(Math.max(y+h/2-top,20),ch-20)+'px'; }
+  else {
+    top=y+h+12; dir='up';
+    if(top+ch>H-8){ top=y-12-ch; dir='down'; if(top<8){ top=Math.max(8,H-ch-12); dir='off'; } }
+    left=Math.min(Math.max(x+w/2-cw/2,10),W-cw-10); arrow.style.top=''; arrow.style.left=Math.min(Math.max(x+w/2-left,22),cw-22)+'px';
+  }
+  card.style.left=left+'px'; card.style.top=top+'px'; arrow.className='tarrow '+dir;
+}
+function tourAct(a){
+  if(!S.tour) return;
+  if(a==='next'){ if(S.tour.i>=TOUR.length-1) return tourEnd(true); S.tour.i++; tourShow(); }
+  else if(a==='back'){ if(S.tour.i>1){ S.tour.i--; tourShow(); } }
+  else tourEnd(false);
+}
+function tourEnd(done,quiet){
+  tourTs.forEach(clearTimeout); tourTs=[]; S.tour=null; tourSeen(true);
+  if(quiet){ tourEl.hidden=true; tourEl.innerHTML=''; return; }
+  tourEl.classList.add('bye'); setTimeout(function(){ if(!S.tour){ tourEl.hidden=true; tourEl.innerHTML=''; tourEl.classList.remove('bye'); } },motionOK()?220:0);
+  app.querySelectorAll('[data-scroll]').forEach(function(sc){sc.scrollTop=0});
+  toast(done?'You are ready. The tour is in Settings if you need it again.':'Tour closed. You can start it again in Settings.');
 }
 
 /* ---------- actions ---------- */
@@ -1223,6 +1449,7 @@ var A={
   rec:function(id){closeSheet();S.fan=false;S.edit=false;S.rec=id;if(S.device==='tablet')S.tab='rec';toastEl.hidden=true},
   back:function(){S.rec=null;S.edit=false},
   replay:function(){splash();return false},
+  tour:function(){tourStart();return false},
   plan:function(_,__,b){ S.plan=!S.plan; b.closest('.bsec').querySelector('.fold').classList.toggle('open',S.plan); b.textContent=S.plan?'Hide':'Show'; b.setAttribute('aria-expanded',String(S.plan)); setTimeout(revealAll,320); return false },
   more:function(_,__,b){ S.more=!S.more; b.previousElementSibling.classList.toggle('open',S.more); b.textContent=S.more?'Show top three only':'Show 3 more'; b.setAttribute('aria-expanded',String(S.more)); setTimeout(revealAll,320); return false },
   sales:function(_,__,b){ S.sales=!S.sales; var c=b.closest('.sales'); c.classList.toggle('open',S.sales); c.querySelector('.fold').classList.toggle('open',S.sales); b.querySelector('span').textContent=S.sales?'Less':'Detail'; b.setAttribute('aria-expanded',String(S.sales)); return false },
@@ -1279,28 +1506,40 @@ var A={
   create:function(){
     var name=$('#n-name').value.trim(), err=$('#n-err'); if(!name){err.textContent='Add the company name.';err.hidden=false;return false}
     var person=$('#n-person').value.trim(), none=!person, id='n'+C.length;
-    C.push({id:id,keys:[name.toLowerCase()],name:name,type:$('#n-type').value,area:$('#n-area').value.trim()||'Area not added',addr:'Not added yet',since:2026,terms:'Not set',last:0,
-      people:[{name:none?'No contact yet':person,call:none?'':person.split(' ')[0],none:none,role:'',phone:$('#n-phone').value.trim()}],products:[],timeline:[{d:'Today',how:'Created',t:'Record created.'}],promises:[],files:[],tip:''});
+    var nc={id:id,keys:[name.toLowerCase()],name:name,type:$('#n-type').value,area:'',addr:'',bld:'',unit:'',postal:'',since:2026,terms:'Not set',last:0,
+      people:[{name:none?'No contact yet':person,call:none?'':person.split(' ')[0],none:none,role:'',phone:$('#n-phone').value.trim()}],products:[],timeline:[{d:'Today',how:'Created',t:'Record created.'}],promises:[],files:[],tip:''};
+    applyAddr(nc,$('#c-addr').value,$('#c-unit').value.trim(),S.sheet.addr); C.push(nc);
     closeSheet(); S.q=''; S.f='all'; S.rec=id; if(S.device!=='computer')S.tab='rec'; toast('Record created for '+name+'.');
   },
   add:function(what){S.sheet={kind:'add',what:what}},
+  edititem:function(what,_,b){S.sheet={kind:'add',what:what,i:b.dataset.i}},
+  editco:function(){S.sheet={kind:'company',addr:addrInit(cust(S.rec||'best'))}},
+  saveco:function(){
+    var c=cust(S.rec||'best'), g=function(id){return $('#'+id).value.trim()}, err=$('#e-err');
+    if(!g('e-name')){err.textContent='Add the company name.';err.hidden=false;return false}
+    c.name=g('e-name'); c.keys=[c.name.toLowerCase().replace(/ pte ltd$/,'')]; c.type=g('e-type'); c.terms=g('e-terms');
+    applyAddr(c,g('c-addr'),g('c-unit'),S.sheet.addr);
+    closeSheet(); toast('Company details saved.');
+  },
   samplefile:function(){ var c=cust(S.rec||'best'); c.files.unshift('Quote 5 Oct.pdf'); closeSheet(); toast('File added.') },
   addsave:function(){
-    var w=S.sheet.what, c=cust(S.rec||'best'), g=function(id){var el=$('#'+id);return el?el.value.trim():''}, err=$('#a-err'), bad=function(m){err.textContent=m;err.hidden=false;return false};
+    var sh=S.sheet, w=sh.what, ed=sh.i!=null, c=cust(S.rec||'best'), g=function(id){var el=$('#'+id);return el?el.value.trim():''}, err=$('#a-err'), bad=function(m){err.textContent=m;err.hidden=false;return false};
     if(w==='product'){ var p=g('a-2')||g('a-1'); if(!p) return bad('Choose a product or type one.'); if(c.products.indexOf(p)<0) c.products.push(p); }
-    if(w==='person'){ if(!g('a-1')) return bad('Add the name.'); var np={name:g('a-1'),call:g('a-1').split(' ')[0],role:g('a-2'),phone:g('a-3')}; if(c.people[0].none) c.people[0]=np; else c.people.push(np); }
-    if(w==='deal'){ if(!g('a-1')) return bad('Say what the deal is for.'); D.push({id:'d'+(D.length+1),cust:c.id,name:g('a-1'),value:Math.round((+g('a-money').replace(/[^\d]/g,'')||0)/1000),stage:g('a-3'),touch:0,wait:'you',last:'Deal added'}); }
-    if(w==='promise'){ if(!g('a-1')) return bad('Say what you promised.'); c.promises.unshift({t:g('a-1'),iso:g('a-2')}); }
-    closeSheet(); toast('Added to '+c.name+'.');
+    if(w==='person'){ if(!g('a-1')) return bad('Add the name.');
+      var np={name:g('a-1'),call:g('a-1').split(' ')[0],role:g('a-2'),phone:g('a-3')}, mainEl=$('#a-main'), main=!!(mainEl&&mainEl.checked);
+      if(ed){ var old=c.people[+sh.i]; if(old.call&&np.name.indexOf(old.call.replace('Mr ',''))>-1) np.call=old.call; c.people[+sh.i]=np; if(main&&+sh.i>0){ c.people.splice(+sh.i,1); c.people.unshift(np); } }
+      else if(c.people[0].none) c.people[0]=np; else if(main) c.people.unshift(np); else c.people.push(np); }
+    if(w==='deal'){ if(!g('a-1')) return bad('Say what the deal is for.'); var val=Math.round((+g('a-money').replace(/[^\d]/g,'')||0)/1000);
+      if(ed){ var d=deal(sh.i); d.name=g('a-1'); d.value=val; if(g('a-3')!==d.stage){ d.stage=g('a-3'); d.last='Moved to '+d.stage; d.touch=0; } }
+      else D.push({id:'d'+(D.length+1),cust:c.id,name:g('a-1'),value:val,stage:g('a-3'),touch:0,wait:'you',last:'Deal added'}); }
+    if(w==='promise'){ if(!g('a-1')) return bad('Say what you promised.'); if(ed){ c.promises[+sh.i].t=g('a-1'); c.promises[+sh.i].iso=g('a-2'); } else c.promises.unshift({t:g('a-1'),iso:g('a-2')}); }
+    closeSheet(); toast(ed?'Changes saved.':'Added to '+c.name+'.');
   },
-  edit:function(){S.edit=true},
-  canceledit:function(){S.edit=false},
-  saveedit:function(){
-    var c=cust(S.rec||'best'), g=function(id){return $('#'+id).value.trim()};
-    if(!g('e-name')) return false;
-    c.name=g('e-name'); c.keys=[c.name.toLowerCase().replace(/ pte ltd$/,'')]; c.type=g('e-type'); c.area=g('e-area'); c.addr=g('e-addr'); c.terms=g('e-terms');
-    var p=c.people[0]; if(g('e-pn')){p.name=g('e-pn');p.none=false;} p.call=p.none?'':(p.call&&p.name.indexOf(p.call.replace('Mr ',''))>-1?p.call:p.name.split(' ')[0]); p.role=g('e-pr'); p.phone=g('e-pp');
-    S.edit=false; toast('Changes saved.');
+  rmitem:function(){
+    var sh=S.sheet, c=cust(S.rec||'best'); if(!sh.sure){ sh.sure=true; return; }
+    if(sh.what==='person'){ c.people.splice(+sh.i,1); if(!c.people.length) c.people.push({name:'No contact yet',call:'',none:true,role:'',phone:''}); }
+    if(sh.what==='promise') c.promises.splice(+sh.i,1);
+    closeSheet(); toast('Removed.');
   },
   prom:function(i){var c=cust(S.rec||'best'), p=c.promises[+i]; p.done=!p.done}
 };
@@ -1308,6 +1547,8 @@ var A={
 /* ---------- events ---------- */
 screenEl.addEventListener('click',function(e){
   if(e.target.closest('#splash')){ hideSplash(); return; }
+  var tb=e.target.closest('[data-tour]'); if(tb){ tourAct(tb.dataset.tour); return; }
+  if(S.tour) return;
   if(Date.now()<swallow){ swallow=0; return; }
   if(e.target.matches('[data-scrim]')){ closeSheet(); render(); return; }
   if(e.target.closest('[data-fab]')){ setFan(!S.fan); return; }
@@ -1316,13 +1557,15 @@ screenEl.addEventListener('click',function(e){
   if(fn(b.dataset.id,b.dataset.deal,b)!==false) render();
 });
 screenEl.addEventListener('pointerdown',function(e){
-  if(!e.target.closest('[data-fab]')) return; held=false; clearTimeout(holdTimer);
+  if(S.tour||!e.target.closest('[data-fab]')) return; held=false; clearTimeout(holdTimer);
   holdTimer=setTimeout(function(){ held=true; S.fan=false; S.sheet={kind:'talk',hint:null}; render(); },480);
 });
 ['pointerup','pointercancel','pointerleave'].forEach(function(ev){screenEl.addEventListener(ev,function(){clearTimeout(holdTimer); if(held){held=false;swallow=Date.now()+350}})});
 screenEl.addEventListener('contextmenu',function(e){ if(e.target.closest('[data-fab]')) e.preventDefault() });
 screenEl.addEventListener('input',function(e){
   if(e.target.id==='q'){ S.q=e.target.value; var l=$('#rlist'); if(l) l.innerHTML=recRows(); var rc=$('#rcount'); if(rc) rc.textContent=recCount(recFiltered().length); }
+  if(e.target.id==='c-addr'&&S.sheet){ var ad=S.sheet.addr=addrParse(e.target.value); clearTimeout(addrT);
+    if(ad.postal){ addrShow(); if(!ad.known&&!ad.street) liveLookup(ad.postal); } else addrT=setTimeout(addrShow,ad.q?650:0); }
   if(e.target.id==='a-money'){ var dg=e.target.value.replace(/[^\d]/g,'').slice(0,9); e.target.value=dg?Number(dg).toLocaleString('en-US'):''; }
   if(e.target.id==='n-name'){ var v=e.target.value.trim().toLowerCase(), box=$('#n-dup'), m=v.length>2?C.find(function(c){var n=c.name.toLowerCase();return n.indexOf(v)>-1||v.indexOf(n.replace(/ pte ltd$/,''))>-1}):null;
     box.innerHTML=m?'<p class="alert">'+esc(m.name)+' is already in your records. <button data-act="rec" data-id="'+m.id+'">Open it</button></p>':''; }
@@ -1337,6 +1580,7 @@ screenEl.addEventListener('change',function(e){
 });
 document.addEventListener('keydown',function(e){
   var typing=/INPUT|TEXTAREA|SELECT/.test((e.target&&e.target.tagName)||'');
+  if(S.tour){ if(e.key==='Escape') tourEnd(false); else if(e.key==='ArrowRight') tourAct('next'); else if(e.key==='ArrowLeft') tourAct('back'); return; }
   if(e.key==='Escape'){ if(S.sheet){closeSheet();render()} else if(S.fan){setFan(false)} else if(S.rec&&S.device!=='tablet'){S.rec=null;S.edit=false;render()} return; }
   if(!typing&&!S.sheet&&S.device==='computer'&&(e.key==='n'||e.key==='N')&&!e.metaKey&&!e.ctrlKey&&!e.altKey){ e.preventDefault(); S.sheet={kind:'type',hint:S.rec}; render(); }
 });
@@ -1353,6 +1597,7 @@ function fit(){
   $('#fit').style.width=d[0]*k+'px'; $('#fit').style.height=d[1]*k+'px'; $('#dev').style.transform='scale('+k+')';
 }
 function setDevice(dv){
+  if(S.tour) tourEnd(false,true);
   closeSheet(); S.device=dv; S.fan=false; S.edit=false; if(dv==='computer') S.rec=null;
   if(dv==='phone'&&S.tab==='set'){}
   $('#dev').dataset.device=dv; $('#hint').textContent=HINT[dv];
@@ -1360,7 +1605,7 @@ function setDevice(dv){
   toastEl.hidden=true; applySettings(); render(); fit();
 }
 document.querySelector('.seg').addEventListener('click',function(e){var b=e.target.closest('[data-dev]'); if(b) setDevice(b.dataset.dev)});
-window.addEventListener('resize',fit);
+window.addEventListener('resize',function(){ fit(); tourPlace(); });
 screenEl.addEventListener('scroll',function(e){ var sc=e.target; if(sc&&sc.dataset&&sc.dataset.scroll){ revealCheck(sc); spyOne(sc); } },true);
 setInterval(revealAll,500);
 $('#wx-sel').addEventListener('change',function(e){ S.wx=e.target.value; render(); });
@@ -1370,7 +1615,7 @@ if(QS.tab==='rec'||QS.tab==='set') S.tab=QS.tab;
 if(QS.rec&&cust(QS.rec)){ S.rec=QS.rec; if(QS.device==='tablet') S.tab='rec'; }
 setDevice(DIM[QS.device]?QS.device:'phone');
 if(QS.rec&&cust(QS.rec)&&S.device==='computer'){ S.rec=QS.rec; render(); }
-if(QS.splash==='1'||(!QS.embed&&QS.splash!=='0')) splash(); else { greetAt=Date.now(); introPending=true; render(); }
+if(QS.splash==='1'||(!QS.embed&&QS.splash!=='0')) splash(); else { greetAt=Date.now(); introPending=true; render(); if(QS.tour==='1'){ tourAuto=false; setTimeout(tourStart,700); } }
 if(QS.jump) setTimeout(function(){ var el=document.getElementById(QS.jump); if(el) el.scrollIntoView({block:'start'}); },500);
 /* inside the presentation, pass the arrow keys up so the presenter can move on */
 if(QS.embed) document.addEventListener('keydown',function(e){
