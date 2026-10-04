@@ -198,6 +198,125 @@ footer a{color:#9FC6E8}
   .split.flip > :first-child{order:0}
   .hero{min-height:auto;padding-block:68px}
 }
+
+/* ---------- third version: icons, pictures, simple words ---------- */
+.sec h2{max-width:26ch}
+.tile{flex:none;display:block}
+.ico{flex:none;display:inline-block;vertical-align:-3px}
+.irows{list-style:none;display:grid;gap:16px;margin-top:24px;max-width:66ch}
+.irows li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+.irows li > span{display:block;line-height:1.5}
+.irows b{display:block;font-size:1.04em}
+.irows li > span > span{color:var(--sub);font-size:.94em;line-height:1.55}
+.irows .mk{display:grid;place-items:center;width:56px;height:56px;border-radius:15px;background:var(--soft)}
+.cols.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.cols.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cols.c4{grid-template-columns:repeat(4,minmax(0,1fr))}.cols.c5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.cols.tight{gap:12px;margin-top:24px}
+.icard .tile{margin-bottom:14px}
+.card .lbl,.lbl{font:700 12.5px/1.4 var(--fb);letter-spacing:.07em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:10px}
+.chips li{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.94em}
+.made{margin-top:30px}.sp2{margin-top:22px}
+.qcard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+.qcard p{color:var(--ink);font-size:1.02em;line-height:1.45}
+.dev{display:block;width:100%;max-width:310px;height:auto;margin-inline:auto;filter:drop-shadow(0 14px 30px rgba(48,60,64,.16))}
+.dev.wide{max-width:900px}
+.pic{display:block;max-width:100%;height:auto}
+.pic.crop{border-radius:16px;box-shadow:var(--shadow-s);width:100%;max-width:560px}
+.funnel{display:flex;align-items:stretch;gap:12px;margin-top:30px}
+.funnel .fstep{flex:1;min-width:0}.funnel .arr{flex:none;align-self:center}
+.fstep > b{display:block;font:800 clamp(44px,5vw,72px)/1 var(--fd);letter-spacing:-.03em;margin-bottom:8px}
+.fstep > b.red{color:var(--red700)}.fstep > b.blue{color:var(--blue)}
+.why{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;margin-top:18px}
+.tblwrap{overflow-x:auto}
+.tbl.ideas td,.tbl.ideas th{padding:8px 14px}
+.tbl.ideas td:nth-child(n+3):nth-child(-n+5),.tbl.ideas th:nth-child(n+3):nth-child(-n+5){text-align:center;width:1%;white-space:nowrap}
+.tbl.ideas tr.core td{background:var(--soft)}.tbl.ideas tr.stop td{background:var(--red50)}
+.tbl.ideas tr.core td:last-child{color:var(--blue-d);font-weight:700}.tbl.ideas tr.stop td:last-child,.tbl.ideas td.bad{color:var(--red700);font-weight:700}
+.built{list-style:none;display:grid;gap:10px;margin-top:30px}
+.built li{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,260px);gap:18px;align-items:center;background:var(--white);border:1px solid var(--ln);border-radius:18px;padding:10px 22px 10px 12px}
+.sec:nth-child(even) .built li{background:var(--mist)}
+.built b{font:700 1.02em/1.35 var(--fd)}
+.built span{display:flex;gap:8px;align-items:center;color:var(--blue-d);font-weight:600;font-size:.92em}
+/* the logo of Hue, with the two motions of the prototype */
+.hmark{display:block;overflow:visible;flex:none}
+.hmark circle{stroke:#fff;stroke-width:.7}.hmark .h1{fill:#3274AE}.hmark .h2{fill:#D9624F}.hmark .h3{fill:#EFBE46}.hmark .h0{fill:#fff;stroke:none}
+.hmark .hg{transform-origin:12px 12px}
+.hmark.work .hg{animation:hspin 1.5s cubic-bezier(.6,.1,.4,.9) infinite}
+.hmark.work .h1{animation:hb1 1.5s ease-in-out infinite}.hmark.work .h2{animation:hb2 1.5s ease-in-out infinite}.hmark.work .h3{animation:hb3 1.5s ease-in-out infinite}
+.hmark.hi .hg{animation:hhi 6s ease-in-out infinite}
+@keyframes hspin{to{transform:rotate(360deg)}}
+@keyframes hb1{50%{transform:translateY(-2.2px)}}@keyframes hb2{50%{transform:translate(-1.9px,1.1px)}}@keyframes hb3{50%{transform:translate(1.9px,1.1px)}}
+@keyframes hhi{0%{transform:rotate(0) scale(1)}5%{transform:rotate(-24deg) scale(1.16)}12%{transform:rotate(20deg) scale(1.16)}19%{transform:rotate(-17deg) scale(1.12)}26%{transform:rotate(13deg) scale(1.08)}33%{transform:rotate(-8deg) scale(1.05)}40%{transform:rotate(0) scale(1.05)}55%{transform:rotate(360deg) scale(1.05)}66%,100%{transform:rotate(360deg) scale(1)}}
+.brand2{align-items:start}
+.bleft{display:grid;gap:14px}
+.bcard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 22px;align-items:center;padding:26px}
+.bcard .cap2{grid-column:1/-1;color:var(--sub);font-size:.92em}
+.card .wordmark{font:800 clamp(48px,5vw,72px)/1 var(--fd);letter-spacing:-.03em;color:var(--ink)}
+.sw{list-style:none;display:flex;gap:16px;margin-top:12px;font:500 14px/1.3 var(--fb);color:var(--sub)}
+.sw li{display:grid;justify-items:center;gap:5px}.sw i{display:block;width:40px;height:40px;border-radius:999px}
+.sw.big{gap:12px;margin:12px 0}.sw.big i{width:46px;height:46px}
+.bwork{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center}
+.bwork p,.blines p{color:var(--ink)}
+.blines{display:grid;gap:8px}.blines p{color:var(--sub)}
+.pic.line{height:26px;width:auto;border-radius:4px}
+.legend{list-style:none;display:grid;gap:10px;margin-top:20px}
+.legend li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:center;font-size:.96em}
+.legend i{display:block;height:20px;border-radius:5px;justify-self:start;width:40px}
+.legend .lb{background:var(--blue)}.legend .ls{background:repeating-linear-gradient(135deg,var(--soft-b) 0 5px,#fff 5px 10px);border:1px solid var(--soft-b)}.legend .ll{width:5px;background:var(--ink)}
+.say{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;margin-top:20px}
+.say p{font-size:.96em}
+.pair{display:grid;grid-template-columns:minmax(0,1.14fr) auto minmax(0,1fr);gap:22px;align-items:center;margin-top:30px}
+.pair figure{margin:0}.pair figcaption{font:500 14.5px/1.5 var(--fb);color:var(--sub);margin-top:10px}
+.pair .pic.crop{max-width:none}
+.formula{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px;margin-top:30px}
+.formula .card{flex:1 1 220px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;padding:16px 18px}
+.formula .op{align-self:center;font:700 34px/1 var(--fd);color:var(--blue)}
+.formula .res{align-self:center;background:var(--blue);color:#fff;font:800 26px/1 var(--fd);border-radius:16px;padding:16px 22px}
+.exs{align-items:start;margin-top:18px}
+.ex{margin-top:14px}.ex p{font-size:.94em;color:var(--ink)!important}.ex .pts{color:var(--blue-d);float:right;margin-left:12px}
+.bar{display:flex;height:22px;margin-top:6px}.bar i{display:block;background:var(--blue);border-radius:6px 0 0 6px}.bar i.w{background:var(--hyel);border-radius:0 6px 6px 0}
+.key{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:.88em}.key i{display:block;width:22px;height:14px;border-radius:4px;background:var(--blue)}.key i.w{background:var(--hyel);margin-left:10px}
+.ways{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin-top:30px}
+.ways figure{margin:0}.ways .dev{max-width:260px}
+.ways figcaption{margin-top:14px;display:grid;gap:3px}
+.ways figcaption b{display:flex;gap:8px;align-items:center;font:700 1.08em/1.3 var(--fd)}.ways figcaption b .ico{color:var(--blue)}
+.ways figcaption span{color:var(--sub);font-size:.92em;line-height:1.5}
+.five{margin-top:22px}.five p{color:var(--ink)}
+.five ul{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:14px}
+.five li{display:grid;justify-items:center;gap:6px;text-align:center;font-size:.86em;line-height:1.3}
+.devs{display:grid;grid-template-columns:.62fr 1fr 1.36fr;gap:26px;align-items:end;margin-top:30px}
+.devs .dp .dev{width:66%;margin:0}
+.devs figure{margin:0}.devs .dev{max-width:none}
+.devs figcaption{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;margin-top:14px;align-items:start}
+.devs figcaption b{display:block;font:700 1.06em/1.3 var(--fd)}.devs figcaption span{color:var(--sub);font-size:.92em;line-height:1.5}
+.devs figcaption span b{color:var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;align-items:center}
+.btns span{display:inline-flex;align-items:center;gap:6px;font:600 14.5px/1 var(--fb);border-radius:999px;padding:9px 16px;border:1px solid transparent}
+.btns .b1{background:var(--blue);color:#fff}.btns .b2{background:var(--soft);color:var(--blue-d);border-color:var(--soft-b)}.btns .b3{background:#fff;color:var(--ink);border-color:var(--ln)}
+.btns .c1{background:var(--soft);color:var(--ink);border-color:var(--ln);padding:6px 13px}.btns .c2{background:var(--amb50);color:var(--amb800);border-color:var(--amb300);padding:6px 13px}.btns .c3{background:var(--red50);color:var(--red700);border-color:var(--red300);padding:6px 13px}
+.say2{display:flex;gap:12px;align-items:center;margin:10px 0;color:var(--ink)!important}
+.acard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start;padding:16px 18px}
+.chead{display:flex;gap:14px;align-items:center;margin-bottom:10px}.chead h3{margin:0}
+.plain{margin:0 0 0 1.1em;display:grid;gap:5px;font-size:.96em;line-height:1.5}
+.sub3{color:var(--blue-d);font-size:1.1em}
+.tbl.meas td:first-child{display:flex;gap:12px;align-items:center}
+.dcard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start}
+.dcard .go{margin-top:8px;font-weight:700}
+.card.hi .plain,.card.hi li{color:var(--ink)}
+@media (max-width:1040px){
+  .cols.c3,.cols.c4,.cols.c5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .funnel{flex-direction:column}.funnel .arr{transform:rotate(90deg)}
+  .pair{grid-template-columns:minmax(0,1fr)}.pair .arr{transform:rotate(90deg);justify-self:center}
+  .ways{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .devs{grid-template-columns:minmax(0,1fr)}.devs .dp .dev{max-width:220px;margin:0}
+  .built li{grid-template-columns:auto minmax(0,1fr)}.built span{grid-column:2}
+}
+@media (max-width:640px){
+  .cols.c2,.cols.c3,.cols.c4,.cols.c5{grid-template-columns:minmax(0,1fr)}
+  .five ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bcard{grid-template-columns:minmax(0,1fr)}
+}
 </style>
 </head>
 <body>
@@ -209,13 +328,13 @@ footer a{color:#9FC6E8}
         <circle cx="8.4" cy="14.1" r="5.7" fill="#D9624F" stroke="#fff" stroke-width=".7"/>
         <circle cx="12" cy="7.9" r="5.7" fill="#3274AE" stroke="#fff" stroke-width=".7"/>
         <circle cx="12" cy="12" r="1.6" fill="#fff"/></svg>
-      <span><b>Hue</b><small>Loo Say Hien · 4 day challenge</small></span>
+      <span><b>Hue</b><small>Loo Say Hien · Design challenge</small></span>
     </div>
     <p class="navsub">A sales assistant for one Avient Specialty Inks sales rep.</p>
     <div class="prog" aria-hidden="true"><i id="prog"></i></div>
     <ol id="navlist"></ol>
     <div class="navfoot">
-      <p><kbd>J</kbd> <kbd>K</kbd> move between sections. <kbd>N</kbd> shows my notes.</p>
+      <p>Press <kbd>J</kbd> or <kbd>K</kbd> to go to the next or the last section. Press <kbd>N</kbd> to show my notes.</p>
       <button class="navtog" id="tognotes" aria-pressed="false">Show my notes</button>
     </div>
   </nav>
@@ -226,9 +345,9 @@ footer a{color:#9FC6E8}
   <div class="inner">
     <h3>Thank you</h3>
     <p>Loo Say Hien · Product designer · Singapore</p>
-    <p>Prototype, design system and working document are linked in the last section.</p>
-    <p style="margin-top:10px;font-size:14px;color:#8FA0A9">Daniel is a persona, not a real person. All customers, deals and amounts are sample data.
-      The photographs and film clips of people are generated. Hue is a concept and is not an Avient product.</p>
+    <p>The last section has the links to the prototype, the design system and the working document.</p>
+    <p style="margin-top:10px;font-size:14px;color:#8FA0A9">Daniel is not a real person. All customers, deals and amounts are sample data.
+      The pictures and the film clips of people are generated. Hue is a concept. It is not an Avient product.</p>
   </div>
 </footer>
 
@@ -237,7 +356,7 @@ footer a{color:#9FC6E8}
 "use strict";
 var A = 'assets/media/';
 /* the size of each picture and clip, so the page keeps its shape while they load */
-var SIZE = {"clip-1-plan.jpg":[960,540],"clip-1-plan.mp4":[960,540],"clip-2-meet.jpg":[960,540],"clip-2-meet.mp4":[960,540],"clip-3-night.jpg":[960,540],"clip-3-night.mp4":[960,540],"clip-4-promises.jpg":[960,540],"clip-4-promises.mp4":[960,540],"clip-5-quiet.jpg":[960,540],"clip-5-quiet.mp4":[960,540],"clip-6-win.jpg":[960,540],"clip-6-win.mp4":[960,540],"clip-7-with-hue.jpg":[960,540],"clip-7-with-hue.mp4":[960,540],"clip-8-road.jpg":[960,540],"clip-8-road.mp4":[960,540],"daniel.jpg":[900,600],"dev-computer.png":[1500,898],"dev-phone.png":[747,1500],"dev-tablet.png":[1500,1055],"devices.png":[3840,2160],"hue-film.jpg":[1280,720],"hue-film.mp4":[1280,720],"qr-prototype.png":[630,630],"r1-home.mp4":[514,1000],"r1-home.png":[514,1000],"r2-note.mp4":[514,1000],"r2-note.png":[514,1000],"r3-quiet.mp4":[514,1000],"r3-quiet.png":[514,1000],"r4-record.mp4":[1272,760],"r4-record.png":[1272,760],"r5-menu.mp4":[516,1000],"r5-menu.png":[516,1000],"r6-date.mp4":[518,1000],"r6-date.png":[518,1000],"s-check.png":[514,1000],"s-record.jpg":[1888,1328],"s-today.png":[514,1000],"weather-ideas.png":[1800,878]};
+var SIZE = {"c-menu.png":[1800,1079],"clip-1-plan.jpg":[960,540],"clip-1-plan.mp4":[960,540],"clip-2-meet.jpg":[960,540],"clip-2-meet.mp4":[960,540],"clip-3-night.jpg":[960,540],"clip-3-night.mp4":[960,540],"clip-4-promises.jpg":[960,540],"clip-4-promises.mp4":[960,540],"clip-5-quiet.jpg":[960,540],"clip-5-quiet.mp4":[960,540],"clip-6-win.jpg":[960,540],"clip-6-win.mp4":[960,540],"clip-7-with-hue.jpg":[960,540],"clip-7-with-hue.mp4":[960,540],"clip-8-road.jpg":[960,540],"clip-8-road.mp4":[960,540],"daniel.jpg":[900,600],"hue-film.jpg":[1280,720],"hue-film.mp4":[1280,720],"p-check.png":[760,1526],"p-home.png":[760,1526],"p-photo.png":[760,1526],"p-settings.png":[760,1526],"p-talk.png":[760,1526],"p-today.png":[760,1526],"p-type.png":[760,1526],"p-write.png":[760,1526],"qr-prototype.png":[630,630],"r1-home.mp4":[514,1000],"r1-home.png":[514,1000],"r3-quiet.mp4":[514,1000],"r3-quiet.png":[514,1000],"t-record.png":[1600,1124],"t-write.png":[1600,1124],"x-hero.png":[1326,744],"x-sales.png":[1326,549],"x-tidied.png":[858,66],"x-visit.png":[1326,861],"x-why.png":[558,66]};
 function dim(f){ var z = SIZE[f]; return z ? ' width="'+z[0]+'" height="'+z[1]+'"' : '' }
 var ic = {
   tick:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg>',
@@ -258,30 +377,54 @@ function shot(file, alt){
 
 /* ---------- the six stages of Daniel's week ---------- */
 var JOURNEY = [
- {t:'Plan the week', clip:'clip-1-plan', feel:'Rushed',
-  does:'On Monday he looks over customers, open quotes and messages. He plans visits by area.',
-  prob:'The facts sit in WhatsApp, email, a notebook and a spreadsheet. He cannot see who is waiting, which quotes run out, or who has gone quiet. So he plans from memory.',
-  fix:'Home gives him the week in one screen. Today, later this week, who needs attention, and the open deals.'},
- {t:'Meet the customer', clip:'clip-2-meet', feel:'Focused',
-  does:'He visits the shop, runs an ink trial, solves problems and listens to the owner.',
-  prob:'He cannot write while he works. Typing on a phone looks rude, and a customer may not want to be recorded.',
-  fix:'He picks what suits the moment: talk, type, write with a pen, or photograph a notebook page.'},
- {t:'Right after the meeting', clip:'clip-7-with-hue', feel:'Tired',
-  does:'He replies to hot leads in WhatsApp, calls or email, and updates the distributor and the technical specialist.',
-  prob:'Replies end up in three apps and never in one record. He may forget a promised sample, price or date.',
-  fix:'He talks one note. Hue finds the customer, the next step and the date, then shows them for him to check.'},
- {t:'Follow up and quote', clip:'clip-4-promises', feel:'Worried',
-  does:'He sends samples, quotes and documents. He asks for technical help. He chases replies.',
-  prob:'Many small promises and no reminders. He cannot see what other people still owe him.',
-  fix:'Every promise has a date and shows in Today on the day it is due. A draft message is ready for him to edit.'},
- {t:'The customer goes quiet', clip:'clip-5-quiet', feel:'Unsure',
-  does:'No reply for days or weeks. He decides to chase, to wait, or to let go.',
-  prob:'Silence can mean busy, a slow trial, or a lost deal. He cannot tell which. He notices too late, or chases too early.',
-  fix:'Hue compares the silence with the usual wait for that stage, says why it is a worry, and drafts a short message.'},
- {t:'Win and grow', clip:'clip-6-win', feel:'Proud',
-  does:'The order arrives. He checks payment, says thank you, and thinks about what to offer next.',
-  prob:'Why he won or lost is not written down. A late payment is a surprise.',
-  fix:'The record holds the full history, the payment status and the products this shop buys.'}
+ {
+  "t": "Plan the week",
+  "clip": "clip-1-plan",
+  "feel": "rushed",
+  "does": "On Monday he looks at his customers, his open quotes and his messages. He plans his visits by area.",
+  "prob": "His facts are in chats, email, a notebook and a spreadsheet. He plans from memory.",
+  "fix": "Home shows the full week on one screen."
+ },
+ {
+  "t": "Meet the customer",
+  "clip": "clip-2-meet",
+  "feel": "focused",
+  "does": "He visits the shop. He does an ink trial, solves problems and listens to the owner.",
+  "prob": "He cannot write while he works. To type on a phone looks rude.",
+  "fix": "He chooses how to record: talk, type, write, or take a photo."
+ },
+ {
+  "t": "After the meeting",
+  "clip": "clip-7-with-hue",
+  "feel": "tired",
+  "does": "He replies to customers in chats, calls and email. He tells the distributor and the technical specialist.",
+  "prob": "He replies in three apps. No app keeps the record. He forgets promises.",
+  "fix": "He records one note. Hue finds the customer, the next step and the date."
+ },
+ {
+  "t": "Follow up and quote",
+  "clip": "clip-4-promises",
+  "feel": "worried",
+  "does": "He sends samples, quotes and documents. He asks for technical help.",
+  "prob": "He makes many small promises. Nothing reminds him.",
+  "fix": "Each promise has a date. Today shows the promise on that date."
+ },
+ {
+  "t": "The customer does not reply",
+  "clip": "clip-5-quiet",
+  "feel": "not sure",
+  "does": "The customer does not reply for days or weeks. He must decide: contact, wait, or stop.",
+  "prob": "Is the customer busy? Is the trial slow? Is the deal lost? He does not know.",
+  "fix": "Hue compares the wait with the usual wait. It gives the reason and writes a message."
+ },
+ {
+  "t": "Win the order",
+  "clip": "clip-6-win",
+  "feel": "proud",
+  "does": "The order arrives. He checks the payment and says thank you.",
+  "prob": "He does not record why he won or lost. A late payment is a surprise.",
+  "fix": "The record keeps the history, the payments and the products."
+ }
 ];
 function journeyHTML(){
   return '<div class="jtabs" role="tablist" aria-label="Stages of the week">'+
@@ -293,321 +436,315 @@ function journeyPanel(i){
   var s = JOURNEY[i];
   return '<div class="shot"><video src="'+A+s.clip+'.mp4" poster="'+A+s.clip+'.jpg" muted loop playsinline autoplay aria-hidden="true"></video></div>'+
     '<div class="jmeta"><h3>'+(i+1)+'. '+esc(s.t)+'</h3><p><span class="feel">He feels '+esc(s.feel.toLowerCase())+'</span></p>'+
-    '<dl class="jrow"><dt>He does</dt><dd>'+esc(s.does)+'</dd></dl>'+
+    '<dl class="jrow"><dt>He does this</dt><dd>'+esc(s.does)+'</dd></dl>'+
     '<dl class="jrow"><dt>The problem</dt><dd>'+esc(s.prob)+'</dd></dl>'+
-    '<dl class="jrow"><dt>Hue does</dt><dd class="fix">'+esc(s.fix)+'</dd></dl></div>';
+    '<dl class="jrow"><dt>Hue does this</dt><dd class="fix">'+esc(s.fix)+'</dd></dl></div>';
 }
 
 /* ---------- the sections ---------- */
 var SECTIONS = [
-
-{id:'title', ch:'Open', nav:'Title', hero:true, html:
-  '<svg class="mark" viewBox="0 0 24 24" aria-hidden="true">'+
-   '<circle cx="15.6" cy="14.1" r="5.7" fill="#EFBE46" stroke="#fff" stroke-width=".7"/>'+
-   '<circle cx="8.4" cy="14.1" r="5.7" fill="#D9624F" stroke="#fff" stroke-width=".7"/>'+
-   '<circle cx="12" cy="7.9" r="5.7" fill="#3274AE" stroke="#fff" stroke-width=".7"/>'+
-   '<circle cx="12" cy="12" r="1.6" fill="#fff"/></svg>'+
-  '<h1>Hue</h1>'+
-  '<p class="tag">A sales assistant for one Avient Specialty Inks sales rep.</p>'+
-  '<div class="herometa"><span><b>Loo Say Hien</b>Product designer</span>'+
-   '<span><b>Four day design challenge</b>October 2026</span>'+
-   '<span><b>Singapore</b>Specialty Inks, Asia</span></div>'+
-  '<p class="scrollcue">'+ic.down+'Scroll, or press J</p>',
-  note:'Say who you are in one line. Then scroll. Do not read the slide.'},
-
-{id:'brief', ch:'Open', nav:'The brief', h2:'Four goals, one sales rep, four days.',
-  lede:'Avient asked for a tool that helps a sales rep see the pipeline, act faster, and stop losing deals to silence. I narrowed it to <b>one person on one day</b>, because a tool for everybody helps nobody.',
-  html:'<div class="cols">'+
-   '<div class="card"><span class="n">1</span><h3>See the pipeline</h3><p>Know where every deal stands, without opening a report.</p></div>'+
-   '<div class="card"><span class="n">2</span><h3>Know what matters now</h3><p>One short list for today, with the reason for each item.</p></div>'+
-   '<div class="card"><span class="n">3</span><h3>Act faster</h3><p>Reply, quote and record in the gaps between visits.</p></div>'+
-   '<div class="card"><span class="n">4</span><h3>Catch quiet deals</h3><p>Notice silence early, with a reason, not a nag.</p></div></div>'+
-   '<div class="body sp"><p><b>What I made in four days.</b> A clickable prototype for phone, tablet and computer. A design system. A working document with the research and every decision. A screen by screen guide. This presentation.</p></div>',
-  note:'30 seconds. The four goals come from the brief. The one line that matters: I narrowed the scope on purpose, and I can defend it.'},
-
-{id:'film', ch:'Open', nav:'The film', h2:'Ninety seconds, start to finish.',
-  lede:'Before the method, here is the result. Every screen in it is the real prototype, recorded as it runs.',
-  html:'<div class="film"><video src="'+A+'hue-film.mp4" poster="'+A+'hue-film.jpg"'+dim('hue-film.mp4')+' controls preload="metadata" playsinline></video></div>'+
-   '<p class="cap">Every number and sentence in the voice over is read off the real screens.</p>',
-  note:'Play it and stay quiet. 89 seconds. Then move on.'},
-
-{id:'daniel', ch:'The person', nav:'Daniel', h2:'Daniel Lim sells printing inks.',
-  lede:'A persona built from the job description, seven sales videos, and an online forum of field reps. Not a real person.',
-  html:'<div class="split"><div>'+
-   '<ul class="ticks">'+
-   '<li>'+ic.tick+'<span><b>About 40 customers and 30 open deals</b><span>Print shops and garment makers across Singapore.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Works from his car and his phone</b><span>Between visits, in car parks, in loading bays.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Writes up visits at night, from memory</b><span>So details are lost, and some nights he skips it.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Knows ink, not software</b><span>8 years in screen printing, 2 in sales. He will not accept long forms.</span></span></li></ul>'+
-   '<div class="quote"><p>"The best information comes up in the meeting. There is no polite way to keep it."</p>'+
-   '<cite>The finding that shaped everything else</cite></div>'+
-   '</div><div>'+shot('daniel.jpg','Daniel Lim, the persona, outside a print shop in Singapore')+
-   '<p class="cap">Generated portrait. Daniel is a persona.</p></div></div>',
-  note:'Who he is in 30 seconds. Land the quote. That quote is why the capture button exists.'},
-
-{id:'journey', ch:'The person', nav:'A week with Daniel', h2:'One week, six stages, six different problems.',
-  lede:'Click a stage. The clip shows the moment, and the panel shows what breaks and what Hue does about it.',
-  html:journeyHTML(),
-  note:'This is your longest section, about three minutes. Click through all six. Let each clip run while you talk. Stage 3 and stage 5 are the two that the prototype answers hardest.'},
-
-{id:'findings', ch:'The person', nav:'What I learned', h2:'Five findings I did not expect.',
-  html:'<ol class="numbered">'+
-   '<li><b>The best information comes up in the meeting, and there is no polite way to keep it.</b>'+
-    '<span>Typing on a phone looks like he is not listening. A pocket notebook keeps trust, but it is slow to type up later. Voice notes pile up and nobody turns them into a record.</span></li>'+
-   '<li><b>Fast replies win deals, but only if he knows who is waiting.</b>'+
-    '<span>Speed is the advantage a small team has. It is useless if the list of who is waiting lives in his head.</span></li>'+
-   '<li><b>Quiet and old customers are the easiest sales to win back, and nobody can see them.</b>'+
-    '<span>An old quote is a warm lead. It just has no place to be seen.</span></li>'+
-   '<li><b>Selling is personal, and it is a team effort.</b>'+
-    '<span>The record must hold what he knows about the person, so the technical specialist and the manager never ask the customer the same question twice.</span></li>'+
-   '<li><b>Customers may not accept being recorded.</b>'+
-    '<span>Reps in a forum record only with permission. Whether a Singapore print shop owner agrees is still a guess, and it is on my list to test.</span></li></ol>',
-  note:'Do not read all five. Say one and five. One explains the capture button. Five explains why I treated privacy as a gate, not a trade.'},
-
-{id:'problem', ch:'The person', nav:'The problem', h2:'The problem, in one line.',
-  html:'<p class="big">Daniel’s deal information is scattered across his phone and his head, and updating it costs time he does not have.</p>'+
-   '<p class="lede sp">So he cannot see which deals matter, and deals go quiet without him noticing.</p>'+
-   '<div class="body sp"><p>He needs four things at any time: <b>how far he is from his target</b>, <b>which deals matter most</b>, <b>which deals have gone quiet</b>, and <b>what to do next</b>. Those four map one to one onto the four goals in the brief.</p></div>',
-  note:'Say the one line. Pause. Then say the four things. This is the hinge of the whole presentation.'},
-
-{id:'hmw', ch:'The person', nav:'How might we', h2:'Five questions I designed against.',
-  html:'<div class="cols">'+
-   ['How might we let Daniel pass on what he learns by talking, without breaking his conversation with the customer?',
-    'How might we turn scattered notes, chats and old quotes into a clear picture of each customer?',
-    'How might we tell Daniel which deals matter most today, in a few seconds?',
-    'How might we make quiet deals easy to see without nagging him?',
-    'How might we show Daniel how far he is from his target, and what would move it, without a report to fill in?'
-   ].map(function(q,i){ return '<div class="card"><span class="n">'+(i+1)+'</span><p style="color:var(--ink);font-size:17px">'+esc(q)+'</p></div>' }).join('')+
-   '</div>',
-  note:'Read one of them out loud, not all five. Point at the wall and move on.'},
-
-{id:'ideas', ch:'The choice', nav:'How I chose', h2:'Twenty three ideas. Privacy was a gate, not a trade.',
-  lede:'I scored every idea from 1 to 5 on impact, effort and privacy risk. Impact and effort can be traded against each other. Privacy cannot.',
-  html:'<div class="split wide"><div>'+
-   '<ol class="numbered">'+
-   '<li><b>Score three things</b><span>Impact on the four goals. Effort to build. Privacy risk to Daniel or to his customer.</span></li>'+
-   '<li><b>Gate on privacy first</b><span>Any idea with a privacy risk of 4 or 5 is parked until there is a safer version. No amount of impact buys back a customer’s trust.</span></li>'+
-   '<li><b>Then impact against effort</b><span>What is left goes on a matrix. High impact and low effort first.</span></li>'+
-   '<li><b>Pick a core that covers all four goals</b><span>Eighteen ideas passed the gate. That is far too many for four days.</span></li></ol>'+
-   '</div><div class="card hi"><h3>What the gate caught</h3>'+
-   '<p>Recording a whole meeting scored highest on impact and worst on privacy. It is parked, not deleted. A safer version is in the prototype: <b>the voice note records Daniel only</b>, and the screen says so.</p>'+
-   '<p class="sp" style="margin-top:14px">That one rule is why the capture button offers four ways to make a note instead of one.</p></div></div>',
-  note:'The point of this section is judgement, not the number 23. Say the privacy gate rule and give the recording example.'},
-
-{id:'core', ch:'The choice', nav:'What I built', h2:'Five of the eighteen. Together they cover all four goals.',
-  html:'<table class="tbl"><thead><tr><th>What</th><th>Which goal it answers</th></tr></thead><tbody>'+
-   '<tr><td><b>Capture a note by talking, typing, writing or a photo, then tidy up</b></td><td>Act faster, without tedious notes</td></tr>'+
-   '<tr><td><b>Today: the visits and the tasks that matter, each with a reason</b></td><td>Know what matters now</td></tr>'+
-   '<tr><td><b>Home with the sales bar against the target</b></td><td>See the pipeline</td></tr>'+
-   '<tr><td><b>Quiet deal warnings, with the reason and a drafted message</b></td><td>Catch quiet deals</td></tr>'+
-   '<tr><td><b>The customer record, written and edited by the tool</b></td><td>The base that everything else reads from</td></tr>'+
-   '</tbody></table>'+
-   '<div class="body sp"><p>The rest went to a parked list with the reason, so the next person can pick them up.</p></div>',
-  note:'Five rows. Say the last line: everything I cut is written down with a reason.'},
-
-{id:'brand', ch:'The choice', nav:'Why a name', h2:'The assistant has a name, a mark, and a limit.',
-  lede:'It is called <b>Hue</b>, as in colour, because Avient sells inks. It is not given a human name, so nobody mistakes it for a person.',
-  html:'<div class="split"><div>'+
-   '<ul class="ticks">'+
-   '<li>'+ic.tick+'<span><b>The mark appears on anything Hue wrote or chose</b><span>Tidied notes, drafted messages, the order of the tasks, warnings. If the mark is there, a person did not write it.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Hue never sends and never saves by itself</b><span>It prepares. Daniel taps. The screen says so in words.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Every task of Hue has its own switch</b><span>Turn off tidy up, and the note is saved exactly as he wrote it. The screen still works.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>When Hue is unsure, it says so</b><span>A "Please check" label, not a quiet guess.</span></span></li></ul>'+
-   '</div><div>'+phone('r2-note.mp4','r2-note.png')+'<p class="cap">The Hue mark on the tidied note, and on the fields it filled.</p></div></div>',
-  note:'This is the trust argument. If they ask one hard question about AI, it will be answered here. Thirty seconds, then move.'},
-
-{id:'home', ch:'The design', nav:'Home', h2:'Home answers one question: am I on track today?',
-  html:'<div class="split flip"><div>'+phone('r1-home.mp4','r1-home.png')+'</div><div>'+
-   '<ul class="ticks">'+
-   '<li>'+ic.tick+'<span><b>The greeting carries the weather for his visits</b><span>Not decoration. Rain changes when he leaves.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>One bar, two facts</b><span>Solid is won. Striped is what the open deals could add. The line is where he should be today.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>One honest sentence</b><span>"S$288k to go. Your open deals can cover it." It never says a target is safe when it is not.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Then the work</b><span>Today, later this week, who needs attention, and the open deals.</span></span></li></ul>'+
-   '<div class="kpi"><div><b>S$612k</b><span>won this year</span></div><div><b>68%</b><span>of a S$900k target</span></div><div><b>76%</b><span>where the plan says he should be</span></div></div>'+
-   '</div></div>',
-  note:'Point at the bar. The striped part is the idea that makes it honest. Thirty seconds.'},
-
-{id:'weather', ch:'The design', nav:'The weather', h2:'I built five weather designs and kept one.',
-  lede:'A sales rep in Singapore drives all day. Rain changes his plan. The question was how much weather earns its place on the first screen.',
-  html:'<div class="figwrap">'+shot('weather-ideas.png','Five weather designs compared side by side in the prototype')+
-   '<p class="cap">All five were built in the real prototype and compared on a phone, not sketched.</p></div>'+
-   '<div class="rule">The forecast is not the point. The visit is.<small>Idea 5 won. One sentence names the visit that the weather affects, and gives one instruction.</small></div>'+
-   '<div class="body sp"><p><b>"Storms at 3 pm, when you visit Tuas Textile Print. Leave 15 minutes early."</b></p>'+
-   '<p>The same warning then shows on that visit in Today, so the advice sits where he acts. After the visit has passed, the sentence changes to tomorrow, because weather about the past is of no use.</p></div>',
-  note:'This is the strongest craft story. Five built, one kept, and a rule that came out of it. Forty five seconds here is well spent.'},
-
-{id:'today', ch:'The design', nav:'Today', h2:'Visits first, then the tasks that matter.',
-  html:'<div class="split"><div>'+
-   '<ul class="ticks">'+
-   '<li>'+ic.tick+'<span><b>Visits come first, in order of time</b><span>A visit is face to face and has a fixed time. It beats anything on a list.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Then three tasks, most important first</b><span>Three, not twenty. One button shows the rest.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Every item says why</b><span>"Quote of S$48k sent to Ace Tees 9 days ago, no reply yet."</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>It follows the clock</b><span>Before the visit the button reads "Prepare for the visit". After it, "Add a note about the visit".</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>A note closes the item</b><span>Save a note for that customer and the visit ticks itself.</span></span></li></ul>'+
-   '</div><div>'+still('s-today.png','The Today section with visits and tasks')+'</div></div>',
-  note:'The clock behaviour is worth saying out loud. It shows I thought about the day, not just the screen.'},
-
-{id:'points', ch:'The design', nav:'Why this task first', h2:'The order is a rule, not a feeling.',
-  lede:'Hue gives each task points. The points are never shown. The reason is always shown.',
-  html:'<div class="rule" style="max-width:34ch">points = deal value &times; chance of an order + waiting<small>Chance comes from the stage: New 20%, Sample 40%, Trial 60%, Quote 80%. A late payment divides the first part by three.</small></div>'+
-   '<div class="cols">'+
-   '<div class="card"><h3>Waiting points</h3><p>50 for a promise due today. 10 for each day it has been his move, up to 30. 5 for each day past the usual wait, up to 30.</p></div>'+
-   '<div class="card"><h3>The usual wait</h3><p>3 days for a new deal, 7 for samples, 14 for a trial, 5 for a quote. Silence is only a worry when it is longer than normal for that stage.</p></div>'+
-   '<div class="card hi"><h3>Why show the reason, not the score</h3><p>A number he cannot argue with is a number he will not trust. A sentence he can disagree with is a sentence he can correct.</p></div></div>'+
-   '<div class="body sp"><p>These numbers are my first values. They come from the logic of the job, not from real sales data. <b>The first thing I would test with real reps is whether they agree with the three tasks Hue puts on top.</b></p></div>',
-  note:'Say the formula out loud once. Then the honest line: these numbers are guesses and here is how I would check them. That line is worth more than the formula.'},
-
-{id:'capture', ch:'The design', nav:'Capture a note', h2:'A note in the car, not a write up at night.',
-  lede:'One round button. Tap it for a menu, hold it to start talking at once. Four ways to make a note, because the right one depends on the moment.',
-  html:'<div class="split flip"><div>'+phone('r2-note.mp4','r2-note.png')+'</div><div>'+
-   '<ol class="numbered">'+
-   '<li><b>Talk</b><span>In the car, right after the visit. Records his voice only, and the screen says so.</span></li>'+
-   '<li><b>Type</b><span>When it is quiet, or when he prefers to write it himself.</span></li>'+
-   '<li><b>Write with a pen</b><span>On a tablet, like paper, because a pen does not look rude in a meeting.</span></li>'+
-   '<li><b>Photograph a notebook page</b><span>For a phone with no pen. The page he already wrote becomes a record.</span></li></ol>'+
-   '<div class="body"><p>Then Hue tidies it up: it finds the customer, the next step and the date, and reads "Friday" as the coming Friday.</p></div>'+
-   '</div></div>',
-  note:'Hold on the clip while you talk. The four ways answer finding one and finding five together.'},
-
-{id:'control', ch:'The design', nav:'He has the last word', h2:'Hue prepares. Daniel decides.',
-  lede:'Check and save is the one screen where the whole trust argument lives.',
-  html:'<div class="split"><div>'+
-   '<ul class="ticks">'+
-   '<li>'+ic.tick+'<span><b>Every field Hue filled carries the mark</b><span>He can see what he is being asked to accept.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Where Hue is unsure, it says so</b><span>A "Please check" label on the customer or on the date, with the reason underneath.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>His original words are kept</b><span>One tap opens exactly what he said, so he can compare.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Nothing is saved until he taps Save</b><span>Not the note, not the next step, not the deal stage.</span></span></li></ul>'+
-   '<div class="body"><p>Saving one note updates five things: the timeline, the promise list, the deal stage, the task in Today, and the sales bar. He did one thing. The tool did five.</p></div>'+
-   '</div><div>'+still('s-check.png','The Check and save screen with the fields Hue filled')+'</div></div>',
-  note:'The last paragraph is the payoff of the whole design. One action, five updates. Say it slowly.'},
-
-{id:'quiet', ch:'The design', nav:'Quiet deals', h2:'Silence with a reason beats a red dot.',
-  html:'<div class="split flip"><div>'+phone('r3-quiet.mp4','r3-quiet.png')+'</div><div>'+
-   '<div class="quote" style="margin-top:0"><p>"Trial started 16 days ago, and no contact since. A trial usually gives a result within 14 days."</p>'+
-   '<cite>What Hue says when you ask it why</cite></div>'+
-   '<ul class="ticks">'+
-   '<li>'+ic.tick+'<span><b>The rule is per stage</b><span>3 days for a new deal, 7 for samples, 14 for a trial, 5 for a quote. Not one number for everything.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>He can disagree</b><span>"This is normal for this customer" makes Hue wait longer next time. "Remind me in 3 days" hides it until Thursday.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>The next step is ready</b><span>A drafted message he can edit, then send and save in one action.</span></span></li></ul>'+
-   '</div></div>',
-  note:'The two buttons that let him disagree are the important part. A warning he cannot argue with becomes a warning he ignores.'},
-
-{id:'record', ch:'The design', nav:'The record', h2:'One record. Everything else reads from it.',
-  lede:'Deals, promises, people, timeline, company, products and files. Written by the tool from his notes, and edited by hand when he wants.',
-  html:'<div class="figwrap">'+'<div class="shot" style="border-radius:22px"><img src="'+A+'s-record.jpg" alt="The customer record on a tablet, beside the list of customers"'+dim('s-record.jpg')+'></div>'+
-   '<p class="cap">On a tablet the record sits beside the list. On a phone it is a full screen. The content and the rules are the same.</p></div>'+
-   '<div class="cols">'+
-   '<div class="card"><h3>He can change what he wrote</h3><p>A visit, a call, a note. A pencil on the row opens it.</p></div>'+
-   '<div class="card"><h3>He cannot change a record</h3><p>A message, an email, or an entry the tool made. A lock, and a tap on the lock says why. To correct it, add a note.</p></div>'+
-   '<div class="card"><h3>A deal is never removed</h3><p>If the customer says no, the stage becomes Lost. The history stays, because why he lost is worth as much as why he won.</p></div></div>',
-  note:'The lock rule is a good one to say out loud. It shows I think about a record as evidence, not as a text field.'},
-
-{id:'forms', ch:'The design', nav:'Forms', h2:'Forms built for a man in a hurry.',
-  html:'<div class="split"><div>'+
-   '<ul class="ticks">'+
-   '<li>'+ic.tick+'<span><b>Every field knows its own rule</b><span>A Singapore phone has 8 digits and starts with 3, 6, 8 or 9. The error says how to correct it, not that it is wrong.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>The tool tidies the value</b><span>"91234567" becomes "9123 4567". "03-12" becomes "#03-12".</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>He never types what the tool can find</b><span>He picks an address. Hue reads the area from the postal code.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Menus and dates belong to the tool</b><span>Not the browser control, which looks different on every device. Same shape, same spacing, same behaviour everywhere.</span></span></li></ul>'+
-   '</div><div>'+phone('r6-date.mp4','r6-date.png')+'</div></div>',
-  note:'Thirty seconds. The last point is the one a design lead will notice.'},
-
-{id:'drafts', ch:'The design', nav:'Nothing is lost', h2:'A phone call must not cost him the form.',
-  lede:'A rep is interrupted constantly. So a form with entries never closes silently.',
-  html:'<div class="split flip"><div>'+phone('r5-menu.mp4','r5-menu.png')+'</div><div>'+
-   '<ol class="numbered">'+
-   '<li><b>An empty form closes at once</b><span>No question when there is nothing to lose. A question every time becomes a question he taps through without reading.</span></li>'+
-   '<li><b>A form with entries asks</b><span>"Leave this form? Keep for later, discard, or stay." The cross, Cancel, the Escape key and a tap outside all go through the same question.</span></li>'+
-   '<li><b>Kept forms wait at the top of Home</b><span>With the time he started. One tap opens it with every entry in place.</span></li></ol>'+
-   '</div></div>',
-  note:'Say the first point. Knowing when NOT to interrupt is the design decision here.'},
-
-{id:'devices', ch:'The design', nav:'Three devices', h2:'One tool, three screens, one set of rules.',
-  html:'<div class="figwrap">'+shot('devices.png','The same tool on a tablet, a phone and a computer')+'</div>'+
-   '<div class="cols">'+
-   '<div class="card"><h3>Phone</h3><p>Where the work happens. Section links at the top, one column, the capture button under his thumb, on either side.</p></div>'+
-   '<div class="card"><h3>Tablet</h3><p>The list and the record side by side. The capture menu also offers a pen.</p></div>'+
-   '<div class="card"><h3>Computer</h3><p>A full table with pages, and a keyboard shortcut for a new note.</p></div></div>'+
-   '<div class="body sp"><p>Each column on the bigger screens is its own stack, so a tall card never leaves a hole beside a short one.</p></div>',
-  note:'Short. Thirty seconds. Then go to the system.'},
-
-{id:'system', ch:'The system', nav:'Design system', h2:'A system, not a set of screens.',
-  lede:'Tokens, components and the rules that decide when to use them. Written so another designer can carry this on.',
-  html:'<div class="cols">'+
-   '<div class="card"><h3>Colour from the logo</h3><p>The Avient blue is too bright for buttons, so the screen blue is a softened version of it. Text is the grey of the Avient wordmark. No green.</p></div>'+
-   '<div class="card"><h3>Three button levels</h3><p>One dark blue button on a screen. Light blue inside a section. Text only for a list control. When every button is dark, none of them gets attention.</p></div>'+
-   '<div class="card"><h3>Status is words and icons</h3><p>Never colour alone. Done is a tick, attention is a triangle, a problem is a cross.</p></div>'+
-   '<div class="card"><h3>Content rules</h3><p>Short sentences. No acronyms. Every suggestion gives a reason, then one next step as a button.</p></div></div>'+
-   '<div class="body sp"><p>The system also records what it refuses to do. Do not redraw the Avient logo. Do not use colour alone for status. Do not make the user type what the tool can find.</p></div>',
-  note:'The last line is the part worth saying. A system that only says yes is a style guide.'},
-
-{id:'access', ch:'The system', nav:'Reach and control', h2:'Sunlight, big thumbs, and the right to turn it off.',
-  html:'<div class="cols">'+
-   '<div class="card"><h3>Four text sizes</h3><p>Everything grows together and rows wrap, so nothing is cut off at the largest size.</p></div>'+
-   '<div class="card"><h3>Stronger contrast</h3><p>Darker text, lines and buttons, for a phone held in Singapore sunlight.</p></div>'+
-   '<div class="card"><h3>Less motion</h3><p>A switch in Settings, and the tool also follows the device setting.</p></div>'+
-   '<div class="card"><h3>The button on either side</h3><p>Left or right, wherever his thumb rests.</p></div>'+
-   '<div class="card hi"><h3>One switch for each task of Hue</h3><p>Tidy up, draft messages, order the tasks, warn about quiet deals, suggestions, weather. All start on. Turn one off and the screen still works.</p></div>'+
-   '<div class="card"><h3>A guide in the tool</h3><p>What every status, filter, deal stage and mark means, in one sheet, so the work screens stay clear.</p></div></div>',
-  note:'Thirty seconds. The one switch per task is the point to land, not the list.'},
-
-{id:'real', ch:'Evidence', nav:'Real and not real', h2:'What actually works, and what is a model.',
-  lede:'I would rather be clear about this than have you find it.',
-  html:'<table class="tbl"><thead><tr><th>Works for real in the prototype</th><th>A model only</th></tr></thead><tbody>'+
-   '<tr><td><b>The points rule.</b> It calculates the order from the data. Change the data and the order changes.</td><td><b>Talk.</b> It plays a sample sentence. Real speech to text is needed.</td></tr>'+
-   '<tr><td><b>The quiet rule</b> and every warning, from the stage and the days.</td><td><b>Tidy up.</b> The sample notes are handled by rules I wrote, not by a language model.</td></tr>'+
-   '<tr><td><b>Every form rule</b>, every error, and the tidy up of values.</td><td><b>Write with a pen.</b> You can draw, but the reading is the sample note.</td></tr>'+
-   '<tr><td><b>Search, filters, sort and paging</b> across 100 sample customers.</td><td><b>Sending.</b> No message, email or call leaves the prototype.</td></tr>'+
-   '<tr><td><b>The address search</b>, with the area read from the postal code.</td><td><b>The map</b> uses a small sample table, not a live service.</td></tr>'+
-   '</tbody></table>',
-  note:'Thirty seconds. Saying this before they ask buys you credibility for everything else.'},
-
-{id:'test', ch:'Evidence', nav:'What I would test', h2:'Seven guesses I would check first.',
-  lede:'This was four days with no access to real reps. Everything below is an assumption with a way to check it.',
-  html:'<table class="tbl"><thead><tr><th>Guess</th><th>How to test it</th></tr></thead><tbody>'+
-   ['Reps write up notes late, from memory|Ask how and when they update their records',
-    'Most work happens on a phone between visits|Ask what they use between meetings',
-    'Customers use WhatsApp and calls more than email|Ask reps and a print shop owner',
-    'Deal size is a poor way to choose what to chase|Ask how they choose',
-    'Old quotes are worth another try|Ask how often an old quote later became an order',
-    'Customers would not accept being recorded|Ask a print shop owner',
-    'Reps would use quick tags, voice notes or a notebook photo in a meeting|Show the options and see which they pick'
-   ].map(function(r){ var p=r.split('|'); return '<tr><td><b>'+esc(p[0])+'</b></td><td>'+esc(p[1])+'</td></tr>' }).join('')+
-   '</tbody></table>'+
-   '<div class="body sp"><p><b>The first test.</b> Put the prototype in front of two reps and a manager. Open Today and ask one question: do you agree with the three tasks at the top, and why? If they do not, the points rule is wrong, and that is the cheapest thing to fix.</p></div>',
-  note:'This section is what separates a portfolio piece from a design process. Spend 45 seconds. End on the first test.'},
-
-{id:'edges', ch:'Evidence', nav:'Edges and gaps', h2:'What I planned for, and what I left out.',
-  html:'<div class="split wide"><div><h3>Planned for</h3>'+
-   '<ul class="ticks">'+
-   '<li>'+ic.tick+'<span><b>A new user with no customers</b><span>Every screen has an empty state with one next step. The capture button opens the new customer form, because a note needs a customer.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>A hundred customers</b><span>Search and filters first. Lists grow by 20. The table pages by 25.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>A customer with no contact, no address, no deals</b><span>Each section says what is missing and offers to add it.</span></span></li>'+
-   '<li>'+ic.tick+'<span><b>Hue guessing wrong</b><span>A "Please check" label, his original words kept, and every field editable.</span></span></li></ul>'+
-   '</div><div class="card"><h3>Left out on purpose</h3>'+
-   '<p>The manager view, the technical specialist view, the distributor view, offline sync, importing from a real system, and recording a whole meeting.</p>'+
-   '<p class="sp" style="margin-top:14px">Each one is written in the working document with the reason, so the next person does not have to guess what I was thinking.</p></div></div>',
-  note:'Thirty seconds. The honest framing is the point: I know what is missing.'},
-
-{id:'try', ch:'Try it', nav:'Try it now', h2:'It is live. Open it on your phone.',
-  lede:'Scan the code, or use it right here. It is the real prototype: tap anything, switch devices, change the time of day and the weather.',
-  html:'<div class="split wide"><div class="qr">'+
-   '<img src="'+A+'qr-prototype.png" alt="A code that opens the prototype" width="190" height="190">'+
-   '<p>Point your camera at the code. It opens on your own phone, with sample data.</p>'+
-   '<p class="lnk"><a href="prototype/index.html" target="_blank" rel="noopener">sayhien.github.io/avient-sales-rep-tool/prototype/</a></p>'+
-   '</div><div class="frame"><iframe src="prototype/index.html?embed=1&amp;splash=0&amp;tour=0&amp;map=sample&amp;time=8:20&amp;data=100" title="The Hue prototype" loading="lazy"></iframe></div></div>'+
-   '<div class="body sp"><p><b>Worth trying:</b> hold the round button to talk at once. Change the sample data to 0 customers to see the empty states. Change the time to 8 in the evening and watch the greeting change to tomorrow.</p></div>',
-  note:'Hand it over here. Let them hold it. Stop talking. This is where you win or lose the room.'},
-
-{id:'more', ch:'Try it', nav:'The rest of the work', h2:'Everything behind the prototype.',
-  html:'<div class="cols">'+
-   '<div class="card"><h3>Working document</h3><p>The research, the persona, the journey map, the twenty three ideas with scores, every edge case, and a record of all twelve design reviews with the reason for each change.</p></div>'+
-   '<div class="card"><h3>Hue screen guide</h3><p>Every detail on every screen: what it means, where Hue got it, what it connects to, and how it helps.</p></div>'+
-   '<div class="card"><h3>Design system</h3><p>Tokens, components, content rules, and the rules about what not to do.</p></div>'+
-   '<div class="card hi"><h3>The code</h3><p>The prototype is one HTML file with no framework and no build step. It runs from a folder, offline, on any device.</p></div></div>'+
-   '<div class="body sp"><p>Ask me about any decision in the prototype. Every one of them is written down with the reason.</p></div>',
-  note:'Close on the last line and invite questions. Then stop.'}
+ {
+  "id": "title",
+  "ch": "The start",
+  "nav": "Title",
+  "h2": null,
+  "lede": null,
+  "html": "<svg class=\"hmark hi mark\" width=\"104\" height=\"104\" viewBox=\"0 0 24 24\" role=\"img\" aria-label=\"The Hue logo\"><g class=\"hg\"><circle class=\"h3\" cx=\"15.6\" cy=\"14.1\" r=\"5.7\"/><circle class=\"h2\" cx=\"8.4\" cy=\"14.1\" r=\"5.7\"/><circle class=\"h1\" cx=\"12\" cy=\"7.9\" r=\"5.7\"/></g><circle class=\"h0\" cx=\"12\" cy=\"12\" r=\"1.6\"/></svg><h1>Hue</h1><p class=\"tag\">A sales assistant for one Avient Specialty Inks sales rep.</p><div class=\"herometa\"><span><b>Loo Say Hien</b>Product designer</span><span><b>Design challenge, four days</b>October 2026</span><span><b>Singapore</b>Specialty Inks, Asia</span></div><p class=\"scrollcue\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14M6 13l6 6 6-6\"/></svg>Scroll down, or press J</p>",
+  "hero": true,
+  "note": "Hello, I am Say Hien. This is Hue. It is a sales assistant for one sales rep at Avient Specialty Inks. I designed it in four days. First, you see a short film of the result. Then I show the user, the ideas and the design. At the end, you can try it on your phone. It uses sample data. It is not an official Avient product."
+ },
+ {
+  "id": "brief",
+  "ch": "The start",
+  "nav": "The brief",
+  "h2": "The brief has four goals. I designed for one sales rep.",
+  "lede": "Avient asked for a tool that helps a sales rep to see his deals, to act quickly, and to notice when a customer stops replying. I chose <b>one person and one work day</b>.",
+  "html": "<div class=\"cols c4\"><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 20h18M6 20v-6M11 20V6M16 20v-9\"/><path d=\"M19.5 20v-3\"/></g></svg><h3>See sales progress</h3><p>How far is he from his target?</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.5 6h10.5M9.5 12h10.5M9.5 18h10.5\"/><path d=\"M4 6l1 1 2-2.2M4 12l1 1 2-2.2M4 18l1 1 2-2.2\"/></g></svg><h3>Know what is important</h3><p>Which deal is first today?</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M13 3L5 13.5h6L10 21l8-10.5h-6z\"/></g></svg><h3>Act quickly</h3><p>What is the next step? With few notes.</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M9 10.5h.1M12 10.5h.1M15 10.5h.1\"/></g></svg><h3>Find quiet deals</h3><p>Which customers do not reply?</p></div></div><div class=\"made\"><p class=\"lbl\">What I made in four days</p><ul class=\"chips\"><li><svg class=\"tile\" width=\"40\" height=\"40\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2.5\" y=\"5\" width=\"13\" height=\"10\" rx=\"1.5\"/><path d=\"M6 19h6M9 15v4\"/><rect x=\"17\" y=\"9\" width=\"5\" height=\"10\" rx=\"1.2\"/></g></svg>A prototype for three devices</li><li><svg class=\"tile\" width=\"40\" height=\"40\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a9 9 0 1 0 0 18c1.2 0 2-.9 2-2 0-.6-.300-1-.6-1.4-.300-.4-.5-.8-.5-1.3 0-1 .9-1.8 2-1.8H17a4 4 0 0 0 4-4c0-4.1-4-7.5-9-7.5z\"/><path d=\"M7.5 12.5h.1M9 8.5h.1M13.5 7.5h.1\"/></g></svg>A design system</li><li><svg class=\"tile\" width=\"40\" height=\"40\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h8l4 4v14H6z\"/><path d=\"M14 3v4h4M9 11h6M9 14.5h6M9 18h4\"/></g></svg>A working document</li><li><svg class=\"tile\" width=\"40\" height=\"40\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z\"/><path d=\"M4 19.5A2.5 2.5 0 0 0 6.5 21H20v-4M9 8h7\"/></g></svg>A screen guide</li><li><svg class=\"tile\" width=\"40\" height=\"40\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M10 8.5l5.5 3.5-5.5 3.5z\"/></g></svg>A short film</li></ul></div>",
+  "hero": false,
+  "note": "The brief has four goals. See sales progress. Know what is important. Act quickly. Find quiet deals. A quiet deal is a deal where the customer does not reply. I designed for one sales rep on one work day. A tool for all users helps no user. In four days I made a prototype for three devices, a design system, a working document, a screen guide and a short film."
+ },
+ {
+  "id": "film",
+  "ch": "The start",
+  "nav": "The film",
+  "h2": "First, watch the film. It shows the tool in less than 90 seconds.",
+  "lede": "Each screen in the film is the real prototype. I recorded it while it worked.",
+  "html": "<div class=\"film\"><video src=\"assets/media/hue-film.mp4\" poster=\"assets/media/hue-film.jpg\" width=\"1280\" height=\"720\" controls preload=\"metadata\" playsinline></video></div><p class=\"cap\">The voice reads the numbers and the sentences from the real screens.</p>",
+  "hero": false,
+  "note": "First, watch the film. It shows the result in less than 90 seconds. Each screen in the film is the real prototype. Play the film now and do not talk. If the room has no internet, play the film file from the computer."
+ },
+ {
+  "id": "daniel",
+  "ch": "The user",
+  "nav": "Daniel",
+  "h2": "The user: Daniel Lim. He sells printing inks to print shops.",
+  "lede": null,
+  "html": "<div class=\"split\"><div><ul class=\"irows\"><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 9l1.5-5h13L20 9M5 9v11h14V9M4 9h16M9.5 20v-5.5h5V20\"/></g></svg><span><b>About 40 customers and 30 open deals</b><span>Print shops and garment makers in Singapore.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 16l1.5-5.3A2.3 2.3 0 0 1 8.7 9h6.6a2.3 2.3 0 0 1 2.2 1.7L19 16\"/><rect x=\"3\" y=\"15.5\" width=\"18\" height=\"4\" rx=\"1.5\"/><path d=\"M7 19.5V21M17 19.5V21\"/></g></svg><span><b>He works from his car and his phone</b><span>He is on the road on most days.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z\"/></g></svg><span><b>He records his visits at night</b><span>He writes from memory, so he forgets details.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z\"/><path d=\"M9.5 14a2.5 2.5 0 0 0 2.5 2.5\"/></g></svg><span><b>He knows inks, not software</b><span>8 years in screen printing, 2 years in sales. He does not accept long forms.</span></span></li></ul><div class=\"quote\"><p>\"He learns the most in a meeting. But he cannot write notes there.\"</p><cite>The most important finding</cite></div></div><div><div class=\"shot\"><img class=\"pic \" src=\"assets/media/daniel.jpg\" alt=\"Daniel Lim, the user that I made, in front of a print shop in Singapore\" width=\"900\" height=\"600\" loading=\"lazy\"></div><p class=\"cap\">Daniel is not a real person. I made him from the job description, seven sales videos and a forum of sales reps. The picture is generated.</p></div></div>",
+  "hero": false,
+  "note": "This is Daniel Lim. He is not a real person. I made him from the job description, seven sales videos and a forum of sales reps. He has about 40 customers. He works from his car and his phone. At night he records his visits from memory, so he forgets details. The most important finding is this: he learns the most in a meeting, but he cannot write notes there."
+ },
+ {
+  "id": "journey",
+  "ch": "The user",
+  "nav": "His week",
+  "h2": "Daniel's week has six stages. Each stage has one problem.",
+  "lede": "Select a stage. The clip shows the moment. The text shows the problem and what Hue does.",
+  "html": "@@JOURNEY@@",
+  "hero": false,
+  "note": "I studied one week of his work. It has six stages. On Monday, he plans from memory, because his facts are in four places. In the meeting, he cannot write, and to type on a phone looks rude. After the meeting, he replies in three apps and forgets promises. For each stage, the blue line shows what Hue does."
+ },
+ {
+  "id": "findings",
+  "ch": "The user",
+  "nav": "Research",
+  "h2": "Research: five things I learned about the work of a sales rep.",
+  "lede": null,
+  "html": "<div class=\"cols c5\"><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 4.5h11v8H8l-3 3v-3H3z\"/><path d=\"M17 9h4v8h-2v3l-3-3h-5v-1.5\"/></g></svg><h3>He learns the most in the meeting</h3><p>But he cannot write notes there. To type on a phone looks rude.</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 8h6M2 12h5M3 16h6\"/><path d=\"M12 5h8l-3 6h4l-8 9 2-7h-4z\"/></g></svg><h3>A fast reply wins the deal</h3><p>But he must know which customer waits for a reply.</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#D9624F\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12s3.3-6 9-6c1.6 0 3 .4 4.2 1.1M21 12s-3.3 6-9 6c-1.6 0-3-.4-4.2-1.1\"/><circle cx=\"12\" cy=\"12\" r=\"2.6\"/><path d=\"M4 4l16 16\"/></g></svg><h3>Old and quiet customers are easy to win back</h3><p>But no list shows them to him.</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"9\" cy=\"8\" r=\"3\"/><path d=\"M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6\"/><circle cx=\"17\" cy=\"9\" r=\"2.4\"/><path d=\"M17.2 14.1c2.2.6 3.8 2.8 3.8 5.4\"/></g></svg><h3>Sales is personal. It is also team work</h3><p>The record must hold what he knows about each person.</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#D9624F\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z\"/><path d=\"M5 11a7 7 0 0 0 14 0M12 18v3\"/><path d=\"M4 3.5l16 17\"/></g></svg><h3>Customers possibly do not accept a recording</h3><p>So Hue records only the voice of Daniel.</p></div></div>",
+  "hero": false,
+  "note": "I learned five things. I will tell you two. Number one: he learns the most in the meeting, but he cannot write notes there. This is the reason for the round button that records a note. Number five: customers possibly do not accept a recording. This is the reason that Hue records only the voice of Daniel."
+ },
+ {
+  "id": "problem",
+  "ch": "The user",
+  "nav": "The problem",
+  "h2": "The problem: Daniel's deal information is in many places.",
+  "lede": null,
+  "html": "<p class=\"big\">To update it takes time that he does not have.</p><ul class=\"chips sp2\"><li><svg class=\"tile\" width=\"40\" height=\"40\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M8.5 9.5h7M8.5 12.5h4\"/></g></svg>Chats</li><li><svg class=\"tile\" width=\"40\" height=\"40\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2.5\"/><path d=\"M3.5 7l8.5 6 8.5-6\"/></g></svg>Email</li><li><svg class=\"tile\" width=\"40\" height=\"40\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h12v18H6z\"/><path d=\"M9 3v18M12 8h3M12 12h3\"/></g></svg>Notebook</li><li><svg class=\"tile\" width=\"40\" height=\"40\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 9.5h18M3 15h18M9 4v16M15 4v16\"/></g></svg>Spreadsheet</li><li><svg class=\"tile\" width=\"40\" height=\"40\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 21v-3H7a2 2 0 0 1-2-2v-2l-2-1 2-3a7 7 0 1 1 11 5.7V21\"/><path d=\"M11 9.5a1.8 1.8 0 1 1 2.5 1.7c-.5.3-.7.6-.7 1.1\"/></g></svg>His memory</li></ul><p class=\"lede sp\">The result: he cannot see which deals are important. He does not notice when a customer stops replying.</p><div class=\"cols c4\"><div class=\"card\"><p class=\"lbl\">See sales progress</p><h3>\"How far am I from my target?\"</h3></div><div class=\"card\"><p class=\"lbl\">Know what is important</p><h3>\"Which deal is first today?\"</h3></div><div class=\"card\"><p class=\"lbl\">Find quiet deals</p><h3>\"Which customers do not reply?\"</h3></div><div class=\"card\"><p class=\"lbl\">Act quickly</p><h3>\"What do I do next?\"</h3></div></div>",
+  "hero": false,
+  "note": "This is the problem. His deal information is in many places: chats, email, a notebook, a spreadsheet and his memory. To update it takes time that he does not have. The result: he cannot see which deals are important, and he does not notice when a customer stops replying. He needs four answers. Each answer is one goal of the brief."
+ },
+ {
+  "id": "hmw",
+  "ch": "The user",
+  "nav": "Design questions",
+  "h2": "From the problem, I wrote five questions for the design.",
+  "lede": "<b>How might we</b>",
+  "html": "<div class=\"cols c3\"><div class=\"card qcard\"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z\"/><path d=\"M5 11a7 7 0 0 0 14 0M12 18v3\"/></g></svg><p>Let Daniel record what he learns by voice, and not stop his talk with the customer?</p></div><div class=\"card qcard\"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2.5\"/><circle cx=\"9\" cy=\"8.5\" r=\"1.8\"/><path d=\"M13 8h4M8 13h8M8 17h5\"/></g></svg><p>Make one clear picture of each customer from notes, chats and old quotes?</p></div><div class=\"card qcard\"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.5 6h10.5M9.5 12h10.5M9.5 18h10.5\"/><path d=\"M4 6l1 1 2-2.2M4 12l1 1 2-2.2M4 18l1 1 2-2.2\"/></g></svg><p>Show Daniel the most important deals of the day in a few seconds?</p></div><div class=\"card qcard\"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M9 10.5h.1M12 10.5h.1M15 10.5h.1\"/></g></svg><p>Make quiet deals easy to see, and not send too many warnings?</p></div><div class=\"card qcard\"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><circle cx=\"12\" cy=\"12\" r=\"4.5\"/><path d=\"M12 12h.1\"/></g></svg><p>Show Daniel how far he is from his target, with no report to fill in?</p></div></div>",
+  "hero": false,
+  "note": "From the problem, I wrote five questions for the design. I read one question: how might we let Daniel record what he learns by voice, and not stop his talk with the customer? Each screen in the prototype answers one or more of these questions."
+ },
+ {
+  "id": "ideas",
+  "ch": "The ideas",
+  "nav": "23 ideas",
+  "h2": "I had 23 ideas. The ideas with a high privacy risk stopped first.",
+  "lede": null,
+  "html": "<div class=\"funnel\"><div class=\"card fstep \"><b class=\"\">23</b><h3>ideas with scores</h3><p>Each idea has three scores from 1 to 5: impact, effort and privacy risk.</p></div><svg class=\"arr\" width=\"40\" height=\"24\" viewBox=\"0 0 40 24\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 12h32M27 4l8 8-8 8\"/></svg><div class=\"card fstep \"><b class=\"red\">3</b><h3>ideas stopped</h3><p>Their privacy risk was 4 or 5. Example: record the full meeting.</p></div><svg class=\"arr\" width=\"40\" height=\"24\" viewBox=\"0 0 40 24\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 12h32M27 4l8 8-8 8\"/></svg><div class=\"card fstep \"><b class=\"\">18</b><h3>ideas passed</h3><p>Two more ideas wait for a later version.</p></div><svg class=\"arr\" width=\"40\" height=\"24\" viewBox=\"0 0 40 24\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 12h32M27 4l8 8-8 8\"/></svg><div class=\"card fstep hi\"><b class=\"blue\">5</b><h3>groups built first</h3><p>Together they answer the four goals.</p></div></div><div class=\"card hi why\"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l8 3v6c0 4.5-3.2 7.9-8 9-4.8-1.1-8-4.5-8-9V6z\"/><path d=\"M8.5 12l2.5 2.5 4.5-5\"/></g></svg><div><h3>Why privacy risk is first</h3><p>I can exchange impact for effort. I cannot exchange the trust of a customer. A safer version is in the prototype: <b>Hue records only the voice of Daniel</b>, and the screen tells him so.</p></div></div>",
+  "hero": false,
+  "note": "I wrote 23 ideas. Each idea got three scores: impact, effort and privacy risk. First I removed the ideas with a high privacy risk. One example: to record the full meeting had a high impact, but also a high risk. So it stopped. A safer version is in the prototype: Hue records only the voice of Daniel. Then 18 ideas passed. I built five groups of ideas first."
+ },
+ {
+  "id": "allideas",
+  "ch": "The ideas",
+  "nav": "All 23 ideas",
+  "h2": "All 23 ideas and their scores.",
+  "lede": "Blue rows: the ideas in the five groups that I built first. Red rows: stopped because of privacy risk. <a href=\"https://claude.ai/artifact/CAjimdZHox1NMsDgpSpf7w\" target=\"_blank\" rel=\"noopener\">See each idea in the working document.</a>",
+  "html": "<div class=\"tblwrap\"><table class=\"tbl ideas\"><thead><tr><th>#</th><th>Idea</th><th>Impact</th><th>Effort</th><th>Privacy risk</th><th>Result</th></tr></thead><tbody><tr class=\"core\"><td>1</td><td><b>Two way voice assistant</b></td><td>5</td><td>3</td><td>2</td><td>Built first</td></tr><tr class=\"core\"><td>2</td><td><b>Quick tags in a meeting</b></td><td>4</td><td>1</td><td>1</td><td>Built first</td></tr><tr class=\"core\"><td>3</td><td><b>Voice note</b></td><td>4</td><td>2</td><td>3</td><td>Built first</td></tr><tr class=\"added\"><td>4</td><td><b>Notebook photo</b></td><td>3</td><td>2</td><td>1</td><td>Added later</td></tr><tr class=\"stop\"><td>5</td><td><b>Record the full meeting</b></td><td>4</td><td>3</td><td class=\"bad\">4</td><td>Stopped</td></tr><tr class=\"pass\"><td>6</td><td><b>Share a WhatsApp chat</b></td><td>4</td><td>2</td><td>3</td><td>Passed</td></tr><tr class=\"pass\"><td>7</td><td><b>Email and call list</b></td><td>4</td><td>3</td><td>3</td><td>Passed</td></tr><tr class=\"stop\"><td>8</td><td><b>Phone that always listens</b></td><td>3</td><td>4</td><td class=\"bad\">5</td><td>Stopped</td></tr><tr class=\"stop\"><td>9</td><td><b>Smart glasses</b></td><td>2</td><td>5</td><td class=\"bad\">5</td><td>Stopped</td></tr><tr class=\"core\"><td>10</td><td><b>Plan and top three tasks</b></td><td>5</td><td>2</td><td>1</td><td>Built first</td></tr><tr class=\"core\"><td>11</td><td><b>Customer card</b></td><td>4</td><td>2</td><td>1</td><td>Built first</td></tr><tr class=\"core\"><td>12</td><td><b>Target view</b></td><td>4</td><td>2</td><td>1</td><td>Built first</td></tr><tr class=\"core\"><td>13</td><td><b>Quiet deal warnings</b></td><td>5</td><td>3</td><td>1</td><td>Built first</td></tr><tr class=\"pass\"><td>14</td><td><b>Old quote list</b></td><td>4</td><td>2</td><td>1</td><td>Passed</td></tr><tr class=\"pass\"><td>15</td><td><b>Promise list and drafts</b></td><td>4</td><td>3</td><td>2</td><td>Passed</td></tr><tr class=\"core\"><td>16</td><td><b>Customer record</b></td><td>5</td><td>3</td><td>2</td><td>Built first</td></tr><tr class=\"core\"><td>17</td><td><b>Records made for him</b></td><td>4</td><td>3</td><td>3</td><td>Built first</td></tr><tr class=\"core\"><td>18</td><td><b>Edit by voice or tap</b></td><td>4</td><td>2</td><td>1</td><td>Built first</td></tr><tr class=\"core\"><td>19</td><td><b>Home dashboard</b></td><td>4</td><td>3</td><td>1</td><td>Built first</td></tr><tr class=\"core\"><td>20</td><td><b>Pen notes</b></td><td>4</td><td>3</td><td>2</td><td>Built first</td></tr><tr class=\"core\"><td>21</td><td><b>Automatic tidy up</b></td><td>5</td><td>3</td><td>2</td><td>Built first</td></tr><tr class=\"pass\"><td>22</td><td><b>Next step and sales tips</b></td><td>4</td><td>3</td><td>1</td><td>Passed</td></tr><tr class=\"later\"><td>23</td><td><b>Product tips from Avient</b></td><td>4</td><td>5</td><td>1</td><td>Later</td></tr></tbody></table></div>",
+  "hero": false,
+  "note": "These are all 23 ideas with their scores. The blue rows are the ideas in the five groups that I built first. The red rows stopped because of privacy risk. The working document has the full table, with a description of each idea."
+ },
+ {
+  "id": "core",
+  "ch": "The ideas",
+  "nav": "What I built",
+  "h2": "I built five ideas first. Together they answer the four goals.",
+  "lede": null,
+  "html": "<ul class=\"built\"><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z\"/><path d=\"M5 11a7 7 0 0 0 14 0M12 18v3\"/></g></svg><b>Record a note: talk, type, write or take a photo. Then Hue puts the note in order</b><span><svg class=\"ico\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l4 4 10-10\"/></svg>Act quickly</span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.5 6h10.5M9.5 12h10.5M9.5 18h10.5\"/><path d=\"M4 6l1 1 2-2.2M4 12l1 1 2-2.2M4 18l1 1 2-2.2\"/></g></svg><b>Today: the visits and the most important tasks, each with a reason</b><span><svg class=\"ico\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l4 4 10-10\"/></svg>Know what is important</span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 17a8.5 8.5 0 1 1 16 0\"/><path d=\"M12 15l4-5\"/><path d=\"M12 15h.1\"/></g></svg><b>Home: the sales bar and the target</b><span><svg class=\"ico\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l4 4 10-10\"/></svg>See sales progress</span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M9 10.5h.1M12 10.5h.1M15 10.5h.1\"/></g></svg><b>Warnings for quiet deals, with the reason and a message</b><span><svg class=\"ico\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l4 4 10-10\"/></svg>Find quiet deals</span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2.5\"/><circle cx=\"9\" cy=\"8.5\" r=\"1.8\"/><path d=\"M13 8h4M8 13h8M8 17h5\"/></g></svg><b>The customer record. The tool writes it, and Daniel can change it</b><span><svg class=\"ico\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l4 4 10-10\"/></svg>All four goals use it</span></li></ul>",
+  "hero": false,
+  "note": "I built five groups of ideas first. One: record a note in four ways, and Hue puts the note in order. Two: Today, with the visits and the most important tasks. Three: Home, with the sales bar. Four: warnings for quiet deals. Five: the customer record, which all the other parts use. Together they answer the four goals of the brief."
+ },
+ {
+  "id": "hue",
+  "ch": "The ideas",
+  "nav": "The brand",
+  "h2": "Hue is a brand. Each part of the brand has a function.",
+  "lede": null,
+  "html": "<div class=\"split wide brand2\"><div class=\"bleft\"><div class=\"card bcard\"><svg class=\"hmark hi\" width=\"150\" height=\"150\" viewBox=\"0 0 24 24\" role=\"img\" aria-label=\"The Hue logo\"><g class=\"hg\"><circle class=\"h3\" cx=\"15.6\" cy=\"14.1\" r=\"5.7\"/><circle class=\"h2\" cx=\"8.4\" cy=\"14.1\" r=\"5.7\"/><circle class=\"h1\" cx=\"12\" cy=\"7.9\" r=\"5.7\"/></g><circle class=\"h0\" cx=\"12\" cy=\"12\" r=\"1.6\"/></svg><div><p class=\"wordmark\">Hue</p><ul class=\"sw\"><li><i style=\"background:#3274AE\"></i>Blue</li><li><i style=\"background:#D9624F\"></i>Red</li><li><i style=\"background:#EFBE46\"></i>Yellow</li></ul></div><p class=\"cap2\">Three inks that mix. Avient sells colour.</p></div><div class=\"card bwork\"><svg class=\"hmark work\" width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" role=\"img\" aria-label=\"The Hue logo\"><g class=\"hg\"><circle class=\"h3\" cx=\"15.6\" cy=\"14.1\" r=\"5.7\"/><circle class=\"h2\" cx=\"8.4\" cy=\"14.1\" r=\"5.7\"/><circle class=\"h1\" cx=\"12\" cy=\"7.9\" r=\"5.7\"/></g><circle class=\"h0\" cx=\"12\" cy=\"12\" r=\"1.6\"/></svg><p><b>The logo moves only when Hue works.</b> It stops when the work is done.</p></div><div class=\"card blines\"><p>The logo marks each item that Hue made:</p><img class=\"pic line\" src=\"assets/media/x-tidied.png\" alt=\"A line from the tool: Tidied by Hue from your voice note\" width=\"858\" height=\"66\" loading=\"lazy\"><img class=\"pic line\" src=\"assets/media/x-why.png\" alt=\"A line from the tool: Why Hue flagged this\" width=\"558\" height=\"66\" loading=\"lazy\"></div></div><div><ul class=\"irows\"><li><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12.5V4h8.5L21 13.5 13.5 21z\"/><path d=\"M7.5 8.5h.1\"/></g></svg><span><b>A name tells Daniel who did the work</b><span>He can say \"Hue wrote this\". So he knows which text he must check.</span></span></li><li><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#D9624F\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"3.5\"/><path d=\"M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7\"/><path d=\"M4 4l16 16\"/></g></svg><span><b>The name is not human, and Hue has no face</b><span>People expect too much from a tool that looks human. Then one error breaks their trust.</span></span></li><li><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a9 9 0 1 0 0 18c1.2 0 2-.9 2-2 0-.6-.300-1-.6-1.4-.300-.4-.5-.8-.5-1.3 0-1 .9-1.8 2-1.8H17a4 4 0 0 0 4-4c0-4.1-4-7.5-9-7.5z\"/><path d=\"M7.5 12.5h.1M9 8.5h.1M13.5 7.5h.1\"/></g></svg><span><b>Only the logo has three colours</b><span>All other parts of the screen are blue and grey. So his eye finds each item that Hue made.</span></span></li><li><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 12a8 8 0 1 1-2.3-5.7\"/><path d=\"M20 4v5h-5\"/></g></svg><span><b>Motion shows that Hue works</b><span>He sees that the tool is busy, so he waits. No motion means that the work is done.</span></span></li><li><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M8.5 9.5h7M8.5 12.5h4\"/></g></svg><span><b>Hue speaks in one voice</b><span>Short sentences. A reason for each suggestion. \"Please check\" when Hue is not sure.</span></span></li></ul></div></div>",
+  "hero": false,
+  "note": "The assistant is a brand. It has a name, a logo, colours and motion. Each part has a function. The name lets Daniel say: Hue wrote this. So he knows which text he must check. It is not a human name and it has no face, because people expect too much from a tool that looks human. The logo is the only part of the screen with three colours, so his eye finds each item that Hue made. The logo moves only when Hue works."
+ },
+ {
+  "id": "home",
+  "ch": "The design",
+  "nav": "Home",
+  "h2": "Home shows Daniel if he is on track to reach his sales target.",
+  "lede": null,
+  "html": "<div class=\"split flip\"><div><div class=\"phone\"><video src=\"assets/media/r1-home.mp4\" poster=\"assets/media/r1-home.png\" width=\"514\" height=\"1000\" muted loop playsinline preload=\"none\" aria-hidden=\"true\"></video></div></div><div><img class=\"pic crop\" src=\"assets/media/x-sales.png\" alt=\"The sales card: S$612k of a S$900k target, 68 percent, with a bar and the sentence S$288k to go. Your open deals can cover it.\" width=\"1326\" height=\"549\" loading=\"lazy\"><ul class=\"legend\"><li><i class=\"lb\"></i><span><b>Blue:</b> the sales that he won, S$612k.</span></li><li><i class=\"ls\"></i><span><b>Stripes:</b> his open deals. They can add to the sales.</span></li><li><i class=\"ll\"></i><span><b>Line:</b> where he must be today, 76%.</span></li></ul><div class=\"card hi say\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M8.5 9.5h7M8.5 12.5h4\"/></g></svg><p><b>One sentence gives the result:</b> \"S$288k to go. Your open deals can cover it.\" The sentence does not say that the target is safe when it is not.</p></div><p class=\"cap\">Below the bar: the work of today, the work of this week, the customers that need attention, and the open deals.</p></div></div>",
+  "hero": false,
+  "note": "Home answers one question: is he on track to reach his sales target? The blue part of the bar is the sales that he won. The striped part is his open deals. The line shows where he must be today. One sentence gives the result: 288 thousand dollars to go, and his open deals can cover it."
+ },
+ {
+  "id": "weather",
+  "ch": "The design",
+  "nav": "The weather",
+  "h2": "The weather line tells Daniel how the weather changes his visits.",
+  "lede": "Daniel drives to his customers, and rain changes his plan. So the line does not show only the forecast.",
+  "html": "<div class=\"pair\"><figure><img class=\"pic crop\" src=\"assets/media/x-hero.png\" alt=\"The top of Home: Storms at 3 pm, when you visit Tuas Textile Print. Leave 15 minutes early.\" width=\"1326\" height=\"744\" loading=\"lazy\"><figcaption>Home: one line about the weather</figcaption></figure><svg class=\"arr\" width=\"40\" height=\"24\" viewBox=\"0 0 40 24\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 12h32M27 4l8 8-8 8\"/></svg><figure><img class=\"pic crop\" src=\"assets/media/x-visit.png\" alt=\"The visit at 3 pm in Today, with the label Storms. Leave 15 minutes early.\" width=\"1326\" height=\"861\" loading=\"lazy\"><figcaption>Today: the same warning on the visit</figcaption></figure></div><div class=\"cols c3\"><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"M16 16l5 5\"/></g></svg><h3>It names the visit</h3><p>The visit that the weather changes.</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 16l1.5-5.3A2.3 2.3 0 0 1 8.7 9h6.6a2.3 2.3 0 0 1 2.2 1.7L19 16\"/><rect x=\"3\" y=\"15.5\" width=\"18\" height=\"4\" rx=\"1.5\"/><path d=\"M7 19.5V21M17 19.5V21\"/></g></svg><h3>It gives one instruction</h3><p>\"Leave 15 minutes early.\"</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3.5 2\"/></g></svg><h3>It changes after the visit</h3><p>Then it shows the next visit.</p></div></div>",
+  "hero": false,
+  "note": "The weather is on Home for one reason: Daniel drives to his customers, and rain changes his plan. So the weather line does not show only the forecast. It names the visit that the weather changes, and it gives one instruction: leave 15 minutes early. The same warning shows on that visit in Today."
+ },
+ {
+  "id": "today",
+  "ch": "The design",
+  "nav": "Today",
+  "h2": "Today: first the visits, then the three most important tasks.",
+  "lede": null,
+  "html": "<div class=\"split\"><div><ul class=\"irows\"><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"5\" width=\"16\" height=\"15\" rx=\"2.5\"/><path d=\"M4 10h16M8 3v4M16 3v4\"/></g></svg><span><b>The visits are first, in order of time</b><span>A visit has a fixed time.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.5 6h10.5M9.5 12h10.5M9.5 18h10.5\"/><path d=\"M4 6l1 1 2-2.2M4 12l1 1 2-2.2M4 18l1 1 2-2.2\"/></g></svg><span><b>Then three tasks. The most important task is first</b><span>One button shows the other tasks.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M8.5 9.5h7M8.5 12.5h4\"/></g></svg><span><b>Each item gives the reason</b><span>\"Quote of S$48k sent to Ace Tees 9 days ago, no reply yet.\"</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3.5 2\"/></g></svg><span><b>The button changes with the time</b><span>Before the visit: \"Prepare for the visit\". After the visit: \"Add a note about the visit\".</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"4\" width=\"16\" height=\"16\" rx=\"3\"/><path d=\"M8 12l3 3 5-6\"/></g></svg><span><b>A note completes the item</b><span>When he saves a note for that customer, Hue ticks the visit.</span></span></li></ul></div><div><img class=\"dev \" src=\"assets/media/p-today.png\" alt=\"Today on a phone: two visits in order of time, a storm warning on the visit at 3 pm, then the tasks.\" width=\"760\" height=\"1526\" loading=\"lazy\"></div></div>",
+  "hero": false,
+  "note": "Today shows the work of the day. The visits are first, in order of time, because a visit has a fixed time. Then come three tasks. The most important task is first. Each item gives the reason. The button changes with the time: before the visit it says prepare, and after the visit it says add a note."
+ },
+ {
+  "id": "points",
+  "ch": "The design",
+  "nav": "The order of tasks",
+  "h2": "Hue puts the most important task first. This rule gives the order.",
+  "lede": null,
+  "html": "<div class=\"formula\"><div class=\"card\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M15 9c-.5-1.1-1.6-1.7-3-1.7-1.8 0-3.1.9-3.1 2.3 0 3.2 6.2 1.6 6.2 4.8 0 1.4-1.3 2.3-3.1 2.3-1.4 0-2.6-.6-3.1-1.7M12 5.5v13\"/></g></svg><div><h3>Deal value</h3><p>In thousands of dollars</p></div></div><b class=\"op\">×</b><div class=\"card\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 20h4.5v-4.5H12V11h4.5V6.5H21\"/></g></svg><div><h3>Chance of an order</h3><p>New 20%, Sample 40%, Trial 60%, Quote 80%</p></div></div><b class=\"op\">+</b><div class=\"card\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h12M6 21h12M7.5 3v4l4.5 5 4.5-5V3M7.5 21v-4l4.5-5 4.5 5v4\"/></g></svg><div><h3>Waiting</h3><p>A promise for today. The days that he or the customer waits</p></div></div><b class=\"op\">=</b><b class=\"res\">Points</b></div><div class=\"split wide exs\"><div class=\"card\"><h3>Example from the sample data</h3><div class=\"ex\"><p><b>1. Send the price to Jasmine.</b> S$86k × 80% = 69. Promise for today + 50. His move for 2 days + 20. <b class=\"pts\">139 points</b></p><div class=\"bar\"><i style=\"width:46.0%\"></i><i class=\"w\" style=\"width:46.7%\"></i></div></div><div class=\"ex\"><p><b>2. Follow up with Mei Ling.</b> S$48k × 80% = 38. The customer is 4 days late + 20. <b class=\"pts\">58 points</b></p><div class=\"bar\"><i style=\"width:25.3%\"></i><i class=\"w\" style=\"width:13.3%\"></i></div></div><p class=\"key\"><i></i>Deal value × chance <i class=\"w\"></i>Waiting</p></div><div><div class=\"card hi\"><p><b>Daniel does not see the points.</b> He sees the reason in words. He can disagree with a sentence. He cannot disagree with a number.</p></div><div class=\"card\" style=\"margin-top:14px\"><p><b>These numbers are my first values.</b> A test with real sales reps must confirm them.</p></div></div></div>",
+  "hero": false,
+  "note": "How does Hue know which task is first? It uses a rule. Points are the deal value times the chance of an order, plus the waiting time. Here is an example. The price for Jasmine has 139 points, so it is first. Daniel does not see the points. He sees the reason. These numbers are my first values. A test with real sales reps must confirm them."
+ },
+ {
+  "id": "capture",
+  "ch": "The design",
+  "nav": "Record a note",
+  "h2": "Daniel records a note in four ways.",
+  "lede": "One round button. He taps it for the menu, or he holds it to talk immediately. On the computer, he can type, talk, or attach a photo.",
+  "html": "<div class=\"ways\"><figure><img class=\"dev \" src=\"assets/media/p-talk.png\" alt=\"Talk a note on a phone: a timer and the words that he says.\" width=\"760\" height=\"1526\" loading=\"lazy\"><figcaption><b><svg class=\"ico\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z\"/><path d=\"M5 11a7 7 0 0 0 14 0M12 18v3\"/></svg>Talk</b><span>In the car, after the visit. Hue records only his voice.</span></figcaption></figure><figure><img class=\"dev \" src=\"assets/media/p-type.png\" alt=\"Type a note on a phone, with a customer field and a note field.\" width=\"760\" height=\"1526\" loading=\"lazy\"><figcaption><b><svg class=\"ico\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"6\" width=\"18\" height=\"12\" rx=\"2.5\"/><path d=\"M7 10h.1M11 10h.1M15 10h.1M7.5 14h9\"/></svg>Type</b><span>When the place is quiet.</span></figcaption></figure><figure><img class=\"dev \" src=\"assets/media/p-write.png\" alt=\"Write a note on a phone: a large page with lines, and a note in handwriting.\" width=\"760\" height=\"1526\" loading=\"lazy\"><figcaption><b><svg class=\"ico\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19z\"/><path d=\"M13.5 7.5l3 3\"/></svg>Write</b><span>With a pen or a finger. A pen does not look rude in a meeting.</span></figcaption></figure><figure><img class=\"dev \" src=\"assets/media/p-photo.png\" alt=\"Photo of a notebook page on a phone: the camera view with a page of handwriting.\" width=\"760\" height=\"1526\" loading=\"lazy\"><figcaption><b><svg class=\"ico\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 8h3l2-2h6l2 2h3v11H4z\"/><circle cx=\"12\" cy=\"13\" r=\"3.5\"/></svg>Photo</b><span>A photo of a page in his notebook.</span></figcaption></figure></div>",
+  "hero": false,
+  "note": "Daniel records a note with one round button. He taps it for the menu, or he holds it to talk immediately. He has four ways to record, because the best way changes with the situation. He talks in the car. He types when the place is quiet. He writes with a pen or a finger, and a pen does not look rude in a meeting. Or he takes a photo of a page in his notebook. On the computer, he can type, talk, or attach a photo."
+ },
+ {
+  "id": "control",
+  "ch": "The design",
+  "nav": "Check and save",
+  "h2": "Hue fills in the fields. Daniel checks them and saves.",
+  "lede": null,
+  "html": "<div class=\"split\"><div><ul class=\"irows\"><li><span class=\"mk\"><svg class=\"hmark \" width=\"34\" height=\"34\" viewBox=\"0 0 24 24\" role=\"img\" aria-label=\"The Hue logo\"><g class=\"hg\"><circle class=\"h3\" cx=\"15.6\" cy=\"14.1\" r=\"5.7\"/><circle class=\"h2\" cx=\"8.4\" cy=\"14.1\" r=\"5.7\"/><circle class=\"h1\" cx=\"12\" cy=\"7.9\" r=\"5.7\"/></g><circle class=\"h0\" cx=\"12\" cy=\"12\" r=\"1.6\"/></svg></span><span><b>The Hue logo shows each field that Hue filled</b><span>Daniel sees what he must check.</span></span></li></ul><ul class=\"irows\" style=\"margin-top:16px\"><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#D9624F\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 4l9 16H3z\"/><path d=\"M12 10v4M12 17h.1\"/></g></svg><span><b>Hue tells him when it is not sure</b><span>A \"Please check\" label on the date, with the reason.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M8.5 9.5h7M8.5 12.5h4\"/></g></svg><span><b>Hue keeps his words</b><span>One tap shows the words that he said.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"11\" width=\"14\" height=\"9\" rx=\"2\"/><path d=\"M8 11V8a4 4 0 0 1 8 0v3\"/></g></svg><span><b>Hue saves nothing before he taps Save</b><span>Not the note, not the next step, not the deal stage.</span></span></li></ul><div class=\"card hi five\"><p><b>One note updates five parts of the tool.</b> He does one thing. The tool does five.</p><ul><li><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 4v16\"/><circle cx=\"6\" cy=\"7.5\" r=\"1.8\"/><circle cx=\"6\" cy=\"15\" r=\"1.8\"/><path d=\"M11 7.5h9M11 15h7\"/></g></svg>The timeline</li><li><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"4\" width=\"16\" height=\"16\" rx=\"3\"/><path d=\"M8 12l3 3 5-6\"/></g></svg>The promise list</li><li><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 20h4.5v-4.5H12V11h4.5V6.5H21\"/></g></svg>The deal stage</li><li><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.5 6h10.5M9.5 12h10.5M9.5 18h10.5\"/><path d=\"M4 6l1 1 2-2.2M4 12l1 1 2-2.2M4 18l1 1 2-2.2\"/></g></svg>The task in Today</li><li><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 17a8.5 8.5 0 1 1 16 0\"/><path d=\"M12 15l4-5\"/><path d=\"M12 15h.1\"/></g></svg>The sales bar</li></ul></div></div><div><img class=\"dev \" src=\"assets/media/p-check.png\" alt=\"Check and save on a phone: the customer, the note, the next step and the date, with a Please check label on the date.\" width=\"760\" height=\"1526\" loading=\"lazy\"></div></div>",
+  "hero": false,
+  "note": "Hue fills in the fields, but Daniel decides. The Hue logo shows each field that Hue filled. When Hue is not sure, it shows a label: please check. Hue keeps the words that he said. Hue saves nothing before he taps Save. And one note updates five parts of the tool. He does one thing. The tool does five."
+ },
+ {
+  "id": "quiet",
+  "ch": "The design",
+  "nav": "Quiet deals",
+  "h2": "Hue warns Daniel when a customer does not reply. It gives the reason.",
+  "lede": "A quiet deal is a deal where the customer does not reply.",
+  "html": "<div class=\"split flip\"><div><div class=\"phone\"><video src=\"assets/media/r3-quiet.mp4\" poster=\"assets/media/r3-quiet.png\" width=\"514\" height=\"1000\" muted loop playsinline preload=\"none\" aria-hidden=\"true\"></video></div></div><div><div class=\"quote\" style=\"margin-top:0\"><p>\"Trial started 16 days ago, and no contact since. A trial usually gives a result within 14 days.\"</p><cite>The reason that Hue gives</cite></div><ul class=\"irows\"><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 20h4.5v-4.5H12V11h4.5V6.5H21\"/></g></svg><span><b>The usual wait is different for each stage</b><span>New deal: 3 days. Samples: 7 days. Trial: 14 days. Quote: 5 days.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M8.5 9.5h7M8.5 12.5h4\"/></g></svg><span><b>Daniel can tell Hue that it is wrong</b><span>\"This is normal for this customer.\" Then Hue waits longer the next time.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 3L10 14M21 3l-7 18-4-7-7-4z\"/></g></svg><span><b>The next step is ready</b><span>Hue writes a message. Daniel changes it and sends it.</span></span></li></ul></div></div>",
+  "hero": false,
+  "note": "A quiet deal is a deal where the customer does not reply. Hue warns Daniel, and it gives the reason. Here, the trial started 16 days ago, and a trial usually gives a result in 14 days. The usual wait is different for each stage. Daniel can tell Hue that it is wrong. Then Hue waits longer the next time. And Hue writes a message that he can change and send."
+ },
+ {
+  "id": "record",
+  "ch": "The design",
+  "nav": "The record",
+  "h2": "Each customer has one record. All other screens use it.",
+  "lede": "The record has the deals, the promises, the people, the timeline and the products. The tool writes it from his notes.",
+  "html": "<div class=\"figwrap\"><img class=\"dev wide\" src=\"assets/media/t-record.png\" alt=\"The customer record on a tablet, next to the list of customers: the next step, the visit, the deals and the promises.\" width=\"1600\" height=\"1124\" loading=\"lazy\"></div><div class=\"cols c3\"><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19z\"/><path d=\"M13.5 7.5l3 3\"/></g></svg><h3>Daniel can change his own notes</h3><p>A visit, a call or a note. The pen icon opens it.</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"11\" width=\"14\" height=\"9\" rx=\"2\"/><path d=\"M8 11V8a4 4 0 0 1 8 0v3\"/></g></svg><h3>He cannot change a message or an email</h3><p>A lock shows this. To correct it, he adds a note.</p></div><div class=\"card icard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 4v16\"/><circle cx=\"6\" cy=\"7.5\" r=\"1.8\"/><circle cx=\"6\" cy=\"15\" r=\"1.8\"/><path d=\"M11 7.5h9M11 15h7\"/></g></svg><h3>A deal stays in the record</h3><p>When the customer says no, the stage changes to Lost. The history stays.</p></div></div>",
+  "hero": false,
+  "note": "Each note goes into one record for each customer. The record has the deals, the promises, the people, the timeline and the products. All the other screens use this record. Daniel can change his own notes. He cannot change a message or an email, and a lock shows this. A deal stays in the record. When the customer says no, the stage changes to Lost."
+ },
+ {
+  "id": "devices",
+  "ch": "The design",
+  "nav": "Three devices",
+  "h2": "The same tool works on a phone, a tablet and a computer.",
+  "lede": null,
+  "html": "<div class=\"devs\"><figure class=\"dp\"><img class=\"dev \" src=\"assets/media/p-home.png\" alt=\"Home on a phone, in one column.\" width=\"760\" height=\"1526\" loading=\"lazy\"><figcaption><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"7\" y=\"2.5\" width=\"10\" height=\"19\" rx=\"2.5\"/><path d=\"M11 18h2\"/></g></svg><span><b>Phone</b>For the road. The round button is near his thumb.</span></figcaption></figure><figure class=\"dt\"><img class=\"dev \" src=\"assets/media/t-write.png\" alt=\"Write a note on a tablet: a large page with a note in handwriting.\" width=\"1600\" height=\"1124\" loading=\"lazy\"><figcaption><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19z\"/><path d=\"M13.5 7.5l3 3\"/></g></svg><span><b>Tablet</b>More room to write. The list and the record are side by side.</span></figcaption></figure><figure class=\"dc\"><img class=\"dev \" src=\"assets/media/c-menu.png\" alt=\"Home on a computer, with the New note menu open: Type a note, Talk a note, Attach a photo.\" width=\"1800\" height=\"1079\" loading=\"lazy\"><figcaption><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2.5\" y=\"5\" width=\"13\" height=\"10\" rx=\"1.5\"/><path d=\"M6 19h6M9 15v4\"/><rect x=\"17\" y=\"9\" width=\"5\" height=\"10\" rx=\"1.2\"/></g></svg><span><b>Computer</b>A full table. New note: type, talk or attach a photo.</span></figcaption></figure></div>",
+  "hero": false,
+  "note": "The same tool works on three devices, with the same rules. The phone is for the road. The tablet shows the list and the record side by side. The computer has a full table, and the New note button lets him type, talk or attach a photo. He learns the tool one time."
+ },
+ {
+  "id": "system",
+  "ch": "The system",
+  "nav": "Design system",
+  "h2": "The design system: one set of rules for all screens.",
+  "lede": null,
+  "html": "<div class=\"cols c2\"><div class=\"card\"><h3>Colour from the Avient logo</h3><ul class=\"sw big\"><li><i style=\"background:#3274AE\"></i></li><li><i style=\"background:#285F91\"></i></li><li><i style=\"background:#E7F0F8;border:1px solid #B4CEE6\"></i></li><li><i style=\"background:#303C40\"></i></li><li><i style=\"background:#D9624F\"></i></li><li><i style=\"background:#EFBE46\"></i></li></ul><p>The blue is softer than the logo blue, for the screen. The text is the grey of the Avient name. No green.</p></div><div class=\"card\"><h3>One main button on each screen</h3><p class=\"btns\"><span class=\"b1\">Save to record</span><span class=\"b2\">Open draft</span><span class=\"b3\">Cancel</span></p><p>Dark blue is the main action. Light blue is an action in a section. White is for all other actions.</p></div><div class=\"card\"><h3>Words and icons show the status</h3><p class=\"btns\"><span class=\"c1\"><svg class=\"ico\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l4 4 10-10\"/></svg>Up to date</span><span class=\"c2\"><svg class=\"ico\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 4l9 16H3z\"/><path d=\"M12 10v4M12 17h.1\"/></svg>Quiet 9 days</span><span class=\"c3\"><svg class=\"ico\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg>Payment late</span></p><p>Colour is never the only sign. Each status has a word and an icon.</p></div><div class=\"card\"><h3>Clear words</h3><p class=\"say2\"><svg class=\"tile\" width=\"44\" height=\"44\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M8.5 9.5h7M8.5 12.5h4\"/></g></svg><b>\"Trial started 16 days ago, and no contact since.\"</b></p><p>Short sentences. No short forms. Each suggestion gives a reason and one next step.</p></div></div><div class=\"body sp\"><p><b>The system also has rules that say no.</b> Do not draw the Avient logo again. Do not use colour as the only sign. Do not make Daniel type what the tool can find.</p></div>",
+  "hero": false,
+  "note": "A design system is the set of rules that keeps all screens the same. The colours come from the Avient logo. Each screen has one dark button for the main action. Words and icons show the status. Colour is never the only sign. The words are short and clear. The system also has rules that say no."
+ },
+ {
+  "id": "access",
+  "ch": "The system",
+  "nav": "Accessibility",
+  "h2": "Accessibility: he can use the tool in sunlight and with one hand.",
+  "lede": null,
+  "html": "<div class=\"split\"><div><div class=\"cols c2 tight\"><div class=\"card acard\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2.5 19l5-13 5 13M4.3 14.5h6.4\"/><path d=\"M14.5 19l3.3-8.5 3.2 8.5M15.7 16h4.2\"/></g></svg><div><h3>Four text sizes</h3><p>All text and buttons grow together.</p></div></div><div class=\"card acard\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 3v18M12 7l5.7-1.9M12 12h9M12 17l6.2 2.2\"/></g></svg><div><h3>Stronger contrast</h3><p>Darker text and lines, for sunlight.</p></div></div><div class=\"card acard\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M10 8.5v7M14 8.5v7\"/></g></svg><div><h3>Less motion</h3><p>One switch stops the motion.</p></div></div><div class=\"card acard\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 11.5V5.5a1.5 1.5 0 0 1 3 0v5l5 1.1c1.2.3 2 1.3 2 2.5V16a5 5 0 0 1-5 5h-1.5a5 5 0 0 1-4.1-2.1l-3-4.3a1.5 1.5 0 0 1 2.4-1.8z\"/></g></svg><div><h3>Left or right hand</h3><p>The round button moves to his thumb.</p></div></div><div class=\"card acard\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12l4 4 10-10\"/></g></svg><div><h3>Not only colour</h3><p>Each status has a word and an icon.</p></div></div><div class=\"card acard\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"6\" width=\"18\" height=\"12\" rx=\"2.5\"/><path d=\"M7 10h.1M11 10h.1M15 10h.1M7.5 14h9\"/></g></svg><div><h3>Keyboard and screen reader</h3><p>Each control has a name. Menus work with keys.</p></div></div></div><div class=\"card hi say\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"7\" width=\"20\" height=\"10\" rx=\"5\"/><circle cx=\"16.5\" cy=\"12\" r=\"2.6\"/></g></svg><p><b>Daniel also has control.</b> Each task of Hue has its own switch. When a task is off, the screen still works.</p></div></div><div><img class=\"dev \" src=\"assets/media/p-settings.png\" alt=\"Settings on a phone: text size, stronger contrast, less motion, and the side of the round button.\" width=\"760\" height=\"1526\" loading=\"lazy\"></div></div>",
+  "hero": false,
+  "note": "Accessibility means that Daniel can read and use the tool in his real conditions. He works in sunlight and often with one hand. So the tool has four text sizes, stronger contrast, less motion, and a round button for the left or the right hand. Each status has a word and an icon. The menus work with the keyboard. He also has control: each task of Hue has its own switch."
+ },
+ {
+  "id": "real",
+  "ch": "The checks",
+  "nav": "What works",
+  "h2": "The prototype: what works, and what is only a sample.",
+  "lede": null,
+  "html": "<div class=\"cols c2\"><div class=\"card\"><div class=\"chead\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12l4 4 10-10\"/></g></svg><h3>These parts work</h3></div><ul class=\"plain\"><li>The rule that gives the order of the tasks.</li><li>The warnings for quiet deals.</li><li>The rules and the error messages of the forms.</li><li>Search, filters and sort for 100 sample customers.</li><li>The search for an address.</li></ul></div><div class=\"card hi\"><div class=\"chead\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3\"/><path d=\"M7.5 15h9\"/></g></svg><h3>These parts are only a sample</h3></div><ul class=\"plain\"><li>Talk shows a sample sentence. It does not use the microphone.</li><li>Hue puts a note in order with rules that I wrote. It does not use a language model.</li><li>Write and Photo read a sample note.</li><li>No message, email or call leaves the prototype.</li><li>The map uses a small sample table.</li></ul></div></div>",
+  "hero": false,
+  "note": "I want to be clear about the prototype. Some parts work. The rule for the order of the tasks works. The warnings, the forms and the search work. Other parts are only a sample. Talk shows a sample sentence. Write and Photo read a sample note. No message leaves the prototype."
+ },
+ {
+  "id": "test",
+  "ch": "The checks",
+  "nav": "What to test",
+  "h2": "I did not interview sales reps. I must test these seven assumptions.",
+  "lede": null,
+  "html": "<table class=\"tbl\"><thead><tr><th>The assumption</th><th>How to test it</th></tr></thead><tbody><tr><td><b>Sales reps record their notes late, from memory</b></td><td>Ask how and when they update their records</td></tr><tr><td><b>They do most work on a phone, between visits</b></td><td>Ask what they use between meetings</td></tr><tr><td><b>Customers use chat and calls more than email</b></td><td>Ask reps what customers often use to communicate</td></tr><tr><td><b>The size of a deal is not a good way to choose</b></td><td>Ask how they choose which deal is first</td></tr><tr><td><b>An old quote can become an order</b></td><td>Ask how often an old quote became an order</td></tr><tr><td><b>Customers do not accept a recording</b></td><td>Ask reps about customer privacy concerns</td></tr><tr><td><b>Reps want voice notes or a notebook photo in a meeting</b></td><td>Show the options. See which option they choose</td></tr></tbody></table><div class=\"card hi say sp\"><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3\"/><path d=\"M7.5 15h9\"/></g></svg><p><b>The first test.</b> Show Today to two sales reps and a manager. Ask one question: do you agree with the three tasks at the top?</p></div>",
+  "hero": false,
+  "note": "I had four days and I did not interview sales reps. So the design uses seven assumptions. This slide shows how to test each assumption. The first test is easy. I show Today to two sales reps and a manager. I ask one question: do you agree with the three tasks at the top? If they do not agree, the rule for the order is wrong."
+ },
+ {
+  "id": "edges",
+  "ch": "The checks",
+  "nav": "Unusual cases",
+  "h2": "Unusual cases in the design, and features that I did not include.",
+  "lede": null,
+  "html": "<div class=\"split wide\"><div><h3 class=\"sub3\">Unusual cases in the design</h3><ul class=\"irows\"><li><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 8l9-5 9 5v8l-9 5-9-5z\"/><path d=\"M3 8l9 5 9-5M12 13v8\"/></g></svg><span><b>A new user with no customers</b><span>Each screen shows one next step.</span></span></li><li><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"7.5\" height=\"7.5\" rx=\"1.8\"/><rect x=\"13.5\" y=\"3\" width=\"7.5\" height=\"7.5\" rx=\"1.8\"/><rect x=\"3\" y=\"13.5\" width=\"7.5\" height=\"7.5\" rx=\"1.8\"/><rect x=\"13.5\" y=\"13.5\" width=\"7.5\" height=\"7.5\" rx=\"1.8\"/></g></svg><span><b>A user with 100 customers</b><span>Search and filters are first. A list shows 20 rows, then more.</span></span></li><li><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1 1-1.1 1.8M12 17h.1\"/></g></svg><span><b>A customer with missing details</b><span>Each section tells him what is missing.</span></span></li><li><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#D9624F\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 4l9 16H3z\"/><path d=\"M12 10v4M12 17h.1\"/></g></svg><span><b>An error by Hue</b><span>A \"Please check\" label. His words stay. He can change each field.</span></span></li></ul></div><div class=\"card\"><h3>Features that I did not include</h3><ul class=\"plain\"><li>The view for his manager</li><li>The view for the technical specialist</li><li>The view for the distributor</li><li>Work with no internet</li><li>Import from a real system</li><li>A recording of the full meeting</li></ul><p style=\"margin-top:12px\">The working document gives the reason for each.</p></div></div>",
+  "hero": false,
+  "note": "I designed for four unusual cases. A new user with no customers. A user with 100 customers. A customer with missing details. And an error by Hue. I also did not include some features: the view for the manager, the view for the distributor, and work with no internet. The working document gives the reason for each."
+ },
+ {
+  "id": "measures",
+  "ch": "The checks",
+  "nav": "How to measure",
+  "h2": "How to measure if the tool helps Daniel.",
+  "lede": null,
+  "html": "<table class=\"tbl meas\"><thead><tr><th>Goal</th><th>What we measure</th><th>First target</th></tr></thead><tbody><tr><td><svg class=\"tile\" width=\"36\" height=\"36\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 20h18M6 20v-6M11 20V6M16 20v-9\"/><path d=\"M19.5 20v-3\"/></g></svg><b>See sales progress</b></td><td>He can say how far he is from his target</td><td>In less than 10 seconds</td></tr><tr><td><svg class=\"tile\" width=\"36\" height=\"36\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.5 6h10.5M9.5 12h10.5M9.5 18h10.5\"/><path d=\"M4 6l1 1 2-2.2M4 12l1 1 2-2.2M4 18l1 1 2-2.2\"/></g></svg><b>Know what is important</b></td><td>The three tasks at the top of Today are done at the end of the day</td><td>2 of 3, on most days</td></tr><tr><td><svg class=\"tile\" width=\"36\" height=\"36\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h16v11H9l-5 4z\"/><path d=\"M9 10.5h.1M12 10.5h.1M15 10.5h.1\"/></g></svg><b>Find quiet deals</b></td><td>He acts on a quiet deal after a warning</td><td>8 of 10, in 2 work days</td></tr><tr><td><svg class=\"tile\" width=\"36\" height=\"36\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M13 3L5 13.5h6L10 21l8-10.5h-6z\"/></g></svg><b>Act quickly</b></td><td>The time to record a note by voice</td><td>Less than 30 seconds</td></tr><tr><td><svg class=\"tile\" width=\"36\" height=\"36\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19z\"/><path d=\"M13.5 7.5l3 3\"/></g></svg><b>Few notes</b></td><td>Notes recorded on the day of the visit</td><td>9 of 10, none written at night</td></tr><tr><td><svg class=\"tile\" width=\"36\" height=\"36\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l8 3v6c0 4.5-3.2 7.9-8 9-4.8-1.1-8-4.5-8-9V6z\"/><path d=\"M8.5 12l2.5 2.5 4.5-5\"/></g></svg><b>Trust in Hue</b></td><td>Notes that he saves with no correction</td><td>7 of 10</td></tr><tr><td><svg class=\"tile\" width=\"36\" height=\"36\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 4l9 16H3z\"/><path d=\"M12 10v4M12 17h.1\"/></g></svg><b>Not too many warnings</b></td><td>Warnings that he marks \"this is normal\"</td><td>Fewer than 3 of 10</td></tr></tbody></table><p class=\"cap\">These targets are my first values. The first week measures where he is today. Two slower results to watch: the deals that are quiet for more than 30 days, and the sales against the target.</p>",
+  "hero": false,
+  "note": "How do we know that the tool helps Daniel? Each goal has one measure, and there are two more measures for trust and for the number of warnings. These targets are my first values. The first week measures only where he is today."
+ },
+ {
+  "id": "claude",
+  "ch": "The checks",
+  "nav": "Work with Claude",
+  "h2": "How I worked with Claude.",
+  "lede": null,
+  "html": "<div class=\"cols c3\"><div class=\"card\"><div class=\"chead\"><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"3.5\"/><path d=\"M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7\"/></g></svg><h3>What I brought</h3></div><ul class=\"plain\"><li>The company, the place and the job</li><li>The job description, seven sales videos and a forum</li><li>My sketches and example dashboards</li><li>My feedback in thirteen review rounds</li></ul></div><div class=\"card\"><div class=\"chead\"><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14\"/></g></svg><h3>What Claude did</h3></div><ul class=\"plain\"><li>Made a summary of my sources</li><li>Made drafts of the user, the week and the ideas</li><li>Asked questions and gave its opinion</li><li>Wrote and tested the prototype code</li><li>Built the deck and the film from my direction</li></ul></div><div class=\"card hi\"><div class=\"chead\"><svg class=\"tile\" width=\"48\" height=\"48\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12l4 4 10-10\"/></g></svg><h3>What I decided</h3></div><ul class=\"plain\"><li>The method, with privacy risk first</li><li>Pen notes</li><li>The look: light, soft blue, no green</li><li>One round button to record</li><li>One Home on each device</li><li>Weather for his visits</li></ul></div></div><div class=\"body sp\"><p><b>The limits.</b> The sources are not from interviews. A machine made some summaries. The people and the numbers in the prototype are not real. The film clips, the picture of Daniel and the voice are generated.</p></div>",
+  "hero": false,
+  "note": "This is how I worked with Claude. I brought the sources, my sketches and my feedback in thirteen review rounds. Claude made drafts, gave its opinion, and wrote the code. I made the decisions on the right. The limits: the sources are not from interviews, and the people and the numbers in the prototype are not real."
+ },
+ {
+  "id": "try",
+  "ch": "Try it",
+  "nav": "Try it now",
+  "h2": "Try the prototype on your phone.",
+  "lede": "Point your camera at the code, or use the prototype here. It is the real prototype, with sample data. You can tap each part.",
+  "html": "<div class=\"split wide\"><div class=\"qr\"><img src=\"assets/media/qr-prototype.png\" alt=\"A code that opens the prototype\" width=\"190\" height=\"190\"><p>It opens on your phone, with sample data.</p><p class=\"lnk\"><a href=\"prototype/index.html\" target=\"_blank\" rel=\"noopener\">sayhien.github.io/avient-sales-rep-tool/prototype/</a></p></div><div class=\"frame\"><iframe src=\"prototype/index.html?embed=1&amp;splash=0&amp;tour=0&amp;map=sample&amp;time=8:20&amp;data=100\" title=\"The Hue prototype\" loading=\"lazy\"></iframe></div></div><h3 class=\"sub3 sp\">Three things to try</h3><ul class=\"irows\"><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z\"/><path d=\"M5 11a7 7 0 0 0 14 0M12 18v3\"/></g></svg><span><b>Hold the round button</b><span>Hue starts to listen immediately.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19z\"/><path d=\"M13.5 7.5l3 3\"/></g></svg><span><b>Tap the round button, then Write</b><span>A sample note writes itself.</span></span></li><li><svg class=\"tile\" width=\"56\" height=\"56\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3.5 2\"/></g></svg><span><b>Change the time to 8 in the evening</b><span>The greeting shows the weather for tomorrow.</span></span></li></ul>",
+  "hero": false,
+  "note": "The prototype is on the internet. Point your camera at the code. It opens on your phone with sample data. You can tap each part. Three things to try: hold the round button and it starts to listen. Select Write and a sample note writes itself. Change the time to the evening and the greeting changes. Now I stop talking."
+ },
+ {
+  "id": "more",
+  "ch": "Try it",
+  "nav": "Other documents",
+  "h2": "The other documents of this project.",
+  "lede": null,
+  "html": "<div class=\"cols c2\"><div class=\"card dcard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h8l4 4v14H6z\"/><path d=\"M14 3v4h4M9 11h6M9 14.5h6M9 18h4\"/></g></svg><div><h3>Working document</h3><p>The research, the user, the week, the 23 ideas with scores, and thirteen design reviews with the reason for each change.</p><p class=\"go\"><a href=\"https://claude.ai/artifact/CAjimdZHox1NMsDgpSpf7w\" target=\"_blank\" rel=\"noopener\">Open the working document</a></p></div></div><div class=\"card dcard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z\"/><path d=\"M4 19.5A2.5 2.5 0 0 0 6.5 21H20v-4M9 8h7\"/></g></svg><div><h3>Hue screen guide</h3><p>Each detail on each screen: what it means, where Hue gets it, and how it helps Daniel.</p><p class=\"go\"><a href=\"https://claude.ai/artifact/AoDABNZw7oZQeVEHd1Gase\" target=\"_blank\" rel=\"noopener\">Open the screen guide</a></p></div></div><div class=\"card dcard \"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#E7F0F8\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a9 9 0 1 0 0 18c1.2 0 2-.9 2-2 0-.6-.300-1-.6-1.4-.300-.4-.5-.8-.5-1.3 0-1 .9-1.8 2-1.8H17a4 4 0 0 0 4-4c0-4.1-4-7.5-9-7.5z\"/><path d=\"M7.5 12.5h.1M9 8.5h.1M13.5 7.5h.1\"/></g></svg><div><h3>Design system</h3><p>The colours, the parts, the rules for words, and the rules that say no.</p><p class=\"go\"><a href=\"https://claude.ai/artifact/U7raeTEkvaMD7FGZHSJSMM\" target=\"_blank\" rel=\"noopener\">Open the design system</a></p></div></div><div class=\"card dcard hi\"><svg class=\"tile\" width=\"64\" height=\"64\" viewBox=\"0 0 44 44\" aria-hidden=\"true\"><rect width=\"44\" height=\"44\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"31\" cy=\"31\" r=\"8.5\" fill=\"#EFBE46\" opacity=\".85\"/><g transform=\"translate(10 10)\" fill=\"none\" stroke=\"#3274AE\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14\"/></g></svg><div><h3>The code</h3><p>The prototype is one file. It works from a folder, with no internet, on each device.</p><p class=\"go\"><a href=\"https://github.com/sayhien/avient-sales-rep-tool\" target=\"_blank\" rel=\"noopener\">Open the code on GitHub</a></p></div></div></div><div class=\"body sp\"><p><b>Ask me about each decision in the prototype.</b> The working document has the reason for each.</p></div>",
+  "hero": false,
+  "note": "The project has four more parts. The working document has the research, the 23 ideas and each design decision with its reason. The screen guide explains each detail on each screen. The design system has the rules. And the code is one file. You can ask me about each decision in the prototype."
+ }
 ];
+SECTIONS.forEach(function(s){ if (s.html === '@@JOURNEY@@') s.html = journeyHTML(); });
 
 /* ---------- build the page ---------- */
 var main = document.getElementById('main'), navlist = document.getElementById('navlist');
