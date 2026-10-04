@@ -15,7 +15,7 @@
    The app inside the frame keeps its own light look in both themes, because it is a product mock. */
 :root{
   --page:#EDF1F4; --page-fg:#303C40; --page-sub:#5F6F78; --page-line:#D3DCE2; --page-card:#FFFFFF;
-  --blue:#3274AE; --avient:#0080E0; --hred:#D9624F; --hyel:#EFBE46; --blue-d:#285F91; --soft-d:#D8E6F4; --ln-d:#BFCFDB; --wxg:#CBD6DE; --veil2:rgba(255,255,255,.74); --soft:#E7F0F8; --mist:#F4F8FB; --white:#FFFFFF;
+  --blue:#3274AE; --avient:#0080E0; --hred:#D9624F; --hyel:#EFBE46; --blue-d:#285F91; --soft-d:#D8E6F4; --soft-b:#B4CEE6; --ln-d:#BFCFDB; --wxg:#CBD6DE; --veil2:rgba(255,255,255,.74); --soft:#E7F0F8; --mist:#F4F8FB; --white:#FFFFFF;
   --ink:#303C40; --sub:#5F6F78; --ln:#E0E7ED;
   --amb50:#FFF3DD; --amb300:#EBCF9C; --amb800:#7F5410;
   --red50:#FDE9E7; --red300:#F0B6B0; --red700:#A3261C;
@@ -671,10 +671,6 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .wxblock{margin-top:8px}
 .app.tablet .hero .wxblock,.app.computer .hero .wxblock{margin-top:auto;padding-top:14px}
 /* weather: one sentence for the visit that rain can delay, and one line for the three parts of the day */
-.wxrow{display:flex;flex-wrap:wrap;gap:3px 12px;margin-top:6px;font:600 11px/15px var(--fb);color:var(--sub)}
-.wxrow span{display:inline-flex;align-items:center;gap:4px;font-variant-numeric:tabular-nums}
-.wxrow .ic{width:13px;height:13px}
-.wxrow .now{color:var(--blue)}
 .wxline .ic{width:14px;height:14px;vertical-align:-2px;margin-right:3px}
 .app .wxblock .wxline{margin-top:0;margin-bottom:0}
 /* ---------- round 10: columns that stand alone, a link for each day, Edit with a word ---------- */
@@ -714,6 +710,87 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .bhead{grid-template-columns:minmax(0,1fr)}
 .bhead>*{min-width:0}
 @media (hover:hover){ .btn-quiet:hover{background:var(--soft)} .ib:hover{background:var(--soft)} }
+/* ---------- round 12: our own menu and date control, forms that keep entries, room in the record ---------- */
+/* the control of the browser stays in the page and holds the value. It is not shown. Our own button and list show in its place. */
+.app .nat{position:absolute;width:1px;height:1px;min-width:0;padding:0!important;border:0;margin:0;opacity:0;pointer-events:none;background:none}
+.mb{display:flex;align-items:center;gap:8px;width:100%;min-width:0;font:500 12.5px/17.5px var(--fb);color:var(--ink);border:1px solid var(--ln);border-radius:10px;padding:7px 12px;background:var(--white);cursor:pointer;text-align:left}
+.mb .mv{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mb .mv.ph{color:var(--sub)}
+.mb .ic{width:14px;height:14px;flex:none;color:var(--sub);stroke-width:2.2;transition:transform .15s}
+.mb[aria-expanded="true"]{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
+.mb[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.mb.bad{border-color:var(--red700);box-shadow:0 0 0 1px var(--red700)}
+.sortrow .mb{width:auto;max-width:100%;flex:0 1 auto;padding-block:5px}
+.set .srow .mb{width:100%}
+.app .sheet .f>input,.app .sheet .f>textarea{padding-inline:12px}
+.app .inpre>span{left:12px}
+.app .sheet .inpre input{padding-left:34px;padding-right:12px}
+.menu{position:absolute;z-index:30;left:0;top:0;display:flex;flex-direction:column;min-width:150px;background:var(--white);border:1px solid var(--ln);border-radius:14px;box-shadow:var(--menu);padding:4px;animation:popIn .14s cubic-bezier(.2,.9,.3,1)}
+.screen.rm .menu{animation:none}
+.menu .mlist{min-height:0;overflow-y:auto;overscroll-behavior:contain;display:grid;gap:1px}
+.menu .mo{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:0;background:none;border-radius:10px;padding:8px 10px;font:500 12.5px/17.5px var(--fb);color:var(--ink);text-align:left;cursor:pointer}
+.menu .mo span{min-width:0;overflow-wrap:anywhere}
+.menu .mo .ic{width:14px;height:14px;flex:none;color:var(--blue-d);stroke-width:2.6;visibility:hidden}
+.menu .mo.ph{color:var(--sub)}
+.menu .mo.act{background:var(--mist)}
+.menu .mo[aria-selected="true"]{background:var(--soft);color:var(--blue-d);font-weight:600}
+.menu .mo[aria-selected="true"] .ic{visibility:visible}
+.menu .mo[aria-selected="true"].act{background:var(--soft-d)}
+.app .menu .mq{margin:2px 2px 5px;width:auto;border-radius:10px;padding:7px 10px}
+.menu .mnone{margin:0;padding:8px 10px;color:var(--sub)}
+.menu.cal{width:256px;padding:10px}
+.cal .ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.cal .ch b{font:700 12.5px/16px var(--fd)}
+.cal .ib{margin:0}
+.cal .ib[disabled]{opacity:.35;cursor:default}
+.cal .cg{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;text-align:center}
+.cal .cw{font:600 10px/16px var(--fb);color:var(--sub)}
+.cal .cd{border:0;background:none;border-radius:999px;aspect-ratio:1;padding:0;font:500 12px/1 var(--fb);color:var(--ink);cursor:pointer;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.cal .cd.today{box-shadow:inset 0 0 0 1px var(--blue)}
+.cal .cd.act{background:var(--mist)}
+.cal .cd[aria-selected="true"]{background:var(--blue);color:var(--white);font-weight:700}
+.cal .cd[disabled]{color:var(--ln-d);cursor:default}
+.cal .cf{display:flex;flex-wrap:wrap;gap:2px;margin:8px -4px -4px;padding-top:6px;border-top:1px solid var(--ln)}
+@media (hover:hover){ .mb:hover{border-color:var(--ln-d)} .menu .mo:hover{background:var(--mist)} .menu .mo[aria-selected="true"]:hover{background:var(--soft-d)} .cal .cd:not([disabled]):not([aria-selected="true"]):hover{background:var(--mist)} .kept .row:hover{border-color:var(--blue)} }
+/* a form with entries does not close at once. He can keep the entries, discard them, or stay. */
+.ask{position:absolute;inset:0;z-index:12;background:var(--scrim);display:grid;place-items:center;padding:18px;animation:fadeIn .15s}
+.askc{background:var(--white);border-radius:18px;box-shadow:var(--menu);padding:16px;width:100%;max-width:290px;animation:popIn .18s cubic-bezier(.2,.9,.3,1)}
+.screen.rm .ask,.screen.rm .askc{animation:none}
+.askc h3{font:700 14px/18px var(--fd);margin:0 0 4px}
+.askc p{color:var(--sub);margin:0}
+.askc .acts{display:grid;gap:6px;margin-top:14px}
+.askc .btn{width:100%}
+.dnote{display:flex;gap:6px;align-items:flex-start;background:var(--soft);border-radius:10px;padding:7px 10px;margin:8px 0 2px;font-size:11.5px;line-height:16px}
+.dnote>.ic{width:14px;height:14px;color:var(--blue-d);flex:none;margin-top:1px}
+.dnote span{flex:1;min-width:0}
+.dnote .link{color:var(--blue-d);flex:none;margin:-1px -4px -1px 0}
+.kept{margin-top:12px}
+.kept .row{grid-template-columns:auto 1fr auto;background:var(--soft);border-color:var(--soft-b)}
+.kept .row>.ic{width:16px;height:16px;color:var(--blue-d)}
+.kept .rr .ic{width:14px;height:14px;color:var(--blue-d)}
+.bcol>.kept:first-child{margin-top:0}
+/* the heading of a card in the record: more room below, so a tap on Add does not land on the first Edit */
+.rgrid .card h3{margin-bottom:18px}
+.rgrid .card h3 + .item{padding-top:2px}
+.rgrid .card h3 .ib::after{inset:-7px -8px -4px}
+.rgrid .item .ib::after{inset:-3px -8px}
+.ib.lk{color:var(--sub)}
+/* the details of a visit are plain text. Only a warning keeps the look of a label. */
+.vline{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:4px;font:500 11px/15px var(--fb);color:var(--sub)}
+.vmeta{display:inline-flex;align-items:center;gap:3px}
+.vmeta .ic{width:12px;height:12px}
+/* level 2 has a thin line around it, so it reads as a button and not as a label */
+.btn-soft{box-shadow:inset 0 0 0 1px var(--soft-b)}
+.screen.hc .btn-soft{box-shadow:inset 0 0 0 1.5px var(--blue-d)}
+/* the weather of the next three parts of the day: always one row of three */
+.app .wxblock .wxrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px;max-width:380px;container-type:inline-size}
+.wxrow .wxi{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:6px;align-items:center;font:600 10.5px/14px var(--fb);color:var(--sub)}
+.wxrow .wxi .ic{grid-row:1 / span 2;width:18px;height:18px}
+.wxrow .wxi i{font-style:normal}
+.wxrow .wxi b{font:700 12.5px/16px var(--fd);color:var(--ink);font-variant-numeric:tabular-nums}
+.wxrow .wxi.now,.wxrow .wxi.now b{color:var(--blue-d)}
+/* with large text the row is narrow: the drawing goes above the words, so no word is cut */
+@container (max-width:270px){ .wxrow .wxi{grid-template-columns:minmax(0,1fr);row-gap:1px;align-content:start} .wxrow .wxi .ic{grid-row:auto} }
 /* inside the presentation */
 .embed body{background:transparent}
 .embed .top>div:first-child{display:none}
@@ -791,7 +868,8 @@ var I={
  cloud:'<path d="M7 18a4 4 0 0 1-.5-8A5.5 5.5 0 0 1 17 9.5 4.3 4.3 0 0 1 17 18z"/>',
  rain:'<path d="M7 15a4 4 0 0 1-.5-8A5.5 5.5 0 0 1 17 6.5 4.3 4.3 0 0 1 17 15z"/><path d="M9 18l-1 3M13 18l-1 3M17 18l-1 3"/>',
  bolt:'<path d="M7 14a4 4 0 0 1-.5-8A5.5 5.5 0 0 1 17 5.5 4.3 4.3 0 0 1 17 14h-1"/><path d="M12 12l-2.5 4.5h3L11 21"/>',
- out:'<path d="M14 5h5v5M19 5l-8 8M11 7H6v11h11v-5"/>', go:'<path d="M9 5l7 7-7 7"/>',
+ out:'<path d="M14 5h5v5M19 5l-8 8M11 7H6v11h11v-5"/>',
+ cal:'<rect x="4" y="5" width="16" height="16" rx="2.5"/><path d="M4 10h16M8 3v4M16 3v4"/>', lock:'<rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>', go:'<path d="M9 5l7 7-7 7"/>',
  gear:'<circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/>'
 };
 var ic=function(n){return '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">'+I[n]+'</svg>'};
@@ -1077,7 +1155,7 @@ function loadData(n){
   var pts={}; T.forEach(function(t){pts[t.id]=points(t)}); T.sort(function(a,b){return pts[b.id]-pts[a.id]});
 }
 /* ---------- state ---------- */
-var S={device:'phone',tab:'brief',rec:null,sheet:null,wx:'storm',clock:'',dayAll:{},just:null,fan:false,more:false,plan:true,sales:false,done:{},stage:null,q:'',f:'all',sort:'name',edit:false,draft:null,attnAll:false,weekAll:false,recN:20,page:0,tlN:5,secAll:{},
+var S={device:'phone',tab:'brief',rec:null,sheet:null,wx:'storm',clock:'',dayAll:{},just:null,fan:false,more:false,plan:true,sales:false,done:{},stage:null,q:'',f:'all',sort:'name',edit:false,draft:null,attnAll:false,weekAll:false,recN:20,page:0,tlN:5,secAll:{},kept:{},
        set:{size:'m',hc:false,rm:false,left:false,tips:true,warn:true,tidy:true,draft:true,top:true,wx:true,lang:'English'}};
 var app=$('#app'), screenEl=$('#screen'), toastEl=$('#toast');
 var talkTimer=null, toastTimer=null, holdTimer=null, held=false, swallow=0, tidyTimers=[], addrT=null, addrT2=null;
@@ -1149,9 +1227,9 @@ function helloHTML(){
     } else { var tv=visitsOn(TOMORROW), th=worst(tv,1);
       line=ic(kn.icon)+'<b>'+kn.w+' now.</b>'+(th?' Tomorrow: '+KD(1,th.part).w.toLowerCase()+' at '+th.when+', when you visit '+esc(cust(th.cust).name)+'. '+KD(1,th.part).tip:tv.length?' Tomorrow: no rain at your '+(tv.length===1?'visit':'visits')+'.':'');
     }
-    var parts=[0,1,2].map(function(j){ var i=pn+j, d=i>2?1:0; i=i%3; var f=(d?WX2:WX)[S.wx][i]; return {k:WXK[f[0]],t:f[1],now:j===0,label:j===0?'Now':d?'Tomorrow '+PARTS[i].toLowerCase():PARTS[i],say:(d?'Tomorrow '+PARTS[i].toLowerCase():PARTS[i]+(j===0?', now':''))} });
+    var parts=[0,1,2].map(function(j){ var i=pn+j, d=i>2?1:0; i=i%3; var f=(d?WX2:WX)[S.wx][i]; return {k:WXK[f[0]],t:f[1],now:j===0,label:j===0?'Now':d?DAYS3[dOf(TOMORROW).getDay()]+' '+PARTS[i].toLowerCase():PARTS[i],say:(d?'Tomorrow '+PARTS[i].toLowerCase():PARTS[i]+(j===0?', now':''))} });
     body='<p class="wxline">'+line+'</p>'+
-      '<p class="wxrow" role="group" aria-label="Weather for the next hours">'+parts.map(function(p){return '<span class="'+(p.now?'now':'')+'" role="img" aria-label="'+p.say+': '+p.k.w+', '+p.t+' degrees">'+ic(p.k.icon)+p.label+' '+p.t+'°</span>'}).join('')+'</p>';
+      '<p class="wxrow" role="group" aria-label="Weather for the next hours">'+parts.map(function(p){return '<span class="wxi'+(p.now?' now':'')+'" role="img" aria-label="'+p.say+': '+p.k.w+', '+p.t+' degrees">'+ic(p.k.icon)+'<i>'+p.label+'</i><b>'+p.t+'°</b></span>'}).join('')+'</p>';
   }
   return '<header class="hero'+(bg?' wx-'+bg:'')+'" aria-label="Greeting'+(wxOn?' and weather':'')+'">'+(bg?wxFx(bg):'')+'<div class="hero-in">'+
    '<p class="date"><span>Monday 5 October · Singapore</span>'+(wxOn?'<a class="wxlink" href="https://www.weather.gov.sg/" target="_blank" rel="noopener">Full forecast'+ic('out')+'</a>':'')+'</p>'+
@@ -1205,15 +1283,15 @@ function taskHTML(t){
 }
 /* a visit of today, as an item of the day. It has the time, the reason, the area and the weather for that part of the day */
 function visitHTML(v){
-  var id='v-'+v.cust, done=S.done[id], c=cust(v.cust), d=v.deal?deal(v.deal):null, k=WXK[WX[S.wx][v.part][0]], chips='', past=mins(v.when)<=nowMin();
+  var id='v-'+v.cust, done=S.done[id], c=cust(v.cust), d=v.deal?deal(v.deal):null, k=WXK[WX[S.wx][v.part][0]], chips='', meta='', past=mins(v.when)<=nowMin();
   if(!done){
-    chips+='<span class="chip">'+ic('pin')+esc(c.area||'No address yet')+'</span>';
-    if(S.set.wx&&!past) chips+=k.tip?chip('warn',k.w+'. '+k.tip):'<span class="chip">'+ic(k.icon)+k.w+'</span>';
+    meta+='<span class="vmeta">'+ic('pin')+esc(c.area||'No address yet')+'</span>';
+    if(S.set.wx&&!past){ if(k.tip) chips+=chip('warn',k.w+'. '+k.tip); else meta+='<span class="vmeta">'+ic(k.icon)+k.w+'</span>'; }
     if(d&&S.set.warn&&isQuiet(d)) chips+=chip('warn','Quiet for '+d.touch+' days');
   }
   return '<div class="task visit'+(done?' done':'')+(S.just===id?' pop':'')+'"><button class="tick" data-act="done" data-id="'+id+'" aria-pressed="'+!!done+'" aria-label="'+(done?'Done. Tap to undo: ':'Mark as done: ')+'Visit '+esc(c.name)+'">'+ic('tick')+'</button>'+
    '<div><button class="title" data-act="rec" data-id="'+v.cust+'"><span class="vt">'+v.when+'</span>Visit '+esc(c.name)+'</button><span class="why">'+(done?(done===2?'Done by your note.':'Done.'):esc(v.note||v.why))+'</span>'+
-   (chips?'<span class="chips">'+chips+'</span>':'')+
+   (meta?'<span class="vline">'+meta+'</span>':'')+(chips?'<span class="chips">'+chips+'</span>':'')+
    (done?'':'<span class="acts">'+(past?'<button class="btn btn-soft" data-act="vnote" data-id="'+v.cust+'">'+ic('plus')+'Add a note about the visit</button>':'<button class="btn btn-soft" data-act="rec" data-id="'+v.cust+'">'+ic('file')+'Prepare for the visit</button>')+'</span>')+'</div></div>';
 }
 var PUID=0;
@@ -1261,8 +1339,13 @@ function dealsHTML(){
    (list.slice(0,5).map(function(d){var c=cust(d.cust);return '<button class="mini" data-act="rec" data-id="'+c.id+'"><span><b style="font-weight:600">'+esc(c.name)+'</b><br><span class="cap">'+esc(d.name)+' · '+d.stage+(S.set.warn&&isQuiet(d)?' · quiet '+d.touch+' days':'')+'</span></span><span class="val">'+money(d.value)+'</span></button>'}).join('')||'<p class="cap">No deals at this stage.</p>')+
    (list.length>5?'<button class="btn btn-quiet wide" data-act="alldeals" style="margin:6px 0 2px">See all '+list.length+' in Records</button>':'')+'</div>');
 }
+/* forms that he left with entries. He opens one to finish it. */
+function keptHTML(){
+  var a=Object.keys(S.kept).map(function(k){return S.kept[k]}).sort(function(x,y){return y.n-x.n}); if(!a.length) return '';
+  return '<section class="bsec kept" id="b-kept" aria-label="Forms that are not finished"><div class="stack">'+a.map(function(d){return '<button class="row" data-act="kept" data-id="'+esc(d.key)+'">'+ic('clock')+'<span><b>'+esc(d.title)+'</b><br><span class="r2">Not finished. Kept at '+d.at+'.</span></span><span class="rr">'+ic('go')+'</span></button>'}).join('')+'</div></section>';
+}
 function briefHTML(){
-  var hello=helloHTML(), sales=salesHTML(), top=topHTML(), week=weekHTML(), attn=attnHTML(), deals=dealsHTML();
+  var hello=helloHTML(), sales=salesHTML(), top=keptHTML()+topHTML(), week=weekHTML(), attn=attnHTML(), deals=dealsHTML();
   if(S.device==='phone'){
     var nav='<nav class="jump" aria-label="Sections">'+[['b-top','Today'],['b-week','This week'],['b-attn','Attention'],['b-deals','Open deals']].map(function(x){return '<button class="pill" data-act="jump" data-id="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</nav>';
     return '<div class="bhead">'+hello+sales+'</div>'+nav+'<div class="bgrid"><div>'+top+week+attn+deals+'</div></div>';
@@ -1327,6 +1410,8 @@ function recordHTML(id){
   var add=function(k,l){return '<button class="ib" data-act="add" data-id="'+k+'" title="Add" aria-label="Add a '+k+'">'+ic('plus')+'</button>'};
   var pen=function(k,i,l){return '<button class="ib ed" data-act="edititem" data-id="'+k+'" data-i="'+i+'" title="Edit" aria-label="Edit '+esc(l)+'">'+ic('pen')+'</button>'};
   var NOTES={Visit:1,Call:1,Note:1,'Voice note':1,'Written note':1,'Photo note':1};
+  /* he can change what he wrote. A message, an email and an entry of the tool are records, so they have a lock. */
+  var lock=function(x){return '<button class="ib lk" data-act="locked" data-id="'+(x.how==='Created'?'made':'sent')+'" title="Cannot be changed" aria-label="Why the entry of '+esc(x.d)+' cannot be changed">'+ic('lock')+'</button>'};
   var h=(close?'<div class="rbar">'+close+'</div>':'')+
    '<h1>'+esc(c.name)+'</h1><p class="sub">'+[esc(c.type),esc(c.area),'Customer since '+c.since].filter(Boolean).join(' · ')+'</p><div class="chips">'+(custStatus(c)||chip('done','Up to date'))+'</div>'+
    '<p class="next"><b>Next:</b> '+(next?esc(next.t)+' <span class="sub">· '+fmt(next.iso)+'</span>':'<span class="sub">Nothing promised yet</span>')+'</p>'+
@@ -1346,7 +1431,7 @@ function recordHTML(id){
      if(p.none) return '<p class="sub">No contact yet.</p>';
      var bits=[]; if(p.role) bits.push(esc(p.role)); if(p.phone) bits.push('<span style="user-select:text">'+esc(p.phone)+'</span>');
      return '<div class="item itemrow"><span><b>'+esc(p.name)+'</b>'+(i===0?'<span class="tag">Main contact</span>':'')+(bits.length?'<br><span class="cap">'+bits.join(' · ')+'</span>':'')+(p.email?'<br><span class="cap" style="user-select:text;overflow-wrap:anywhere">'+esc(p.email)+'</span>':'')+'</span>'+pen('person',i,p.name)+'</div>'}).join('')+moreB('people',c.people.length)+'</div>';
-  var tl='<div class="card span" id="s-timeline"><h3>Timeline <button class="ib" data-act="cap" data-id="type" data-hint="'+id+'" title="Add" aria-label="Add a note">'+ic('plus')+'</button></h3>'+c.timeline.slice(0,S.tlN).map(function(x,i){return '<div class="item tl"><span class="d"><b>'+esc(x.d)+'</b>'+esc(x.how)+'</span><span>'+esc(x.t)+(x.next?'<br><span class="cap">Next step: '+esc(x.next)+'</span>':'')+(x.ai?'<br><span class="byhue">'+hue(12)+'Tidied by '+AI+'</span>':'')+'</span>'+(NOTES[x.how]?pen('note',i,'note of '+x.d):'<span></span>')+'</div>'}).join('')+
+  var tl='<div class="card span" id="s-timeline"><h3>Timeline <button class="ib" data-act="cap" data-id="type" data-hint="'+id+'" title="Add" aria-label="Add a note">'+ic('plus')+'</button></h3>'+c.timeline.slice(0,S.tlN).map(function(x,i){return '<div class="item tl"><span class="d"><b>'+esc(x.d)+'</b>'+esc(x.how)+'</span><span>'+esc(x.t)+(x.next?'<br><span class="cap">Next step: '+esc(x.next)+'</span>':'')+(x.ai?'<br><span class="byhue">'+hue(12)+'Tidied by '+AI+'</span>':'')+'</span>'+(NOTES[x.how]?pen('note',i,'note of '+x.d):lock(x))+'</div>'}).join('')+
      (c.timeline.length>S.tlN?'<button class="btn btn-quiet wide" data-act="tlmore" style="margin-top:8px">Show '+Math.min(10,c.timeline.length-S.tlN)+' earlier notes</button><p class="cap ctr">'+S.tlN+' of '+c.timeline.length+' shown</p>':'')+'</div>';
   var al=addrLine(c);
   var comp='<div class="card" id="s-company"><h3>Company <button class="ib" data-act="editco" title="Edit" aria-label="Edit the company details">'+ic('pen')+'</button></h3><dl class="dl"><dt>Type</dt><dd>'+esc(c.type)+'</dd><dt>Address</dt><dd>'+
@@ -1443,7 +1528,7 @@ function fmsg(el){
   return '';
 }
 function fset(el,m){
-  var e=document.getElementById(el.id+'-e'); el.classList.toggle('bad',!!m);
+  var e=document.getElementById(el.id+'-e'), fb=faceOf(el); el.classList.toggle('bad',!!m); if(fb) fb.classList.toggle('bad',!!m);
   if(m) el.setAttribute('aria-invalid','true'); else el.removeAttribute('aria-invalid');
   if(e){ e.innerHTML=m?ic('x')+'<span>'+esc(m)+'</span>':''; e.hidden=!m; }
   return !m;
@@ -1536,7 +1621,7 @@ function sheetHTML(){
      fld('r-next','Next step','next',{val:r.next,hint:r.next?'':AI+' found no next step in your note.'})+
      '<div class="f"><label for="r-due">Date of the next step '+(r.dueCheck?chip('warn','Please check'):'')+'</label><input id="r-due" data-ft="date" type="date" value="'+esc(r.iso)+'" min="2026-10-05" aria-describedby="r-due-e">'+(r.dueCheck?'<span class="cap">You said "'+esc(r.dueCheck)+'". '+AI+' took the coming one, '+fmt(r.iso)+'.</span>':(r.iso?'':'<span class="cap">No date found in your note.</span>'))+ferrP('r-due')+'</div>'+
      (dd?'<div class="f"><label for="r-stage">Deal stage: '+esc(dd.name)+'</label><select id="r-stage">'+STAGES.concat(['Won','Lost']).map(function(x){return '<option'+(x===r.stageTo?' selected':'')+'>'+x+'</option>'}).join('')+'</select><span class="cap">'+(r.stageTo!==dd.stage?'Was '+dd.stage+'. '+AI+' suggests this from your note.':'No change.')+'</span></div>':'')+
-     '<div class="acts"><button class="btn btn-primary" data-act="save">Save to record</button><button class="btn btn-ghost" data-act="close">Discard</button></div>'+
+     '<div class="acts"><button class="btn btn-primary" data-act="save">Save to record</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
      '<details class="raw"><summary>Your original words</summary><p>'+esc(r.raw)+'</p></details>';
   }
   else if(s.kind==='newcust'){
@@ -1594,9 +1679,9 @@ function sheetHTML(){
      '<h3 id="g-visits">Weather</h3><dl>'+gi('Weather on Home','One sentence gives the weather that can delay a visit that is still to come today. When no visit is left today, it looks at tomorrow. One line gives the next three parts of the day. The forecast comes from the national weather service.')+
        gi(chip('warn','Storms. Leave 15 minutes early.'),'This mark shows on a visit when showers or storms can delay you.')+'</dl>'+
      '<h3 id="g-sales">Sales bar</h3><dl>'+gi('<i class="k kw"></i>Solid bar','The sales that you won this year.')+gi('<i class="k ko"></i>Striped bar','Your open deals. They can add to your sales.')+gi('<i class="k kp"></i>Line','Where you should be today, if sales are equal in each month.')+'</dl>'+
-     '<h3 id="g-forms">Forms</h3><dl>'+gi('<span class="ib" style="margin:0">'+ic('plus')+'</span>Add','In the heading of each list. It adds one item to that list.')+gi('<span class="ib" style="margin:0">'+ic('pen')+'</span>Edit','On each item that you can change. The Edit sheet has Save, Cancel and Remove. A sent message cannot change. A deal cannot be removed: set its stage to Lost.')+gi('(optional)','You can leave this field empty. All other fields are necessary.')+gi('Example: 9123 4567','The grey text in an empty field is an example. It shows the correct form.')+
+     '<h3 id="g-forms">Forms</h3><dl>'+gi('<span class="ib" style="margin:0">'+ic('plus')+'</span>Add','In the heading of each list. It adds one item to that list.')+gi('<span class="ib" style="margin:0">'+ic('pen')+'</span>Edit','On each item that you can change. The Edit sheet has Save, Cancel and Remove. A deal cannot be removed: set its stage to Lost.')+gi('<span class="ib lk" style="margin:0">'+ic('lock')+'</span>Lock','On a timeline entry that is a record: a message, an email, or an entry that the tool made. It cannot be changed. Add a note to correct it.')+gi('(optional)','You can leave this field empty. All other fields are necessary.')+gi('Example: 9123 4567','The grey text in an empty field is an example. It shows the correct form.')+
        gi('<span class="ferr">'+ic('x')+'<span>Red text below a field</span></span>','The value is not correct. The text says how to correct it.')+
-       gi('Phone','8 digits for Singapore. For another country, start with + and the country code.')+gi('Amount','Singapore dollars. Numbers only. S$1,000 or more.')+gi('Date','Today or a later date.')+'</dl>'+
+       gi('Phone','8 digits for Singapore. For another country, start with + and the country code.')+gi('Amount','Singapore dollars. Numbers only. S$1,000 or more.')+gi('Date','Today or a later date.')+gi('Leave a form','If a form has entries, it does not close at once. You can keep the entries and finish later. Kept forms show at the top of Home.')+'</dl>'+
      '<h3 id="g-marks">Marks from '+AI+'</h3><dl>'+gi(hue(15)+AI+' mark',AI+' wrote or selected this item. You can change it.')+'</dl></div>'+
      '<div class="acts"><button class="btn btn-ghost" data-act="close">Close</button></div>';
   }
@@ -1612,7 +1697,10 @@ function viewKey(){
   if(S.device==='tablet'&&S.tab==='rec') return 'tablet:rec:'+(S.rec||'best')+(S.edit?':e':'');
   return S.device+':'+S.tab;
 }
+var lastSheet=null;
 function render(){
+  MENU=null;
+  var live=S.sheet&&S.sheet===lastSheet&&S.sheet.kind!=='review'&&app.querySelector('.scrim:not(.out) .sheet')?sheetVals():null;
   var keep={}; app.querySelectorAll('[data-scroll]').forEach(function(el){keep[el.dataset.scroll]=el.scrollTop});
   var mo=motionOK(), oldScrim=app.querySelector('.scrim:not(.out)'), oldDrawer=app.querySelector('.drawer:not(.out)'), oldKind=app.dataset.sheet||'';
   var ghosts=[]; if(mo&&!S.sheet&&oldScrim) ghosts.push(oldScrim.cloneNode(true));
@@ -1633,6 +1721,7 @@ function render(){
   }
   app.className='app '+dv;
   app.innerHTML=h+fabHTML()+sheetHTML();
+  enhance(); if(live) applyVals(live); lastSheet=S.sheet;
   app.querySelectorAll('[data-scroll]').forEach(function(el){ if(keep[el.dataset.scroll]) el.scrollTop=keep[el.dataset.scroll] });
   var key=viewKey();
   if(mo){
@@ -1693,22 +1782,202 @@ function countUp(){
 }
 function after(){
   var s=S.sheet; if(!s) return;
+  if(isForm(s)&&!s.snap&&!s.kept&&s.kind!=='review'){ var kd=S.kept[sheetKey(s)];
+    if(kd){ s.kept=kd.key; s.restore=kd.vals; s.keptAt=kd.at; if(kd.sheet.addr){ s.addr=kd.sheet.addr; s.picked=kd.sheet.picked; } } }
+  if(s.restore){ applyVals(s.restore); delete s.restore; }
   if(s.kind==='talk'&&!talkTimer) startTalk();
   if(s.kind==='write') bindPad();
   if($('#c-addr')){ var av=$('#c-addr').value; if(!s.addr){ s.addr=addrParse(av); s.picked=av; } s.sug=[]; addrMap(); }
   var f=app.querySelector('.sheet textarea, .sheet input[type=text]');
-  if(f&&(s.kind==='type'||s.kind==='newcust'||(s.kind==='add'&&s.i==null))) { try{f.focus({preventScroll:true})}catch(e){} }
+  if(f&&!s.kept&&(s.kind==='type'||s.kind==='newcust'||(s.kind==='add'&&s.i==null))) { try{f.focus({preventScroll:true})}catch(e){} }
+  if(isForm(s)){
+    var sh=app.querySelector('.scrim:not(.out) .sheet .sh');
+    if(s.kept&&sh&&!app.querySelector('.scrim:not(.out) .dnote')) sh.insertAdjacentHTML('afterend','<p class="dnote">'+ic('clock')+'<span>You started this form at '+esc(s.keptAt)+'. Your entries are back.</span><button class="link" data-act="keptdrop">Discard</button></p>');
+    if(!s.snap) s.snap=sheetVals();
+  }
 }
 var toastTimer2=null;
-function toast(text,id){
+function toast(text,id,act){
   clearTimeout(toastTimer); clearTimeout(toastTimer2); toastEl.classList.remove('bye');
-  toastEl.innerHTML='<span>'+esc(text)+'</span>'+(id?'<button data-act="rec" data-id="'+id+'">Open</button>':'');
+  toastEl.innerHTML='<span>'+esc(text)+'</span>'+(id?'<button data-act="'+(act||'rec')+'" data-id="'+esc(id)+'">Open</button>':'');
   toastEl.hidden=true; void toastEl.offsetWidth; toastEl.hidden=false;
   toastTimer=setTimeout(function(){ toastEl.classList.add('bye'); toastTimer2=setTimeout(function(){toastEl.hidden=true;toastEl.classList.remove('bye')},motionOK()?220:0) },id?4500:2600);
 }
 function pressOne(b){ Array.prototype.forEach.call(b.parentNode.children,function(x){x.setAttribute('aria-pressed',String(x===b))}) }
 function stopTalk(){ if(talkTimer){clearInterval(talkTimer);talkTimer=null} }
 function closeSheet(){ stopTalk(); tidyTimers.forEach(clearTimeout); tidyTimers=[]; S.sheet=null; }
+
+/* ---------- our own menu and date control ---------- */
+/* Each select and each date field of the browser gets a button in the style of the tool. The button opens a list or a small calendar.
+   The control of the browser stays in the page: it holds the value and sends the change event, so the rest of the code does not change. */
+var MENU=null, MONL=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function isoOf(d){ return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2) }
+function dOf(iso){ var p=iso.split('-'); return new Date(+p[0],+p[1]-1,+p[2]) }
+function addDays(iso,n){ var d=dOf(iso); d.setDate(d.getDate()+n); return isoOf(d) }
+function fmtLong(iso){ var d=dOf(iso); return (iso===TODAY?'Today, ':iso===addDays(TODAY,1)?'Tomorrow, ':'')+DAYS3[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()]+' '+d.getFullYear() }
+function clockText(m){ var h=Math.floor(m/60)%24; return (h%12||12)+':'+('0'+m%60).slice(-2)+' '+(h<12?'am':'pm') }
+function faceOf(el){ return el&&el.id?document.getElementById(el.id+'-b'):null }
+function faceSync(el){
+  var b=faceOf(el); if(!b) return; var v=b.querySelector('.mv');
+  if(el.tagName==='SELECT'){ var o=el.options[el.selectedIndex]; v.textContent=o?o.textContent:''; v.classList.toggle('ph',!!o&&el.selectedIndex===0&&o.value===''); }
+  else { v.textContent=el.value?fmtLong(el.value):'Select a date'; v.classList.toggle('ph',!el.value); }
+}
+function enhance(){
+  app.querySelectorAll('select:not(.nat), input[type=date]:not(.nat)').forEach(function(el){
+    if(!el.id) return;
+    var date=el.tagName==='INPUT', lab=app.querySelector('label[for="'+el.id+'"]'), b=document.createElement('button'), desc=el.getAttribute('aria-describedby');
+    b.type='button'; b.className='mb'; b.id=el.id+'-b'; b.dataset.menu=el.id;
+    b.setAttribute('aria-haspopup',date?'dialog':'listbox'); b.setAttribute('aria-expanded','false');
+    b.innerHTML='<span class="mv" id="'+el.id+'-v"></span>'+(date?ic('cal'):ic('down').replace('class="ic"','class="ic chev"'));
+    if(lab){ if(!lab.id) lab.id=el.id+'-l'; lab.htmlFor=b.id; b.setAttribute('aria-labelledby',lab.id+' '+el.id+'-v'); }
+    if(desc) b.setAttribute('aria-describedby',desc);
+    if(el.hasAttribute('data-req')) b.setAttribute('aria-required','true');
+    el.classList.add('nat'); el.tabIndex=-1; el.setAttribute('aria-hidden','true');
+    el.parentNode.insertBefore(b,el.nextSibling); faceSync(el);
+  });
+}
+function menuList(){
+  var m=MENU, el=m.el, q=m.q.trim().toLowerCase();
+  return [].slice.call(el.options).map(function(o,i){ if(q&&o.textContent.toLowerCase().indexOf(q)<0) return '';
+    return '<button type="button" class="mo'+(i===m.act?' act':'')+(i===0&&o.value===''?' ph':'')+'" role="option" id="mo-'+i+'" data-i="'+i+'" aria-selected="'+(i===el.selectedIndex)+'" tabindex="-1"><span>'+esc(o.textContent)+'</span>'+ic('tick')+'</button>' }).join('')||'<p class="mnone">No match. Check the spelling.</p>';
+}
+function calHTML(){
+  var m=MENU, el=m.el, p=m.view.split('-'), y=+p[0], mo=+p[1]-1, start=new Date(y,mo,1).getDay(), n=new Date(y,mo+1,0).getDate(), min=el.min||'', was=el.dataset.was||'', cells='', i, d;
+  for(i=0;i<start;i++) cells+='<span></span>';
+  for(d=1;d<=n;d++){ var iso=m.view+'-'+('0'+d).slice(-2), off=min&&iso<min&&iso!==was;
+    cells+='<button type="button" class="cd'+(iso===TODAY?' today':'')+(iso===m.day?' act':'')+'" data-day="'+iso+'" aria-selected="'+(iso===el.value)+'"'+(off?' disabled':'')+' tabindex="-1" aria-label="'+fmtLong(iso)+'">'+d+'</button>'; }
+  var first=(min&&min.slice(0,7)>=m.view)&&!(was&&was.slice(0,7)<m.view), tm=addDays(TODAY,1);
+  return '<div class="ch"><button type="button" class="ib" data-cal="-1" aria-label="The month before"'+(first?' disabled':'')+'>'+ic('back')+'</button><b aria-live="polite">'+MONL[mo]+' '+y+'</b><button type="button" class="ib" data-cal="1" aria-label="The next month">'+ic('go')+'</button></div>'+
+   '<div class="cg">'+['Su','Mo','Tu','We','Th','Fr','Sa'].map(function(w){return '<span class="cw" aria-hidden="true">'+w+'</span>'}).join('')+cells+'</div>'+
+   '<div class="cf"><button type="button" class="btn btn-quiet" data-day="'+TODAY+'">Today</button><button type="button" class="btn btn-quiet" data-day="'+tm+'">Tomorrow</button>'+(el.hasAttribute('data-req')?'':'<button type="button" class="btn btn-quiet" data-day="">No date</button>')+'</div>';
+}
+/* put the list below the button. If there is no room below, put it above. The numbers hold for each text size and each device scale. */
+function menuPlace(){
+  var m=MENU, p=m.pop, list=p.querySelector('.mlist');
+  p.style.cssText='left:0;top:0;width:100px;min-width:0;max-height:none;animation:none';
+  var o=p.getBoundingClientRect(), k=o.width/100||1, ar=app.getBoundingClientRect(), tr=m.btn.getBoundingClientRect();
+  var w=m.date?256:Math.max(tr.width/k,150); p.style.width=w+'px'; p.style.minWidth='';
+  var H=p.getBoundingClientRect().height/k, below=(ar.bottom-tr.bottom)/k-12, above=(tr.top-ar.top)/k-12, up=H>below&&above>below, room=Math.min(up?above:below,m.date?999:270);
+  if(H>room){ H=room; p.style.maxHeight=room+'px'; }
+  var left=Math.max(6,Math.min((tr.left-o.left)/k,(ar.right-o.left)/k-w-6));
+  p.style.left=left+'px'; p.style.top=(up?(tr.top-o.top)/k-H-4:(tr.bottom-o.top)/k+4)+'px'; p.style.transformOrigin=up?'50% 100%':'50% 0';
+  if(!m.placed){ m.placed=true; p.style.animation=''; }
+  var on=list&&(list.querySelector('.act')||list.querySelector('[aria-selected="true"]'));
+  if(on){ var lr=list.getBoundingClientRect(), r=on.getBoundingClientRect(); list.scrollTop+=(r.top-lr.top)/k-(lr.height/k-r.height/k)/2; }
+}
+function menuOpen(el){
+  menuClose(); var b=faceOf(el); if(!b) return;
+  var date=el.tagName==='INPUT', pop=document.createElement('div'); pop.id='menu'; pop.className='menu'+(date?' cal':'');
+  MENU={el:el,btn:b,pop:pop,date:date,q:'',act:-1};
+  if(date){ var v=el.value||(el.min&&el.min>TODAY?el.min:TODAY); MENU.day=v; MENU.view=v.slice(0,7); pop.setAttribute('role','dialog'); pop.setAttribute('aria-label','Choose a date'); pop.innerHTML=calHTML(); }
+  else { MENU.act=el.selectedIndex;
+    pop.innerHTML=(el.options.length>8?'<input class="mq" id="menu-q" type="text" placeholder="Search" autocomplete="off" spellcheck="false" aria-label="Search this list" aria-controls="menu-l">':'')+'<div class="mlist" role="listbox" id="menu-l">'+menuList()+'</div>'; }
+  app.appendChild(pop); b.setAttribute('aria-expanded','true'); b.setAttribute('aria-controls',date?'menu':'menu-l'); menuPlace();
+  var q=pop.querySelector('.mq'); if(q&&S.device==='computer'){ try{q.focus({preventScroll:true})}catch(e){} }
+}
+function menuClose(focus){
+  if(!MENU) return; var m=MENU; MENU=null;
+  if(m.pop.parentNode) m.pop.parentNode.removeChild(m.pop); m.btn.setAttribute('aria-expanded','false'); m.btn.removeAttribute('aria-activedescendant');
+  if(focus){ try{m.btn.focus({preventScroll:true})}catch(e){} }
+}
+function menuDone(el){ var b=faceOf(el); if(b&&document.activeElement!==b){ try{b.focus({preventScroll:true})}catch(e){} } }
+function menuPick(i){
+  var el=MENU.el; menuClose(true);
+  if(el.selectedIndex!==i){ el.selectedIndex=i; faceSync(el); el.dispatchEvent(new Event('change',{bubbles:true})); menuDone(el); }
+}
+function datePick(iso){
+  var el=MENU.el; menuClose(true);
+  if(el.value!==iso){ el.value=iso; faceSync(el); el.dispatchEvent(new Event('input',{bubbles:true})); el.dispatchEvent(new Event('change',{bubbles:true})); menuDone(el); }
+}
+function menuAct(i){
+  var m=MENU; m.act=i; m.pop.querySelectorAll('.mo').forEach(function(o){ o.classList.toggle('act',+o.dataset.i===i) });
+  var on=m.pop.querySelector('.mo.act'), list=m.pop.querySelector('.mlist');
+  if(on){ m.btn.setAttribute('aria-activedescendant',on.id); var lr=list.getBoundingClientRect(), r=on.getBoundingClientRect(), k=lr.height/list.clientHeight||1;
+    if(r.top<lr.top) list.scrollTop-=(lr.top-r.top)/k; else if(r.bottom>lr.bottom) list.scrollTop+=(r.bottom-lr.bottom)/k; }
+}
+function calNav(n){
+  var m=MENU, p=m.view.split('-'), d=new Date(+p[0],+p[1]-1+(+n),1), last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+  m.view=isoOf(d).slice(0,7); m.day=m.view+'-'+('0'+Math.min(+m.day.slice(8),last)).slice(-2); m.pop.innerHTML=calHTML(); menuPlace();
+}
+/* the keys of an open menu. It returns true when the key is used. */
+function menuKey(e){
+  var m=MENU, k=e.key, inQ=e.target&&e.target.id==='menu-q';
+  if(k==='Escape'){ e.preventDefault(); menuClose(true); return true }
+  if(k==='Tab'){ menuClose(); return true }
+  if(m.date){
+    var step={ArrowLeft:-1,ArrowRight:1,ArrowUp:-7,ArrowDown:7}[k];
+    if(step){ e.preventDefault(); m.day=addDays(m.day,step); m.view=m.day.slice(0,7); m.pop.innerHTML=calHTML(); menuPlace(); return true }
+    if(k==='PageUp'||k==='PageDown'){ e.preventDefault(); calNav(k==='PageUp'?-1:1); return true }
+    if(k==='Enter'){ if(e.target&&e.target.closest&&e.target.closest('#menu')) return true; e.preventDefault(); var c=m.pop.querySelector('.cd[data-day="'+m.day+'"]'); if(c&&!c.disabled) datePick(m.day); return true }
+    return true;
+  }
+  var vis=[].slice.call(m.pop.querySelectorAll('.mo')), cur=-1; vis.forEach(function(o,j){ if(+o.dataset.i===m.act) cur=j });
+  if(k==='ArrowDown'||k==='ArrowUp'||k==='Home'||k==='End'){
+    if(inQ&&(k==='Home'||k==='End')) return true;
+    e.preventDefault(); var j=k==='Home'?0:k==='End'?vis.length-1:cur<0?0:Math.max(0,Math.min(vis.length-1,cur+(k==='ArrowDown'?1:-1)));
+    if(vis[j]) menuAct(+vis[j].dataset.i); return true }
+  if(k==='Enter'){ e.preventDefault(); if(cur>-1) menuPick(m.act); else if(vis.length===1) menuPick(+vis[0].dataset.i); return true }
+  if(k.length===1&&k!==' '&&!inQ&&!e.metaKey&&!e.ctrlKey&&!e.altKey){
+    var c0=k.toLowerCase(), order=vis.slice(cur+1).concat(vis.slice(0,cur+1)), hit=order.filter(function(o){return o.textContent.trim().toLowerCase().indexOf(c0)===0})[0];
+    if(hit) menuAct(+hit.dataset.i); return true }
+  return true;
+}
+
+/* ---------- forms keep their entries ---------- */
+/* A sheet with fields does not close at once when it has entries. He can keep the entries and finish later, discard them, or stay.
+   Kept forms show at the top of Home. A tap outside closes a sheet only when nothing can be lost. */
+var FORMS={newcust:1,company:1,add:1,type:1,review:1,msg:1}, HOLD={talk:1,write:1,tidying:1}, KEPTN=0;
+var DONE={create:1,saveco:1,addsave:1,save:1,saveraw:1,send:1,rmitem:1,tidy:1};
+function isForm(s){ return !!s&&!!FORMS[s.kind]&&!(s.kind==='add'&&s.what==='file'&&s.i==null) }
+function sheetKey(s){
+  var r=S.rec||'best';
+  return s.kind==='add'?'add:'+s.what+':'+(s.i==null?'new':s.i)+':'+r:s.kind==='company'?'company:'+r:s.kind==='type'?'type:'+(s.hint||''):s.kind==='msg'?'msg:'+s.cust+':'+(s.deal||''):s.kind;
+}
+function sheetVals(){
+  var o={}; app.querySelectorAll('.scrim:not(.out) .sheet input, .scrim:not(.out) .sheet textarea, .scrim:not(.out) .sheet select').forEach(function(el){
+    if(el.id&&el.type!=='file') o[el.id]=el.type==='checkbox'?el.checked:el.value; }); return o;
+}
+function applyVals(v){
+  Object.keys(v).forEach(function(id){ var el=document.getElementById(id); if(!el||!el.closest('.sheet')) return;
+    if(el.type==='checkbox') el.checked=!!v[id]; else el.value=v[id]; if(el.classList.contains('nat')) faceSync(el); });
+  var a1=$('#a-1'), w2=$('#a-2w'); if(a1&&w2&&a1.tagName==='SELECT') w2.hidden=!!a1.value;
+}
+function sheetDirty(){
+  var s=S.sheet; if(!isForm(s)||!s.snap) return false;
+  if(s.kind==='review'&&!s.kept) return true;
+  var v=sheetVals(), k; for(k in v) if(v[k]!==s.snap[k]) return true; return false;
+}
+function sheetTitle(s,v){
+  var c=cust(S.rec||'best'), id;
+  if(s.kind==='newcust') return 'New customer'+((v['n-name']||'').trim()?': '+v['n-name'].trim():'');
+  if(s.kind==='company') return 'Edit company: '+c.name;
+  if(s.kind==='add') return (s.i==null?'Add a ':'Edit ')+s.what+': '+c.name;
+  if(s.kind==='type'){ id=v['t-cust']||s.hint; return 'Note'+(id&&cust(id)?': '+cust(id).name:'') }
+  if(s.kind==='review'){ id=v['r-cust']; return 'Note to check'+(id&&cust(id)?': '+cust(id).name:'') }
+  return 'Message to '+cust(s.cust).people[0].call;
+}
+function keepForm(){
+  var s=S.sheet, v=sheetVals(), key=s.kept||sheetKey(s); if(s.kind==='review') readDraft();
+  var copy=JSON.parse(JSON.stringify(s,function(k,x){return k==='snap'||k==='restore'||k==='sug'||k==='kept'||k==='keptAt'||k==='sure'?undefined:x}));
+  S.kept[key]={key:key,title:sheetTitle(s,v),at:clockText(nowMin()),sheet:copy,vals:v,rec:s.kind==='add'||s.kind==='company'?(S.rec||'best'):null,note:s.kind==='review'?JSON.parse(JSON.stringify(S.draft)):null,n:++KEPTN};
+  return key;
+}
+function askOpen(){ return app.querySelector('.scrim:not(.out) .ask') }
+function leaveAsk(){
+  var sc=app.querySelector('.scrim:not(.out)'); if(!sc||askOpen()) return; menuClose();
+  var d=document.createElement('div'); d.className='ask'; d.setAttribute('role','alertdialog'); d.setAttribute('aria-modal','true'); d.setAttribute('aria-labelledby','ask-t'); d.setAttribute('aria-describedby','ask-d');
+  d.innerHTML='<div class="askc"><h3 id="ask-t">Leave this form?</h3><p id="ask-d">Your entries are not saved. '+AI+' can keep them, and you can finish the form later.</p>'+
+   '<div class="acts"><button class="btn btn-primary" data-act="keep">Keep for later</button><button class="btn btn-danger" data-act="drop">Discard the entries</button><button class="btn btn-ghost" data-act="stay">Stay in the form</button></div></div>';
+  sc.appendChild(d); try{ d.querySelector('[data-act=keep]').focus({preventScroll:true}) }catch(e){}
+}
+/* each way to close a sheet comes here: the cross, Cancel, the Escape key and a tap outside. It returns true when the sheet closed. */
+function tryClose(out){
+  var s=S.sheet; if(!s) return false;
+  if(askOpen()) return false;
+  if(out&&HOLD[s.kind]) return false;
+  if(sheetDirty()){ leaveAsk(); return false }
+  closeSheet(); return true;
+}
 
 /* ---------- talk, write, tidy ---------- */
 function sampleFor(hint){
@@ -1848,7 +2117,7 @@ function tourEnd(done,quiet){
 /* ---------- actions ---------- */
 var A={
   tab:function(id){S.tab=id;if(S.device!=='tablet')S.rec=null;S.fan=false;S.edit=false},
-  rec:function(id){closeSheet();S.fan=false;S.edit=false;S.tlN=5;S.secAll={};S.rec=id;if(S.device==='tablet')S.tab='rec';toastEl.hidden=true},
+  rec:function(id){if(S.sheet&&sheetDirty())keepForm();closeSheet();S.fan=false;S.edit=false;S.tlN=5;S.secAll={};S.rec=id;if(S.device==='tablet')S.tab='rec';toastEl.hidden=true},
   back:function(){S.rec=null;S.edit=false},
   secall:function(k){ S.secAll[k]=!S.secAll[k] },
   dayall:function(k){ S.dayAll[k]=!S.dayAll[k] },
@@ -1874,7 +2143,18 @@ var A={
   tog:function(id,_,b){ var on=S.set[id]=!S.set[id]; applySettings(); b.setAttribute('aria-checked',String(on)); b.lastChild.textContent=on?'On':'Off'; toast({hc:'Stronger contrast is ',rm:'Less motion is ',tips:'Suggestions are ',warn:'Quiet deal warnings are ',tidy:'Tidy up is ',draft:'Message drafts are ',top:'Task order is ',wx:'Weather is '}[id]+(on?'on':'off')+'.'); return false },
   jump:function(id,_,b){ var sc=b.closest('[data-scroll]'), el=sc&&sc.querySelector('#'+id); if(el) el.scrollIntoView({block:'start',behavior:S.set.rm?'auto':'smooth'}); return false },
   fanclose:function(){setFan(false);return false},
-  close:function(){closeSheet()},
+  close:function(){ return tryClose()?undefined:false },
+  keep:function(){ var k=keepForm(); closeSheet(); toast('Kept for later. Find it at the top of Home.',k,'kept') },
+  drop:function(){ var s=S.sheet; if(s){ delete S.kept[s.kept||sheetKey(s)]; if(s.kind==='review') S.draft=null; } closeSheet(); toast('Entries discarded.') },
+  keptdrop:function(){ return A.drop() },
+  stay:function(){ var a=askOpen(); if(a) a.parentNode.removeChild(a); var f=app.querySelector('.scrim:not(.out) .sheet .xb'); if(f){ try{f.focus({preventScroll:true})}catch(e){} } return false },
+  kept:function(key){
+    var d=S.kept[key]; if(!d) return; closeSheet(); S.fan=false; toastEl.hidden=true;
+    if(d.rec&&cust(d.rec)){ S.rec=d.rec; if(S.device==='tablet') S.tab='rec'; }
+    if(d.note) S.draft=JSON.parse(JSON.stringify(d.note));
+    S.sheet=JSON.parse(JSON.stringify(d.sheet)); S.sheet.kept=key; S.sheet.keptAt=d.at; S.sheet.restore=d.vals;
+  },
+  locked:function(id){ toast(id==='made'?'The tool made this entry. It cannot be changed.':'This is a record of a message or an email. It cannot be changed. To correct it, add a note.'); return false },
   warn:function(_,dl){S.sheet={kind:'warn',deal:dl}},
   msg:function(id,dl){var d=dl?deal(dl):(openOf(id)[0]||null);S.sheet={kind:'msg',cust:d?d.cust:id,deal:d?d.id:null}},
   call:function(id,dl){S.sheet={kind:'call',cust:dl?deal(dl).cust:id,phase:'on'}},
@@ -1973,11 +2253,25 @@ screenEl.addEventListener('click',function(e){
   var tb=e.target.closest('[data-tour]'); if(tb){ tourAct(tb.dataset.tour); return; }
   if(S.tour) return;
   if(Date.now()<swallow){ swallow=0; return; }
-  if(e.target.matches('[data-scrim]')){ closeSheet(); render(); return; }
+  var mbtn=e.target.closest('[data-menu]');
+  if(MENU){
+    if(e.target.closest('#menu')){ var mo=e.target.closest('.mo'), cd=e.target.closest('[data-day]'), cn=e.target.closest('[data-cal]');
+      if(mo) menuPick(+mo.dataset.i); else if(cd){ if(!cd.disabled) datePick(cd.dataset.day); } else if(cn&&!cn.disabled) calNav(cn.dataset.cal);
+      return; }
+    var same=mbtn===MENU.btn; menuClose(same); if(same||!mbtn) return;   /* a tap outside an open menu only closes the menu */
+  }
+  if(mbtn){ menuOpen(document.getElementById(mbtn.dataset.menu)); return; }
+  if(e.target.classList.contains('ask')){ A.stay(); return; }
+  if(e.target.matches('[data-scrim]')){ if(tryClose(true)) render(); return; }
   if(e.target.closest('[data-fab]')){ setFan(!S.fan); return; }
   var b=e.target.closest('[data-act]'); if(!b) return;
   var fn=A[b.dataset.act]; if(!fn) return;
-  if(fn(b.dataset.id,b.dataset.deal,b)!==false) render();
+  var s0=S.sheet, k0=s0&&isForm(s0)?(s0.kept||sheetKey(s0)):null, r0=S.rec||'best';
+  var res=fn(b.dataset.id,b.dataset.deal,b);
+  /* a form that was saved has no kept copy. A change in a list also clears the kept edits of that list, because the positions move. */
+  if(k0&&DONE[b.dataset.act]&&S.sheet!==s0){ delete S.kept[k0];
+    if(s0.kind==='add') Object.keys(S.kept).forEach(function(k){ if(k.indexOf('add:'+s0.what+':')===0&&k.slice(-r0.length-1)===':'+r0&&k.indexOf(':new:')<0) delete S.kept[k] }); }
+  if(res!==false) render();
 });
 screenEl.addEventListener('pointerdown',function(e){
   if(S.tour||!e.target.closest('[data-fab]')) return; held=false; clearTimeout(holdTimer);
@@ -1985,7 +2279,11 @@ screenEl.addEventListener('pointerdown',function(e){
 });
 ['pointerup','pointercancel','pointerleave'].forEach(function(ev){screenEl.addEventListener(ev,function(){clearTimeout(holdTimer); if(held){held=false;swallow=Date.now()+350}})});
 screenEl.addEventListener('contextmenu',function(e){ if(e.target.closest('[data-fab]')) e.preventDefault() });
+screenEl.addEventListener('focusin',function(e){ var t=e.target; if(t.classList&&t.classList.contains('nat')){ var fb=faceOf(t); if(fb){ try{fb.focus({preventScroll:true})}catch(_){} } } });
+document.addEventListener('pointerdown',function(e){ if(MENU&&!screenEl.contains(e.target)) menuClose() });
 screenEl.addEventListener('input',function(e){
+  if(e.target.id==='menu-q'){ if(MENU){ MENU.q=e.target.value; MENU.act=-1; var ml=MENU.pop.querySelector('.mlist'); ml.innerHTML=menuList(); ml.scrollTop=0; var f1=ml.querySelector('.mo'); if(f1&&MENU.q.trim()) menuAct(+f1.dataset.i); } return; }
+  if(e.target.classList&&e.target.classList.contains('nat')) faceSync(e.target);
   if(e.target.id==='q'){ S.q=e.target.value; S.recN=20; S.page=0; var l=$('#rlist'); if(l) l.innerHTML=recRows(); var rc=$('#rcount'); if(rc) rc.textContent=recCount(recFiltered().length); }
   if(e.target.id==='c-addr'&&S.sheet) addrInput(e.target.value);
   var ft=e.target.dataset?e.target.dataset.ft:'';
@@ -2004,7 +2302,8 @@ screenEl.addEventListener('focusout',function(e){
   fnorm(el); fshow(el);
 });
 screenEl.addEventListener('change',function(e){
-  var t=e.target;
+  var t=e.target; if(t.id==='menu-q') return;
+  if(t.classList&&t.classList.contains('nat')) faceSync(t);
   if(t.id==='a-1'&&S.sheet&&S.sheet.what==='product'){ var w2=$('#a-2w'); if(w2){ w2.hidden=!!t.value; fset(t,''); if(!t.value){ try{$('#a-2').focus()}catch(_){} } } }
   if(t.dataset&&t.dataset.ft==='pick'&&t.classList.contains('bad')) fshow(t);
   if(t.id==='r-cust'){ readDraft(); var r=S.draft, id=t.value, d=id?openOf(id)[0]:null; r.cust=id; r.sure=!!id; r.deal=d?d.id:''; r.stageTo=d?d.stage:null; render(); }
@@ -2018,7 +2317,10 @@ screenEl.addEventListener('change',function(e){
 document.addEventListener('keydown',function(e){
   var typing=/INPUT|TEXTAREA|SELECT/.test((e.target&&e.target.tagName)||'');
   if(S.tour){ if(e.key==='Escape') tourEnd(false); else if(e.key==='ArrowRight') tourAct('next'); else if(e.key==='ArrowLeft') tourAct('back'); return; }
-  if(e.key==='Escape'){ if(S.sheet){closeSheet();render()} else if(S.fan){setFan(false)} else if(S.rec&&S.device!=='tablet'){S.rec=null;S.edit=false;render()} return; }
+  if(MENU){ if(menuKey(e)) return; }
+  var mk=e.target&&e.target.closest?e.target.closest('[data-menu]'):null;
+  if(mk&&(e.key==='ArrowDown'||e.key==='ArrowUp')){ e.preventDefault(); menuOpen(document.getElementById(mk.dataset.menu)); return; }
+  if(e.key==='Escape'){ if(S.sheet){ if(askOpen()) A.stay(); else if(tryClose()) render(); } else if(S.fan){setFan(false)} else if(S.rec&&S.device!=='tablet'){S.rec=null;S.edit=false;render()} return; }
   if(!typing&&!S.sheet&&S.device==='computer'&&(e.key==='n'||e.key==='N')&&!e.metaKey&&!e.ctrlKey&&!e.altKey){ e.preventDefault(); if(!noCust()) S.sheet={kind:'type',hint:S.rec}; render(); }
 });
 
@@ -2035,15 +2337,17 @@ function fit(){
 }
 function setDevice(dv){
   if(S.tour) tourEnd(false,true);
+  var keptNow=S.sheet&&sheetDirty()?keepForm():null;
   closeSheet(); S.device=dv; S.fan=false; S.edit=false; if(dv==='computer') S.rec=null;
   if(dv==='phone'&&S.tab==='set'){}
   $('#dev').dataset.device=dv; $('#hint').textContent=HINT[dv];
   ['phone','tablet','computer'].forEach(function(x){$('#dev-'+x).setAttribute('aria-pressed',String(x===dv))});
   toastEl.hidden=true; applySettings(); render(); fit();
+  if(keptNow) toast('Kept for later. Find it at the top of Home.',keptNow,'kept');
 }
 document.querySelector('.seg').addEventListener('click',function(e){var b=e.target.closest('[data-dev]'); if(b) setDevice(b.dataset.dev)});
-window.addEventListener('resize',function(){ fit(); tourPlace(); });
-screenEl.addEventListener('scroll',function(e){ var sc=e.target; if(sc&&sc.dataset&&sc.dataset.scroll){ revealCheck(sc); spyOne(sc); } },true);
+window.addEventListener('resize',function(){ menuClose(); fit(); tourPlace(); });
+screenEl.addEventListener('scroll',function(e){ if(MENU&&!MENU.pop.contains(e.target)) menuClose(); var sc=e.target; if(sc&&sc.dataset&&sc.dataset.scroll){ revealCheck(sc); spyOne(sc); } },true);
 setInterval(revealAll,500);
 $('#wx-sel').addEventListener('change',function(e){ S.wx=e.target.value; render(); });
 var DATA=/^(0|8|100)$/.test(QS.data||'')?QS.data:(QS.embed?'8':'100');
@@ -2052,7 +2356,7 @@ $('#data-sel').value=DATA; loadData(+DATA);
 $('#data-sel').addEventListener('change',function(e){
   if(S.tour) tourEnd(false,true);
   DATA=e.target.value; loadData(+DATA); closeSheet();
-  S.done={}; S.rec=null; S.q=''; S.f='all'; S.sort='name'; S.recN=20; S.page=0; S.tlN=5; S.secAll={}; S.dayAll={}; S.attnAll=false; S.weekAll=false; S.more=false; S.stage=null; S.fan=false;
+  S.kept={}; S.done={}; S.rec=null; S.q=''; S.f='all'; S.sort='name'; S.recN=20; S.page=0; S.tlN=5; S.secAll={}; S.dayAll={}; S.attnAll=false; S.weekAll=false; S.more=false; S.stage=null; S.fan=false;
   render(); toast('Sample data: '+DATA+' customers.');
 });
 window.__tidy=tidy;
