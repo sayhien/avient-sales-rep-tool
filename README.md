@@ -11,6 +11,7 @@ This is a concept prototype with sample data. It is not an official Avient produ
 | `index.html` | The presentation. It runs in a browser and has the working prototype inside. |
 | `prototype/` | The clickable prototype on its own: phone, tablet and computer. |
 | `assets/fonts/` | The fonts, stored here so everything works with no internet. |
+| `assets/media/` | The pictures, the short clips and the film (`hue-film.mp4`). |
 
 ## How to open it
 
@@ -20,7 +21,7 @@ This is a concept prototype with sample data. It is not an official Avient produ
 
 ## The idea in one paragraph
 
-Daniel sells textile screen printing inks in Singapore. His deal information lives in his head, his notebook and his chat messages, so deals go quiet without anyone noticing. Hue lets him talk, type or write a note in seconds. It tidies the note into a customer, a next step and a date, and each morning it shows his top three actions, the deals that need attention and how far he is from his target.
+Daniel sells textile screen printing inks in Singapore. His deal information lives in his head, his notebook and his chat messages, so deals go quiet without anyone noticing. He records a note in seconds: he talks, types, writes with a pen, or takes a photo of his notebook. Hue reads the note and fills in the customer, the next step and the date. Each morning it shows his top three actions, the deals that need attention and how far he is from his target.
 
 ## Credits
 
