@@ -791,6 +791,37 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .wxrow .wxi.now,.wxrow .wxi.now b{color:var(--blue-d)}
 /* with large text the row is narrow: the drawing goes above the words, so no word is cut */
 @container (max-width:270px){ .wxrow .wxi{grid-template-columns:minmax(0,1fr);row-gap:1px;align-content:start} .wxrow .wxi .ic{grid-row:auto} }
+/* ---------- round 13: capture on each device, a larger writing area, a note that writes itself ---------- */
+.pad{--rule:34px;height:auto;min-height:250px;background:repeating-linear-gradient(var(--paper) 0 calc(var(--rule) - 1px),var(--ln) calc(var(--rule) - 1px) var(--rule))}
+.sheet.wr{height:92%;display:flex;flex-direction:column}
+.sheet.wr .pad{flex:1 1 auto}
+.app.tablet .sheet.wr{width:640px;height:auto}
+.app.tablet .sheet.wr .pad{--rule:42px;flex:none;height:346px}
+/* the sample note has the same scale as the ruled lines, so each line of writing sits on a ruled line */
+.hsvg{position:absolute;left:0;top:0;width:calc(var(--rule) * 300 / 34);height:auto;pointer-events:none;overflow:visible}
+.hsvg path.hs{fill:none;stroke:var(--blue);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 2;stroke-dashoffset:1;visibility:hidden}
+.hsvg.all path.hs{stroke-dashoffset:0;visibility:visible}
+.hsvg .nib{fill:var(--ink);stroke:var(--white);stroke-width:.6}
+.hsvg.all .nib{display:none}
+.page .hsvg{position:static;display:block;width:100%;height:auto}
+.page .hsvg path.hs{stroke:var(--ink)}
+.page{padding:6px 8px 2px}
+/* the note menu of the computer */
+.capw{position:relative;display:inline-flex}
+.capm{position:absolute;top:calc(100% + 6px);right:0;z-index:9;width:236px;background:var(--white);border:1px solid var(--ln);border-radius:14px;box-shadow:var(--menu);padding:6px;display:grid;gap:2px;animation:fadeIn .14s both}
+.capm button{display:flex;align-items:center;gap:10px;border:0;background:none;border-radius:10px;padding:8px 10px;text-align:left;cursor:pointer;font:600 12.5px/17px var(--fb);color:var(--ink)}
+.capm button:hover,.capm button:focus-visible{background:var(--soft)}
+.capm button .ic{color:var(--blue);flex:none}
+.capm small{display:block;font:500 11px/15px var(--fb);color:var(--sub)}
+/* attach a photo on the computer */
+.attz{border:1.5px dashed var(--ln);border-radius:14px;padding:18px 14px;margin-top:8px;display:grid;justify-items:center;gap:8px;text-align:center;background:var(--mist)}
+.attz.bad{border-color:var(--red700)}
+.attz>.ic{width:26px;height:26px;color:var(--blue)}
+.attz p{margin:0}
+.attz .attt{width:190px;max-width:100%;border-radius:8px;overflow:hidden;background:var(--bezel);padding:10px}
+.attz .attt img{display:block;width:100%;max-height:160px;object-fit:contain;border-radius:3px}
+.attz .attt .page{width:100%;transform:rotate(-2deg)}
+
 /* inside the presentation */
 .embed body{background:transparent}
 .embed .top>div:first-child{display:none}
@@ -856,6 +887,8 @@ var I={
  mic:'<path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
  key:'<rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M7 10h.1M11 10h.1M15 10h.1M7.5 14h9"/>',
  pen:'<path d="M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19z"/>',
+ img:'<rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M4 17.5l5-5 4 4 2.5-2.5 4.5 4.5"/>',
+ clip:'<path d="M19 11.5l-7.2 7.2a4.2 4.2 0 0 1-6-6l7.6-7.6a2.8 2.8 0 0 1 4 4l-7.5 7.5a1.4 1.4 0 0 1-2-2l6.6-6.6"/>',
  pin:'<path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>',
  cam:'<path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
  plus:'<path d="M12 5v14M5 12h14"/>', x:'<path d="M6 6l12 12M18 6L6 18"/>', tick:'<path d="M5 12l4 4 10-10"/>',
@@ -967,6 +1000,26 @@ var SAMPLE={
  best:'Spoke to Jasmine at Best Printing. She is happy with the price. Send the formal quote by tomorrow.'
 };
 var HAND='Lion City Sportswear\nFarah wants colour chart\n+ price for 200 kg\nCall her Wed';
+/* the same note as pen strokes: the start in milliseconds, the time to draw, the path. The sheet draws them in order. */
+var HANDW=[[0,43,"M15.2 22.7L17.2 22.6L20.2 21.9L22.4 20.2L24.4 18.7L24.8 16.8L24.8 14.6L24.4 12.5L22.9 13.1L21.9 13.7L20.8 15.0L20.2 19.1L19.2 23.3L18.3 25.9L17.7 27.8L16.1 29.3L14.5 30.1L12.8 29.9L12.3 29.5L12.2 27.7L12.7 26.6L14.3 26.5L16.3 27.5L18.8 29.1L21.3 30.2L22.3 29.8L25.3 29.2L27.0 27.5"],[79,40,"M29.7 18.6L30.2 19.2L30.6 19.3L31.1 18.7L29.8 18.4"],[152,40,"M27.3 25.6L29.4 22.4L27.6 27.5L27.4 29.3L28.1 30.1L29.0 30.0L30.6 29.0L31.9 28.5L33.2 26.1"],[221,40,"M38.0 22.6L36.8 22.7L34.7 23.7L33.9 24.1L33.4 25.8L33.2 27.3L33.8 29.2L35.6 30.1L37.3 30.0L39.3 29.2L39.9 28.6L40.4 26.5L40.9 25.3L39.7 23.3L38.3 22.9L37.2 23.7L37.6 25.2L38.1 26.5L39.5 27.8L42.1 27.7L43.8 26.9L44.8 25.8L46.2 23.6L47.7 22.5L48.9 23.7L48.9 24.1L48.3 27.4L46.9 29.9"],[283,40,"M48.0 27.3L48.6 25.8L50.5 23.2L52.0 22.9L54.0 22.7L54.7 23.5L54.3 24.8L53.4 27.8L53.8 29.5L54.3 30.1L55.4 30.1L56.9 29.5L57.6 28.4L59.6 26.1"],[393,40,"M82.5 17.8L82.5 18.8L83.1 19.5L85.1 19.6L86.4 18.7L87.5 17.0L87.3 15.2L86.5 13.7L84.6 12.9L82.7 13.0L80.0 13.6L78.4 15.3L76.6 17.9L75.6 19.5L74.7 22.7L75.0 25.7L75.9 28.4L76.7 29.4L78.1 29.7L79.8 30.1L82.2 29.0L84.2 27.6L84.8 26.1"],[471,40,"M91.3 18.6L91.2 19.3L92.4 19.6L92.4 18.5L91.4 18.4"],[544,40,"M88.7 25.9L90.7 22.8L89.0 27.8L88.8 29.0L89.7 29.9L90.4 29.9L92.3 29.2L92.9 28.6L94.9 25.9L96.0 23.2L98.1 19.9"],[616,40,"M100.5 12.9L95.3 27.7L95.2 29.0L96.2 29.7L98.1 29.8L99.3 28.9L100.4 28.3L102.1 26.0"],[692,40,"M95.6 19.6L101.3 19.2"],[763,40,"M102.0 25.7L103.3 22.6L102.1 27.4L101.9 29.1L102.9 30.0L104.5 30.2L106.0 29.4L108.0 27.3L109.6 25.2"],[825,40,"M110.0 22.6L105.3 37.6L104.4 39.0L103.0 40.0L102.3 39.0L102.1 37.2L103.0 35.1L105.4 32.6L107.6 31.1L109.7 30.3L111.8 28.5L114.2 26.2"],[911,40,"M127.6 29.9L128.7 29.1L130.7 27.7L133.1 24.0L134.9 21.6L136.5 18.3L137.1 16.3L137.0 13.4L136.4 13.0L135.7 12.9L135.0 13.6L134.2 15.0L133.7 16.9L134.6 18.7L136.4 20.2L139.0 21.9L140.3 23.4L141.5 25.3L141.1 26.9L140.7 28.4L139.7 29.0L137.2 30.0L134.0 29.7L131.7 29.2L129.8 27.7L129.0 25.9L129.1 24.0"],[1000,40,"M143.8 25.9L145.6 23.7L146.0 21.8L145.1 25.1L140.6 40.1"],[1091,40,"M145.3 25.0L146.0 23.5L148.1 22.4L149.6 22.4L150.9 23.3L152.0 25.0L151.8 26.8L150.9 28.5L150.0 29.2L148.5 29.8"],[1154,40,"M145.4 29.1L146.9 29.9L149.5 29.8L151.7 29.3L153.6 28.4L156.2 26.0"],[1223,47,"M161.1 22.5L159.4 22.8L157.9 23.3L156.7 24.5L155.8 26.2L156.2 27.3L156.7 29.3L158.3 29.8L160.3 30.0L161.9 29.0L162.5 28.5L163.1 26.5L163.5 25.3L162.8 23.2L160.9 22.8L160.1 23.6L159.9 24.8L160.7 26.4L162.6 27.6L165.0 27.3L166.4 26.5L167.7 26.2L169.3 23.2L169.6 22.1L169.9 23.6L172.3 23.4L173.2 24.2L173.2 25.6L172.5 28.6L172.2 29.2L173.3 29.9L173.8 29.8L175.6 28.9L176.7 28.5L178.2 26.1L179.8 23.4L181.4 20.2"],[1303,40,"M184.1 13.0L178.8 27.8L179.1 29.3L179.9 29.9L181.6 30.2L183.1 29.3L184.0 28.3L185.6 25.7"],[1379,40,"M178.8 19.3L184.3 19.3"],[1450,40,"M185.5 26.0L186.9 23.7L188.0 21.7L188.0 23.5L189.6 25.8L190.7 27.6L190.5 29.3L189.0 29.7"],[1514,40,"M185.5 29.3L186.9 29.9L190.1 29.8L191.9 28.9L192.7 28.6L194.5 25.9"],[1579,40,"M197.2 22.7L195.6 24.4L194.6 26.5L194.5 28.5L195.0 30.3L196.7 30.0L198.3 29.2L200.2 27.3"],[1646,40,"M202.1 22.6L200.2 27.6L200.1 29.1L201.1 30.0L202.5 30.1L204.2 28.9L205.8 27.3L206.5 25.2L206.7 22.9L207.7 25.6L208.7 27.0L209.7 27.0L211.6 25.9"],[1708,40,"M212.7 28.2L214.1 27.8L215.0 26.7L216.0 25.3L215.8 23.2L215.0 22.6L213.9 22.4L212.5 23.2L211.6 25.2L211.6 27.4L212.5 29.1L214.3 30.0L216.0 30.3L217.5 29.0L218.0 28.6L220.0 26.0"],[1779,45,"M227.1 25.0L226.5 23.5L224.8 22.7L223.2 22.5L221.3 23.7L220.9 24.5L219.5 25.6L219.7 27.5L220.7 28.9L222.3 29.7L223.7 30.1L225.6 29.3L226.3 27.5L227.8 22.5L227.3 26.9L226.9 29.0L228.2 30.1L229.0 29.8L230.4 29.0L231.5 28.3L233.0 26.2L234.4 23.5L235.5 22.1L235.3 23.4L237.6 23.7L238.4 24.0L238.7 25.9L237.9 28.2L238.0 28.9L238.5 30.1L239.2 29.9L241.2 29.3L241.8 28.1L243.5 26.0"],[2034,40,"M20.1 51.5L18.7 51.8L17.2 51.2L16.3 49.2L17.1 47.5L19.3 46.8L22.1 47.1L24.9 47.6L27.5 47.6L29.1 46.8"],[2100,40,"M24.9 47.7L23.6 53.4L22.0 58.3L20.0 61.7L18.8 63.1L16.6 64.0L15.3 64.0L13.9 63.3L13.0 61.3L12.8 60.1L13.4 58.8L15.4 59.3L16.7 60.0"],[2168,40,"M19.1 55.1L26.8 54.8"],[2245,46,"M35.6 59.3L34.9 57.6L33.2 56.5L31.9 56.7L30.0 57.5L29.3 58.4L28.6 59.9L28.6 61.6L29.4 63.4L31.0 64.2L32.7 64.1L34.1 63.3L35.1 61.5L36.5 56.4L35.9 61.0L35.7 63.0L36.4 64.0L37.2 64.3L38.7 63.1L39.6 62.5L41.6 59.7L42.8 57.4L44.0 56.1L43.6 57.2L46.2 57.3L47.0 58.4L47.2 59.7L46.2 62.2L46.2 63.3L47.1 64.0L48.2 64.0L49.5 63.4L50.7 62.3L52.1 60.2"],[2323,72,"M59.4 58.9L58.4 57.7L57.2 56.6L55.4 56.6L53.6 57.7L53.0 58.1L51.8 59.9L52.0 61.7L53.0 63.2L54.3 63.8L56.1 63.9L58.0 63.2L58.7 61.8L60.1 56.7L59.2 60.9L59.2 63.4L60.5 64.2L60.8 63.9L62.9 62.9L63.5 62.3L65.5 60.0L67.0 57.3L69.4 53.3L70.3 51.5L71.1 49.1L70.9 47.7L69.9 47.0L68.3 47.5L67.4 49.2L66.8 52.7L65.9 57.6L64.9 63.9L66.0 61.8L67.0 60.0L68.2 57.4L70.2 56.5L71.8 56.6L72.3 57.7L72.7 58.9L71.8 61.4L71.7 63.2L72.4 63.9L73.3 64.1L74.9 63.0L76.0 62.3L77.7 59.9"],[2446,40,"M93.1 56.5L91.6 58.0L90.3 60.5L90.7 62.5L91.2 63.9L93.2 64.1L94.4 63.0L96.1 61.3"],[2513,40,"M97.9 56.4L96.5 61.5L96.3 63.3L97.3 64.2L98.7 63.9L100.3 62.9L101.9 61.7L103.1 59.3L102.9 56.7L103.3 59.8L104.4 60.8L105.9 60.7L107.7 60.1"],[2586,40,"M115.3 59.2L114.1 57.6L112.9 56.7L110.9 56.6L109.1 57.6L108.8 58.3L107.9 60.1L107.5 61.8L108.6 63.0L109.9 63.8L111.9 64.1L113.4 63.4L114.2 61.5L115.7 56.9L114.9 61.0L115.1 63.2L115.9 63.9L117.0 64.3L118.6 63.2L119.0 62.6L120.7 60.1L122.3 57.5L124.3 56.4L124.9 57.2L124.6 58.1L124.4 61.8L123.4 63.9"],[2647,40,"M124.2 61.7L124.8 60.0L126.7 57.2L128.0 56.6L129.6 56.6L130.7 57.3L130.6 58.9L129.9 61.4L129.9 62.9L130.7 63.8L131.7 64.1L133.1 63.1L134.0 62.5L135.7 60.1L137.2 57.8L139.0 54.4"],[2721,40,"M141.2 46.8L136.4 61.8L136.4 63.2L137.1 64.2L138.7 63.7L140.6 63.4L141.4 62.4L143.1 59.8"],[2797,40,"M136.4 53.1L141.9 53.3"],[2868,40,"M142.9 59.8L144.3 57.6L145.4 55.7L145.2 57.4L146.8 59.7L148.1 61.8L147.9 63.4L146.1 64.2"],[2932,40,"M142.7 63.3L144.6 64.2L147.6 64.2L149.2 63.2L150.5 62.1L151.8 59.8"],[3029,40,"M170.6 58.0L171.0 57.6L169.8 56.6L168.3 56.4L166.4 57.7L165.7 58.3L165.3 60.2L165.0 61.4L165.7 63.4L167.7 63.8L170.1 63.9L172.3 62.2L174.2 60.2"],[3098,55,"M178.7 56.7L177.1 56.9L175.4 57.2L175.0 58.2L174.2 60.1L174.1 61.3L174.9 63.4L176.4 63.7L177.9 63.9L179.9 63.0L180.4 62.2L181.5 60.9L181.3 59.2L180.8 57.5L178.7 56.5L178.3 57.6L178.0 59.2L178.7 61.0L180.5 61.6L183.0 61.3L184.7 60.6L185.3 60.1L186.8 57.3L189.7 53.2L190.2 51.8L191.0 49.5L191.5 47.4L190.3 47.0L188.7 47.9L187.9 49.1L187.1 52.6L186.2 58.4L186.4 63.2L187.1 64.2L188.0 64.0L189.8 63.0L190.5 62.2L192.1 59.8"],[3181,41,"M196.9 56.8L195.4 56.8L193.5 57.4L192.7 58.3L192.0 59.6L192.1 61.7L192.9 63.4L194.3 63.8L195.8 64.0L197.7 63.1L198.4 62.5L199.1 61.0L199.4 59.1L198.7 57.3L196.7 56.5L195.8 57.3L196.2 59.1L196.8 60.8L198.3 61.7L200.8 61.4L202.4 60.8L203.7 60.1L204.8 56.6L203.4 61.4L203.7 62.9L204.3 64.2L206.2 63.8L207.5 63.3L208.9 61.4L211.1 58.9"],[3243,40,"M211.6 56.5L210.0 61.3L209.7 63.5L211.0 64.1L211.5 63.9L213.3 63.0L214.1 62.6L215.6 59.8L217.7 57.5L217.9 55.8L218.3 57.2L220.5 57.6L221.7 58.3L221.7 59.9L220.6 62.6L220.6 63.4L221.3 63.9L222.1 64.0L223.7 63.0L224.6 62.3L226.2 59.9"],[3341,59,"M245.5 58.4L245.4 57.3L244.3 56.4L242.8 56.6L241.0 57.2L240.1 58.1L239.4 60.2L239.6 61.4L240.2 63.0L242.2 63.9L244.5 64.1L247.1 62.1L248.3 59.8L249.8 57.7L252.4 53.5L253.4 51.5L254.1 49.1L253.9 47.4L253.4 46.5L251.6 47.6L250.9 49.1L250.2 52.4L249.4 57.6L248.2 63.8L249.1 61.7L250.0 59.8L251.9 57.3L253.2 56.5L254.8 56.4L255.5 57.5L255.9 59.3L255.3 61.4L255.1 63.4L255.6 64.1L256.7 64.3L258.5 63.0L259.2 62.1L260.7 59.8"],[3432,50,"M267.8 59.0L267.2 57.5L265.5 56.4L263.9 56.6L262.2 57.6L261.4 58.0L260.6 59.9L260.5 61.6L261.7 63.2L263.3 63.7L264.8 63.9L266.2 63.1L267.0 61.5L269.0 56.6L268.0 60.6L267.8 63.1L269.1 64.0L269.6 64.1L271.2 63.2L272.3 62.6L273.7 60.0L275.7 57.6L276.3 55.9L276.2 57.4L278.6 57.7L279.8 58.2L279.8 59.6L278.5 62.4L278.6 63.1L279.8 63.8L280.2 63.8L282.1 63.0L282.5 62.4L284.4 59.8L286.1 57.5L287.8 54.3"],[3515,40,"M290.2 47.0L285.6 61.4L285.2 63.4L286.0 64.1L287.8 64.1L289.6 63.4L290.0 62.4L291.8 59.9"],[3592,40,"M285.2 53.2L291.1 53.4"],[3842,40,"M22.5 83.1L22.5 97.8"],[3920,40,"M15.3 90.4L29.7 90.4"],[4013,40,"M46.1 94.0L47.8 91.4L49.0 89.8L47.8 93.3L43.3 107.6"],[4103,40,"M47.9 93.1L49.0 91.4L50.6 90.5L52.2 90.5L53.6 91.6L54.8 93.3L54.6 94.7L53.9 96.4L53.1 97.4L51.0 97.9"],[4166,40,"M48.1 97.0L49.4 97.7L52.1 98.3L54.8 97.0L56.3 96.3L58.7 93.8L60.5 91.7L60.8 89.9L60.9 91.2L63.4 91.6L64.7 92.0L64.3 93.6L63.6 96.4L63.5 97.1L64.5 98.2L65.1 97.9L66.9 97.3L67.9 96.3L69.4 93.9"],[4239,40,"M71.9 86.3L71.5 87.1L72.8 87.2L72.5 86.3L71.6 86.3"],[4312,40,"M69.3 93.7L71.0 90.5L69.1 95.5L69.2 97.0L69.8 97.7L71.1 97.9L72.3 97.0L73.4 96.7L74.8 94.1"],[4382,40,"M80.7 92.2L80.9 91.4L79.6 90.7L78.4 90.7L76.5 91.7L76.0 92.6L75.0 94.1L75.1 95.4L75.5 97.0L77.2 97.7L79.8 98.2L82.2 96.4L83.7 93.7"],[4444,40,"M85.1 96.1L86.5 95.7L87.4 94.9L88.0 93.3L88.3 91.6L87.6 90.4L86.7 90.6L84.9 91.3L84.2 92.8L84.0 95.4L84.8 97.1L86.5 98.2L88.0 98.1L89.6 97.0L90.8 96.3L91.9 93.8"],[4530,47,"M105.4 93.7L108.7 89.8L110.3 87.2L110.8 85.5L111.7 83.2L111.5 81.6L110.9 80.7L109.4 81.9L108.4 83.5L106.8 90.0L104.2 97.5L102.0 103.2L101.0 105.3L101.3 106.8L101.9 107.9L103.9 106.9L104.3 104.5L105.6 97.0L106.2 97.9L107.8 97.8L109.4 97.4L110.4 96.4L111.8 93.9"],[4605,41,"M116.5 90.8L115.2 90.6L113.6 91.4L112.6 92.1L111.9 94.0L111.8 95.3L112.7 97.1L114.3 98.1L116.2 97.8L117.5 97.5L118.5 96.3L119.3 95.0L119.1 93.3L118.1 91.7L116.7 90.5L116.1 91.5L116.2 93.3L116.9 94.7L118.7 95.3L121.0 95.7L122.3 94.9L123.2 93.9L125.1 91.3L125.6 89.9L125.5 91.5L128.4 91.4L128.8 92.5L129.2 94.1L128.2 96.6L128.4 97.0L128.9 97.8L129.5 97.9L131.7 97.4L132.0 96.2L133.8 94.1"],[4709,40,"M152.8 84.3L153.3 85.2L152.6 85.8L152.1 85.0L151.7 84.2L152.7 82.2L153.4 81.5L156.1 80.7L158.5 80.9L160.7 81.4L161.8 83.3L161.5 84.7L161.2 86.6L159.2 88.0L157.1 89.9L153.7 91.4L151.0 93.0L149.2 94.8L147.8 98.2"],[4810,40,"M158.4 80.8L160.1 81.9L160.8 83.4L160.8 85.0L160.0 86.8L158.3 88.4L153.7 91.4"],[4881,40,"M148.9 96.3L149.6 95.6L151.1 95.3L155.1 97.1L157.6 97.5L159.1 96.5L160.2 94.6"],[4957,40,"M151.0 95.3L155.4 97.9L157.6 97.9L159.5 97.4L160.1 94.8"],[5056,48,"M173.8 81.1L171.3 81.6L169.8 83.4L168.4 85.6L167.7 88.5L166.4 91.5L166.6 93.8L167.4 96.3L168.4 97.2L170.2 98.3L171.8 97.9L174.2 97.3L175.8 95.8L177.0 93.1L178.0 90.7L178.7 87.7L178.7 84.8L177.9 82.4L177.4 81.4L175.4 80.9L174.1 81.0L172.2 81.8L170.9 83.4L168.9 85.7L168.0 88.4L167.7 91.7L167.2 93.8L168.3 96.4L169.7 98.2"],[5124,40,"M171.4 98.0L173.0 97.2L174.6 95.3L176.5 93.0L177.4 90.5L178.0 87.1L177.9 84.9L177.3 82.4L175.8 80.6"],[5214,49,"M191.4 80.6L189.0 81.7L187.0 83.3L185.7 86.0L184.6 87.9L183.6 91.6L184.0 94.0L184.4 96.4L185.2 96.9L187.0 98.3L188.8 98.2L190.9 97.1L192.6 95.4L194.2 93.3L195.2 90.6L196.2 87.6L196.4 84.9L195.3 82.7L194.4 81.5L193.0 80.7L191.1 80.8L189.5 81.6L187.9 83.2L186.0 85.9L185.2 88.2L184.7 91.4L184.5 93.7L185.4 96.3L187.1 97.8"],[5283,40,"M188.9 98.0L190.1 97.1L192.3 95.2L193.7 93.4L194.4 90.7L195.2 87.2L195.3 85.0L194.3 82.5L192.8 81.0"],[5388,46,"M211.4 93.7L213.1 91.3L215.9 87.3L216.8 85.7L217.2 83.4L217.1 81.9L216.7 80.7L214.8 81.8L214.3 83.4L213.0 86.7L212.2 91.5L211.7 98.3L212.5 95.3L213.5 94.1L215.0 91.2L216.7 90.6L218.3 90.9L219.3 91.2L219.2 93.1L217.5 93.8L214.9 93.9L216.3 94.6L217.5 96.9L218.0 98.2L219.1 98.0L220.4 97.0L221.3 96.6L223.1 94.2"],[5466,40,"M230.3 93.0L229.7 91.7L227.8 90.9L226.3 90.4L224.7 91.4L224.0 92.5L223.1 94.0L223.0 95.7L223.7 97.3L225.3 98.1L227.0 97.9L228.6 97.1L229.7 96.4"],[5535,40,"M231.2 90.7L229.8 96.3L226.4 105.4L225.8 106.9L224.0 107.7L222.9 107.1L223.1 105.2L223.6 103.1L226.3 100.6L228.8 98.9L230.5 98.3L233.2 96.3L235.4 93.7"],[5785,40,"M22.0 119.5L21.7 120.8L22.4 121.5L24.3 121.4L25.8 120.3L27.0 119.1L26.9 117.0L26.1 115.5L24.1 114.8L21.9 114.6L19.5 115.7L18.0 117.5L16.2 119.6L15.5 121.5L14.3 124.9L14.6 127.8L15.1 130.1L16.1 131.0L17.6 131.9L19.1 132.0L21.7 131.1L23.3 129.6L24.5 127.7"],[5867,88,"M35.9 127.3L35.0 125.5L33.4 124.7L31.7 124.9L30.2 125.3L28.9 126.5L28.3 128.1L28.2 129.5L29.1 131.3L31.1 132.0L32.5 131.9L33.9 131.5L34.7 129.8L36.6 124.4L36.0 128.5L35.8 131.0L36.8 131.9L37.6 131.7L39.1 130.9L39.5 130.4L41.7 128.0L43.3 125.6L45.6 121.1L46.4 119.5L47.2 117.2L47.2 115.5L46.5 114.8L44.7 115.4L43.9 117.3L43.4 120.6L42.1 126.2L42.2 131.3L43.4 132.3L44.2 132.3L45.8 131.4L46.1 130.4L48.1 128.0L49.7 125.5L52.4 121.1L52.9 120.0L53.4 117.0L53.9 115.9L52.6 114.5L51.5 115.7L50.5 117.3L49.8 120.7L48.5 126.0L49.0 131.5L49.8 131.9L50.4 131.9L51.8 131.3L52.8 130.4L54.6 127.8"],[6000,43,"M67.7 127.9L69.1 125.7L71.5 121.2L72.4 119.7L73.5 117.2L73.2 115.7L72.4 114.8L70.8 115.9L69.9 117.1L69.2 120.4L68.6 125.6L67.8 132.0L68.2 129.7L69.1 127.7L70.9 125.7L72.5 124.6L74.4 124.9L74.9 125.2L75.2 127.3L74.1 129.7L74.1 131.1L75.1 132.1L75.8 132.2L77.2 131.2L78.2 130.1L80.2 127.7"],[6065,40,"M80.6 130.6L82.6 129.8L83.1 129.0L83.8 127.2L84.3 125.3L83.0 124.7L82.6 124.8L81.0 125.4L79.8 126.9L79.8 129.8L80.5 131.0L82.3 131.7L83.9 131.8L85.4 131.2L86.5 130.4L88.2 127.9L90.0 125.2L90.4 123.6L90.4 125.6L93.3 125.5L93.6 126.2L93.9 127.8L93.2 130.6L93.0 131.2L94.0 132.0L94.5 132.3L96.6 130.9L97.2 130.3L98.5 127.7"],[6162,40,"M115.7 120.7L114.1 119.4L113.3 118.3L113.5 117.4L114.3 115.4L115.6 114.7L116.5 114.7L118.4 115.6L119.2 117.3L119.1 119.6L118.6 132.0"],[6260,40,"M126.5 114.8L118.3 131.9"],[6358,40,"M126.8 114.7L125.2 132.2"],[6460,40,"M136.6 114.6L134.7 115.9L132.1 117.9L130.0 121.2L127.4 126.1L125.2 131.9"],[6538,40,"M135.3 130.5L137.1 129.6L138.0 129.0L138.8 127.0L138.5 125.5L137.9 124.7L137.3 124.6L135.3 125.5L134.7 127.2L135.0 129.4L135.5 130.9L137.4 131.8L139.0 132.2L140.3 131.4L141.3 130.3L142.9 128.2"],[6611,40,"M150.3 127.1L149.3 125.7L147.8 124.5L146.0 124.5L144.7 125.6L144.0 126.5L143.0 128.1L143.0 129.7L143.9 131.0L145.6 131.9L146.8 132.3L148.4 131.2L149.4 129.7L154.4 115.1"],[6689,40,"M151.4 124.7L150.0 128.8L150.0 131.5L151.3 131.9L151.7 132.1L153.7 131.5L154.4 130.1L156.1 127.6"]], HAND_MS=6729, handRaf=0;
+function handSVG(all){ return '<svg class="hsvg'+(all?' all':'')+'"'+(all?'':' id="w-hand"')+' viewBox="0 0 300 148" role="img" aria-label="'+esc(HAND.replace(/\n/g,'. '))+'">'+
+  HANDW.map(function(h){return '<path class="hs" pathLength="1" d="'+h[2]+'"/>'}).join('')+(all?'':'<path class="nib" d="M0 0l2.2-7.6 5.6 2.4-4.4 6.4z"/>')+'</svg>'; }
+function startHand(){
+  cancelAnimationFrame(handRaf); var sv=$('#w-hand'), s=S.sheet; if(!sv||!s) return;
+  if(s.handOff){ sv.style.display='none'; return; }
+  var ps=sv.querySelectorAll('path.hs'), nib=sv.querySelector('.nib');
+  if(!motionOK()||s.handEnd){ sv.classList.add('all'); s.handEnd=true; return; }
+  if(!s.handT0) s.handT0=performance.now()+420;
+  var step=function(now){
+    if(S.sheet!==s||!document.body.contains(sv)) return;
+    var t=now-s.handT0, at=null;
+    for(var i=0;i<HANDW.length;i++){ var h=HANDW[i], p=ps[i], k=t<=h[0]?0:t>=h[0]+h[1]?1:(t-h[0])/h[1];
+      p.style.visibility=k>0?'visible':'hidden'; p.style.strokeDashoffset=String(1-k); if(k>0) at=[p,k]; }
+    if(at){ var pt=at[0].getPointAtLength(at[0].getTotalLength()*at[1]); nib.setAttribute('transform','translate('+pt.x.toFixed(1)+' '+pt.y.toFixed(1)+')'); nib.style.display=''; } else nib.style.display='none';
+    if(t<HAND_MS+200) handRaf=requestAnimationFrame(step); else { s.handEnd=true; sv.classList.add('all'); }
+  };
+  handRaf=requestAnimationFrame(step);
+}
 var RANGES=['Wilflex white','Wilflex colours','Low cure white','Water based range','Rutland special effects','Union Ink'];
 var STAGES=['New','Sample','Trial','Quote'], LIMIT={New:3,Sample:7,Trial:14,Quote:5};
 var NORMAL={New:'A new lead usually gets a first reply within 3 days.',Sample:'Customers usually come back about samples within 7 days.',Trial:'A trial usually gives a result within 14 days.',Quote:'Customers usually reply to a quote within 5 days.'};
@@ -1473,9 +1526,8 @@ function settingsHTML(){
 /* ---------- capture button ---------- */
 function fabHTML(){
   if(S.device==='computer'||S.sheet) return '';
-  var third=S.device==='tablet'?['write','Write','pen']:['photo','Photo','cam'];
   return '<div class="fanscrim'+(S.fan?' on':'')+'" data-act="fanclose"></div><div class="fabwrap'+(S.set.left?' left':'')+(S.fan?' open':'')+'">'+
-   '<div class="fan" role="menu"><button class="first" role="menuitem" data-act="cap" data-id="talk"><span>Talk</span><i>'+ic('mic')+'</i></button><button role="menuitem" data-act="cap" data-id="type"><span>Type</span><i>'+ic('key')+'</i></button><button role="menuitem" data-act="cap" data-id="'+third[0]+'"><span>'+third[1]+'</span><i>'+ic(third[2])+'</i></button></div>'+
+   '<div class="fan" role="menu"><button class="first" role="menuitem" data-act="cap" data-id="talk"><span>Talk</span><i>'+ic('mic')+'</i></button><button role="menuitem" data-act="cap" data-id="type"><span>Type</span><i>'+ic('key')+'</i></button><button role="menuitem" data-act="cap" data-id="write"><span>Write</span><i>'+ic('pen')+'</i></button><button role="menuitem" data-act="cap" data-id="photo"><span>Photo</span><i>'+ic('cam')+'</i></button></div>'+
    '<button class="fab" id="fab" data-fab aria-label="Add a note. Hold to talk." aria-expanded="'+S.fan+'">'+ic('plus')+'</button></div>';
 }
 function setFan(on){
@@ -1600,15 +1652,24 @@ function sheetHTML(){
      (ty?'<p class="note">Save keeps your words as they are and you are done. Tidy up lets '+AI+' find the customer, the next step and the date, then shows them for you to check.</p>':'');
   }
   else if(s.kind==='write'){
-    b=sheetHead('Write a note')+'<p class="sub">Write with the pen, like on paper. '+AI+' turns it into text.</p>'+
-     '<div class="pad"><p class="hand" id="w-hand">'+esc(HAND)+'</p><canvas id="w-pad" width="820" height="420" aria-label="Writing area"></canvas></div>'+
+    b=sheetHead('Write a note')+'<p class="sub">Write with a pen or a finger, like on paper. '+AI+' reads your writing.</p>'+
+     '<div class="pad">'+handSVG(false)+'<canvas id="w-pad" width="820" height="420" aria-label="Writing area"></canvas></div>'+
      '<div class="acts"><button class="btn btn-primary" data-act="tidyhand">'+(S.set.tidy?hue(14,'w')+'Tidy up':'Turn into text')+'</button><button class="btn btn-soft" data-act="clearpad">Clear</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
-     '<p class="note">Prototype: you can draw here, but the tidy up always reads the sample note shown first.</p>';
+     '<p class="note">Prototype: a sample note writes itself. You can also write here. The tidy up always reads the sample note.</p>';
   }
   else if(s.kind==='photo'){
-    b=sheetHead('Photo of a notebook page')+'<p class="sub">For phones with no pen. Point at the page and take the photo.</p>'+
-     '<div class="finder"><i class="g a"></i><i class="g b"></i><i class="g c"></i><i class="g d"></i><p class="page">'+esc(HAND)+'</p></div>'+
+    b=sheetHead('Photo of a notebook page')+'<p class="sub">Point the camera at the page. Then take the photo. '+AI+' reads the page.</p>'+
+     '<div class="finder"><i class="g a"></i><i class="g b"></i><i class="g c"></i><i class="g d"></i><div class="page">'+handSVG(true)+'</div></div>'+
      '<button class="shut" data-act="tidyhand" aria-label="Take photo"></button><p class="note" style="text-align:center">Prototype: this is a sample page. Your camera is not used.</p>';
+  }
+  else if(s.kind==='attach'){
+    b=sheetHead('Attach a photo of a notebook page')+'<p class="sub">Choose a picture from this computer. '+AI+' reads the page.</p>'+
+     (s.file?'<div class="attz"><div class="attt">'+(s.file.url?'<img src="'+s.file.url+'" alt="The picture that you chose">':'<div class="page">'+handSVG(true)+'</div>')+'</div><p><b>'+esc(s.file.name)+'</b></p><button class="link" data-act="attpick">Choose a different file</button></div>'
+       :'<div class="attz'+(s.err?' bad':'')+'">'+ic('img')+'<p><b>A photo of your notes</b><br><span class="sub">JPG, PNG or HEIC</span></p><div class="acts" style="justify-content:center;margin-top:2px"><button class="btn btn-soft" data-act="attpick">'+ic('clip')+'Choose a file</button><button class="btn btn-ghost" data-act="attsample">Use the sample page</button></div></div>')+
+     (s.err?'<p class="err" role="alert">'+ic('x')+esc(s.err)+'</p>':'')+
+     '<input type="file" id="n-photo" accept="image/*" hidden aria-label="Choose a picture">'+
+     '<div class="acts"><button class="btn btn-primary" data-act="tidyhand">'+(S.set.tidy?hue(14,'w')+'Tidy up':'Turn into text')+'</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
+     '<p class="note">Prototype: the picture stays on this computer. The tidy up always reads the sample note.</p>';
   }
   else if(s.kind==='tidying'){
     b='<div class="tidying">'+hue(64,'work')+'<p><b>'+AI+' is tidying up your note</b></p><ul class="tsteps"><li id="ts1">'+ic('tick')+'Finding the customer</li><li id="ts2">'+ic('tick')+'Finding the next step</li><li id="ts3">'+ic('tick')+'Checking the date</li></ul></div>';
@@ -1685,7 +1746,7 @@ function sheetHTML(){
      '<h3 id="g-marks">Marks from '+AI+'</h3><dl>'+gi(hue(15)+AI+' mark',AI+' wrote or selected this item. You can change it.')+'</dl></div>'+
      '<div class="acts"><button class="btn btn-ghost" data-act="close">Close</button></div>';
   }
-  return '<div class="scrim" data-scrim><div class="sheet"'+(s.kind==='guide'?' data-scroll="guide"':'')+' role="dialog" aria-modal="true">'+b+'</div></div>';
+  return '<div class="scrim" data-scrim><div class="sheet'+(s.kind==='write'?' wr':'')+'"'+(s.kind==='guide'?' data-scroll="guide"':'')+' role="dialog" aria-modal="true">'+b+'</div></div>';
 }
 
 /* ---------- render ---------- */
@@ -1716,7 +1777,10 @@ function render(){
     else if(dv==='tablet') body='<main class="cols rec"><section class="col" data-scroll="tl">'+recListHTML()+'</section><section class="col" data-scroll="tr-'+(S.rec||'best')+(S.edit?'-e':'')+'">'+recordHTML(S.rec||'best')+'</section></main>';
     else body='<main class="pg" data-scroll="c-r">'+recListHTML()+'</main>';
     if(dv==='tablet') h='<aside class="rail"><div class="brand"><span class="hn">'+hue(22)+AI+'</span><small>Sales assistant</small></div>'+nav()+'</aside>'+body;
-    else h='<header class="topbar"><span class="brand"><span class="hn">'+hue(22)+AI+'</span><small>Sales assistant</small></span><nav class="tnav" aria-label="Main">'+nav()+'</nav><span class="sp"></span><button class="btn btn-primary" data-act="cap" data-id="type">'+ic('plus')+'New note <kbd>N</kbd></button><span class="me">Daniel Lim</span></header>'+body+
+    else h='<header class="topbar"><span class="brand"><span class="hn">'+hue(22)+AI+'</span><small>Sales assistant</small></span><nav class="tnav" aria-label="Main">'+nav()+'</nav><span class="sp"></span><span class="capw"><button class="btn btn-primary" data-act="capmenu" aria-haspopup="menu" aria-expanded="'+!!S.capm+'">'+ic('plus')+'New note <kbd>N</kbd></button>'+
+      (S.capm?'<div class="capm" role="menu" aria-label="Ways to add a note"><button role="menuitem" data-act="cap" data-id="type">'+ic('key')+'<span>Type a note<small>Or press N</small></span></button>'+
+      '<button role="menuitem" data-act="cap" data-id="talk">'+ic('mic')+'<span>Talk a note<small>Records your voice only</small></span></button>'+
+      '<button role="menuitem" data-act="cap" data-id="attach">'+ic('clip')+'<span>Attach a photo<small>A page from your notebook</small></span></button></div>':'')+'</span><span class="me">Daniel Lim</span></header>'+body+
       (S.rec?'<div class="dscrim" data-act="back"></div><aside class="drawer" data-scroll="dr-'+S.rec+(S.edit?'-e':'')+'">'+recordHTML(S.rec)+'</aside>':'');
   }
   app.className='app '+dv;
@@ -1786,7 +1850,7 @@ function after(){
     if(kd){ s.kept=kd.key; s.restore=kd.vals; s.keptAt=kd.at; if(kd.sheet.addr){ s.addr=kd.sheet.addr; s.picked=kd.sheet.picked; } } }
   if(s.restore){ applyVals(s.restore); delete s.restore; }
   if(s.kind==='talk'&&!talkTimer) startTalk();
-  if(s.kind==='write') bindPad();
+  if(s.kind==='write'){ bindPad(); startHand(); }
   if($('#c-addr')){ var av=$('#c-addr').value; if(!s.addr){ s.addr=addrParse(av); s.picked=av; } s.sug=[]; addrMap(); }
   var f=app.querySelector('.sheet textarea, .sheet input[type=text]');
   if(f&&!s.kept&&(s.kind==='type'||s.kind==='newcust'||(s.kind==='add'&&s.i==null))) { try{f.focus({preventScroll:true})}catch(e){} }
@@ -1805,7 +1869,7 @@ function toast(text,id,act){
 }
 function pressOne(b){ Array.prototype.forEach.call(b.parentNode.children,function(x){x.setAttribute('aria-pressed',String(x===b))}) }
 function stopTalk(){ if(talkTimer){clearInterval(talkTimer);talkTimer=null} }
-function closeSheet(){ stopTalk(); tidyTimers.forEach(clearTimeout); tidyTimers=[]; S.sheet=null; }
+function closeSheet(){ stopTalk(); cancelAnimationFrame(handRaf); tidyTimers.forEach(clearTimeout); tidyTimers=[]; S.sheet=null; }
 
 /* ---------- our own menu and date control ---------- */
 /* Each select and each date field of the browser gets a button in the style of the tool. The button opens a list or a small calendar.
@@ -1996,8 +2060,12 @@ function startTalk(){
 }
 function bindPad(){
   var cv=$('#w-pad'); if(!cv||cv.dataset.on) return; cv.dataset.on='1';
+  var pd=cv.parentNode; pd.style.removeProperty('--rule');
+  var rule=parseFloat(getComputedStyle(pd).getPropertyValue('--rule'))||34, fitRule=(pd.clientWidth-2)*34/300;
+  if(fitRule<rule) pd.style.setProperty('--rule',fitRule.toFixed(2)+'px');   /* a narrow area makes the lines and the sample note smaller together */
+  cv.width=Math.max(2,Math.round(cv.clientWidth*2)); cv.height=Math.max(2,Math.round(cv.clientHeight*2));   /* the area can be any size, so the drawing keeps its shape */
   var x=cv.getContext('2d'), down=false;
-  x.lineWidth=3.2; x.lineCap='round'; x.lineJoin='round'; x.strokeStyle=getComputedStyle(screenEl).getPropertyValue('--blue').trim()||'#3274AE';
+  x.lineWidth=4; x.lineCap='round'; x.lineJoin='round'; x.strokeStyle=getComputedStyle(screenEl).getPropertyValue('--blue').trim()||'#3274AE';
   var pt=function(e){var r=cv.getBoundingClientRect();return [(e.clientX-r.left)/r.width*cv.width,(e.clientY-r.top)/r.height*cv.height]};
   cv.addEventListener('pointerdown',function(e){down=true;var p=pt(e);x.beginPath();x.moveTo(p[0],p[1]);try{cv.setPointerCapture(e.pointerId)}catch(_){}});
   cv.addEventListener('pointermove',function(e){if(!down)return;var p=pt(e);x.lineTo(p[0],p[1]);x.stroke()});
@@ -2046,7 +2114,7 @@ var TOUR=[
  {sel:'.sales',t:'Your sales progress',b:'The solid bar shows the sales that you won. The striped bar shows your open deals. The line shows where you should be today.'},
  {sel:'#b-top .task',scroll:1,t:'Today',b:'Your visits of today come first, in order of time. Below them, '+AI+' puts the most important tasks first. Each item gives the reason and one next step. Tap the circle when an item is done.'},
  {sel:function(){return S.device==='computer'?'.topbar .btn-primary':'#fab'},round:function(){return S.device!=='computer'},t:'Add a note in seconds',
-  b:function(){return S.device==='computer'?'Select New note, or press N. '+AI+' tidies the note and finds the next step.':'Tap the round button to talk, type or '+(S.device==='tablet'?'write with the pen':'take a photo')+'. Hold the button to talk immediately. '+AI+' tidies the note for you.'}},
+  b:function(){return S.device==='computer'?'Select New note to type, to talk, or to attach a photo of your notes. Press N to type immediately. '+AI+' tidies the note and finds the next step.':'Tap the round button to talk, type, write or take a photo. Hold the button to talk immediately. '+AI+' tidies the note for you.'}},
  {sel:'#b-attn',scroll:1,t:'Customers that need you',b:AI+' warns you when a customer is quiet for too long, or when a payment is late. Tap a row to see the reason.'},
  {sel:'[data-act=tab][data-id=rec]',pad:3,t:'Customer records',b:'Each customer has one page. Your notes, deals and promises go there.'},
  {sel:'[data-act=tab][data-id=set]',pad:3,t:'Settings',b:'Change the text size and the contrast here. You can also stop each task of '+AI+'. The guide and this tour are here too.'}
@@ -2169,7 +2237,10 @@ var A={
     var t=T.find(function(x){return d&&x.deal===d.id}); if(t){S.done[t.id]=1; if(t.promise){var p=c.promises.find(function(x){return !x.done}); if(p)p.done=true;}}
     closeSheet(); toast('Sent to '+c.people[0].call+' and saved to the record.',c.id);
   },
-  cap:function(kind,_,b){ var hint=(b&&b.dataset.hint)||null; closeSheet(); S.fan=false; if(noCust()) return; S.sheet={kind:kind,hint:hint}; },
+  cap:function(kind,_,b){ var hint=(b&&b.dataset.hint)||null; closeSheet(); S.fan=false; S.capm=false; if(noCust()) return; S.sheet={kind:kind,hint:hint}; },
+  capmenu:function(){ S.capm=!S.capm; if(S.capm) setTimeout(function(){ var f=app.querySelector('.capm button'); if(f){ try{f.focus({preventScroll:true})}catch(_){} } },0); },
+  attpick:function(){ var f=$('#n-photo'); if(f) f.click(); return false },
+  attsample:function(){ S.sheet.file={name:'Sample page.jpg',url:''}; S.sheet.err=''; },
   stoptalk:function(){ var s=S.sheet; stopTalk(); if(!S.set.tidy){ S.sheet={kind:'type',hint:s.hint,text:s.raw}; return; } toReview('talk',s.raw,s.hint); return false },
   sample:function(){ var el=$('#t-text'); el.value=sampleFor($('#t-cust').value||S.sheet.hint||'best'); fshow(el); el.focus(); return false },
   tidy:function(){ if(!fcheck()) return false; toReview('type',$('#t-text').value.trim(),$('#t-cust').value||S.sheet.hint); return false },
@@ -2180,8 +2251,10 @@ var A={
     c.timeline.unshift({d:'Today',how:'Note',t:v}); markTouched(c,openOf(c.id)[0]||null);
     closeSheet(); toast('Saved to '+c.name+' as you wrote it.',c.id);
   },
-  tidyhand:function(){ if(!S.set.tidy){ S.sheet={kind:'type',hint:null,text:SAMPLE.lion}; return; } toReview(S.sheet.kind,SAMPLE.lion,null); return false },
-  clearpad:function(){ var cv=$('#w-pad'); cv.getContext('2d').clearRect(0,0,cv.width,cv.height); $('#w-hand').hidden=true; return false },
+  tidyhand:function(){ var k=S.sheet.kind;
+    if(k==='attach'){ if(!S.sheet.file){ S.sheet.err='Choose a picture first. Or use the sample page.'; return; } k='photo'; }
+    if(!S.set.tidy){ S.sheet={kind:'type',hint:null,text:SAMPLE.lion}; return; } toReview(k,SAMPLE.lion,null); return false },
+  clearpad:function(){ var cv=$('#w-pad'); cv.getContext('2d').clearRect(0,0,cv.width,cv.height); cancelAnimationFrame(handRaf); S.sheet.handOff=true; $('#w-hand').style.display='none'; return false },
   save:function(){
     if(!fcheck()) return false;
     readDraft(); var r=S.draft, id=$('#r-cust').value, due=$('#r-due');
@@ -2264,6 +2337,7 @@ screenEl.addEventListener('click',function(e){
   if(e.target.classList.contains('ask')){ A.stay(); return; }
   if(e.target.matches('[data-scrim]')){ if(tryClose(true)) render(); return; }
   if(e.target.closest('[data-fab]')){ setFan(!S.fan); return; }
+  if(S.capm&&!e.target.closest('.capw')){ S.capm=false; render(); return; }
   var b=e.target.closest('[data-act]'); if(!b) return;
   var fn=A[b.dataset.act]; if(!fn) return;
   var s0=S.sheet, k0=s0&&isForm(s0)?(s0.kept||sheetKey(s0)):null, r0=S.rec||'best';
@@ -2309,6 +2383,10 @@ screenEl.addEventListener('change',function(e){
   if(t.id==='r-cust'){ readDraft(); var r=S.draft, id=t.value, d=id?openOf(id)[0]:null; r.cust=id; r.sure=!!id; r.deal=d?d.id:''; r.stageTo=d?d.stage:null; render(); }
   if(t.id==='r-sort'){ S.sort=t.value; S.page=0; render(); }
   if(t.id==='s-lang'){ S.set.lang=t.value; toast('Voice language: '+t.value+'.'); }
+  if(t.id==='n-photo'&&t.files&&t.files[0]&&S.sheet&&S.sheet.kind==='attach'){ var pf=t.files[0];
+    if(!/^image\//.test(pf.type)&&!/\.(jpe?g|png|heic|webp|gif)$/i.test(pf.name)){ S.sheet.err='This file is not a picture. Choose a JPG, PNG or HEIC file.'; S.sheet.file=null; }
+    else { S.sheet.file={name:pf.name,url:/heic$/i.test(pf.name)?'':URL.createObjectURL(pf)}; S.sheet.err=''; }
+    render(); }
   if(t.id==='a-file'&&t.files&&t.files[0]){ var f0=t.files[0];
     if(!/\.(pdf|docx?|xlsx?|pptx?|jpe?g|png|heic|webp|gif)$/i.test(f0.name)){ fset(t,'This file type does not work here. Use a photo, a PDF or an office file.'); t.value=''; return; }
     if(f0.size>10*1024*1024){ fset(t,'This file is larger than 10 MB. Choose a smaller file.'); t.value=''; return; }
@@ -2320,15 +2398,17 @@ document.addEventListener('keydown',function(e){
   if(MENU){ if(menuKey(e)) return; }
   var mk=e.target&&e.target.closest?e.target.closest('[data-menu]'):null;
   if(mk&&(e.key==='ArrowDown'||e.key==='ArrowUp')){ e.preventDefault(); menuOpen(document.getElementById(mk.dataset.menu)); return; }
-  if(e.key==='Escape'){ if(S.sheet){ if(askOpen()) A.stay(); else if(tryClose()) render(); } else if(S.fan){setFan(false)} else if(S.rec&&S.device!=='tablet'){S.rec=null;S.edit=false;render()} return; }
-  if(!typing&&!S.sheet&&S.device==='computer'&&(e.key==='n'||e.key==='N')&&!e.metaKey&&!e.ctrlKey&&!e.altKey){ e.preventDefault(); if(!noCust()) S.sheet={kind:'type',hint:S.rec}; render(); }
+  if(S.capm&&(e.key==='ArrowDown'||e.key==='ArrowUp')){ var cm=[].slice.call(app.querySelectorAll('.capm button')), ci=cm.indexOf(document.activeElement);
+    e.preventDefault(); cm[(ci+(e.key==='ArrowDown'?1:cm.length-1))%cm.length].focus(); return; }
+  if(e.key==='Escape'){ if(S.sheet){ if(askOpen()) A.stay(); else if(tryClose()) render(); } else if(S.fan){setFan(false)} else if(S.capm){S.capm=false;render()} else if(S.rec&&S.device!=='tablet'){S.rec=null;S.edit=false;render()} return; }
+  if(!typing&&!S.sheet&&S.device==='computer'&&(e.key==='n'||e.key==='N')&&!e.metaKey&&!e.ctrlKey&&!e.altKey){ e.preventDefault(); S.capm=false; if(!noCust()) S.sheet={kind:'type',hint:S.rec}; render(); }
 });
 
 /* ---------- device switch and fit ---------- */
 var DIM={phone:[376,756],tablet:[944,664],computer:[1252,750]};
 var HINT={phone:'Tap the round button to add a note, or hold it to talk at once.',
- tablet:'The same screens as the phone, with more side by side. The round button also offers Write.',
- computer:'The same screens, with room for a full table. Press N to add a note.'};
+ tablet:'The same screens as the phone, with more side by side.',
+ computer:'The same screens, with room for a full table. Select New note, or press N.'};
 function fit(){
   var st=$('#stage'), d=DIM[S.device], cs=getComputedStyle(st);
   var w=st.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight), h=st.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom);
