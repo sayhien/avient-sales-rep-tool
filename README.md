@@ -8,20 +8,26 @@ This is a concept prototype with sample data. It is not an official Avient produ
 
 | Path | What it is |
 | --- | --- |
+| `links/` | One page with all links. The scan code opens it. |
+| `film/` | The film, 90 seconds, with its words. |
+| `prototype/` | The clickable prototype: phone, tablet and computer. |
 | `index.html` | The presentation. It runs in a browser and has the working prototype inside. |
-| `prototype/` | The clickable prototype on its own: phone, tablet and computer. |
-| `assets/fonts/` | The fonts, stored here so everything works with no internet. |
-| `assets/media/` | The pictures, the short clips and the film (`hue-film.mp4`). |
+| `guide/` | How Hue Works: what each screen does for Daniel, and how Hue knows. |
+| `design-system/` | Hue Design System: the colours, the parts and the rules. |
+| `working-document/` | The research, the user, the ideas and fourteen design reviews. |
+| `deck/` | The backup deck, 32 slides. |
+| `assets/` | The fonts, the pictures, the short clips and the film. All are stored here, so the pages work with no internet. |
 
 ## How to open it
 
-- **Online:** https://sayhien.github.io/avient-sales-rep-tool/
+- **All links:** https://sayhien.github.io/avient-sales-rep-tool/links/
+- **Presentation:** https://sayhien.github.io/avient-sales-rep-tool/
 - **Prototype only:** https://sayhien.github.io/avient-sales-rep-tool/prototype/
-- **With no internet:** download this repository, then open `index.html` in a browser.
+- **With no internet:** download this repository, then open `links/index.html` in a browser.
 
 ## The idea in one paragraph
 
-Daniel sells textile screen printing inks in Singapore. His deal information lives in his head, his notebook and his chat messages, so deals go quiet without anyone noticing. He records a note in seconds: he talks, types, writes with a pen, or takes a photo of his notebook. Hue reads the note and fills in the customer, the next step and the date. Each morning it shows his top three actions, the deals that need attention and how far he is from his target.
+Daniel sells textile screen printing inks in Singapore. His deal information lives in his head, his notebook and his chat messages, so deals go quiet without anyone noticing. He records a note in seconds: he talks, types, writes with a pen, or takes a photo of his notebook. Hue reads the note and fills in the customer, the next step and the date. He checks the fields and saves. Each morning Hue shows his visits, his three most important follow ups, the customers that do not reply, and how far he is from his target.
 
 ## Credits
 

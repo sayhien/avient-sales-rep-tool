@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How Hue Works · each screen of Hue</title>
+<meta name="description" content="How Hue works: what each screen does for Daniel, and how Hue knows. Part of the Hue design challenge by Loo Say Hien.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='15.6' cy='14.1' r='5.7' fill='%23EFBE46'/%3E%3Ccircle cx='8.4' cy='14.1' r='5.7' fill='%23D9624F'/%3E%3Ccircle cx='12' cy='7.9' r='5.7' fill='%233274AE'/%3E%3Ccircle cx='12' cy='12' r='1.6' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+
+.hero{padding:40px 0 0}.hero .tools{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 4px}
+.prose .shot{display:flex;flex-wrap:wrap;gap:18px 20px;justify-content:flex-start;align-items:flex-start;margin:22px 0}
+.prose .shot figure{margin:0;flex:0 1 auto}
+.prose .shot.one{display:block}
+.prose .shot img{border-radius:14px;height:auto}
+.prose .shot img.ph{width:250px;max-width:100%;filter:drop-shadow(0 8px 22px rgba(48,60,64,.16))}
+.prose .shot.n1 img.ph{width:300px}
+.prose .shot img.crop{width:420px;max-width:100%;box-shadow:var(--shadow-s);border:1px solid var(--ln)}
+.prose .shot img.wide{width:100%;max-width:760px;filter:drop-shadow(0 8px 22px rgba(48,60,64,.16))}
+.prose .shot figcaption{max-width:300px;font-size:14.5px;line-height:1.45}
+.prose .shot.crops figcaption{max-width:420px}
+.prose .shot.n3 img.crop{width:250px}.prose .shot.n3 figcaption{max-width:250px}
+.prose .shot.n4 img.ph{width:178px}.prose .shot.n4 figcaption{max-width:178px}
+.gets{background:var(--soft);border:1px solid var(--soft-b);border-radius:14px;padding:14px 18px;margin:14px 0 18px;font-size:19px;line-height:1.5}
+.gets b{color:var(--blue-d)}
+.flow{display:grid;justify-items:center;gap:0;background:var(--white);border:1px solid var(--ln);border-radius:20px;padding:24px 18px 20px;margin:20px 0}
+.fstep{width:min(100%,440px);border:1.5px solid var(--ln-d);border-radius:14px;padding:12px 16px;text-align:center;background:var(--mist)}
+.fstep b{display:block;font:700 17px/1.3 var(--fd)}.fstep span{display:block;font-size:14.5px;color:var(--sub);line-height:1.4;margin-top:2px}
+.fstep.hue{background:#FFF8E6;border-color:#EBCF9C}.fstep.rec{background:var(--soft);border-color:var(--soft-b)}
+.arr{width:2px;height:22px;background:var(--blue);position:relative;margin:2px 0 8px}.arr:after{content:"";position:absolute;left:-5px;bottom:-6px;border:6px solid transparent;border-top-color:var(--blue);border-bottom:0}
+.fout{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:560px}
+.fout span{font:600 14.5px/1 var(--fb);background:var(--white);border:1.5px solid var(--soft-b);color:var(--blue-d);border-radius:99px;padding:9px 13px}
+.flow figcaption{text-align:center;max-width:52ch;margin-top:14px}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Go to the content</a>
+<header class="bar"><div class="in"><a class="brand" href="../links/" aria-label="Hue, all links"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.6" cy="14.1" r="5.7" fill="#EFBE46" stroke="#fff" stroke-width=".7"/><circle cx="8.4" cy="14.1" r="5.7" fill="#D9624F" stroke="#fff" stroke-width=".7"/><circle cx="12" cy="7.9" r="5.7" fill="#3274AE" stroke="#fff" stroke-width=".7"/><circle cx="12" cy="12" r="1.6" fill="#fff"/></svg>Hue</a><span class="name">How Hue Works</span><span class="sp"></span><a class="all" href="../links/">All links</a></div></header>
+<main id="main">
+<div class="wrap doc"><nav class="toc" aria-label="Sections"><details open><summary>Sections</summary><p>Sections</p><a href="#the-words-that-hue-uses">The words that Hue uses</a><a href="#one-note-goes-to-all-screens">One note goes to all screens</a><a href="#home-the-weather-for-his-visits">Home: the weather for his visits</a><a href="#home-sales-this-year">Home: sales this year</a><a href="#today-visits">Today: visits</a><a href="#today-follow-ups">Today: follow ups</a><a href="#home-notes-to-check-and-kept-forms">Home: notes to check, and kept forms</a><a href="#home-later-this-week-needs-attention-open-deals">Home: later this week, needs attention, open deals</a><a href="#record-a-note">Record a note</a><a href="#check-and-save">Check and save</a><a href="#records-find-a-customer">Records: find a customer</a><a href="#the-customer-record">The customer record</a><a href="#forms">Forms</a><a href="#buttons">Buttons</a><a href="#a-new-user">A new user</a><a href="#settings">Settings</a><a href="#what-is-real-and-what-is-a-sample">What is real, and what is a sample</a></details></nav><article class="prose"><p class="eyebrow">The guide to the prototype</p><h1>How Hue Works</h1><p class="meta">Loo Say Hien · Updated 5 October 2026</p><p class="tools"><a class="btn p" href="../prototype/">Try the prototype</a><a class="btn s" href="../">Open the presentation</a></p>
+<p>This guide goes through each screen of Hue. For each part it says three things: what Daniel sees, what it does for him, and how Hue knows.</p>
+<p>Daniel is a sales rep for printing inks in Singapore. Hue is the assistant on his phone, his tablet and his computer. The numbers in this guide come from the sample data of the prototype, with 100 customers. All amounts are in Singapore dollars.</p>
+<div class="shot n1"><figure><img class="ph" src="../assets/guide/phone-home.webp" alt="Home on a phone: the weather for the visits, the sales bar and the start of Today." width="600" height="1205" loading="lazy"><figcaption>Home on a phone, at 8:20 in the morning.</figcaption></figure></div>
+
+<h2 id="the-words-that-hue-uses">The words that Hue uses</h2>
+<p>Each word has one meaning in all screens.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visit</td>
+<td>A meeting with a customer at a fixed time.</td>
+</tr>
+<tr>
+<td>Follow up</td>
+<td>A thing to do for a customer that is not a visit: a call, a message, a quote or a question about a payment.</td>
+</tr>
+<tr>
+<td>Promise</td>
+<td>A thing that Daniel said he will do, with a date.</td>
+</tr>
+<tr>
+<td>No reply</td>
+<td>The customer did not answer about a deal for longer than usual.</td>
+</tr>
+<tr>
+<td>Not in touch</td>
+<td>Daniel and the customer had no contact for 2 weeks or more.</td>
+</tr>
+<tr>
+<td>Your move</td>
+<td>The customer waits for Daniel.</td>
+</tr>
+<tr>
+<td>Check and save</td>
+<td>Daniel checks the fields that Hue filled in. Then he saves the note.</td>
+</tr>
+<tr>
+<td>Notes to check</td>
+<td>Notes that he kept for later. They are not in the record yet.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="one-note-goes-to-all-screens">One note goes to all screens</h2>
+<p class="gets"><b>What Daniel gets.</b> He records each fact one time. Then each screen is up to date.</p>
+<figure class="flow" role="img" aria-label="The path of one note: Daniel records a note. Hue reads it and fills in the fields. Daniel checks and saves. The note goes into the customer record. Then the sales bar, Today, Later this week, Needs attention and Open deals read the record.">
+<div class="fstep"><b>1 · Daniel records a note</b><span>Talk · Type · Write · Photo</span></div><i class="arr"></i>
+<div class="fstep hue"><b>2 · Hue reads the note</b><span>It fills in the customer, the next step, the date, the products and the stage</span></div><i class="arr"></i>
+<div class="fstep"><b>3 · Daniel checks and saves</b><span>Nothing is saved before this</span></div><i class="arr"></i>
+<div class="fstep rec"><b>4 · The customer record</b><span>Timeline · Promises · Deals · Products</span></div><i class="arr"></i>
+<div class="fout"><span>Sales bar</span><span>Today</span><span>Later this week</span><span>Needs attention</span><span>Open deals</span></div>
+<figcaption>5 · Each part of Home reads the record. A message, a call or a tick on Home goes back into the same record.</figcaption></figure>
+
+<p>Read the picture from the top.</p>
+<ol>
+<li>Daniel records a note. He talks, types, writes with a pen, or takes a photo of his notebook.</li>
+<li>Hue reads the note. It fills in the customer, what happened, the next step, the date, the products and the deal stage.</li>
+<li>Daniel checks the fields and saves. Nothing is saved before this.</li>
+<li>The note goes into the record of the customer.</li>
+<li>Each part of Home reads the record: the sales bar, Today, this week, the warnings and the open deals.</li>
+</ol>
+<p>The path also goes back. A message, a call or a tick on Home is saved to the same record. This is the answer to the brief: fast action, with no notes to write at night.</p>
+<h2 id="home-the-weather-for-his-visits">Home: the weather for his visits</h2>
+<p class="gets"><b>What Daniel gets.</b> Before he leaves, he knows if the weather will delay a visit, and what to do about it.</p>
+<div class="shot n3 crops"><figure><img class="crop" src="../assets/guide/c-hero.webp" alt="The top of Home in the morning: a yellow panel with a sun, 31 degrees, and the sentence Storms at 3 pm, when you visit Tuas Textile Print. Leave 15 minutes early." width="884" height="468" loading="lazy"><figcaption>8:20 in the morning. The sun is out, so the panel is yellow.</figcaption></figure><figure><img class="crop" src="../assets/guide/c-hero-1500.webp" alt="The top of Home in the afternoon: a grey panel with rain and 27 degrees." width="884" height="468" loading="lazy"><figcaption>3 in the afternoon. Storms now, so the panel is grey.</figcaption></figure><figure><img class="crop" src="../assets/guide/c-hero-2000.webp" alt="The top of Home in the evening: a dark blue panel with a moon and 28 degrees." width="884" height="516" loading="lazy"><figcaption>8 in the evening. The sentence is about the visits of tomorrow.</figcaption></figure></div>
+
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What he sees</th>
+<th>What it does for him</th>
+<th>How Hue knows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One sentence: "Storms at 3 pm, when you visit Tuas Textile Print. Leave 15 minutes early."</td>
+<td>He knows which visit the weather changes, and he gets one instruction.</td>
+<td>Hue compares the time of each visit that is still to come with the forecast for that part of the day. Storms come before showers.</td>
+</tr>
+<tr>
+<td>A large picture and a temperature, with "Now"</td>
+<td>He sees the weather at this moment in one look.</td>
+<td>The forecast for the current part of the day.</td>
+</tr>
+<tr>
+<td>The colour of the panel</td>
+<td>He feels the weather before he reads. Yellow is sun. Grey is rain. Dark blue is night.</td>
+<td>The same weather as the large picture.</td>
+</tr>
+<tr>
+<td>A row with the next parts of the day</td>
+<td>He sees how the day continues. He slides the row to see tomorrow.</td>
+<td>The forecast gives the morning, the afternoon and the evening.</td>
+</tr>
+<tr>
+<td>"Full forecast"</td>
+<td>More detail when he needs it.</td>
+<td>A link to the national weather service.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>The panel follows the clock.</strong> A sentence about a visit that is past is of no use. When no visit is left today, Hue looks at the visits of tomorrow. If no visit is in the rain, the sentence says "No rain at your visits today".</p>
+<p>The same warning shows on the visit in Today. So he sees it a second time, at the place where he plans the drive.</p>
+<p>To see other weather, use "Sample weather" at the top of the prototype page.</p>
+<h2 id="home-sales-this-year">Home: sales this year</h2>
+<p class="gets"><b>What Daniel gets.</b> He knows if he is on track for his target. He does not open a report.</p>
+<div class="shot n1 crops"><figure><img class="crop" src="../assets/guide/c-sales.webp" alt="The sales card: $612k of a $900k target, 68 percent. A solid bar, a striped bar and a line for today. Below it: $288k to go. Your open deals can cover it." width="884" height="366" loading="lazy"><figcaption>The sales card on a phone.</figcaption></figure></div>
+
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What he sees</th>
+<th>What it does for him</th>
+<th>How Hue knows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$612k of $900k target, and 68%</td>
+<td>His result and his target in one line.</td>
+<td>The total of all deals with the stage Won. The company gives the target.</td>
+</tr>
+<tr>
+<td>The solid bar</td>
+<td>Progress in one look.</td>
+<td>The same 68%.</td>
+</tr>
+<tr>
+<td>The striped bar</td>
+<td>He sees if his open deals can fill the gap.</td>
+<td>The total of his open deals, $811k in 52 deals.</td>
+</tr>
+<tr>
+<td>The line with "Today", at 76%</td>
+<td>He sees if he is ahead or behind.</td>
+<td>Day 278 of 365. It assumes equal sales in each month.</td>
+</tr>
+<tr>
+<td>"$288k to go. Your open deals can cover it."</td>
+<td>One honest sentence. It does not say "safe" when it is not.</td>
+<td>900 minus 612 is 288. The open deals are larger than the gap.</td>
+</tr>
+<tr>
+<td>"Closing Best Printing Pte Ltd ($86k) takes you to 78%."</td>
+<td>It connects the number to one action of today.</td>
+<td>The largest deal that waits for him.</td>
+</tr>
+<tr>
+<td>"Detail"</td>
+<td>The phone shows the short version. One tap opens the other lines.</td>
+<td>His choice.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="today-visits">Today: visits</h2>
+<p class="gets"><b>What Daniel gets.</b> He sees the fixed points of his day, and he arrives at each visit with a goal.</p>
+<div class="shot n1"><figure><img class="ph" src="../assets/guide/phone-today.webp" alt="Today on a phone: two visits in order of time. The visit at 3 pm has two labels: Storms, leave 15 minutes early, and No reply for 16 days. Below the visits, the follow ups start." width="600" height="1205" loading="lazy"><figcaption>Today on a phone.</figcaption></figure></div>
+
+<p>Today has two lists. The visits come first, because a visit has a fixed time and the other work must fit around it.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What he sees</th>
+<th>What it does for him</th>
+<th>How Hue knows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The time and the customer: "3 pm Visit Tuas Textile Print"</td>
+<td>He sees when he must be where.</td>
+<td>His calendar.</td>
+</tr>
+<tr>
+<td>The reason: "Get the trial result from Rajesh. The trial started 16 days ago, with no result yet. It is your biggest open deal, $120k."</td>
+<td>He knows what to ask.</td>
+<td>The open deal and the last notes of that customer.</td>
+</tr>
+<tr>
+<td>The area, with a pin</td>
+<td>He can plan the drive.</td>
+<td>The postal code in the address.</td>
+</tr>
+<tr>
+<td>"Storms. Leave 15 minutes early."</td>
+<td>He leaves in time.</td>
+<td>The forecast for the time of the visit. Dry weather is plain text. Only a warning is a label.</td>
+</tr>
+<tr>
+<td>"No reply for 16 days"</td>
+<td>He knows that this deal is at risk.</td>
+<td>The rule for no reply. See "Needs attention".</td>
+</tr>
+<tr>
+<td>The circle</td>
+<td>He ticks the visit when it is done.</td>
+<td>His tap. A saved note for that customer also ticks it.</td>
+</tr>
+<tr>
+<td>"Prepare for the visit"</td>
+<td>One tap to read the history before he goes in.</td>
+<td>It opens the record. After the time of the visit, the button changes to "Add a note about the visit".</td>
+</tr>
+</tbody>
+</table></div>
+<p>A follow up for a customer that he visits today is part of the visit. So he does not see the same customer two times.</p>
+<h2 id="today-follow-ups">Today: follow ups</h2>
+<p class="gets"><b>What Daniel gets.</b> He does not decide where to start. The first follow up is the one where the most money and the most time are at risk. Each follow up gives its reason, so he can disagree.</p>
+<div class="shot n1 crops"><figure><img class="crop" src="../assets/guide/c-follow.webp" alt="The first three follow ups in Today. One: Send Jasmine the price for Wilflex white. Two: Ask Mei Yun about the late payment of $18k. Three: Ask Jia Hao about the late payment of $9k." width="884" height="1348" loading="lazy"><figcaption>The first three follow ups of the sample day.</figcaption></figure></div>
+
+<p><strong>What is a follow up.</strong> A call, a message, a quote or a question about a payment. Hue makes one follow up for a customer when one of these is true:</p>
+<ul>
+<li>Daniel made a promise that is still open.</li>
+<li>The customer waits for his reply.</li>
+<li>The customer did not reply for longer than usual.</li>
+<li>A payment is late.</li>
+</ul>
+<p><strong>What he sees.</strong> Three follow ups show. "Show 24 more" opens the others. The count "0 of 27 done" includes the ones that are hidden, so the number is honest.</p>
+<p><strong>How Hue makes the order.</strong> Hue gives points to each follow up. The follow up with the most points is first. Daniel does not see the points. He sees the reason in words. He can disagree with a sentence. He cannot disagree with a number.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Part of the rule</th>
+<th>What it is</th>
+<th>How Hue knows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Value</td>
+<td>The worth of the deal for one year, in thousands of dollars</td>
+<td>He types it when he adds the deal.</td>
+</tr>
+<tr>
+<td>Chance</td>
+<td>New 20%, Sample 40%, Trial 60%, Quote 80%</td>
+<td>The deal stage. A later stage is nearer to an order.</td>
+</tr>
+<tr>
+<td>Waiting: a promise</td>
+<td>50 points if a promise is due today or is late</td>
+<td>The promise list of the customer.</td>
+</tr>
+<tr>
+<td>Waiting: his move</td>
+<td>10 points for each day that the customer waits for him, to a maximum of 30</td>
+<td>The days since the last contact.</td>
+</tr>
+<tr>
+<td>Waiting: no reply</td>
+<td>5 points for each day after the usual wait, to a maximum of 30</td>
+<td>The days since the last contact, and the usual wait for that stage.</td>
+</tr>
+<tr>
+<td>A late payment</td>
+<td>40 points, plus the late amount in thousands, plus 1 point for each day that it is late, to a maximum of 30</td>
+<td>The payment status of the customer.</td>
+</tr>
+</tbody>
+</table></div>
+<p>For a deal, the points are value × chance + waiting. A late payment has its own rule, because money that a customer owes comes before most new deals.</p>
+<p><strong>The first follow ups of the sample day, with the reason that Daniel reads.</strong></p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Follow up</th>
+<th>The reason that Daniel reads</th>
+<th>How the points add up</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Send Jasmine the price for Wilflex white</td>
+<td>"Best Printing asked for it 2 days ago. The deal is worth $86k."</td>
+<td>86 × 80% is 69. A promise for today adds 50. His move for 2 days adds 20.</td>
+<td>139</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ask Mei Yun about the late payment of $18k</td>
+<td>"Kian Seng Trading owes $18k. It is 30 days late. Their new order of $64k waits for this payment."</td>
+<td>40, plus 18 for the amount, plus 30 for the days.</td>
+<td>88</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Ask Jia Hao about the late payment of $9k</td>
+<td>"Neptune Trading Pte Ltd owes $9k. It is 34 days late."</td>
+<td>40, plus 9, plus 30, the maximum for the days.</td>
+<td>79</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Ask Jun Jie about the late payment of $12k</td>
+<td>"Pagoda Apparel Pte Ltd owes $12k. It is 25 days late."</td>
+<td>40, plus 12, plus 25.</td>
+<td>77</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Ask Mei Ling about the $48k quote</td>
+<td>"You sent the quote to Ace Tees 9 days ago. She did not reply yet."</td>
+<td>48 × 80% is 38. No reply for 4 days longer than the usual 5 adds 20.</td>
+<td>58</td>
+</tr>
+</tbody>
+</table></div>
+<p>Hue makes the order one time, at the start of the day. So the list does not jump while he works. A promise for today that he adds during the day goes to the top.</p>
+<p><strong>Done.</strong> He taps the circle when a follow up is done. A done item stays in the list until the next morning, and a second tap undoes it. When he saves a note for that customer, Hue ticks the follow up by itself. The row then says "Done. Hue ticked it when you saved your note."</p>
+<h2 id="home-notes-to-check-and-kept-forms">Home: notes to check, and kept forms</h2>
+<p class="gets"><b>What Daniel gets.</b> An interruption does not cost him his work.</p>
+<div class="shot n1"><figure><img class="ph" src="../assets/guide/n14-later.webp" alt="The top of Home after Check later: a block Notes to check, with one row, Voice note for Ace Tees, 8:20 am." width="600" height="1205" loading="lazy"><figcaption>A note that waits at the top of Home.</figcaption></figure></div>
+
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What he sees</th>
+<th>What it does for him</th>
+<th>How it works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Notes to check", with a row for each note</td>
+<td>A note that he recorded in a hurry is not lost, and he does not forget it.</td>
+<td>He tapped "Check later". The note stays here until he opens it, checks the fields and saves. The count says how many are not in the record yet.</td>
+</tr>
+<tr>
+<td>A pale blue row for a kept form</td>
+<td>He can finish a form that a call interrupted.</td>
+<td>When a form has entries, each way to close it asks "Leave this form?" He can keep the entries, discard them, or stay.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="home-later-this-week-needs-attention-open-deals">Home: later this week, needs attention, open deals</h2>
+<p class="gets"><b>What Daniel gets.</b> He sees what comes next, who needs him, and where the money waits. Each list is short first. One button shows the others.</p>
+<h3 id="later-this-week">Later this week</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What he sees</th>
+<th>What it does for him</th>
+<th>How Hue knows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Each day from tomorrow, with its visits</td>
+<td>He sees the week with no second app.</td>
+<td>His calendar.</td>
+</tr>
+<tr>
+<td>Rows with "Promise"</td>
+<td>He does not forget small promises.</td>
+<td>Hue adds a promise when a note has a next step with a date.</td>
+</tr>
+<tr>
+<td>"Show 9 more on Fri"</td>
+<td>The list stays short.</td>
+<td>A day shows three rows first.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="needs-attention">Needs attention</h3>
+<div class="shot n2"><figure><img class="ph" src="../assets/guide/phone-why.webp" alt="A sheet for Tuas Textile Print: No reply for 16 days. Why Hue flagged this: Trial started 16 days ago, and no contact since. A trial usually gives a result within 14 days. Buttons: Message Rajesh, Call, Remind me in 3 days, This is normal for this customer." width="600" height="1205" loading="lazy"><figcaption>No reply: the reason, and four ways to act.</figcaption></figure><figure><img class="ph" src="../assets/guide/n14-late.webp" alt="A sheet for Kian Seng Trading: Payment 30 days late. Why Hue flagged this, a possible reason, and a plan of three payments that Daniel can offer." width="600" height="1205" loading="lazy"><figcaption>A late payment: the reason, and a plan that he can offer.</figcaption></figure></div>
+
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What he sees</th>
+<th>What it does for him</th>
+<th>How Hue knows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"No reply for 16 days"</td>
+<td>A deal is not lost in silence.</td>
+<td>The days since the last contact are more than the usual wait: 3 days for a new deal, 7 for samples, 14 for a trial, 5 for a quote.</td>
+</tr>
+<tr>
+<td>"Why Hue flagged this"</td>
+<td>He can judge the warning. "Trial started 16 days ago, and no contact since. A trial usually gives a result within 14 days."</td>
+<td>The stage, the days, and the usual wait.</td>
+</tr>
+<tr>
+<td>Message, Call</td>
+<td>One tap to act. The message is ready.</td>
+<td>Hue writes a first message from his notes. He changes it and sends it.</td>
+</tr>
+<tr>
+<td>"Remind me in 3 days"</td>
+<td>He can wait without forgetting.</td>
+<td>The warning hides for 3 days.</td>
+</tr>
+<tr>
+<td>"This is normal for this customer"</td>
+<td>Hue does not nag him.</td>
+<td>Hue waits longer for this deal the next time.</td>
+</tr>
+<tr>
+<td>"Payment late"</td>
+<td>He asks about the money before he takes a new order.</td>
+<td>The payment status of the customer. In the real tool it comes from the accounts system.</td>
+</tr>
+<tr>
+<td>"A plan that you can offer"</td>
+<td>He can solve the problem in the same call, with no approval.</td>
+<td>The plan comes from the assistant of the finance team. It follows the finance rules.</td>
+</tr>
+<tr>
+<td>The amount on each row</td>
+<td>The largest risk is first.</td>
+<td>The list sorts by the worth of the deal, or by the late amount.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="open-deals">Open deals</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What he sees</th>
+<th>What it does for him</th>
+<th>How Hue knows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"52 deals · $811k"</td>
+<td>The size of his pipeline in one line.</td>
+<td>All deals that are not won or lost.</td>
+</tr>
+<tr>
+<td>Four bars: New, Sample, Trial, Quote</td>
+<td>He sees where the money waits.</td>
+<td>The total for each stage. A tap on a stage filters the list.</td>
+</tr>
+<tr>
+<td>"Biggest first"</td>
+<td>The important deals are on top.</td>
+<td>The five largest open deals.</td>
+</tr>
+<tr>
+<td>"See all 52 in Records"</td>
+<td>Home stays short.</td>
+<td>It opens Records with the filter "Open deals".</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="record-a-note">Record a note</h2>
+<p class="gets"><b>What Daniel gets.</b> He records a note in seconds, in the way that fits the moment. He does not fill in a form.</p>
+<div class="shot n4"><figure><img class="ph" src="../assets/guide/p13-fan.webp" alt="The round button on a phone, open: Talk, Type, Write and Photo." width="600" height="1205" loading="lazy"><figcaption>One round button. Tap for the menu. Hold to talk immediately.</figcaption></figure><figure><img class="ph" src="../assets/guide/phone-talk.webp" alt="Talk a note: a timer, the words that he says, and ticks for Customer and What happened." width="600" height="1205" loading="lazy"><figcaption>Talk: in the car, after the visit.</figcaption></figure><figure><img class="ph" src="../assets/guide/p13-write.webp" alt="Write a note: a page with lines and a note in handwriting." width="600" height="1205" loading="lazy"><figcaption>Write: a pen does not look rude in a meeting.</figcaption></figure><figure><img class="ph" src="../assets/guide/p13-photo.webp" alt="Photo of a notebook page: the camera view with a page of handwriting." width="600" height="1205" loading="lazy"><figcaption>Photo: a page of his notebook.</figcaption></figure></div>
+
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What he sees</th>
+<th>What it does for him</th>
+<th>How it works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The round button</td>
+<td>One place for all notes, near his thumb.</td>
+<td>A tap opens Talk, Type, Write and Photo. Settings can move the button to the left.</td>
+</tr>
+<tr>
+<td>Talk</td>
+<td>No typing after a visit.</td>
+<td>Speech becomes text. Hue records his voice only, and the screen says so.</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Fast in a silent place.</td>
+<td>He types the note his way. He does not choose fields.</td>
+</tr>
+<tr>
+<td>Write</td>
+<td>Polite in a meeting.</td>
+<td>He writes with a pen or a finger. Handwriting becomes text.</td>
+</tr>
+<tr>
+<td>Photo</td>
+<td>Notes on paper also get into the record.</td>
+<td>He takes a photo of the page, or chooses one from his album.</td>
+</tr>
+<tr>
+<td>"New note" on a computer, or the N key</td>
+<td>Fast at a desk.</td>
+<td>A small menu: Type a note, Talk a note, Attach a photo.</td>
+</tr>
+<tr>
+<td>"A good note says these things", with five ticks</td>
+<td>He learns what to say, with no training.</td>
+<td>The ticks are Customer, What happened, Next step, Date and Product. Hue ticks each one when it finds it in his words. "See an example" shows a full note.</td>
+</tr>
+<tr>
+<td>"Check now" and "Check later"</td>
+<td>He decides when to check.</td>
+<td>"Check now" opens Check and save. "Check later" keeps the note at the top of Home.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="check-and-save">Check and save</h2>
+<p class="gets"><b>What Daniel gets.</b> Hue does the typing. Daniel stays in control. He checks the fields, and nothing goes to the record before he taps Save.</p>
+<div class="shot n1"><figure><img class="ph" src="../assets/guide/phone-check.webp" alt="Check and save on a phone. One line at the top: Hue filled in 6 fields from your voice note. Check each field, then save. Then the customer, what happened, the next step, the date, the products and the deal stage." width="600" height="1205" loading="lazy"><figcaption>Check and save, after a voice note.</figcaption></figure></div>
+
+<p>One line at the top says what Hue did: "Hue filled in 6 fields from your voice note. Check each field, then save." So he knows that these words are not all his.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it does for him</th>
+<th>How Hue knows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Customer</td>
+<td>He does not search for the record.</td>
+<td>A company name or a contact name in the note. If Hue finds none, the field asks him to choose. A wrong guess is not saved.</td>
+</tr>
+<tr>
+<td>What happened</td>
+<td>A clean history.</td>
+<td>The sentences of the note that are not the next step.</td>
+</tr>
+<tr>
+<td>Next step</td>
+<td>Nothing is forgotten. It becomes a promise.</td>
+<td>The first sentence with an action and a day: send, call, quote, visit.</td>
+</tr>
+<tr>
+<td>Date of the next step</td>
+<td>He does not calculate dates.</td>
+<td>The day word in that sentence. Below the field, Hue gives its reason: "You said Friday. Hue took the coming one, Fri 9 Oct."</td>
+</tr>
+<tr>
+<td>Products</td>
+<td>He knows later what each customer asked about.</td>
+<td>Product names in the note. He can remove one or add one.</td>
+</tr>
+<tr>
+<td>Deal stage</td>
+<td>The pipeline is correct with no extra work.</td>
+<td>Words in the note. "Test" gives Trial. Below the field: "Was Quote. Hue suggests this from your note."</td>
+</tr>
+<tr>
+<td>"Your original words"</td>
+<td>He can compare. That is why he can trust Hue.</td>
+<td>The note as he said it. Hue keeps it.</td>
+</tr>
+<tr>
+<td>"Save to record", "Check later", "Cancel"</td>
+<td>He has the last word.</td>
+<td>Nothing is saved before his tap.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What changes after Save.</strong></p>
+<ul>
+<li>The timeline of the customer gets the note.</li>
+<li>The next step becomes a promise with its date. It shows in "Later this week".</li>
+<li>The deal gets the new stage. The days since the last contact go back to 0, so a "No reply" warning stops.</li>
+<li>The products go into the record.</li>
+<li>A visit or a follow up for this customer in Today is ticked.</li>
+</ul>
+<p>The switch "Fill in the fields from my notes" in Settings stops this. Then each note is saved as he wrote it.</p>
+<h2 id="records-find-a-customer">Records: find a customer</h2>
+<p class="gets"><b>What Daniel gets.</b> He finds one customer in seconds. He can also see a group: the customers that wait for him, that do not reply, or that he lost touch with.</p>
+<div class="shot n2"><figure><img class="ph" src="../assets/guide/n14-records.webp" alt="Records on a phone: a search field, the filters All, Open deals, Your move, No reply, and a list of customers." width="600" height="1205" loading="lazy"><figcaption>Records on a phone.</figcaption></figure><figure><img class="ph" src="../assets/guide/n14-recfilter.webp" alt="Records with the filter No reply: 11 customers, each with the label No reply and the number of days." width="600" height="1205" loading="lazy"><figcaption>The filter "No reply".</figcaption></figure></div>
+
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What he sees</th>
+<th>What it does for him</th>
+<th>How Hue knows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Search</td>
+<td>The fastest way to one customer.</td>
+<td>It looks at the company, the person, the product and the area.</td>
+</tr>
+<tr>
+<td>Filter: Open deals</td>
+<td>His pipeline. A second row chooses one stage.</td>
+<td>The customer has a deal that is not won or lost.</td>
+</tr>
+<tr>
+<td>Filter: Your move</td>
+<td>His own work list.</td>
+<td>A deal needs his reply, or he has an open promise.</td>
+</tr>
+<tr>
+<td>Filter: No reply</td>
+<td>Deals that can be lost in silence.</td>
+<td>The rule for no reply.</td>
+</tr>
+<tr>
+<td>Filter: Late payment</td>
+<td>Money to collect.</td>
+<td>The payment status.</td>
+</tr>
+<tr>
+<td>Filter: Not in touch</td>
+<td>Customers that he can lose. A second row chooses 2 weeks, 3 weeks, or 4 weeks or more.</td>
+<td>No call, message, visit or note in that time.</td>
+</tr>
+<tr>
+<td>The number in each filter</td>
+<td>He sees the size before he taps.</td>
+<td>A count, with the search applied.</td>
+</tr>
+<tr>
+<td>Sort by</td>
+<td>The order that fits the job.</td>
+<td>Name, biggest deals, longest since contact, or most recent contact.</td>
+</tr>
+<tr>
+<td>A row: name, contact, area, "9 days ago" and a label</td>
+<td>He knows the person and the condition before he opens the record.</td>
+<td>The record. The label is "No reply" or "Payment late". No label means up to date.</td>
+</tr>
+<tr>
+<td>"New customer"</td>
+<td>A new record in seconds.</td>
+<td>Only the company name is necessary. A warning shows if the name is already in the records.</td>
+</tr>
+</tbody>
+</table></div>
+<p>A phone and a tablet show 20 rows, then "Show 20 more". A computer shows a table with pages of 25.</p>
+<h2 id="the-customer-record">The customer record</h2>
+<p class="gets"><b>What Daniel gets.</b> All that he knows about a customer is in one place. He reads it in one minute before a visit. All other screens read from it.</p>
+<div class="shot n1"><figure><img class="wide" src="../assets/guide/tablet-record.webp" alt="The customer record on a tablet, next to the list of customers: the next step, the visit, a suggestion from Hue, the deals and the promises." width="1400" height="984" loading="lazy"><figcaption>The record of Best Printing on a tablet.</figcaption></figure></div>
+
+<div class="tw"><table>
+<thead>
+<tr>
+<th>What he sees</th>
+<th>What it does for him</th>
+<th>How Hue knows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The name, the type, the area, "Customer since"</td>
+<td>He confirms that he is in the correct record.</td>
+<td>The company details.</td>
+</tr>
+<tr>
+<td>The status label</td>
+<td>The condition of the customer in one look.</td>
+<td>Up to date, No reply, or Payment late.</td>
+</tr>
+<tr>
+<td>"Next:" and "Visit:"</td>
+<td>The one thing to know before a call.</td>
+<td>The first open promise, and the next visit.</td>
+</tr>
+<tr>
+<td>Call, Message, Add note</td>
+<td>Two taps to act.</td>
+<td>The main contact. A message has a first version from Hue.</td>
+</tr>
+<tr>
+<td>"Hue suggests"</td>
+<td>A reminder of what works with this person. "Jasmine usually replies to messages before 10 am."</td>
+<td>His past notes with this customer.</td>
+</tr>
+<tr>
+<td>Deals</td>
+<td>The money view: the worth, the stage, the last event, and who must act.</td>
+<td>He adds a deal. A note can change its stage.</td>
+</tr>
+<tr>
+<td>Promises</td>
+<td>Small promises are kept.</td>
+<td>A next step from a note, or "Add".</td>
+</tr>
+<tr>
+<td>People</td>
+<td>He knows who decides.</td>
+<td>He adds them. The first is the main contact.</td>
+</tr>
+<tr>
+<td>Timeline</td>
+<td>The full history. The newest is first.</td>
+<td>Each saved note, call, message and visit.</td>
+</tr>
+<tr>
+<td>Company</td>
+<td>The facts that change slowly: address, payment terms, payment status, last contact.</td>
+<td>He types a part of the address and chooses a suggestion.</td>
+</tr>
+<tr>
+<td>Products, Files</td>
+<td>He knows what to offer. The last quote is easy to find.</td>
+<td>"Add", or product names in his notes.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>One rule for add and edit.</strong> The heading of each list has a plus. It adds one item. Each item that he can change has a pencil. He can change what he wrote: a visit, a call, a note. He cannot change a message or an email, because the timeline must be a true history. A lock shows this, and a tap on the lock says how to correct it: add a note. A deal is not removed. When the customer says no, he sets the stage to Lost, and the history stays.</p>
+<h2 id="forms">Forms</h2>
+<p class="gets"><b>What Daniel gets.</b> He types as little as possible. An error is found at once, and not three weeks later when he calls a wrong number.</p>
+<ul>
+<li><strong>Label.</strong> Each field has a label above it. A field that can stay empty says "(optional)".</li>
+<li><strong>Example.</strong> An empty field shows an example in grey, such as "Example: 9123 4567".</li>
+<li><strong>Keyboard.</strong> A phone field and an amount field open the number keyboard.</li>
+<li><strong>Error.</strong> Red text with a cross below the field. It says what is wrong and how to correct it.</li>
+<li><strong>Menu and date.</strong> They use the controls of the tool, so they look the same on each device. In the calendar, a tap on the month or the year changes it. Saturday and Sunday have a grey ground. "Today" and "Tomorrow" are one tap.</li>
+<li><strong>Leave a form.</strong> A form with entries does not close at once. He can keep the entries and finish later.</li>
+</ul>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>What the tool does for him</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company name</td>
+<td>Best Printing Pte Ltd</td>
+<td>It warns him if the company is already in his records.</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td>9123 4567</td>
+<td>Letters cannot be typed. "91234567" becomes "9123 4567".</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>jasmine@company.com</td>
+<td>It changes capital letters to small letters.</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>48,000</td>
+<td>It shows "$" in the field and adds the commas. The smallest amount is $1,000.</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>The calendar</td>
+<td>Hue fills the date from the note. Only today or a later date is permitted.</td>
+</tr>
+<tr>
+<td>Address</td>
+<td>408564 or Ubi Crescent</td>
+<td>It shows matching addresses and a map with a pin.</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>A first version from Hue</td>
+<td>A message cannot go out with "[price]" in it.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Two rules come from the job. A deal needs an amount, because the order of the follow ups uses it. A next step needs a date, because a next step with no date is how a deal gets lost.</p>
+<h2 id="buttons">Buttons</h2>
+<p class="gets"><b>What Daniel gets.</b> His eye goes to one button on each screen.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Look</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Dark blue, white text. One for each screen.</td>
+<td>The round button, "Save to record", "Send"</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Light blue with a thin blue line</td>
+<td>"Open draft", "Prepare for the visit", "Check later"</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Text only</td>
+<td>"Show 24 more", "See all 52 in Records"</td>
+</tr>
+</tbody>
+</table></div>
+<p>"Cancel" has a thin line and dark text. "Remove" has a red line and asks for a second tap.</p>
+<h2 id="a-new-user">A new user</h2>
+<p class="gets"><b>What Daniel gets.</b> On his first day, each empty screen tells him what will show there and gives one next step.</p>
+<p>Select "0 customers" at the top of the prototype page to see this.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What a new user sees</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sales this year</td>
+<td>"$0 of $900k target" and "No sales yet. Add your first deal to start."</td>
+</tr>
+<tr>
+<td>Today</td>
+<td>The Hue logo, "Nothing for today yet", and the button "New customer"</td>
+</tr>
+<tr>
+<td>Needs attention, Open deals</td>
+<td>One short line each. No buttons, so the page is not crowded.</td>
+</tr>
+<tr>
+<td>Records</td>
+<td>"No customers yet. Add your first customer. Only the company name is necessary."</td>
+</tr>
+<tr>
+<td>The round button</td>
+<td>It opens "New customer" and says why: a note needs a customer.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="settings">Settings</h2>
+<p class="gets"><b>What Daniel gets.</b> He can read the screen in sunlight, use it with one hand, and decide what Hue does for him. Each change works at once.</p>
+<div class="shot n2"><figure><img class="ph" src="../assets/guide/phone-settings.webp" alt="Settings on a phone: text size, stronger contrast, less motion, the side of the round button and the voice language." width="600" height="1205" loading="lazy"><figcaption>Reading, seeing and recording.</figcaption></figure><figure><img class="ph" src="../assets/guide/phone-hueset.webp" alt="Settings on a phone: Hue, your assistant, with one switch for each job of Hue." width="600" height="1205" loading="lazy"><figcaption>One switch for each job of Hue.</figcaption></figure></div>
+
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does for him</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text size</td>
+<td>Four sizes. All text and buttons grow together, so nothing is cut off.</td>
+</tr>
+<tr>
+<td>Stronger contrast</td>
+<td>Darker text, lines and buttons. It helps in sunlight and with weak eyesight.</td>
+</tr>
+<tr>
+<td>Less motion</td>
+<td>The moving effects stop. The tool also obeys the same setting of the phone.</td>
+</tr>
+<tr>
+<td>Note button side</td>
+<td>The round button moves to the left or the right thumb.</td>
+</tr>
+<tr>
+<td>Voice language</td>
+<td>English, English and Mandarin, or English and Malay. Reps in Singapore mix languages in one sentence.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Hue, your assistant.</strong> This group is the full list of what Hue does. Each job has one switch. All switches start on.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Switch</th>
+<th>When it is on</th>
+<th>When it is off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fill in the fields from my notes</td>
+<td>Hue reads a note and fills in the fields. He checks them.</td>
+<td>The note is saved as he wrote it.</td>
+</tr>
+<tr>
+<td>Draft my messages</td>
+<td>Hue writes a first message from his notes.</td>
+<td>The message box is empty.</td>
+</tr>
+<tr>
+<td>Put my follow ups in order</td>
+<td>The three most important follow ups are first.</td>
+<td>The follow ups are in order of customer name.</td>
+</tr>
+<tr>
+<td>Warn me when a customer does not reply</td>
+<td>"No reply" labels show.</td>
+<td>No "No reply" labels. Late payments still show.</td>
+</tr>
+<tr>
+<td>Suggestions in customer records</td>
+<td>One short tip from his past notes.</td>
+<td>The tip is not shown.</td>
+</tr>
+<tr>
+<td>Weather for my day</td>
+<td>The weather panel, and the warning on a visit.</td>
+<td>No weather. The visits stay.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Why one switch for each job.</strong> Trust comes from control. A rep who can stop one job of Hue keeps the others. A rep who has only one large switch turns off everything after one bad result.</p>
+<p><strong>What Hue never does.</strong> Hue does not send a message. Hue does not save a note. Hue does not change a deal. Daniel must say yes each time. So there is no switch for these.</p>
+<p><strong>Help.</strong> "Guide" explains each word, filter and label inside the tool. "Tour" shows the main features in one minute. It starts by itself the first time.</p>
+<h2 id="what-is-real-and-what-is-a-sample">What is real, and what is a sample</h2>
+<p>The prototype is a model. It shows how the tool works. It is not connected to a real system. All people, companies, deals and amounts are made up. The date in the prototype is always Monday 5 October 2026.</p>
+<p><strong>These parts work for real.</strong></p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The order of the follow ups</td>
+<td>The rule calculates it from the data. Change a deal and the order changes.</td>
+</tr>
+<tr>
+<td>The warnings for no reply</td>
+<td>The rule compares the days with the usual wait for that stage.</td>
+</tr>
+<tr>
+<td>Hue reads a typed note</td>
+<td>Rules that I wrote find the customer, the date, the next step, the products and the stage.</td>
+</tr>
+<tr>
+<td>Search, filters and sort</td>
+<td>They work on all 100 records.</td>
+</tr>
+<tr>
+<td>Add and change</td>
+<td>Customers, people, deals, promises and notes. The sales bar and the lists update at once.</td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>Each setting and each switch changes the screens at once.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>These parts are a sample.</strong></p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What the prototype does</th>
+<th>What the real tool needs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Talk</td>
+<td>It plays a sample sentence.</td>
+<td>Speech to text that understands mixed languages.</td>
+</tr>
+<tr>
+<td>Write and Photo</td>
+<td>A sample note writes itself. Hue always reads the sample note.</td>
+<td>Handwriting to text, and text from a picture.</td>
+</tr>
+<tr>
+<td>Hue reads a note</td>
+<td>Simple word rules.</td>
+<td>A language model, with the same reason lines below the fields.</td>
+</tr>
+<tr>
+<td>Message and call</td>
+<td>Nothing leaves the prototype.</td>
+<td>A link to the message and phone apps.</td>
+</tr>
+<tr>
+<td>Payment status and payment plan</td>
+<td>Sample data.</td>
+<td>A link to the accounts system, and to the assistant of the finance team.</td>
+</tr>
+<tr>
+<td>Weather</td>
+<td>Four sample days.</td>
+<td>A weather service for each part of the day and for the area of each visit.</td>
+</tr>
+<tr>
+<td>Visits</td>
+<td>A sample list.</td>
+<td>A link to his calendar.</td>
+</tr>
+<tr>
+<td>Saved changes</td>
+<td>They are lost when the page loads again.</td>
+<td>A database.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What I assumed, and must test with real reps.</strong></p>
+<ul>
+<li>The accounts system can give the payment status of each customer.</li>
+<li>The finance team has rules for payment plans, and a rep can offer a plan that follows them.</li>
+<li>The usual wait is 3, 7, 14 and 5 days for the four stages. These are first values. A manager can change them, and Hue learns the usual wait of each customer.</li>
+<li>The chance for each stage is 20, 40, 60 and 80 percent.</li>
+<li>The points for waiting, and the 40 points for a late payment.</li>
+<li>Sales are equal in each month. Real ink sales can have busy and slow seasons.</li>
+</ul>
+<p>The first test must check one thing. Do real reps agree with the three follow ups that Hue puts first? If they do not, these numbers change.</p></article></div>
+</main>
+<footer class="foot"><div class="wrap"><nav aria-label="The pages of this project"><a href="../links/">All links</a><a href="../prototype/">Prototype</a><a href="../">Presentation</a><a href="../design-system/">Hue Design System</a><a href="../working-document/">Working document</a><a href="../deck/">Backup deck</a></nav><p>A design challenge by Loo Say Hien, October 2026. Hue is a concept with sample data. It is not an official Avient product. Daniel is not a real person.</p></div></footer>
+<script>
+
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc a')), heads=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function on(){ var y=scrollY+120, k=0; heads.forEach(function(h,i){ if(h&&h.offsetTop<=y) k=i }); links.forEach(function(a,i){ a.classList.toggle('on', i===k) }) }
+  addEventListener('scroll', on, {passive:true}); on();
+  var d=document.querySelector('.toc details'); if(d){ var m=matchMedia('(min-width:901px)'); var f=function(){ d.open=m.matches }; f(); m.addEventListener('change', f);
+    d.addEventListener('click', function(e){ if(e.target.tagName==='A' && !m.matches) d.open=false }) }
+})();
+
+</script>
+</body>
+</html>

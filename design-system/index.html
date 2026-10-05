@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hue Design System</title>
+<meta name="description" content="The Hue Design System: colours, type, parts and rules of the Hue sales assistant concept by Loo Say Hien.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='15.6' cy='14.1' r='5.7' fill='%23EFBE46'/%3E%3Ccircle cx='8.4' cy='14.1' r='5.7' fill='%23D9624F'/%3E%3Ccircle cx='12' cy='7.9' r='5.7' fill='%233274AE'/%3E%3Ccircle cx='12' cy='12' r='1.6' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+
+.hero .tools,.prose .tools{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 4px}
+.lede2{font:800 clamp(24px,3.4vw,34px)/1.15 var(--fd);color:var(--blue);margin:22px 0 8px}
+.sws{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:10px 0 18px}
+.sw{background:var(--white);border:1px solid var(--ln);border-radius:14px;overflow:hidden;font-size:13.5px;line-height:1.4;padding-bottom:10px;display:grid}
+.sw i{display:grid;place-items:end start;height:64px;padding:8px 12px;font:700 15px/1 var(--fd);font-style:normal;border-bottom:1px solid var(--ln)}
+.sw b{padding:8px 12px 0;font-size:14.5px}.sw code{padding:0 12px;color:var(--sub);font:500 12.5px ui-monospace,Menlo,monospace}.sw span{padding:4px 12px 0;color:var(--sub)}
+.tys{display:grid;gap:8px;margin:10px 0 18px}
+.ty{background:var(--white);border:1px solid var(--ln);border-radius:14px;padding:12px 16px}
+.ty p{margin:0;color:#303C40}.ty span{display:block;font-size:13.5px;color:var(--sub);margin-top:4px;line-height:1.45}
+.tks{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin:10px 0 18px}
+.tk{display:flex;gap:12px;align-items:center;background:var(--white);border:1px solid var(--ln);border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:1.45;color:var(--sub)}
+.tk b{color:var(--ink);font-size:14.5px}.tk code{font:500 12.5px ui-monospace,Menlo,monospace}
+.tk i{flex:none;display:block}.tk .sp{height:26px;background:var(--blue);border-radius:3px;min-width:4px}
+.tk .rd{width:44px;height:44px;background:var(--soft);border:2px solid var(--blue)}.tk .sh{width:40px;height:40px;border-radius:50%;background:var(--white);margin:6px}
+.part{margin:26px 0 0;scroll-margin-top:76px}.part h3{margin-top:0}.part h3 code{font:500 13px ui-monospace,Menlo,monospace;color:var(--sub);margin-left:6px;letter-spacing:0}
+.pv{background:#F4F8FB;border:1px solid var(--ln);border-radius:16px;padding:18px;overflow-x:auto;margin:10px 0 8px}
+
+.pv svg{max-width:none}
+.part details{font-size:15.5px;border:1px solid var(--ln);border-radius:12px;background:var(--white);padding:0 14px}
+.part summary{cursor:pointer;font-weight:700;padding:11px 0;color:var(--blue-d)}
+.part details ul{margin:0 0 12px 1.2em}
+.prose h3.bk{font-size:22px;margin-top:38px;scroll-margin-top:76px}
+.prose code{font:500 .88em ui-monospace,Menlo,monospace;background:var(--soft);padding:1px 5px;border-radius:5px}
+/* the tokens and the styles of the parts, only inside a preview */
+.pv{--font-display:"Bricolage Grotesque", "Figtree", system-ui, sans-serif;--font-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;--avient-blue:#0080E0;--blue-600:#3274AE;--blue-700:#285F91;--hue-red:#D9624F;--hue-yellow:#EFBE46;--blue-200:#B4CEE6;--blue-100:#E7F0F8;--blue-50:#F4F8FB;--white:#FFFFFF;--ink:#303C40;--ink-muted:#5F6F78;--line:#E0E7ED;--amber-50:#FFF3DD;--amber-300:#EBCF9C;--amber-800:#7F5410;--red-50:#FDE9E7;--red-300:#F0B6B0;--red-700:#A3261C;--sky-sun:#FFE7A6;--sky-cloud:#D3DCE3;--sky-rain:#AFC6D9;--sky-storm:#2E3C49;--sky-night:#101D33;--space-1:4px;--space-2:6px;--space-3:8px;--space-4:10px;--space-5:12px;--space-6:16px;--radius-md:14px;--radius-lg:16px;--radius-xl:22px;--radius-pill:999px;--shadow-float:0 6px 14px rgba(50, 116, 174, 0.3);--shadow-menu:0 4px 12px rgba(48, 60, 64, 0.16)}
+.pv .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}
+
+.pv .ds{ font-family: var(--font-body); font-weight: 500; font-size: 12.5px; line-height: 1.4; color: var(--ink); }
+.pv .ds *{ box-sizing: border-box; }
+.pv .ds svg.ic{ width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.pv .btn{ font: 600 11.5px/14px var(--font-body); border: 0; border-radius: var(--radius-pill); padding: 7px 14px; cursor: pointer; }
+.pv .btn-primary{ background: var(--blue-600); color: var(--white); }
+.pv .btn-soft{ background: var(--blue-100); color: var(--blue-700); box-shadow: inset 0 0 0 1px var(--blue-200); }
+.pv .btn-ghost{ background: transparent; border: 1px solid var(--line); color: var(--ink); }
+.pv .chip{ display: inline-flex; align-items: center; gap: 5px; font: 600 10.5px/14px var(--font-body); padding: 2px 9px; border-radius: var(--radius-pill); border: 1px solid var(--line); background: var(--white); color: var(--ink); }
+.pv .chip-done{ background: var(--blue-100); }
+.pv .chip-warn{ background: var(--amber-50); border-color: var(--amber-300); color: var(--amber-800); }
+.pv .chip-bad{ background: var(--red-50); border-color: var(--red-300); color: var(--red-700); }
+.pv .task{ display: grid; grid-template-columns: 28px 1fr; gap: 6px 10px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 10px 12px; width: 260px; }
+.pv .task .tick{ width: 26px; height: 26px; margin-top: 1px; border-radius: var(--radius-pill); display: grid; place-items: center; background: var(--white); border: 1.5px solid var(--line); color: var(--ink-muted); }
+.pv .task .tick .ic{ width: 14px; height: 14px; stroke-width: 2.6; opacity: .45; }
+.pv .task.done .tick{ background: var(--blue-600); border-color: var(--blue-600); color: var(--white); }
+.pv .task.done .tick .ic{ opacity: 1; }
+.pv .task.done .title{ color: var(--ink-muted); text-decoration: line-through; }
+.pv .task .title{ display: block; font-weight: 600; }
+.pv .task .why{ display: block; color: var(--ink-muted); font-size: 11px; line-height: 15px; margin-top: 1px; }
+.pv .task .chip{ margin-top: 4px; }
+.pv .task .btn{ grid-column: 2; justify-self: start; }
+.pv .tabs{ display: grid; grid-template-columns: repeat(3, 1fr); width: 260px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; }
+.pv .tabs div{ text-align: center; padding: 9px 0 11px; font: 600 11.5px/14px var(--font-body); color: var(--ink-muted); }
+.pv .tabs div.on{ color: var(--blue-600); box-shadow: inset 0 3px 0 var(--blue-600); }
+.pv .fab{ width: 46px; height: 46px; border-radius: var(--radius-pill); border: 0; background: var(--blue-600); color: var(--white); display: grid; place-items: center; box-shadow: var(--shadow-float); cursor: pointer; }
+.pv .fan{ display: grid; gap: var(--space-3); justify-items: end; }
+.pv .fan .row{ display: flex; align-items: center; gap: var(--space-3); font: 600 12px var(--font-body); }
+.pv .fan .row span{ background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-pill); padding: 3px 10px; }
+.pv .fan .row button{ width: 40px; height: 40px; border-radius: var(--radius-pill); border: 0; background: var(--white); color: var(--blue-600); display: grid; place-items: center; box-shadow: var(--shadow-menu); cursor: pointer; }
+.pv .fan .row.first button{ background: var(--blue-600); color: var(--white); }
+.pv .chip svg.ic{ width: 12px; height: 12px; stroke-width: 2.2; }
+.pv .btn svg.ic{ width: 14px; height: 14px; }
+.pv .hue{ flex: none; }
+.pv .hue circle{ stroke: var(--white); stroke-width: .7; }
+.pv .hue .h1{ fill: var(--blue-600); }
+.pv .hue .h2{ fill: var(--hue-red); }
+.pv .hue .h3{ fill: var(--hue-yellow); }
+.pv .hue .h0{ fill: var(--white); stroke: none; }
+.pv .hue .hg{ transform-origin: 12px 12px; }
+.pv .hue.work .hg{ animation: hue-spin 1.5s cubic-bezier(.6,.1,.4,.9) infinite; }
+@keyframes hue-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .hue.work .hg { animation: none; } }
+.pv .greet{ display: flex; align-items: center; gap: 8px; font: 700 20px/23px var(--font-display); margin: 0; }
+.pv .btn-quiet{ background: transparent; color: var(--blue-700); padding-inline: 6px; }
+.pv .wx{ width: 250px; border-radius: var(--radius-lg); padding: 10px 12px; border: 1px solid var(--line); background: linear-gradient(205deg, var(--sky-sun), var(--white) 70%); color: var(--ink); }
+.pv .wx.cloud{ background: linear-gradient(205deg, var(--sky-cloud), var(--white)); }
+.pv .wx.rain{ background: linear-gradient(205deg, var(--sky-rain), var(--blue-50)); }
+.pv .wx.storm{ background: var(--sky-storm); border-color: var(--sky-storm); color: var(--white); }
+.pv .wx.night{ background: var(--sky-night); border-color: var(--sky-night); color: var(--white); }
+.pv .wx .date{ font: 500 10.5px/14px var(--font-body); opacity: .8; }
+.pv .wx .greet{ font-size: 17px; line-height: 21px; margin-top: 2px; }
+.pv .wx .line{ font-size: 11.5px; line-height: 16px; margin-top: 6px; }
+.pv .wx .now{ display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.pv .wx .big{ display: flex; align-items: center; gap: 8px; padding-right: 10px; border-right: 1px solid var(--line); }
+.pv .wx.storm .big,.pv .wx.night .big{ border-color: var(--ink-muted); }
+.pv .wx .big svg.ic{ width: 30px; height: 30px; }
+.pv .wx .big b{ display: block; font: 700 20px/22px var(--font-display); }
+.pv .wx .big i{ display: block; font-style: normal; font-size: 10.5px; line-height: 13px; opacity: .8; }
+.pv .wx .next{ display: flex; gap: 12px; font-size: 11px; white-space: nowrap; overflow: hidden; }
+.pv .wx .next b{ font: 700 12px/14px var(--font-display); }
+.pv .guide{ width: 260px; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 8px 10px; background: var(--blue-50); }
+.pv .guide .lead{ display: flex; gap: 6px; align-items: flex-start; font-size: 11px; line-height: 15px; color: var(--ink-muted); margin: 0; }
+.pv .guide .parts{ display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.pv .part{ display: inline-flex; align-items: center; gap: 4px; font: 600 10.5px/14px var(--font-body); padding: 2px 9px 2px 6px; border-radius: var(--radius-pill); border: 1px dashed var(--ink-muted); color: var(--ink-muted); background: var(--white); }
+.pv .part svg.ic{ width: 12px; height: 12px; stroke-width: 2.4; opacity: .3; }
+.pv .part.ok{ border: 1px solid var(--blue-600); color: var(--blue-700); background: var(--blue-100); }
+.pv .part.ok svg.ic{ opacity: 1; }
+.pv .filled{ display: flex; gap: 8px; align-items: flex-start; width: 260px; background: var(--blue-100); border-radius: var(--radius-md); padding: 8px 10px; font-size: 11.5px; line-height: 16px; }
+.pv .filled b{ font-weight: 700; }
+.pv .reason{ font-size: 10.5px; line-height: 14px; color: var(--ink-muted); margin: 3px 0 0; }
+.pv .field{ width: 260px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white); padding: 7px 12px; font-size: 12.5px; }
+.pv .flabel{ font: 500 10.5px/14px var(--font-body); color: var(--ink-muted); margin: 8px 0 3px; }
+.pv .notes{ width: 260px; }
+.pv .notes .head{ display: flex; justify-content: space-between; align-items: baseline; font: 700 14px/18px var(--font-display); }
+.pv .notes .head span{ font: 500 10.5px/14px var(--font-body); color: var(--ink-muted); }
+.pv .notes .row{ display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; margin-top: 6px; background: var(--blue-100); border: 1px solid var(--blue-200); border-radius: var(--radius-md); padding: 8px 10px; }
+.pv .notes .row svg.ic{ color: var(--blue-700); }
+.pv .notes .row b{ display: block; font-weight: 600; }
+.pv .notes .row i{ display: block; font-style: normal; font-size: 11px; line-height: 15px; color: var(--ink-muted); }
+.pv .notes .row time{ font-size: 10.5px; color: var(--ink-muted); }
+.pv .filters{ display: flex; gap: 6px; width: 300px; overflow: hidden; }
+.pv .pill{ flex: none; font: 600 11px/14px var(--font-body); padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid var(--line); background: var(--white); color: var(--ink); white-space: nowrap; }
+.pv .pill span{ color: var(--ink-muted); font-weight: 500; margin-left: 3px; }
+.pv .pill.on{ border-color: var(--blue-600); color: var(--blue-700); background: var(--blue-100); }
+.pv .fsub{ display: flex; align-items: center; gap: 6px; width: 300px; background: var(--blue-100); border-radius: var(--radius-md); padding: 6px 8px; margin-top: 6px; }
+.pv .fsub > b{ font: 600 10.5px/14px var(--font-body); color: var(--blue-700); }
+.pv .fsub .pill{ padding: 3px 9px; font-size: 10.5px; }
+.pv .fsub .pill.on{ background: var(--white); }
+.pv .plan{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 260px; }
+.pv .plan div{ border: 1px solid var(--line); border-radius: 10px; padding: 6px 8px; background: var(--blue-50); }
+.pv .plan span{ display: block; font-size: 10.5px; line-height: 14px; color: var(--ink-muted); }
+.pv .plan b{ display: block; font: 700 14px/18px var(--font-display); }
+.pv .byhue{ display: flex; align-items: center; gap: 4px; font: 600 10.5px/14px var(--font-body); color: var(--blue-600); margin: 0 0 4px; }
+
+.pv-AssistantMark .row{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.pv-WeatherPanel .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.pv-TaskCard .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.pv-StatusChip .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pv-NoteToCheck .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.pv-CaptureButton .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pv-CaptureButton .cap{display:grid;gap:10px;justify-items:end;width:150px}.pv-CaptureButton .lab{font:600 10.5px var(--font-body);color:var(--ink-muted);margin-bottom:8px}.pv-CaptureButton .wrap{display:flex;gap:40px;align-items:flex-start}.pv-CaptureButton .pc{display:grid;gap:8px;justify-items:start;width:170px}.pv-CaptureButton .pop{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);box-shadow:var(--shadow-menu);padding:6px;display:grid;gap:2px;width:170px}.pv-CaptureButton .pop .it{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:10px;font:600 12px var(--font-body);color:var(--ink)}.pv-CaptureButton .pop .it .ic{color:var(--blue-600)}.pv-CaptureButton .pop .it:first-child{background:var(--blue-100)}
+.pv-NoteGuide .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.pv-FilledLine .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.pv-FilterRow .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.pv-PaymentPlan .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.pv-Button .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pv-TabBar .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Go to the content</a>
+<header class="bar"><div class="in"><a class="brand" href="../links/" aria-label="Hue, all links"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.6" cy="14.1" r="5.7" fill="#EFBE46" stroke="#fff" stroke-width=".7"/><circle cx="8.4" cy="14.1" r="5.7" fill="#D9624F" stroke="#fff" stroke-width=".7"/><circle cx="12" cy="7.9" r="5.7" fill="#3274AE" stroke="#fff" stroke-width=".7"/><circle cx="12" cy="12" r="1.6" fill="#fff"/></svg>Hue</a><span class="name">Hue Design System</span><span class="sp"></span><a class="all" href="../links/">All links</a></div></header>
+<main id="main">
+<div class="wrap doc"><nav class="toc" aria-label="Sections"><details open><summary>Sections</summary><p>Sections</p><a href="#colours">Colours</a><a href="#type">Type</a><a href="#space-and-shape">Space and shape</a><p style="margin-top:14px">Parts</p><a href="#the-hue-mark">The Hue mark</a><a href="#weather-panel">Weather panel</a><a href="#follow-up-card">Follow up card</a><a href="#status-label">Status label</a><a href="#note-to-check">Note to check</a><a href="#round-button-for-notes">Round button for notes</a><a href="#note-guide">Note guide</a><a href="#the-line-of-check-and-save">The line of Check and save</a><a href="#filter-row">Filter row</a><a href="#payment-plan">Payment plan</a><a href="#button">Button</a><a href="#tab-bar">Tab bar</a><p style="margin-top:14px">The rules</p><a href="#content-fundamentals">Content fundamentals</a><a href="#visual-foundations">Visual foundations</a><a href="#iconography">Iconography</a><a href="#the-assistant">The assistant</a><a href="#today">Today</a><a href="#the-order-of-follow-ups">The order of follow ups</a><a href="#later-this-week">Later this week</a><a href="#greeting-and-weather">Greeting and weather</a><a href="#sales-progress">Sales progress</a><a href="#motion">Motion</a><a href="#accessibility">Accessibility</a><a href="#long-lists">Long lists</a><a href="#guide">Guide</a><a href="#buttons">Buttons</a><a href="#empty-states">Empty states</a><a href="#forms">Forms</a><a href="#customer-record-add-and-edit">Customer record: add and edit</a><a href="#address">Address</a><a href="#tour">Tour</a><a href="#record-a-note">Record a note</a><a href="#check-and-save">Check and save</a><a href="#notes-to-check">Notes to check</a><a href="#words">Words</a><a href="#records-filters">Records: filters</a><a href="#a-late-payment">A late payment</a><a href="#rules">Rules</a></details></nav><article class="prose"><p class="eyebrow">The rules of the look and the words</p><h1>Hue Design System</h1><p class="meta">Loo Say Hien · Updated 5 October 2026</p><p class="tools"><a class="btn p" href="../prototype/">Try the prototype</a><a class="btn s" href="../guide/">Read How Hue Works</a></p><p class="lede2">You sell. Hue keeps track.</p><p>This is the design system of Hue, a sales assistant for one Avient Specialty Inks sales rep. Hue works on a phone, a tablet and a computer. It keeps deals, customers and notes in one place, so he does not write up notes at night. It is a prototype system: one light theme, a small set of tokens and thirteen components.</p><h2 id="colours">Colours</h2><p>The blue comes from the Avient logo. There is no green. Status has a word and an icon, and never colour alone.</p><h3>Brand and action</h3><div class="sws"><div class="sw"><i style="background:#0080E0;color:#fff">Aa</i><b>avient-blue</b><code>#0080E0</code><span>The Avient logo blue, read from the logo. Brand moments only, such as a cover or a logo lockup. Too bright for buttons or text.</span></div><div class="sw"><i style="background:#3274AE;color:#fff">Aa</i><b>blue-600</b><code>#3274AE</code><span>Primary colour on screen: buttons, the active tab, the progress bar, the capture button. The logo blue with less saturation. White text on it is 4.9 to 1.</span></div><div class="sw"><i style="background:#285F91;color:#fff">Aa</i><b>blue-700</b><code>#285F91</code><span>Text and icons on pale blue or on the app background: light blue buttons, text buttons and icon buttons. On blue-100 it is 5.8 to 1.</span></div><div class="sw"><i style="background:#B4CEE6;color:#303C40">Aa</i><b>blue-200</b><code>#B4CEE6</code><span>The thin line around a light blue button and around a kept form row. Not for text.</span></div><div class="sw"><i style="background:#E7F0F8;color:#303C40">Aa</i><b>blue-100</b><code>#E7F0F8</code><span>Pale blue: number circles, soft buttons, tints behind selected items. Text on it is blue-700 or ink.</span></div><div class="sw"><i style="background:#F4F8FB;color:#303C40">Aa</i><b>blue-50</b><code>#F4F8FB</code><span>App background behind cards.</span></div></div><h3>The Hue mark</h3><div class="sws"><div class="sw"><i style="background:#D9624F;color:#fff">Aa</i><b>hue-red</b><code>#D9624F</code><span>The red disc in the assistant mark. Never for status, text or buttons.</span></div><div class="sw"><i style="background:#EFBE46;color:#303C40">Aa</i><b>hue-yellow</b><code>#EFBE46</code><span>The yellow disc in the assistant mark. Never for status, text or buttons.</span></div></div><h3>Text and lines</h3><div class="sws"><div class="sw"><i style="background:#303C40;color:#fff">Aa</i><b>ink</b><code>#303C40</code><span>Main text. The dark grey of the Avient wordmark. 11 to 1 on white.</span></div><div class="sw"><i style="background:#5F6F78;color:#fff">Aa</i><b>ink-muted</b><code>#5F6F78</code><span>Secondary text and labels. Use on white or blue-50 only.</span></div><div class="sw"><i style="background:#E0E7ED;color:#303C40">Aa</i><b>line</b><code>#E0E7ED</code><span>Borders and dividers. Not for text.</span></div><div class="sw"><i style="background:#FFFFFF;color:#303C40">Aa</i><b>white</b><code>#FFFFFF</code><span>Cards, header, tab bar and menus.</span></div></div><h3>Attention</h3><div class="sws"><div class="sw"><i style="background:#FFF3DD;color:#303C40">Aa</i><b>amber-50</b><code>#FFF3DD</code><span>Background of an attention chip, such as a quiet deal.</span></div><div class="sw"><i style="background:#EBCF9C;color:#303C40">Aa</i><b>amber-300</b><code>#EBCF9C</code><span>Border of an attention chip.</span></div><div class="sw"><i style="background:#7F5410;color:#fff">Aa</i><b>amber-800</b><code>#7F5410</code><span>Text on amber-50. 6 to 1.</span></div></div><h3>Problem</h3><div class="sws"><div class="sw"><i style="background:#FDE9E7;color:#303C40">Aa</i><b>red-50</b><code>#FDE9E7</code><span>Background of a problem chip, such as an overdue payment.</span></div><div class="sw"><i style="background:#F0B6B0;color:#303C40">Aa</i><b>red-300</b><code>#F0B6B0</code><span>Border of a problem chip.</span></div><div class="sw"><i style="background:#A3261C;color:#fff">Aa</i><b>red-700</b><code>#A3261C</code><span>Text on red-50. 6 to 1. Always paired with a word and an icon.</span></div></div><h3>Weather panel</h3><div class="sws"><div class="sw"><i style="background:#FFE7A6;color:#303C40">Aa</i><b>sky-sun</b><code>#FFE7A6</code><span>Weather panel when the sun is out. It fades to white. Text on it is ink.</span></div><div class="sw"><i style="background:#D3DCE3;color:#303C40">Aa</i><b>sky-cloud</b><code>#D3DCE3</code><span>Weather panel on a cloudy day. Text on it is ink.</span></div><div class="sw"><i style="background:#AFC6D9;color:#303C40">Aa</i><b>sky-rain</b><code>#AFC6D9</code><span>Weather panel in showers. Text on it is ink.</span></div><div class="sw"><i style="background:#2E3C49;color:#fff">Aa</i><b>sky-storm</b><code>#2E3C49</code><span>Weather panel in a storm. Text on it is white, 11 to 1.</span></div><div class="sw"><i style="background:#101D33;color:#fff">Aa</i><b>sky-night</b><code>#101D33</code><span>Weather panel after dark. Text on it is white, 16 to 1.</span></div></div><h2 id="type">Type</h2><p>Headings are Bricolage Grotesque. Body text is Figtree. The sizes are for a phone.</p><h3>Headings</h3><div class="tys"><div class="ty"><p style="font-family:var(--font-display);font-size:20px;line-height:23px;font-weight:700">Good morning, Daniel</p><span><b>greeting</b> · 20px / 23px · weight 700 · The greeting at the top of Home.</span></div><div class="ty"><p style="font-family:var(--font-display);font-size:14px;line-height:18px;font-weight:700">Later this week</p><span><b>section</b> · 14px / 18px · weight 700 · Section titles.</span></div><div class="ty"><p style="font-family:var(--font-display);font-size:18px;line-height:22px;font-weight:700">$612k</p><span><b>figure</b> · 18px / 22px · weight 700 · Big numbers. Use tabular figures.</span></div></div><h3>Text</h3><div class="tys"><div class="ty"><p style="font-family:var(--font-body);font-size:12.5px;line-height:17.5px;font-weight:500">Best Printing Pte Ltd asked for a price on Wilflex white.</p><span><b>body</b> · 12.5px / 17.5px · weight 500 · Default text on a phone.</span></div><div class="ty"><p style="font-family:var(--font-body);font-size:12.5px;line-height:17.5px;font-weight:600">Reply to Jasmine Teo</p><span><b>body-strong</b> · 12.5px / 17.5px · weight 600 · Card titles.</span></div><div class="ty"><p style="font-family:var(--font-body);font-size:11px;line-height:15px;font-weight:500">She did not reply yet.</p><span><b>caption</b> · 11px / 15px · weight 500 · Reasons under a card title.</span></div><div class="ty"><p style="font-family:var(--font-body);font-size:10.5px;line-height:14px;font-weight:500">Target $900k</p><span><b>label</b> · 10.5px / 14px · weight 500 · Labels and chips.</span></div><div class="ty"><p style="font-family:var(--font-body);font-size:11.5px;line-height:14px;font-weight:600">Ask Mei Ling</p><span><b>button</b> · 11.5px / 14px · weight 600 · Button text.</span></div></div><h2 id="space-and-shape">Space and shape</h2><h3>Space</h3><div class="tks"><div class="tk"><i class="sp" style="width:4px"></i><span><b>space-1</b> <code>4px</code><br>Icon to label.</span></div><div class="tk"><i class="sp" style="width:6px"></i><span><b>space-2</b> <code>6px</code><br>Between chips and small buttons.</span></div><div class="tk"><i class="sp" style="width:8px"></i><span><b>space-3</b> <code>8px</code><br>Between cards. The base step.</span></div><div class="tk"><i class="sp" style="width:10px"></i><span><b>space-4</b> <code>10px</code><br>Screen edge padding and card padding.</span></div><div class="tk"><i class="sp" style="width:12px"></i><span><b>space-5</b> <code>12px</code><br>Card side padding.</span></div><div class="tk"><i class="sp" style="width:16px"></i><span><b>space-6</b> <code>16px</code><br>Section gaps on a tablet.</span></div></div><h3>Corners</h3><div class="tks"><div class="tk"><i class="rd" style="border-radius:14px"></i><span><b>radius-md</b> <code>14px</code><br>Tiles and capture choices.</span></div><div class="tk"><i class="rd" style="border-radius:16px"></i><span><b>radius-lg</b> <code>16px</code><br>Cards.</span></div><div class="tk"><i class="rd" style="border-radius:22px"></i><span><b>radius-xl</b> <code>22px</code><br>Bottom sheets.</span></div><div class="tk"><i class="rd" style="border-radius:999px"></i><span><b>radius-pill</b> <code>999px</code><br>Buttons, chips, the capture button and number circles.</span></div></div><h3>Depth</h3><p>Lines, not shadows. Only two things float.</p><div class="tks"><div class="tk"><i class="sh" style="box-shadow:0 6px 14px rgba(50, 116, 174, 0.3)"></i><span><b>shadow-float</b> <code>0 6px 14px rgba(50, 116, 174, 0.3)</code><br>The floating capture button only.</span></div><div class="tk"><i class="sh" style="box-shadow:0 4px 12px rgba(48, 60, 64, 0.16)"></i><span><b>shadow-menu</b> <code>0 4px 12px rgba(48, 60, 64, 0.16)</code><br>Menus that open over content.</span></div></div><h2 id="parts">Parts</h2><p>Each part is live. It uses the same styles and the same tokens as the prototype.</p><section class="part" id="the-hue-mark"><h3>The Hue mark <code>AssistantMark</code></h3><p>The mark for Hue, the assistant: three overlapping ink discs in blue, red and yellow, with a small white centre.</p><div class="pv pv-AssistantMark"><div class="ds"><div class="row"><svg class="hue " width="64" height="64" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg><svg class="hue work" width="64" height="64" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg><h1 class="greet"><svg class="hue " width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg><span>Good morning, Daniel</span></h1></div></div></div><details><summary>The rules for this part</summary><ul>
+<li>Use it beside the greeting and next to anything Hue wrote or picked, at 13 to 26 pixels. Use it once per block, not on every line.</li>
+<li>The large size, 64 to 88 pixels, is for the opening screen and for the moment Hue is working, such as reading a note. Add the class <code>work</code> and the discs turn.</li>
+<li>On a blue button, draw the three discs in white instead.</li>
+<li>The red and yellow belong to the mark only. Do not reuse them for status, text or buttons.</li>
+<li>Do not use the mark as decoration, and do not use it for things the sales rep wrote himself.</li>
+<li>With "Less motion" on, the mark stays still and the three steps below it show progress instead.</li>
+
+</ul></details></section><section class="part" id="weather-panel"><h3>Weather panel <code>WeatherPanel</code></h3><p>The greeting at the top of Home, with the weather now and one sentence about the visits.</p><div class="pv pv-WeatherPanel"><div class="ds"><div class="row"><div class="wx "><div class="date">Monday 5 October · Singapore</div><h1 class="greet"><svg class="hue" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg><span>Good morning, Daniel</span></h1><p class="line"><b>Storms at 3 pm</b>, when you visit Tuas Textile Print. Leave 15 minutes early.</p><div class="now"><div class="big"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg><span><b>31°</b><i>Now</i></span></div><div class="next"><span>Afternoon <b>27°</b></span><span>Evening <b>28°</b></span></div></div></div><div class="wx storm"><div class="date">Monday 5 October · Singapore</div><h1 class="greet"><svg class="hue" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg><span>Good afternoon, Daniel</span></h1><p class="line"><b>Storms at 3 pm</b>, when you visit Tuas Textile Print. Leave 15 minutes early.</p><div class="now"><div class="big"><svg class="ic" viewBox="0 0 24 24"><path d="M7 16a4 4 0 0 1 .6-8 5.5 5.5 0 0 1 10.6 1.6A3.3 3.3 0 0 1 17.5 16"/><path d="M12.5 13l-2 3.5h3l-2 3.5"/></svg><span><b>27°</b><i>Now</i></span></div><div class="next"><span>Evening <b>28°</b></span><span>Tue morning <b>28°</b></span></div></div></div><div class="wx night"><div class="date">Monday 5 October · Singapore</div><h1 class="greet"><svg class="hue" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg><span>Good evening, Daniel</span></h1><p class="line"><b>Cloudy now.</b> Tomorrow: showers at 11 am, when you visit Print Lab SG. Keep an umbrella in the car.</p><div class="now"><div class="big"><svg class="ic" viewBox="0 0 24 24"><path d="M19.5 14.5A7.5 7.5 0 0 1 9.5 4.5a7.5 7.5 0 1 0 10 10z"/></svg><span><b>28°</b><i>Now</i></span></div><div class="next"><span>Tue morning <b>28°</b></span><span>Tue afternoon <b>30°</b></span></div></div></div></div></div></div><details><summary>The rules for this part</summary><ul>
+<li>One sentence names the visit that the weather can delay, and gives one instruction: "Storms at 3 pm, when you visit Tuas Textile Print. Leave 15 minutes early."</li>
+<li>The weather now is large: one picture and the temperature, with the word "Now". In the tool the picture moves. With "Less motion" on, it is still.</li>
+<li>The colour of the panel is the weather now. Use <code>sky-sun</code>, <code>sky-cloud</code>, <code>sky-rain</code>, <code>sky-storm</code> or <code>sky-night</code>. On <code>sky-storm</code> and <code>sky-night</code> the text is <code>white</code>.</li>
+<li>The row of the next parts of the day slides. It never breaks into two rows. A part of tomorrow shows the day: "Tue morning".</li>
+<li>The Hue mark sits before the greeting, because Hue wrote the sentence.</li>
+<li>Do not show weather that is past. When no visit is left today, the sentence is about tomorrow.</li>
+
+</ul></details></section><section class="part" id="follow-up-card"><h3>Follow up card <code>TaskCard</code></h3><p>One follow up or one visit in the Today section of Home: a tick circle, a title, the reason, and one next step.</p><div class="pv pv-TaskCard"><div class="ds"><div style="display:grid;gap:8px;width:260px"><div class="task done"><span class="tick"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg></span><div><span class="title">Send Farah the colour chart</span><span class="why">Done. Hue ticked it when you saved your note.</span></div></div><div class="task"><span class="tick"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg></span><div><span class="title">Ask Mei Ling about the $48k quote</span><span class="why">You sent the quote to Ace Tees 9 days ago. She did not reply yet.</span><span class="chip chip-warn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17.2v.1"/></svg>No reply for 9 days</span></div><button class="btn btn-soft" style="display:inline-flex;align-items:center;gap:6px"><svg class="hue" width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg>Open draft</button></div><div class="task"><span class="tick"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg></span><div><span class="title">Ask Mei Yun about the late payment of $18k</span><span class="why">Kian Seng Trading owes $18k. It is 30 days late.</span><span class="chip chip-bad"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Payment late</span></div><button class="btn btn-soft" style="display:inline-flex;align-items:center;gap:6px"><svg class="hue" width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg>See the plan</button></div></div></div></div><details><summary>The rules for this part</summary><ul>
+<li>A follow up is a thing to do for a customer that is not a visit: a call, a message, a quote or a question about a payment.</li>
+<li>Always show a reason in <code>caption</code> style under the title, for example "You sent the quote to Ace Tees 9 days ago. She did not reply yet."</li>
+<li>One button only, level 2, with a verb: "Open draft", "Call Rajesh", "See the plan". When Hue prepared the next step, the button has the Hue mark.</li>
+<li>The tick circle is on the left. It shows a pale tick before the item is done, so it is clear that he can tap it. When the item is done, the circle is <code>blue-600</code> with a white tick, and the title has a line through it.</li>
+<li>A done item stays in its place until the next morning. He can tap the tick again to undo it.</li>
+<li>When he saves a note for that customer, Hue ticks the item. The reason then says "Done. Hue ticked it when you saved your note."</li>
+<li>A status label may sit under the reason: "No reply for 9 days" or "Payment late".</li>
+<li>Show at most three follow ups. A "Show more" button below them opens the others. The count above the list includes the hidden ones.</li>
+
+</ul></details></section><section class="part" id="status-label"><h3>Status label <code>StatusChip</code></h3><p>A small pill that shows a status with a word and an icon, never colour alone.</p><div class="pv pv-StatusChip"><div class="ds"><div class="row">
+<span class="chip chip-done"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Sample approved</span>
+<span class="chip chip-warn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17.2v.1"/></svg>No reply for 9 days</span>
+<span class="chip chip-bad"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Payment late</span>
+<span class="chip">Wilflex</span>
+</div></div></div><details><summary>The rules for this part</summary><ul>
+<li><code>chip-done</code>: pale blue with a tick. For finished things, such as "Up to date".</li>
+<li><code>chip-warn</code>: amber with a triangle. For things that need a look, such as "No reply for 9 days" and "Storms. Leave 15 minutes early."</li>
+<li><code>chip-bad</code>: red with a cross. For problems, such as "Payment late".</li>
+<li>A plain <code>chip</code> with no icon is for neutral tags such as a product name.</li>
+<li>There is no green, so nothing in the tool reads as simply "good". A done chip is calm, not a celebration.</li>
+<li>Text is the <code>label</code> style. Amber text is <code>amber-800</code> and red text is <code>red-700</code>, both above 4.5 to 1 on their backgrounds.</li>
+<li>A status has the same words in each place: on Home, in Records and in the record.</li>
+
+</ul></details></section><section class="part" id="note-to-check"><h3>Note to check <code>NoteToCheck</code></h3><p>A note that he kept with "Check later". It waits at the top of Home until he checks it.</p><div class="pv pv-NoteToCheck"><div class="ds"><div class="notes"><div class="head">Notes to check<span>1 not in the record yet</span></div><div class="row"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span><b>Voice note for Ace Tees</b><i>Just left Ace Tees. Mei Ling says…</i></span><time>8:20 am</time></div></div></div></div><details><summary>The rules for this part</summary><ul>
+<li>The block has the heading "Notes to check" and a count: "1 not in the record yet".</li>
+<li>A row has an icon for the way he recorded the note, the customer, the first words and the time.</li>
+<li>The ground is <code>blue-100</code> with a <code>blue-200</code> line, the same as a kept form. Both are work that is not finished.</li>
+<li>A tap opens Check and save. The row goes away when he saves, or when he removes the note.</li>
+<li>The block shows only when there is a note. It has no empty state.</li>
+<li>A note in this block is not in the record. Do not show it in the timeline of the customer.</li>
+
+</ul></details></section><section class="part" id="round-button-for-notes"><h3>Round button for notes <code>CaptureButton</code></h3><p>One small floating round button that opens a short menu to record a note by voice, keyboard, pen or photo.</p><div class="pv pv-CaptureButton"><div class="ds"><div class="wrap">
+<div><div class="lab">Phone and tablet</div><div class="cap"><div class="fan">
+<div class="row first"><span>Talk</span><button><svg class="ic" viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button></div>
+<div class="row"><span>Type</span><button><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M7 10h.1M11 10h.1M15 10h.1M7.5 14h9"/></svg></button></div>
+<div class="row"><span>Write</span><button><svg class="ic" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19z"/></svg></button></div>
+<div class="row"><span>Photo</span><button><svg class="ic" viewBox="0 0 24 24"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></button></div>
+</div>
+<button class="fab"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button></div></div>
+<div><div class="lab">Computer</div><div class="pc"><button class="btn btn-soft" style="display:inline-flex;align-items:center;gap:6px"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>New note</button><div class="pop">
+<div class="it"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M7 10h.1M11 10h.1M15 10h.1M7.5 14h9"/></svg>Type a note</div>
+<div class="it"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Talk a note</div>
+<div class="it"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M4 17l5-5 4 4 3-3 4 4"/></svg>Attach a photo</div>
+</div></div></div>
+</div></div></div><details><summary>The rules for this part</summary><ul>
+<li>The button is 46 pixels, <code>blue-600</code>, at the bottom right where the thumb rests. It floats above the tab bar and is the only element with <code>shadow-float</code>.</li>
+<li>Tap it and the menu fans out above it: Talk first (filled), then the others (white). Hold the button to talk at once, with no menu.</li>
+<li>A phone and a tablet have the same four ways: Talk, Type, Write, Photo of a notebook page. A pen or a finger works for Write.</li>
+<li>A computer has no floating button. The "New note" button opens a small menu: Type a note, Talk a note, Attach a photo.</li>
+<li>Whatever the choice, Hue reads the note and fills in the customer, the next step, the date, the products and the deal stage. He checks them now or later. Nothing is saved before he taps Save.</li>
+<li>Recording is of Daniel's voice only. He asks before recording a customer.</li>
+<li>Platform note: the floating button is a Material pattern and feels natural on Android. On iPhone keep the same one button and the same choices, but place it in the centre of the tab bar or open a native menu from it. Check this with an engineer before building.</li>
+
+</ul></details></section><section class="part" id="note-guide"><h3>Note guide <code>NoteGuide</code></h3><p>The five parts of a good note, shown in each sheet where he records a note. Hue ticks each part when it finds it in his words.</p><div class="pv pv-NoteGuide"><div class="ds"><div class="row"><div class="guide"><p class="lead"><svg class="hue" width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg><span>A good note says these things. Hue ticks each one that it finds.</span></p><div class="parts"><span class="part ok"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Customer</span><span class="part ok"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>What happened</span><span class="part"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Next step</span><span class="part"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Date</span><span class="part"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Product</span></div></div><div class="guide"><div class="parts" style="margin-top:0"><span class="part ok"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Customer</span><span class="part ok"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>What happened</span><span class="part ok"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Next step</span><span class="part ok"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Date</span><span class="part"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Product</span></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-primary">Check now</button><button class="btn btn-soft">Check later</button></div></div></div></div></div><details><summary>The rules for this part</summary><ul>
+<li>The parts are Customer, What happened, Next step, Date and Product.</li>
+<li>A part that Hue did not find yet has a dashed line and a pale tick. A part that Hue found has a solid <code>blue-600</code> line, a <code>blue-100</code> ground and a dark tick.</li>
+<li>The ticks change while he talks or types. So he learns what to say, with no training.</li>
+<li>The first line has the Hue mark. In the Write sheet, where room is small, only the row of parts shows.</li>
+<li>"See an example" opens one full note in the sheet.</li>
+<li>Below the guide are two buttons: "Check now" (level 1) opens Check and save. "Check later" (level 2) keeps the note at the top of Home.</li>
+<li>A part with no tick does not stop him. Only the customer is necessary to save.</li>
+
+</ul></details></section><section class="part" id="the-line-of-check-and-save"><h3>The line of Check and save <code>FilledLine</code></h3><p>One line at the top of Check and save that says what Hue did. Below a field, a short line gives the reason for a choice.</p><div class="pv pv-FilledLine"><div class="ds"><div class="filled"><svg class="hue" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg><span><b>Hue filled in 6 fields from your voice note.</b> Check each field, then save.</span></div><div class="flabel">Date of the next step</div><div class="field">Fri 9 Oct 2026</div><p class="reason">You said "Friday". Hue took the coming one, Fri 9 Oct.</p><div class="flabel">Deal stage: Switch to water based</div><div class="field">Trial</div><p class="reason">Was Quote. Hue suggests this from your note.</p></div></div><details><summary>The rules for this part</summary><ul>
+<li>The line has the Hue mark, a <code>blue-100</code> ground and two sentences: "Hue filled in 6 fields from your voice note. Check each field, then save."</li>
+<li>The number is the number of fields that Hue filled. The source is "voice note", "note", "handwriting" or "photo".</li>
+<li>One line replaces a mark on each field. It is calmer, and it asks for the same check.</li>
+<li>A reason line is <code>label</code> text in <code>ink-muted</code>, directly below its field: "You said Friday. Hue took the coming one, Fri 9 Oct."</li>
+<li>Give a reason when Hue made a choice that he can disagree with: a date, a deal stage, a customer.</li>
+<li>If Hue found no customer, the field asks him to choose. Hue does not guess.</li>
+
+</ul></details></section><section class="part" id="filter-row"><h3>Filter row <code>FilterRow</code></h3><p>The filters above the list of customers in Records, each with its count.</p><div class="pv pv-FilterRow"><div class="ds"><div class="filters"><span class="pill">All<span>100</span></span><span class="pill">Open deals<span>46</span></span><span class="pill">Your move<span>43</span></span><span class="pill">No reply<span>11</span></span><span class="pill">Late payment<span>6</span></span><span class="pill on">Not in touch<span>52</span></span></div><div class="fsub"><b>Not in touch for</b><span class="pill on">2 weeks<span>52</span></span><span class="pill">3 weeks<span>40</span></span><span class="pill">4 weeks or more<span>29</span></span></div></div></div><details><summary>The rules for this part</summary><ul>
+<li>The filters are All, Open deals, Your move, No reply, Late payment and Not in touch.</li>
+<li>Each filter shows how many customers match, with the search applied. So he sees the size before he taps.</li>
+<li>The active filter has a <code>blue-600</code> line and a <code>blue-100</code> ground.</li>
+<li>Two filters have a second row on a <code>blue-100</code> ground. "Open deals" chooses a stage. "Not in touch" chooses 2 weeks, 3 weeks, or 4 weeks or more.</li>
+<li>A row that is too long slides. It never breaks into two rows. With a mouse, he drags the row.</li>
+<li>The same filter words are the status labels in the list: "No reply for 9 days", "Payment late".</li>
+<li>The Guide in the tool gives the meaning of each filter.</li>
+
+</ul></details></section><section class="part" id="payment-plan"><h3>Payment plan <code>PaymentPlan</code></h3><p>The plan that he can offer when a payment is late: a row of payments, each with its amount and its date.</p><div class="pv pv-PaymentPlan"><div class="ds"><div style="width:260px"><span class="chip chip-bad"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Payment 30 days late</span><p class="byhue" style="margin-top:10px"><svg class="hue" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg>Why Hue flagged this</p><p style="margin:0">The invoice of $18k was due on Sat 5 Sep. It is 30 days late.</p><p class="byhue" style="margin-top:10px"><svg class="hue" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><g class="hg"><circle class="h3" cx="15.6" cy="14.1" r="5.7"/><circle class="h2" cx="8.4" cy="14.1" r="5.7"/><circle class="h1" cx="12" cy="7.9" r="5.7"/></g><circle class="h0" cx="12" cy="12" r="1.6"/></svg>A plan that you can offer</p><div class="plan"><div><span>Payment 1</span><b>$6k</b><span>Mon 12 Oct</span></div><div><span>Payment 2</span><b>$6k</b><span>Mon 26 Oct</span></div><div><span>Payment 3</span><b>$6k</b><span>Mon 9 Nov</span></div></div><p class="reason" style="margin-top:6px">The finance rules permit 3 payments in 6 weeks for an amount of this size.</p><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-primary">Message Mei Yun</button><button class="btn btn-soft">Call</button></div></div></div></div><details><summary>The rules for this part</summary><ul>
+<li>It sits in the sheet of a late payment, below "Why Hue flagged this" and "Possible reason". Each of the three headings has the Hue mark.</li>
+<li>Each payment is a small box with the number of the payment, the amount in the <code>figure</code> style and the date.</li>
+<li>One line below gives the rule: "The finance rules permit 3 payments in 6 weeks for an amount of this size."</li>
+<li>The plan follows the finance rules, so he can offer it with no approval. Say this in the sheet.</li>
+<li>The main button is "Message" with the name of the accounts contact. The message has the plan in it. He can change it before he sends it.</li>
+<li>Say where the facts come from: the payment status from the accounts system, the plan from the assistant of the finance team.</li>
+
+</ul></details></section><section class="part" id="button"><h3>Button <code>Button</code></h3><p>A pill shaped button with three levels.</p><div class="pv pv-Button"><div class="ds"><div class="row">
+<button class="btn btn-primary">Save to record</button>
+<button class="btn btn-soft">Check later</button>
+<button class="btn btn-quiet">Show 24 more</button>
+<button class="btn btn-ghost">Cancel</button>
+</div></div></div><details><summary>The rules for this part</summary><p>Level 1 is dark blue. Use it one time on a screen, for the capture button, and one time in a sheet, for its main action, such as "Save to record". Level 2 is light blue. Use it for an action inside a section, such as "Open draft" on a follow up. Level 3 is text only. Use it for a control of a list, such as "Show 12 more". Never put two dark blue buttons on one screen.</p>
+<ul>
+<li>Class names: <code>btn</code> with <code>btn-primary</code> (level 1), <code>btn-soft</code> (level 2) or <code>btn-quiet</code> (level 3). <code>btn-ghost</code> is for "Cancel" and "Close".</li>
+<li>Text is the <code>button</code> style, 11.5 pixels, weight 600. Keep labels to four words, starting with a verb.</li>
+<li>Level 1 uses <code>blue-600</code> with white text. Level 2 uses <code>blue-100</code> with <code>blue-700</code> text, for a contrast of more than 4.5 to 1. Level 3 uses <code>blue-700</code> text with no fill.</li>
+<li>Level 2 has a line of 1 pixel in <code>blue-200</code> inside its edge. The line makes it read as a button next to plain text and labels.</li>
+<li>An icon, if any, sits before the label at 14 pixels.</li>
+<li>The icon button, class <code>ib</code>, is a round button with a plus or a pencil and no word. It is for Add and Edit in a customer record only. It has a tap area of 44 pixels or more, a name for a screen reader and a label on hover.</li>
+
+</ul></details></section><section class="part" id="tab-bar"><h3>Tab bar <code>TabBar</code></h3><p>The three tabs at the bottom of a phone: Home, Records and Settings.</p><div class="pv pv-TabBar"><div class="ds"><div class="tabs"><div class="on">Home</div><div>Records</div><div>Settings</div></div></div></div><details><summary>The rules for this part</summary><ul>
+<li>Home is the first screen: sales, today, later this week, needs attention and open deals. Records is for looking things up. Settings holds text size, contrast and the assistant choices.</li>
+<li>The same three places exist on every device. On a tablet they sit in a side rail. On a computer they sit in the top bar.</li>
+<li>Settings is a full tab so that people who need bigger text can find it without help.</li>
+<li>The active tab uses <code>blue-600</code> text and a 3 pixel bar on top. Inactive tabs use <code>ink-muted</code>.</li>
+<li>There is one bar for the three tabs. It slides to the new tab. It does not blink off and on.</li>
+<li>Labels are always words. No icons are needed for three tabs.</li>
+
+</ul></details></section><h2 id="rules">The rules</h2><h3 id="content-fundamentals" class="bk">Content fundamentals</h3>
+<ul>
+<li><strong>Plain English.</strong> Short sentences, no acronyms, no dashes as punctuation.</li>
+<li><strong>A helpful colleague.</strong> "Good morning, Daniel." "You sent the quote to Ace Tees 9 days ago. She did not reply yet."</li>
+<li><strong>Always a reason.</strong> Every suggestion says why, then offers one next step as a button.</li>
+<li><strong>Money.</strong> Singapore dollars, shortened, with no "S": $612k, $1.2M. The Guide in the tool says that all amounts are Singapore dollars.</li>
+<li><strong>One word for one thing.</strong> A status has the same words on Home, in Records and in the record. See "Words".</li>
+<li><strong>Status is words and icons.</strong> Never colour alone. Done is a tick, attention is a triangle, a problem is a cross.</li>
+</ul>
+<h3 id="visual-foundations" class="bk">Visual foundations</h3>
+<ul>
+<li><strong>Colour.</strong> The blue comes from the Avient logo (<code>avient-blue</code>, #0080E0). On screen we use a softened version (<code>blue-600</code>), because the original is too bright for buttons. Text is <code>ink</code>, the dark grey of the Avient wordmark. There is no green. Amber (<code>amber-*</code>) marks attention and red (<code>red-*</code>) marks a problem.</li>
+<li><strong>Type.</strong> Headings are Bricolage Grotesque at normal width and weight 700. Body text is Figtree at weight 500. Numbers use tabular figures.</li>
+<li><strong>Shape.</strong> Buttons, chips and the tick circles are pills (<code>radius-pill</code>). Cards use <code>radius-lg</code>.</li>
+<li><strong>Space.</strong> An 8 pixel step (<code>space-3</code>). Cards sit 8 pixels apart with 10 pixels of screen padding.</li>
+<li><strong>Depth.</strong> Borders, not shadows. Only floating things get a shadow: the capture button (<code>shadow-float</code>) and open menus (<code>shadow-menu</code>).</li>
+<li><strong>Layout.</strong> Phone first. Three places on every device: Home, Records, Settings. Home holds sales, today, later this week, needs attention and open deals. On a phone, section links stay at the top of Home. Bigger screens show the same sections in columns, so they do not need the links. Each column is its own stack: the greeting with Today below it, then sales with the lists below it. A card is as tall as its content, and the order in each column is fixed. A customer record has section links on every device, because it is long. One small capture button floats at the bottom right, or the bottom left if the user chooses.</li>
+</ul>
+<h3 id="iconography" class="bk">Iconography</h3>
+<p>Outline icons, 18 pixels, 1.8 pixel stroke, round ends, drawn as inline SVG: microphone, keyboard, pen, camera, picture, plus, close, calendar and lock. No emoji.</p>
+<h3 id="the-assistant" class="bk">The assistant</h3>
+<p>The assistant inside the tool is called Hue, as in colour, because Avient sells inks. It is not given a human name, so nobody mistakes it for a person.</p>
+<ul>
+<li><strong>The mark.</strong> Three overlapping ink discs in the primary colours: <code>blue-600</code>, <code>hue-red</code> and <code>hue-yellow</code>. The red and yellow are softened to sit with the blue. They belong to the mark only, because status uses its own amber and red. When Hue is working, the discs turn and breathe.</li>
+<li><strong>Where it shows.</strong> Beside the greeting, and next to anything Hue wrote or picked: the follow ups of today, drafted messages, the fields that Hue filled in, suggestions and warnings.</li>
+<li><strong>Opening screen.</strong> Once a day, the first time he opens the tool, a short screen shows the Avient logo, the Hue mark and the line "You sell. Hue keeps track."</li>
+<li><strong>Voice.</strong> Hue greets him by name and then stays out of the way. "Good morning, Daniel."</li>
+<li><strong>Limits.</strong> Hue never sends or saves by itself. One line at the top of Check and save says what Hue filled in. Below a field, Hue gives the reason for its choice.</li>
+<li><strong>One switch for each job.</strong> Settings lists each job of Hue with its own switch: fill in the fields from my notes, draft my messages, put my follow ups in order, warn me when a customer does not reply, suggestions in customer records, weather for my day. All start on. When a switch is off, the screen still works: the note is saved as written, the message box is empty, the follow ups are in order of customer name.</li>
+</ul>
+<h3 id="today" class="bk">Today</h3>
+<ul>
+<li>One section holds all work of the day. It has two parts: Visits and Follow ups.</li>
+<li><strong>Visits.</strong> They come first, in order of time. A visit has the time, the customer, the reason, the area and the weather for its time.</li>
+<li>The area and dry weather are plain text with a small icon. Only a warning has the look of a label. A label must not look more like a button than the button below it.</li>
+<li><strong>Follow ups.</strong> A follow up is a thing to do for a customer that is not a visit: a call, a message, a quote or a question about a payment. The most important come first. Three show, and one button shows the others. Each follow up has a reason and one next step as a button.</li>
+<li>The count includes the follow ups that are hidden: "0 of 27 done".</li>
+<li>A follow up for a customer that he visits today is part of the visit. It does not show two times.</li>
+<li>Each item has a circle. A done item stays, with a tick, until the next morning. When he saves a note for that customer, Hue ticks the item, and the row says "Done. Hue ticked it when you saved your note."</li>
+<li>The section follows the clock. Before a visit, its button is "Prepare for the visit". After the time of the visit, the button is "Add a note about the visit", and the weather mark goes away.</li>
+</ul>
+<h3 id="the-order-of-follow-ups" class="bk">The order of follow ups</h3>
+<ul>
+<li>Hue gives points to each follow up. For a deal, points = deal value × chance of an order + waiting points.</li>
+<li>Chance comes from the stage: New 20%, Sample 40%, Trial 60%, Quote 80%.</li>
+<li>Waiting points: 50 for a promise that is due today, 10 for each day when it is his move, 5 for each day past the usual wait. Each of the last two stops at 30.</li>
+<li>A late payment has its own rule: 40 points, plus the late amount in thousands, plus 1 point for each day that it is late, to a maximum of 30. Money that a customer owes comes before most new deals.</li>
+<li>The order is new at the start of each day. A promise for today that he adds during the day goes to the top.</li>
+<li>Each follow up gives the reason in words. The points are never shown as a number.</li>
+</ul>
+<h3 id="later-this-week" class="bk">Later this week</h3>
+<ul>
+<li>The list starts tomorrow. It shows visits and promises to Sunday.</li>
+<li>Each day shows one time, with its rows below it.</li>
+<li>A day shows three rows. A small text link shows the other rows of that day: "Show 5 more on Fri". A large button is for the end of a list only.</li>
+</ul>
+<h3 id="greeting-and-weather" class="bk">Greeting and weather</h3>
+<ul>
+<li>Home opens with a greeting from Hue that follows the time of day: morning, afternoon or evening.</li>
+<li>One sentence gives the weather that can delay a visit that is still to come today, with one instruction. "Storms at 3 pm, when you visit Tuas Textile Print. Leave 15 minutes early."</li>
+<li>When no visit is left today, the sentence gives the weather now, then the weather for the visits of tomorrow. "Cloudy now. Tomorrow: showers at 11 am, when you visit Print Lab SG. Keep an umbrella in the car."</li>
+<li><strong>The weather now is large.</strong> One picture and the temperature, with the word "Now". The picture moves: the sun turns, the clouds drift, the rain falls.</li>
+<li><strong>The colour of the panel is the weather now.</strong> <code>sky-sun</code> for sun, <code>sky-cloud</code> for clouds, <code>sky-rain</code> for showers, <code>sky-storm</code> for storms and <code>sky-night</code> after dark. On the two dark grounds the text is white.</li>
+<li><strong>One row gives the next parts of the day.</strong> It continues with tomorrow, written with the day: "Tue morning". The row slides. It never breaks into two rows.</li>
+<li>The same warning shows on that visit in Today. "Storms. Leave 15 minutes early."</li>
+<li>A "Full forecast" link opens the national weather site in a new tab.</li>
+<li>Nothing on this panel is about the past.</li>
+</ul>
+<h3 id="sales-progress" class="bk">Sales progress</h3>
+<ul>
+<li>One bar shows two things: what is won (solid <code>blue-600</code>) and what open deals could add (striped). A 2 pixel gap separates them. One dark line, with the label "Today", shows where he should be on this date.</li>
+<li>The percentage is the largest number after the amount. One short line under the bar says how much is left and whether open deals can cover it.</li>
+<li>When opened, it names the one deal that moves him furthest. This is honest encouragement: it never says a target is safe when it is not.</li>
+</ul>
+<h3 id="motion" class="bk">Motion</h3>
+<ul>
+<li>Motion explains what happened. It is short: 150 to 300 milliseconds for controls, up to half a second for content arriving.</li>
+<li>Sections fade up as they scroll into view, once. Sheets slide up and slide away. Lists and cards open and close by growing, not by jumping.</li>
+<li>Every button shows a hover state and a press state. Buttons change colour immediately, with no fade. The capture button lifts on hover and its menu fans out one by one.</li>
+<li>A short message confirms a change, such as "Text size: Large."</li>
+<li>Hue's mark waves for four seconds when the tool opens, and turns while it works.</li>
+<li>"Less motion" in Settings and the device setting both switch all of this off.</li>
+</ul>
+<h3 id="accessibility" class="bk">Accessibility</h3>
+<ul>
+<li><strong>Text size.</strong> Four sizes in Settings. Everything grows together, and rows wrap so nothing is cut off.</li>
+<li><strong>Contrast.</strong> Normal text is at least 4.5 to 1. A "Stronger contrast" setting darkens text, lines and buttons.</li>
+<li><strong>Colour.</strong> Status never depends on colour. Each status has a word and its own icon shape: tick, triangle, cross.</li>
+<li><strong>Motion.</strong> A "Less motion" setting stops moving effects, and the tool also follows the device setting.</li>
+<li><strong>Reach.</strong> The capture button can sit on the left or the right.</li>
+</ul>
+<h3 id="long-lists" class="bk">Long lists</h3>
+<ul>
+<li>Search and filters come first. A long list must never be the only way to find a customer.</li>
+<li>On a phone and a tablet, a list shows a first group and then one button: "Show 20 more". Scroll position stays.</li>
+<li>On a computer, the Records table uses pages of 25, with the page number and the total.</li>
+<li>Home lists stay short. Today shows 3 follow ups, later this week shows 3 rows for each day, needs attention shows 4, open deals shows 5. Each has "Show more" or a link to Records.</li>
+<li>The timeline in a record shows 5 notes, then "Show 10 earlier notes".</li>
+<li>People, promises and files in a record show 4 rows, then "Show n more".</li>
+<li>A placeholder that does not fit ends with three dots. It is never cut in the middle of a letter.</li>
+</ul>
+<h3 id="guide" class="bk">Guide</h3>
+<ul>
+<li>The meaning of each status, filter, deal stage and mark is in one sheet: Settings, Help, Guide.</li>
+<li>The Guide has section links that stay at the top of the sheet. The link of the section in view is marked.</li>
+<li>Work screens do not carry these explanations. They stay clear for the work.</li>
+</ul>
+<h3 id="buttons" class="bk">Buttons</h3>
+<ul>
+<li><strong>Level 1, dark blue.</strong> One for each screen: the capture button. In a sheet, the one main action: "Save to record", "Send".</li>
+<li><strong>Level 2, light blue with dark blue text.</strong> An action inside a section: "Open draft", "Call Mr Tan", "Prepare for the visit", "New customer". It has a thin blue line around it (<code>blue-200</code>), so it reads as a button and not as a label.</li>
+<li><strong>Level 3, text only.</strong> A control of a list: "Show 12 more", "Show fewer", "See all 52 in Records".</li>
+<li>"Cancel" and "Close" have a thin line and dark text. "Remove" has a red line.</li>
+<li>Never put two dark blue buttons on one screen. When each button is dark, none gets attention.</li>
+</ul>
+<h3 id="empty-states" class="bk">Empty states</h3>
+<ul>
+<li>An empty state says what will show here, and it gives one next step.</li>
+<li>A screen has one main empty state, with the Hue mark or an icon, a title, one sentence and one light blue button. On Home it is in Today. In Records it fills the page.</li>
+<li>The other empty parts say one short line in a box with a dashed line. They have no button.</li>
+<li>A note needs a customer. With no customer, the capture button opens the form for a new customer.</li>
+</ul>
+<h3 id="forms" class="bk">Forms</h3>
+<ul>
+<li><strong>Label.</strong> Each field has a label above it. The label is never inside the field.</li>
+<li><strong>Optional.</strong> A field that can stay empty says "(optional)" in its label. All other fields are necessary.</li>
+<li><strong>Example.</strong> Each field that he types in shows an example in grey: "Example: 9123 4567". A list and a date have no example, because they show their own values.</li>
+<li><strong>Hint.</strong> A short line below the field, only when the correct form is not clear from the example.</li>
+<li><strong>Keyboard.</strong> Each type opens the correct keyboard: numbers for a phone and an amount, the email keyboard for an email.</li>
+<li><strong>Rules while he types.</strong> A phone field accepts numbers, spaces and one + at the start. An amount field accepts numbers only and adds the commas.</li>
+<li><strong>Rules when he leaves a field.</strong> The tool corrects the form of the value: "91234567" becomes "9123 4567", "03-12" becomes "#03-12".</li>
+<li><strong>Error.</strong> Red text with a cross below the field. It says what is wrong and how to correct it. It goes away when the value is correct. On save, the tool goes to the first field with an error.</li>
+<li><strong>Rules for each type.</strong></li>
+<li>Company name: 2 to 80 characters.</li>
+<li>Person name: 2 to 60 characters, no numbers.</li>
+<li>Phone: 8 numbers that start with 3, 6, 8 or 9. For another country, + and 8 to 15 numbers.</li>
+<li>Email: the form name@company.com.</li>
+<li>Amount: Singapore dollars, $1,000 or more.</li>
+<li>Date: today or later.</li>
+<li>Unit number: the form #03-12.</li>
+<li>Postal code: 6 numbers.</li>
+<li>File: a photo, a PDF or an office file, 10 MB or smaller.</li>
+<li>A search field is different. It says what he can search for: "Search company, person or product".</li>
+<li><strong>Menu.</strong> A list of choices uses our own control, not the control of the browser. The field shows the value and an arrow. The value is 12 pixels from the left edge, and the arrow is 12 pixels from the right edge. The list opens below the field, or above it when there is no room. The selected choice has a pale blue ground and a tick. A list with more than 8 choices has a search field.</li>
+<li><strong>Date.</strong> A date field is the same control with a calendar icon in the place of the arrow. It opens a small calendar. A tap on the month or the year changes it. Saturday and Sunday have a grey ground. Days that are not permitted are grey. "Today" and "Tomorrow" are one tap. An optional date also has "No date".</li>
+<li><strong>Keys.</strong> The arrow keys move in a menu or a calendar. Enter selects. Escape closes the menu only, not the form.</li>
+<li><strong>Leave a form.</strong> A tap outside closes a sheet only when nothing can be lost. When a form has entries, each way to close it (the cross, Cancel, the Escape key, a tap outside) opens one question: "Leave this form?" with "Keep for later", "Discard the entries" and "Stay in the form".</li>
+<li><strong>Kept forms.</strong> A kept form shows as one pale blue row at the top of Home, with the time. A tap opens the form with the entries in place. A line in the form says when he started it, with "Discard". A kept form goes away when he saves it.</li>
+<li>A voice note in progress and Check and save do not close on a tap outside.</li>
+</ul>
+<h3 id="customer-record-add-and-edit" class="bk">Customer record: add and edit</h3>
+<ul>
+<li>The heading of each list has a plus icon: deals, promises, people, timeline, products, files. It adds one item to that list.</li>
+<li>Each item that he can change has a pencil icon. The icons have no words here, because a record has many rows.</li>
+<li>Each icon button has a tap area of 44 pixels or more, a name for a screen reader ("Edit Kelvin Ng") and a label on hover ("Edit").</li>
+<li>The Edit sheet has Save, Cancel and Remove. "Remove" asks for a second tap.</li>
+<li>The Company section is one set of details, so its heading has the pencil.</li>
+<li>The sheet title names the item: "Edit company", "Edit person: Kelvin Ng", "Edit product", "Edit note".</li>
+<li><strong>Timeline rule.</strong> He can change what he wrote: a visit, a call, a note. He cannot change a record: a message, an email, or an entry that the tool made. A record shows a grey lock in the place of the pencil. A tap on the lock says why, and how to correct it: add a note.</li>
+<li><strong>Room below a heading.</strong> The first row starts 18 pixels below the heading of a card. The tap areas of the plus and the first pencil do not overlap.</li>
+<li>A deal is not removed. If the customer says no, the stage is set to Lost.</li>
+<li>There is no edit mode for the full page.</li>
+<li>Other screens keep words on their buttons: "New customer", "Add note".</li>
+</ul>
+<h3 id="address" class="bk">Address</h3>
+<ul>
+<li>One field. He types a postal code, a street or a building name. A list of matching addresses and streets opens below the field. He selects one.</li>
+<li>A map below the field shows a pin, so he can check the place.</li>
+<li>The placeholder gives examples. There is no help line under the field.</li>
+<li>He does not type the area. Hue reads it from the postal code.</li>
+<li>The prototype uses a small sample table. The web version also asks OneMap, the Singapore address service, and shows the map from Google Maps. Full Google address search needs a Google Maps key.</li>
+</ul>
+<h3 id="tour" class="bk">Tour</h3>
+<ul>
+<li>The first time he opens the tool, a short tour shows six features: sales progress, Today, the round button for notes, customers that need attention, records and settings.</li>
+<li>Each step lights one part of the screen and explains it in two or three short sentences.</li>
+<li>He can close the tour at any step. "Start" in Settings shows it again.</li>
+</ul>
+<h3 id="record-a-note" class="bk">Record a note</h3>
+<p>One floating round button. Tap it and a short menu fans out above it. Hold it to talk at once.</p>
+<ul>
+<li><strong>Phone and tablet:</strong> Talk, Type, Write and Photo of a notebook page. The two devices have the same four ways.</li>
+<li><strong>Computer:</strong> the "New note" button opens a small menu: Type a note, Talk a note and Attach a photo.</li>
+<li><strong>Write.</strong> The page has lines, like a notebook. On a phone it fills almost the full screen, because handwriting needs room. A pen or a finger works.</li>
+<li><strong>Photo.</strong> He takes a photo of the page, or chooses one from his album. On a computer he attaches a picture: JPG, PNG or HEIC.</li>
+<li><strong>A guide in each sheet.</strong> "A good note says these things": Customer, What happened, Next step, Date, Product. Hue ticks each one when it finds it in his words. See <code>NoteGuide</code>.</li>
+<li><strong>Two ways to continue.</strong> "Check now" opens Check and save. "Check later" keeps the note at the top of Home.</li>
+</ul>
+<p>Recording is of Daniel's voice only. He asks before recording a customer.</p>
+<h3 id="check-and-save" class="bk">Check and save</h3>
+<ul>
+<li>One line at the top says what Hue did: "Hue filled in 6 fields from your voice note. Check each field, then save." See <code>FilledLine</code>.</li>
+<li>The fields are Customer, What happened, Next step, Date of the next step, Products and Deal stage.</li>
+<li>Below a field, one short line gives the reason for a choice: "You said Friday. Hue took the coming one, Fri 9 Oct." "Was Quote. Hue suggests this from your note."</li>
+<li>"Your original words" opens the note as he said it.</li>
+<li>Nothing is saved before he taps "Save to record". "Check later" keeps the note.</li>
+</ul>
+<h3 id="notes-to-check" class="bk">Notes to check</h3>
+<ul>
+<li>A note that he kept with "Check later" shows at the top of Home, in "Notes to check". It is not in the record yet.</li>
+<li>The heading says how many: "1 not in the record yet".</li>
+<li>A tap opens Check and save. The row goes away when he saves. See <code>NoteToCheck</code>.</li>
+</ul>
+<h3 id="words" class="bk">Words</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visit</td>
+<td>A meeting with a customer at a fixed time.</td>
+</tr>
+<tr>
+<td>Follow up</td>
+<td>A thing to do for a customer that is not a visit.</td>
+</tr>
+<tr>
+<td>Promise</td>
+<td>A thing that he said he will do, with a date.</td>
+</tr>
+<tr>
+<td>No reply</td>
+<td>The customer did not answer about a deal for longer than usual. The label says "No reply for 9 days".</td>
+</tr>
+<tr>
+<td>Payment late</td>
+<td>A payment is past its due date.</td>
+</tr>
+<tr>
+<td>Not in touch</td>
+<td>No contact for 2 weeks or more. A filter in Records.</td>
+</tr>
+<tr>
+<td>Your move</td>
+<td>The customer waits for him.</td>
+</tr>
+<tr>
+<td>Last contact</td>
+<td>The days since the last call, message, visit or note.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Do not use "task", "quiet" or "tidy up". They were the words of earlier versions.</p>
+<h3 id="records-filters" class="bk">Records: filters</h3>
+<ul>
+<li>The filters are All, Open deals, Your move, No reply, Late payment and Not in touch. Each shows its count.</li>
+<li>Two filters have a second row. "Open deals" chooses a stage. "Not in touch" chooses 2 weeks, 3 weeks, or 4 weeks or more.</li>
+<li>A row of filters that is too long slides. It does not break into two rows. With a mouse, he drags it. See <code>FilterRow</code>.</li>
+<li>"Back" from a record goes to the row that he came from.</li>
+</ul>
+<h3 id="a-late-payment" class="bk">A late payment</h3>
+<ul>
+<li>A late payment is a follow up, and a row in "Needs attention", with the label "Payment late".</li>
+<li>Its sheet has three parts, each with the Hue mark: "Why Hue flagged this", "Possible reason", and "A plan that you can offer".</li>
+<li>The plan is a row of payments, each with its amount and its date. It follows the finance rules, so he can offer it with no approval. See <code>PaymentPlan</code>.</li>
+<li>The message goes to the accounts contact of the customer, not to the main contact.</li>
+<li>A line at the bottom says where the facts come from: the payment status from the accounts system, the plan from the assistant of the finance team.</li>
+</ul>
+<h3 id="rules" class="bk">Rules</h3>
+<ul>
+<li>Use <code>blue-600</code> for anything tappable. <code>avient-blue</code> is for logo and brand moments.</li>
+<li>One dark blue button for each screen: the capture button. A sheet has one for its main action.</li>
+<li>Never show status with colour alone.</li>
+<li>Do not use green. If Avient's green is needed for a brand moment, take it from the official logo file.</li>
+<li>Do not redraw the Avient logo. Use the official file, whole and uncropped, on a white ground. It appears on the opening screen only. Inside the tool, the Hue name and mark carry the brand.</li>
+<li>Show three follow ups first, each with a reason. One button shows the others. The count includes the hidden ones.</li>
+<li>Use the words in "Words". One word for one thing.</li>
+<li>Hue gives the reason for each thing that it filled in or flagged.</li>
+<li>Do not make the user type something that the tool can find, such as the area of an address.</li>
+<li>Do not use a control of the browser where it shows: no browser menu, no browser date field.</li>
+<li>Do not lose what the user typed. Ask before a form with entries closes, and offer to keep the entries.</li>
+</ul></article></div>
+</main>
+<footer class="foot"><div class="wrap"><nav aria-label="The pages of this project"><a href="../links/">All links</a><a href="../prototype/">Prototype</a><a href="../">Presentation</a><a href="../guide/">How Hue Works</a><a href="../working-document/">Working document</a><a href="../deck/">Backup deck</a></nav><p>A design challenge by Loo Say Hien, October 2026. Hue is a concept with sample data. It is not an official Avient product. Daniel is not a real person.</p></div></footer>
+<script>
+
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc a')), heads=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function on(){ var y=scrollY+120, k=0; heads.forEach(function(h,i){ if(h&&h.offsetTop<=y) k=i }); links.forEach(function(a,i){ a.classList.toggle('on', i===k) }) }
+  addEventListener('scroll', on, {passive:true}); on();
+  var d=document.querySelector('.toc details'); if(d){ var m=matchMedia('(min-width:901px)'); var f=function(){ d.open=m.matches }; f(); m.addEventListener('change', f);
+    d.addEventListener('click', function(e){ if(e.target.tagName==='A' && !m.matches) d.open=false }) }
+})();
+
+</script>
+</body>
+</html>
