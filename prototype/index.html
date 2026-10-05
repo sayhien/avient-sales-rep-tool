@@ -831,6 +831,145 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
 .bare .top{display:none}
 .bare .stage{padding:6px}
 .bare .dev{box-shadow:none}
+/* ---------- round 14 ---------- */
+/* back from a record: the row that he clicked */
+@keyframes cameback{0%,45%{box-shadow:0 0 0 2px var(--blue);background:var(--soft)}100%{box-shadow:0 0 0 2px transparent}}
+.cameback{animation:cameback 1.6s ease-out}
+/* the marks of a row have their own line */
+.row .rc,.mini .rc{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.row .rc:empty,.mini .rc:empty{display:none}
+.kept .row .rc{grid-column:2 / -1}
+
+/* greeting: the colour of the weather now */
+.hero.wx-sunny{background:linear-gradient(205deg,#FFE7A6 0%,#FFF4D6 36%,#F3F7FB 100%);border-color:#F1DDA6}
+.hero.wx-cloudy{background:linear-gradient(205deg,#D3DCE3 0%,#E6ECF0 55%,#F4F7F9 100%);border-color:#CDD7DE}
+.hero.wx-showers{background:linear-gradient(205deg,#AFC6D9 0%,#CFDEE9 55%,#E8F0F5 100%);border-color:#B4C8D8}
+.hero.wx-storm{background:linear-gradient(205deg,#2E3C49 0%,#43556A 60%,#52667A 100%);border-color:#2E3C49}
+.hero.night{background:linear-gradient(205deg,#101D33 0%,#1D3350 60%,#2B4868 100%);border-color:#101D33}
+.hero.night.wx-storm,.hero.night.wx-showers{background:linear-gradient(205deg,#0F1826 0%,#1F2E40 60%,#2F4257 100%)}
+.wx-cloudy .cl{color:var(--white);opacity:.8}
+.wx-showers .cl{color:#E4ECF2}
+.hero.dark .cl{color:#8FA1B2;opacity:.45}
+.hero.dark .drop{background:#CFE3F5;opacity:.5}
+.hero.dark{color:var(--white)}
+.app .hero.dark h1,.app .hero.dark .wxline,.hero.dark .wxtick b,.hero.dark .wxbig b{color:var(--white)}
+.hero.dark .date,.hero.dark .wxtick>span,.hero.dark .wxbig i{color:#D5E0EA}
+.hero.dark .wxlink{color:var(--white);text-decoration:underline;text-underline-offset:2px}
+.hero.dark .wxbig{border-color:rgba(255,255,255,.28)}
+.hero.dark :focus-visible{outline-color:var(--white)}
+.star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.2;animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.9}}
+.moon{position:absolute;right:14px;top:10px;width:34px;height:34px;border-radius:50%;box-shadow:inset -9px 4px 0 0 #F3D98B;opacity:.9}
+/* the weather: a large part for now, and one line that slides */
+.wxnow{display:flex;align-items:center;gap:12px;margin-top:10px}
+.wxbig{flex:none;display:flex;align-items:center;gap:8px;padding-right:12px;border-right:1px solid var(--ln-d)}
+.wxbig>span{display:block}
+.wxbig b{display:block;font:700 24px/24px var(--fd);font-variant-numeric:tabular-nums;color:var(--ink)}
+.wxbig i{display:block;font:600 10.5px/14px var(--fb);font-style:normal;color:var(--sub);margin-top:1px}
+.wxtick{flex:1;min-width:0;display:flex;gap:14px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;padding:4px 0;border-radius:6px;cursor:grab}
+.wxtick::-webkit-scrollbar,.filters::-webkit-scrollbar,.fsub::-webkit-scrollbar{display:none}
+.wxtick>span{flex:none;display:inline-flex;align-items:center;gap:5px;font:500 11px/14px var(--fb);color:var(--sub)}
+.wxtick b{font:700 12px/14px var(--fd);color:var(--ink);font-variant-numeric:tabular-nums}
+.wxa{flex:none;display:block;overflow:visible}
+[data-drag]{--ml:0px;--mr:0px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--ml),#000 calc(100% - var(--mr)),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 var(--ml),#000 calc(100% - var(--mr)),transparent 100%)}
+[data-drag].more-r{--mr:34px}
+[data-drag].more-l{--ml:34px}
+[data-drag].drag{cursor:grabbing;user-select:none}
+[data-drag].drag *{pointer-events:none}
+.app.tablet .wxbig b,.app.computer .wxbig b{font-size:28px;line-height:28px}
+/* the weather icons move */
+@keyframes wspin{to{transform:rotate(360deg)}}
+@keyframes wdrift{0%,100%{transform:translateX(-1.5px)}50%{transform:translateX(1.5px)}}
+@keyframes wfall{0%{transform:translateY(-3px);opacity:0}30%{opacity:1}100%{transform:translateY(5px);opacity:0}}
+@keyframes wflash{0%,62%,100%{opacity:.3}66%,74%{opacity:1}70%{opacity:.45}}
+@keyframes wglow{0%,100%{opacity:.25}50%{opacity:.65}}
+.wxa .wr{transform-origin:24px 24px;animation:wspin 16s linear infinite}
+.wxa .wh{animation:wglow 3.2s ease-in-out infinite}
+.wxa .wc{animation:wdrift 5s ease-in-out infinite}
+.wxa .wd{animation:wfall 1.1s linear infinite}
+.wxa .wd:nth-of-type(2){animation-delay:.35s}.wxa .wd:nth-of-type(3){animation-delay:.7s}
+.wxa .wb{animation:wflash 2.8s linear infinite}
+@media (prefers-reduced-motion: reduce){.wxa *,.star,.cameback{animation:none!important}}
+
+/* records: one line of filters that slides, and a second line for the stage or the weeks */
+.app .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-bottom:8px;cursor:grab}
+.app.phone .filters{margin-inline:-10px;padding-inline:10px}
+.filters .pill,.fsub .pill{flex:none}
+.pill.on,.jump .pill.on{background:var(--soft);border-color:var(--blue);color:var(--blue-d)}
+.fsub{display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;background:var(--soft);border-radius:12px;padding:6px 8px;margin:-2px 0 8px;cursor:grab}
+.fsub>span{flex:none;font:600 10.5px/14px var(--fb);color:var(--blue-d);padding-inline:2px 2px}
+.fsub .pill{padding:3px 9px;font-size:10.5px}
+.fsub .pill.on{background:var(--white)}
+
+/* capture: the parts of a good note */
+.gd2{margin-top:8px;border:1px solid var(--ln);border-radius:12px;padding:8px 10px;background:var(--mist);text-align:left}
+.app .gd2 .gl{display:flex;gap:6px;align-items:flex-start;font-size:11px;line-height:15px;color:var(--sub)}
+.gd2 .gl .hue{flex:none;margin-top:1px}
+.gd2.sm .gl{display:none}
+.gchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.gd2.sm .gchips{margin-top:0}
+.gc{display:inline-flex;align-items:center;gap:4px;font:600 10.5px/14px var(--fb);padding:2px 9px 2px 6px;border-radius:999px;border:1px dashed var(--ln-d);color:var(--sub);background:var(--white);transition:background .2s,color .2s,border-color .2s}
+.gc .ic{width:12px;height:12px;stroke-width:2.6;opacity:.25}
+.gc.ok{border-style:solid;border-color:var(--blue);color:var(--blue-d);background:var(--soft)}
+.gc.ok .ic{opacity:1;animation:gpop .3s cubic-bezier(.3,1.6,.5,1)}
+@keyframes gpop{from{transform:scale(.2)}to{transform:scale(1)}}
+.gd2 .link{margin:5px 0 0 -4px}
+.app .gd2 .gex{margin-top:4px;font-size:11.5px;line-height:16px;color:var(--ink)}
+.gex b{font-weight:600;background:linear-gradient(transparent 62%,var(--soft-d) 62%)}
+.forc{display:flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:10px;background:var(--soft);font-size:11.5px;line-height:16px}
+.forc .ic{width:14px;height:14px;color:var(--blue-d);flex:none}
+.shotrow{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-top:12px}
+.shotrow .btn{justify-self:start}
+.shotrow .shut{margin:0}
+/* check and save */
+.rnote{display:flex;gap:8px;align-items:flex-start;background:var(--soft);border-radius:12px;padding:8px 10px;margin-top:8px;font-size:11.5px;line-height:16px}
+.rnote .hue{flex:none;margin-top:0}
+.rnote b{font-weight:700}
+.prods{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
+.pchip{display:inline-flex;align-items:center;gap:2px;font:600 11px/14px var(--fb);padding:3px 4px 3px 10px;border-radius:999px;background:var(--soft);border:1px solid var(--soft-b);color:var(--blue-d)}
+.pchip button{border:0;background:none;color:inherit;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0}
+.pchip button .ic{width:11px;height:11px;stroke-width:2.6}
+.sheet .acts .sp{flex:1}
+/* notes to check */
+.notes .sec{margin-top:0}
+.notes .row>span:nth-child(2){min-width:0}
+.notes .row .r2{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.notes .rr{grid-auto-flow:column;align-items:center;gap:6px}
+.notes .rr .r2{overflow:visible}
+.kept.notes + .kept{margin-top:6px}
+.kept + .bsec>.sec{margin-top:16px}
+/* late payment: the plan */
+.pplan{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:6px;margin-top:6px}
+.pplan>div{border:1px solid var(--ln);border-radius:10px;padding:6px 8px;display:grid;gap:1px;background:var(--mist)}
+.pplan span{font-size:10.5px;line-height:14px;color:var(--sub)}
+.pplan b{font:700 14px/18px var(--fd);font-variant-numeric:tabular-nums}
+button.chip.chip-bad{cursor:pointer}
+/* calendar: month and year, weekends */
+.cal .ct{display:flex;gap:2px;align-items:center}
+.cal .cb{border:0;background:none;border-radius:8px;padding:4px 6px;font:700 12.5px/16px var(--fd);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:2px}
+.cal .cb .ic{width:12px;height:12px;color:var(--sub);transition:transform .15s}
+.cal .cb.on{background:var(--soft);color:var(--blue-d)}
+.cal .cb.on .ic{transform:rotate(180deg)}
+.cal .ib[hidden]{display:inline-grid!important;visibility:hidden}
+.cal .cmg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:4px 0 2px}
+.cal .cp{border:1px solid var(--ln);background:var(--white);border-radius:10px;padding:9px 0;font:600 12px/16px var(--fb);color:var(--ink);cursor:pointer;font-variant-numeric:tabular-nums}
+.cal .cp.on{background:var(--soft);border-color:var(--blue);color:var(--blue-d)}
+.cal .cp[disabled]{color:var(--ln-d);cursor:default;background:var(--mist)}
+.cal .cd.we:not([aria-selected="true"]){background:var(--mist);color:var(--sub)}
+.cal .cw.we{color:var(--blue-d)}
+.cal .cd.we[disabled]{color:var(--ln-d)}
+.cal .ck{display:flex;align-items:center;gap:5px;margin:6px 0 0;font:500 10px/14px var(--fb);color:var(--sub)}
+.cal .ck i{width:12px;height:12px;border-radius:50%;background:var(--mist);border:1px solid var(--ln)}
+@media (hover:hover){ .cal .cb:hover{background:var(--mist)} .cal .cp:not([disabled]):hover{border-color:var(--ln-d);background:var(--mist)} .pchip button:hover{background:var(--soft-d)} }
+.app .sugnone{margin-top:4px;font-size:11px;line-height:15px;color:var(--sub)}
+.hero.dark .wxa g[stroke="#3274AE"]{stroke:#A9D1F5}
+.hero.dark .drop{opacity:.3}
+.hero.dark .cl{opacity:.3}
+.fsub{overflow:visible;cursor:default}
+.fsc{flex:1;min-width:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;cursor:grab;padding-block:1px}
+.fsc::-webkit-scrollbar{display:none}
+@media (hover:hover){ .pill.on:hover{border-color:var(--blue)} }
+.rgrid .card.tip h3{margin-bottom:8px}
 </style>
 
 <div class="top">
@@ -842,9 +981,6 @@ kbd{font:600 10px/12px var(--fb);border:1px solid currentColor;border-radius:5px
   <div class="ctl">
     <label class="wxsel" for="data-sel">Sample data
       <select id="data-sel"><option value="0">0 customers</option><option value="100">100 customers</option></select>
-    </label>
-    <label class="wxsel" for="time-sel">Sample time
-      <select id="time-sel"><option value="">Your clock</option><option value="8:20">8:20 in the morning</option><option value="13:30">1:30 in the afternoon</option><option value="16:00">4:00 in the afternoon</option><option value="20:00">8:00 in the evening</option></select>
     </label>
     <label class="wxsel" for="wx-sel">Sample weather
       <select id="wx-sel"><option value="sunny">Dry day</option><option value="cloudy">Cloudy day</option><option value="showers">Showers in the afternoon</option><option value="storm" selected>Storms in the afternoon</option></select>
@@ -883,7 +1019,7 @@ var LOGO='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAigAAACNCAMAAACqnXHDAAAA
 /* ---------- helpers ---------- */
 var $=function(s){return document.querySelector(s)};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-var money=function(k){return !k?'S$0':k>=1000?'S$'+(k/1000).toFixed(1).replace('.0','')+'M':'S$'+k+'k'};
+var money=function(k){return !k?'$0':k>=1000?'$'+(k/1000).toFixed(1).replace('.0','')+'M':'$'+k+'k'};
 var I={
  mic:'<path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
  key:'<rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M7 10h.1M11 10h.1M15 10h.1M7.5 14h9"/>',
@@ -930,17 +1066,17 @@ var C=[
  {id:'ace',keys:['ace tees'],name:'Ace Tees',type:'Printer',area:'Kaki Bukit',addr:'25 Kaki Bukit Road 4',bld:'Synergy',unit:'#05-08',postal:'417800',since:2023,terms:'30 days',last:9,
   people:[{name:'Mei Ling Koh',call:'Mei Ling',role:'Owner',phone:'9345 6789',email:'meiling@acetees.example'}],
   products:['Wilflex colours','Water based range (asked)'],
-  timeline:[{d:'Sat 26 Sep',how:'Email',t:'Quote sent for the water based range, S$48k a year.'},{d:'Thu 17 Sep',how:'Visit',t:'Mei Ling wants to move to water based inks for a sportswear brand.'}],
+  timeline:[{d:'Sat 26 Sep',how:'Email',t:'Quote sent for the water based range, $48k a year.'},{d:'Thu 17 Sep',how:'Visit',t:'Mei Ling wants to move to water based inks for a sportswear brand.'}],
   promises:[],files:['Quote 26 Sep.pdf'],tip:'Mei Ling decides alone. She prefers a quick message first, then a visit.'},
  {id:'tuas',keys:['tuas textile'],name:'Tuas Textile Print',type:'Printer',area:'Tuas',addr:'8 Tuas Avenue 12',bld:'',unit:'',postal:'639028',since:2019,terms:'60 days',last:16,
   people:[{name:'Rajesh Kumar',call:'Rajesh',role:'Production head',phone:'9456 7890',email:'rajesh@tuastextile.example'},{name:'Siti Aminah',call:'Siti',role:'Purchasing',phone:'9567 8901',email:''},{name:'Lim Ah Seng',call:'Mr Lim',role:'Owner',phone:'6861 2020',email:''}],
   products:['Wilflex colours','Low cure white (on trial)'],
   timeline:[{d:'Sat 19 Sep',how:'Visit',t:'Trial of low cure white started on line 2. Rajesh will share wash test results.'},{d:'Wed 2 Sep',how:'Call',t:'Agreed a trial of 20 kg.'}],
   promises:[],files:['Trial plan.pdf','Wash test photo.jpg','Order Jul.pdf'],tip:'Trials here usually take 2 weeks. Rajesh shares results faster when you visit.'},
- {id:'kian',keys:['kian seng'],name:'Kian Seng Trading',type:'Distributor',area:'Johor Bahru',addr:'Jalan Tampoi, 81200 Johor Bahru, Malaysia',bld:'',unit:'',postal:'',since:2018,terms:'45 days',last:4,late:{amt:18,days:30},
+ {id:'kian',keys:['kian seng'],name:'Kian Seng Trading',type:'Distributor',area:'Johor Bahru',addr:'Jalan Tampoi, 81200 Johor Bahru, Malaysia',bld:'',unit:'',postal:'',since:2018,terms:'45 days',last:4,late:{amt:18,days:30,why:'Kian Seng paid late 2 times this year. Each time, the payment came after a reminder to the accounts contact.'},
   people:[{name:'Tan Boon Huat',call:'Mr Tan',role:'Director',phone:'+60 12 345 6789',email:'boonhuat@kianseng.example'},{name:'Tan Mei Yun',call:'Mei Yun',role:'Accounts',phone:'+60 7 234 5678',email:'accounts@kianseng.example'}],
   products:['Wilflex white','Wilflex colours','Union Ink'],
-  timeline:[{d:'Thu 1 Oct',how:'Call',t:'Mr Tan asked for a quote on the next stock order, S$64k.'}],
+  timeline:[{d:'Thu 1 Oct',how:'Call',t:'Mr Tan asked for a quote on the next stock order, $64k.'}],
   promises:[],files:['Statement Sep.pdf','Statement Aug.pdf','Order Jul.pdf','Price list 2026.pdf'],tip:'Ask about the late payment before you confirm the new order.'},
  {id:'lion',keys:['lion city'],name:'Lion City Sportswear',type:'Brand',area:'Paya Lebar',addr:'60 Paya Lebar Road',bld:'Paya Lebar Square',unit:'#08-20',postal:'409051',since:2025,terms:'30 days',last:3,
   people:[{name:'Farah Ismail',call:'Farah',role:'Merchandiser',phone:'9678 9012',email:'farah@lioncity.example'}],
@@ -955,7 +1091,7 @@ var C=[
   timeline:[{d:'Wed 23 Sep',how:'Visit',t:'Left samples of Rutland special effects.'}],promises:[],files:[],tip:''},
  {id:'merlion',keys:['merlion uniforms','merlion'],name:'Merlion Uniforms',type:'Uniform maker',area:'Woodlands',addr:'11 Woodlands Close',bld:'Woodlands 11',unit:'#06-30',postal:'737853',since:2020,terms:'30 days',last:21,
   people:[{name:'Priya Nair',call:'Priya',role:'Operations manager',phone:'9901 2345',email:'priya@merlionuniforms.example'},{name:'Gopal Krishnan',call:'Gopal',role:'Purchasing',phone:'9012 3456',email:''}],products:['Wilflex white','Wilflex colours'],
-  timeline:[{d:'Mon 14 Sep',how:'Email',t:'Order confirmed, S$72k.'},{d:'Mon 6 Jul',how:'Email',t:'Order confirmed, S$68k.'},{d:'Tue 28 Apr',how:'Email',t:'Order confirmed, S$70k.'}],promises:[],files:['Order Sep.pdf','Order Jul.pdf','Order Apr.pdf'],
+  timeline:[{d:'Mon 14 Sep',how:'Email',t:'Order confirmed, $72k.'},{d:'Mon 6 Jul',how:'Email',t:'Order confirmed, $68k.'},{d:'Tue 28 Apr',how:'Email',t:'Order confirmed, $70k.'}],promises:[],files:['Order Sep.pdf','Order Jul.pdf','Order Apr.pdf'],
   tip:'They reorder about every 10 weeks. The next order may be due in late November.'}
 ];
 var D=[
@@ -969,16 +1105,16 @@ var D=[
  {id:'d8',cust:'merlion',name:'Uniform reorder',value:72,stage:'Won',touch:21,wait:'them',last:'Order confirmed'}
 ];
 var T=[
- {id:'t1',cust:'best',deal:'d1',title:'Send the price to Jasmine',why:'Best Printing asked for a price on Wilflex white 2 days ago. The deal is worth S$86k.',act:'msg',label:'Open draft',promise:true},
- {id:'t2',cust:'tuas',deal:'d3',title:'Ask Rajesh about the trial',why:'The trial at Tuas Textile Print started 16 days ago, with no result yet. It is your biggest open deal, S$120k.',act:'call',label:'Call Rajesh'},
- {id:'t3',cust:'ace',deal:'d2',title:'Follow up with Mei Ling',why:'Quote of S$48k sent to Ace Tees 9 days ago, no reply yet.',act:'msg',label:'Open draft'},
- {id:'t4',cust:'lion',deal:'d5',title:'Send the colour chart to Farah',why:'You promised it to Lion City Sportswear by Wednesday.',act:'msg',label:'Open draft',promise:true},
- {id:'t5',cust:'kian',deal:'d4',title:'Ask Mr Tan about the late payment',why:'Kian Seng Trading owes S$18k, 30 days late, and wants a new order of S$64k.',act:'call',label:'Call Mr Tan',bad:'Payment late'},
- {id:'t6',cust:'bukit',deal:'d7',title:'Check in with Ahmad',why:'Samples left at Bukit Batok Screen Works 12 days ago, no word since.',act:'msg',label:'Open draft'}
+ {id:'t1',cust:'best',deal:'d1',title:'Send Jasmine the price for Wilflex white',why:'Best Printing asked for it 2 days ago. The deal is worth $86k.',act:'msg',label:'Open draft',promise:true},
+ {id:'t2',cust:'tuas',deal:'d3',title:'Ask Rajesh for the result of the trial',why:'The trial at Tuas Textile Print started 16 days ago, with no result yet. It is your biggest open deal, $120k.',act:'call',label:'Call Rajesh'},
+ {id:'t3',cust:'ace',deal:'d2',title:'Ask Mei Ling about the $48k quote',why:'You sent the quote to Ace Tees 9 days ago. She did not reply yet.',act:'msg',label:'Open draft'},
+ {id:'t4',cust:'lion',deal:'d5',title:'Send Farah the colour chart',why:'You promised it to Lion City Sportswear by Wednesday.',act:'msg',label:'Open draft',promise:true},
+ {id:'t5',cust:'kian',deal:'d4',pay:true,title:'Ask Mei Yun about the late payment of $18k',why:'Kian Seng Trading owes $18k. It is 30 days late. Their new order of $64k waits for this payment.',act:'late',label:'See the plan',bad:'Payment late'},
+ {id:'t6',cust:'bukit',deal:'d7',title:'Ask Ahmad how the samples worked',why:'You left samples at Bukit Batok Screen Works 12 days ago. He did not reply yet.',act:'msg',label:'Open draft'}
 ];
 var VISITS=[
  {iso:'2026-10-05',t:'Visit Merlion Uniforms',when:'10:30 am',part:0,cust:'merlion',why:'Routine visit',note:'A routine visit. They reorder about every 10 weeks. Ask Priya about the next order.'},
- {iso:'2026-10-05',t:'Visit Tuas Textile Print',when:'3 pm',part:1,cust:'tuas',deal:'d3',why:'Trial result',note:'Get the trial result from Rajesh. The trial started 16 days ago, with no result yet. It is your biggest open deal, S$120k.'},
+ {iso:'2026-10-05',t:'Visit Tuas Textile Print',when:'3 pm',part:1,cust:'tuas',deal:'d3',why:'Trial result',note:'Get the trial result from Rajesh. The trial started 16 days ago, with no result yet. It is your biggest open deal, $120k.'},
  {iso:'2026-10-06',t:'Visit Print Lab SG',when:'11 am',part:0,cust:'lab',why:'First meeting'},
  {iso:'2026-10-07',t:'Visit Best Printing',when:'2 pm',part:1,cust:'best',why:'Bring the quote'},
  {iso:'2026-10-08',t:'Visit Lion City Sportswear',when:'11 am',part:0,cust:'lion',why:'Sample test'}];
@@ -1009,11 +1145,12 @@ function startHand(){
   cancelAnimationFrame(handRaf); var sv=$('#w-hand'), s=S.sheet; if(!sv||!s) return;
   if(s.handOff){ sv.style.display='none'; return; }
   var ps=sv.querySelectorAll('path.hs'), nib=sv.querySelector('.nib');
-  if(!motionOK()||s.handEnd){ sv.classList.add('all'); s.handEnd=true; return; }
+  if(!motionOK()||s.handEnd){ sv.classList.add('all'); s.handEnd=true; guideSync(HAND,null); return; }
   if(!s.handT0) s.handT0=performance.now()+420;
   var step=function(now){
     if(S.sheet!==s||!document.body.contains(sv)) return;
-    var t=now-s.handT0, at=null;
+    var t=now-s.handT0, at=null, fr=t/HAND_MS, ln=fr>=1?4:fr>=.84?3:fr>=.59?2:fr>=.27?1:0;
+    if(ln!==s.handLn){ s.handLn=ln; guideSync(HAND.split('\n').slice(0,ln).join('\n'),null); }
     for(var i=0;i<HANDW.length;i++){ var h=HANDW[i], p=ps[i], k=t<=h[0]?0:t>=h[0]+h[1]?1:(t-h[0])/h[1];
       p.style.visibility=k>0?'visible':'hidden'; p.style.strokeDashoffset=String(1-k); if(k>0) at=[p,k]; }
     if(at){ var pt=at[0].getPointAtLength(at[0].getTotalLength()*at[1]); nib.setAttribute('transform','translate('+pt.x.toFixed(1)+' '+pt.y.toFixed(1)+')'); nib.style.display=''; } else nib.style.display='none';
@@ -1039,6 +1176,18 @@ var SECT=[[1,6,'Raffles Place'],[7,8,'Tanjong Pagar'],[9,10,'Telok Blangah'],[11
  [24,27,'Bukit Timah'],[28,30,'Novena'],[31,33,'Toa Payoh'],[34,37,'Macpherson'],[38,39,'Geylang'],[40,40,'Eunos'],[41,41,'Kaki Bukit'],[42,45,'Katong'],[46,48,'Bedok'],[49,50,'Changi'],[51,52,'Tampines'],
  [53,53,'Hougang'],[54,54,'Sengkang'],[55,55,'Serangoon'],[56,56,'Ang Mo Kio'],[57,57,'Bishan'],[58,59,'Upper Bukit Timah'],[60,62,'Jurong'],[63,63,'Tuas'],[64,64,'Jurong West'],[65,66,'Bukit Batok'],
  [67,67,'Bukit Panjang'],[68,68,'Choa Chu Kang'],[69,71,'Lim Chu Kang'],[72,72,'Kranji'],[73,73,'Woodlands'],[75,75,'Sembawang'],[76,76,'Yishun'],[77,78,'Upper Thomson'],[79,80,'Seletar'],[81,81,'Changi'],[82,82,'Punggol']];
+/* roads of Singapore, with the area. They give suggestions for any street name, with or without a number. */
+var STREETS=[['Ubi Avenue 1','Ubi'],['Ubi Avenue 3','Ubi'],['Ubi Road 1','Ubi'],['Ubi Crescent','Ubi'],['Kaki Bukit Avenue 1','Kaki Bukit'],['Kaki Bukit Road 3','Kaki Bukit'],['Eunos Avenue 3','Eunos'],['Paya Lebar Road','Paya Lebar'],
+ ['MacPherson Road','Macpherson'],['Tai Seng Avenue','Tai Seng'],['Defu Lane 10','Defu'],['Kallang Way','Kallang'],['Kallang Pudding Road','Kallang'],['Bendemeer Road','Kallang'],['Lavender Street','Lavender'],['Jalan Besar','Jalan Besar'],
+ ['Geylang Road','Geylang'],['Sims Avenue','Geylang'],['Aljunied Road','Geylang'],['Tampines Industrial Avenue 5','Tampines'],['Tampines Street 92','Tampines'],['Loyang Way','Loyang'],['Changi South Lane','Changi'],['Changi North Crescent','Changi'],
+ ['Bedok North Street 5','Bedok'],['Upper Changi Road','Bedok'],['Serangoon North Avenue 5','Serangoon'],['Ang Mo Kio Industrial Park 2','Ang Mo Kio'],['Ang Mo Kio Avenue 10','Ang Mo Kio'],['Sin Ming Lane','Bishan'],['Upper Thomson Road','Upper Thomson'],
+ ['Toa Payoh Lorong 8','Toa Payoh'],['Braddell Road','Toa Payoh'],['Yishun Industrial Street 1','Yishun'],['Senoko Drive','Sembawang'],['Woodlands Industrial Park E1','Woodlands'],['Woodlands Avenue 12','Woodlands'],['Mandai Link','Mandai'],
+ ['Sungei Kadut Street 1','Sungei Kadut'],['Bukit Batok Street 22','Bukit Batok'],['Bukit Batok Crescent','Bukit Batok'],['Toh Guan Road','Jurong East'],['Boon Lay Way','Jurong'],['International Road','Jurong'],['Chin Bee Avenue','Jurong'],
+ ['Jalan Buroh','Jurong'],['Penjuru Road','Jurong'],['Pandan Loop','Pandan'],['Pioneer Road','Pioneer'],['Benoi Road','Pioneer'],['Gul Circle','Tuas'],['Joo Koon Circle','Joo Koon'],['Tuas Avenue 12','Tuas'],['Tuas South Avenue 2','Tuas'],
+ ['Clementi Road','Clementi'],['Commonwealth Avenue','Queenstown'],['Alexandra Road','Queenstown'],['Leng Kee Road','Queenstown'],['Henderson Road','Bukit Merah'],['Jalan Bukit Merah','Bukit Merah'],['Pasir Panjang Road','Pasir Panjang'],
+ ['Ayer Rajah Crescent','Queenstown'],['Science Park Drive','Queenstown'],['Bukit Timah Road','Bukit Timah'],['Tanglin Road','Tanglin'],['Orchard Road','Orchard'],['Beach Road','Beach Road'],['North Bridge Road','Bugis'],['Victoria Street','Bugis'],
+ ['Anson Road','Tanjong Pagar'],['Cecil Street','Raffles Place'],['Robinson Road','Raffles Place'],['Shenton Way','Tanjong Pagar'],['Marina Boulevard','Marina Bay']];
+function streetArea(text){ var low=String(text||'').toLowerCase(), st=STREETS.filter(function(x){return low.indexOf(x[0].toLowerCase())>-1})[0]; return st?st[1]:'' }
 function sectorArea(code){ var n=+String(code).slice(0,2), m=SECT.find(function(x){return n>=x[0]&&n<=x[1]}); return m?m[2]:'' }
 function addrLine(c){ return [c.addr,c.unit,c.bld,c.postal?'Singapore '+c.postal:''].filter(Boolean).join(', ') }
 function mapQ(c){ return c.postal?'Singapore '+c.postal:c.addr }
@@ -1054,7 +1203,7 @@ function sugText(x){ return [x.street,x.bld,'Singapore '+x.postal].filter(Boolea
 function applyAddr(c,text,unit){
   var a=addrParse(text);
   if(a.postal){ if(!a.known){ var parts=a.street.split(/,\s*/); a.street=parts[0]||''; a.bld=parts.slice(1).join(', '); } c.postal=a.postal; c.addr=a.street; c.bld=a.bld; c.area=a.area; }
-  else { var same=!c.postal&&a.street===c.addr; c.postal=''; c.addr=a.street; c.bld=''; if(!same) c.area=''; }
+  else { var same=!c.postal&&a.street===c.addr; c.postal=''; c.addr=a.street; c.bld=''; if(!same) c.area=streetArea(a.street); }
   c.unit=unit;
 }
 /* suggestions from the sample table. The web version adds live results. */
@@ -1064,6 +1213,13 @@ function addrLocal(q){
   Object.keys(POSTAL).forEach(function(code){ var k=POSTAL[code], text=(k[0]+' '+k[1]+' '+k[2]+' singapore '+code).toLowerCase();
     var hit=dg===low?code.indexOf(dg)===0:words.every(function(w){return text.indexOf(w)>-1});
     if(hit) out.push({postal:code,street:k[0],bld:k[1],area:k[2]}); });
+  if(dg===low) return out.slice(0,5);
+  /* a street: the number of the building, if he typed one, stays in front of the name */
+  var num=(low.match(/^(\d+[a-z]?)\s+/)||[])[1]||'', rest=(num?low.slice(num.length):low).trim().split(/[\s,]+/).filter(Boolean);
+  if(rest.join('').length>=2) STREETS.forEach(function(st){ var text=(st[0]+' '+st[1]).toLowerCase();
+    if(!rest.every(function(w){return text.indexOf(w)>-1})) return;
+    var street=(num?num.toUpperCase()+' ':'')+st[0]; if(out.some(function(o){return o.street.toLowerCase()===street.toLowerCase()})) return;
+    out.push({postal:'',street:street,bld:'',area:st[1]}); });
   return out.slice(0,5);
 }
 var MAPMODE=QS.map||(((/github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname))||location.protocol==='file:')&&navigator.onLine!==false?'live':'sample');
@@ -1093,13 +1249,15 @@ function addrMap(){
   else mapClear();
 }
 function sugShow(){
-  var sh=S.sheet, box=$('#c-sug'), inp=$('#c-addr'); if(!sh||!box) return; var list=sh.sug||[];
-  box.innerHTML=list.length?'<div class="sug" role="listbox" aria-label="Suggested addresses">'+list.map(function(x,i){return '<button type="button" class="sugi" role="option" data-act="pickaddr" data-i="'+i+'">'+ic('pin')+'<span><b>'+esc(x.street)+'</b>'+(x.bld?', '+esc(x.bld):'')+'<small>Singapore '+x.postal+(x.area?' · '+esc(x.area):'')+'</small></span></button>'}).join('')+'</div>':'';
+  var sh=S.sheet, box=$('#c-sug'), inp=$('#c-addr'); if(!sh||!box) return; var list=sh.sug||[], v=inp?inp.value.trim():'';
+  box.innerHTML=list.length?'<div class="sug" role="listbox" aria-label="Suggested addresses">'+list.map(function(x,i){return '<button type="button" class="sugi" role="option" data-act="pickaddr" data-i="'+i+'">'+ic('pin')+'<span><b>'+esc(x.street)+'</b>'+(x.bld?', '+esc(x.bld):'')+'<small>'+(x.postal?'Singapore '+x.postal:'Street')+(x.area?' · '+esc(x.area):'')+'</small></span></button>'}).join('')+'</div>'
+    :(v.length>=3&&v!==sh.picked&&!sh.addr.postal?'<p class="sugnone">No address found yet. Type more of the street name, or the 6 digits of the postal code.</p>':'');
   if(inp) inp.setAttribute('aria-expanded',String(!!list.length));
 }
 function addrPick(x){
   var sh=S.sheet, inp=$('#c-addr'); if(!sh||!inp) return;
-  inp.value=sugText(x); sh.picked=inp.value; sh.addr={q:inp.value,postal:x.postal,street:x.street,bld:x.bld,area:x.area||sectorArea(x.postal),known:true}; sh.sug=[]; sugShow(); addrMap();
+  inp.value=x.postal?sugText(x):x.street; sh.picked=inp.value; sh.addr={q:inp.value,postal:x.postal,street:x.street,bld:x.bld,area:x.area||sectorArea(x.postal),known:!!x.postal}; sh.sug=[]; sugShow(); addrMap();
+  if(!x.postal){ try{ inp.focus({preventScroll:true}); }catch(e){} }
 }
 function addrInput(v){
   var sh=S.sheet; sh.addr=addrParse(v); clearTimeout(addrT); clearTimeout(addrT2);
@@ -1124,7 +1282,7 @@ function liveSuggest(q){
    }).catch(function(){ clearTimeout(t) });
 }
 function addrFields(c){
-  return '<div class="f"><label for="c-addr">Address <span class="optl">(optional)</span></label><input id="c-addr" data-ft="addr" type="text" maxlength="120" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="c-sug" aria-describedby="c-addr-e" placeholder="Example: 408564 or Ubi Crescent" value="'+esc(c?addrText(c):'')+'">'+
+  return '<div class="f"><label for="c-addr">Address <span class="optl">(optional)</span></label><input id="c-addr" data-ft="addr" type="text" maxlength="120" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="c-sug" aria-describedby="c-addr-e" placeholder="Example: 408564, Ubi Crescent or Ubi Techpark" value="'+esc(c?addrText(c):'')+'">'+
    ferrP('c-addr')+'<div id="c-sug"></div><div id="c-map"></div></div>'+
    fld('c-unit','Unit number','unit',{val:c?c.unit||'':''});
 }
@@ -1139,14 +1297,29 @@ var won=function(){return WONBASE+sum(D.filter(function(d){return d.stage==='Won
 /* ---------- do first: the points rule ---------- */
 var CHANCE={New:.2,Sample:.4,Trial:.6,Quote:.8};
 function points(t){
-  var d=deal(t.deal), c=cust(t.cust); if(!d||!c||!isOpen(d)) return 0;
-  var base=d.value*CHANCE[d.stage], wait=0; if(c.late) base/=3;
+  var d=deal(t.deal), c=cust(t.cust); if(!c) return 0;
+  /* a late payment: a base, the amount, and one point for each day that it is late */
+  if(t.pay) return c.late?40+c.late.amt+Math.min(30,c.late.days):0;
+  if(!d||!isOpen(d)) return 0;
+  var base=d.value*CHANCE[d.stage], wait=0;
   if(c.promises.some(function(p){return !p.done&&p.iso&&p.iso<=TODAY})) wait+=50;
   if(d.wait==='you') wait+=Math.min(30,d.touch*10);
   else { var over=d.touch-(d.limit||LIMIT[d.stage]); if(over>0) wait+=Math.min(30,over*5); }
   return base+wait;
 }
-
+/* who to ask about a payment: the accounts contact, if the record has one */
+function payContact(c){ return c.people.filter(function(p){return /account|finance/i.test(p.role||'')})[0]||c.people[0] }
+/* the plan that the rules of the finance team permit: one payment for a small amount, or three payments in six weeks */
+function payPlan(amt){
+  if(amt<=5) return {rows:[[isoAdd(7),amt]],rule:'The finance rules give 7 more days for an amount of $5k or less.'};
+  var part=Math.round(amt/3*10)/10;
+  return {rows:[[isoAdd(7),part],[isoAdd(21),part],[isoAdd(35),Math.round((amt-2*part)*10)/10]],rule:'The finance rules permit 3 payments in 6 weeks for an amount of this size. A new order can start after the first payment.'};
+}
+function payText(c){
+  var L=c.late, p=payContact(c), pl=payPlan(L.amt), ds=pl.rows.map(function(r){return fmt(r[0])});
+  return 'Hi '+p.call+', the invoice of '+money(L.amt)+' was due on '+fmtBack(L.days)+'. It is '+L.days+' days late. Can you pay it this week? '+
+   (pl.rows.length>1?'If that is difficult, we can agree on '+pl.rows.length+' payments of '+money(pl.rows[0][1])+': on '+ds.slice(0,-1).join(', ')+' and '+ds[ds.length-1]+'.':'If that is difficult, we can agree on '+ds[0]+'.')+' Tell me what works for you. Daniel';
+}
 /* ---------- large sample: 62 more customers, made by a fixed rule so they are the same on each load ---------- */
 var BASE={C:JSON.stringify(C),D:JSON.stringify(D),T:JSON.stringify(T),V:JSON.stringify(VISITS)};
 function fmtBack(n){ if(n<=0) return 'Today'; var d=new Date(2026,9,5-n); return DAYS3[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()] }
@@ -1194,10 +1367,10 @@ function genData(n){
     var nf=pick([0,0,1,2,3,5,9]), fl=FILES.slice(); for(k=0;k<nf;k++) c.files.push(fl.splice(Math.floor(r()*fl.length),1)[0]);
     cs.push(c);
     var od=ds.filter(function(x){return x.cust===id&&x.stage!=='Lost'}).sort(function(a,b){return b.value-a.value}), need=od.filter(function(x){return x.wait==='you'||x.touch>LIMIT[x.stage]})[0];
-    if(c.late&&od[0]) ts.push({id:'t'+id,cust:id,deal:od[0].id,title:'Ask '+call0+' about the late payment',why:name+' owes S$'+c.late.amt+'k, '+c.late.days+' days late.',act:'call',label:'Call '+call0,bad:'Payment late'});
+    if(c.late) ts.push({id:'t'+id,cust:id,deal:od[0]?od[0].id:'',pay:true,title:'Ask '+call0+' about the late payment of '+money(c.late.amt),why:name+' owes '+money(c.late.amt)+'. It is '+c.late.days+' days late.',act:'late',label:'See the plan',bad:'Payment late'});
     else if(need) ts.push(need.wait==='you'
-      ?{id:'t'+id,cust:id,deal:need.id,title:'Reply to '+call0,why:name+' waits for your reply. '+need.last+' '+ago(need.touch).toLowerCase()+'. The deal is worth '+money(need.value)+'.',act:'msg',label:'Open draft'}
-      :{id:'t'+id,cust:id,deal:need.id,title:'Check in with '+call0,why:need.last+' at '+name+' '+need.touch+' days ago, no reply since.',act:'msg',label:'Open draft'});
+      ?{id:'t'+id,cust:id,deal:need.id,title:{'Price asked':'Send '+call0+' the price','Question asked':'Answer the question of '+call0,'Samples asked':'Send '+call0+' the samples'}[need.last],why:name+' waits for your reply. '+need.last+' '+ago(need.touch).toLowerCase()+'. The deal is worth '+money(need.value)+'.',act:'msg',label:'Open draft'}
+      :{id:'t'+id,cust:id,deal:need.id,title:{New:'Ask '+call0+' what they need',Sample:'Ask '+call0+' how the samples worked',Trial:'Ask '+call0+' for the result of the trial',Quote:'Ask '+call0+' about the quote'}[need.stage],why:need.last+' at '+name+' '+need.touch+' days ago. No reply since.',act:'msg',label:'Open draft'});
   }
   return {C:cs,D:ds,T:ts};
 }
@@ -1209,19 +1382,37 @@ function loadData(n){
   var pts={}; T.forEach(function(t){pts[t.id]=points(t)}); T.sort(function(a,b){return pts[b.id]-pts[a.id]});
 }
 /* ---------- state ---------- */
-var S={device:'phone',tab:'brief',rec:null,sheet:null,wx:'storm',clock:'',dayAll:{},just:null,fan:false,more:false,plan:true,sales:false,done:{},stage:null,q:'',f:'all',sort:'name',edit:false,draft:null,attnAll:false,weekAll:false,recN:20,page:0,tlN:5,secAll:{},kept:{},
+var S={device:'phone',tab:'brief',rec:null,sheet:null,wx:'storm',clock:'',dayAll:{},just:null,fan:false,more:false,plan:true,sales:false,done:{},stage:null,q:'',f:'all',fs:null,fw:2,notes:[],notesAll:false,sort:'name',edit:false,draft:null,attnAll:false,weekAll:false,recN:20,page:0,tlN:5,secAll:{},kept:{},
        set:{size:'m',hc:false,rm:false,left:false,tips:true,warn:true,tidy:true,draft:true,top:true,wx:true,lang:'English'}};
 var app=$('#app'), screenEl=$('#screen'), toastEl=$('#toast');
 var talkTimer=null, toastTimer=null, holdTimer=null, held=false, swallow=0, tidyTimers=[], addrT=null, addrT2=null;
 
 /* ---------- tidy up: pulls customer, next step and date out of a note ---------- */
 var DATE_RE=/\b(today|tomorrow|next week|sunday|monday|tuesday|wednesday|thursday|friday|saturday|sun|mon|tue|tues|wed|thu|thur|thurs|fri|sat)\b/i;
-var ACT_RE=/\b(send|call|quote|visit|email|message|follow up|arrange|bring|deliver|drop off|confirm|book|prepare)\b/i;
+var ACT_RE=/\b(send|call|quote|visit|email|message|follow up|arrange|bring|deliver|drop off|confirm|book|prepare|check|ask|remind|order|meet)\b/i;
+var MON_RE=/\b(\d{1,2})(?:st|nd|rd|th)?(?: of)? (jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\b/i;
+var IN_RE=/\bin (\d+|a|one|two|three|four|five|six|seven|ten) (day|week)s?\b/i, NUMW={a:1,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,ten:10};
+var REPORT_RE=/^(just left|spoke to|spoke with|visited|called|met)\b/i;
+var LEADS='(?:(?:and|then|so|also|please|i will|i\'ll|i must|i should|i need to|i have to|we will|need to|remember to)\\s+)';
+var START_RE=new RegExp('^'+LEADS+'*'+ACT_RE.source.slice(2),'i'), LEAD_RE=new RegExp('^'+LEADS,'i');
+var CUT_RE=new RegExp('^(.*?)(?:(?:,\\s*|\\s+)(?:(?:to|will|must|should|and|then|so|please)\\s+)+|,\\s*)('+ACT_RE.source.slice(2)+'.*)$','i');
+var TAIL_RE=/[\s,]*\b(?:and|so|then|i|we|me|us|asked|wants|wanted|told|says|said|that|need|needs|have|has|she|he|they)[\s,]*$/i;
+var PRODK=[['Wilflex white',/wilflex white/],['Wilflex colours',/wilflex colou?rs?/],['Low cure white',/low cure/],['Water based range',/water[- ]based/],['Rutland special effects',/rutland|special effects/],['Union Ink',/union ink/]];
 function dueFrom(word){
   var w=word.toLowerCase(), add=null, check=false;
   if(w==='today') add=0; else if(w==='tomorrow') add=1; else if(w==='next week'){add=7;check=true;}
   else { var i=DAYN.findIndex(function(d){return d.indexOf(w.slice(0,3))===0}); if(i>-1){ add=(i-1+7)%7; if(add===0) add=7; check=true; } }
   return add===null?null:{iso:isoAdd(add),check:check,word:word};
+}
+/* the date in one sentence: a day name, "tomorrow", "in two days", "12 Oct". The word is kept, so the tool can show what it read. */
+function dueOf(sent){
+  var m, d, n;
+  if((m=sent.match(/\bday after tomorrow\b/i))) return {iso:isoAdd(2),check:false,word:m[0]};
+  if((m=sent.match(IN_RE))){ n=+m[1]||NUMW[m[1].toLowerCase()]; return {iso:isoAdd(n*(/week/i.test(m[2])?7:1)),check:false,word:m[0]}; }
+  if((m=sent.match(MON_RE))&&+m[1]>=1&&+m[1]<=31){ var mi=MON.findIndex(function(x){return x.toLowerCase()===m[2].toLowerCase().slice(0,3)}), y=2026,
+      iso=function(){return y+'-'+('0'+(mi+1)).slice(-2)+'-'+('0'+m[1]).slice(-2)}; if(iso()<TODAY) y++; return {iso:iso(),check:false,word:m[0]}; }
+  if((m=sent.match(DATE_RE))){ d=dueFrom(m[1]); if(d) return d; }
+  return null;
 }
 function findCust(low,hint){
   var c=C.find(function(x){return x.keys.some(function(k){return low.indexOf(k)>-1})});
@@ -1229,22 +1420,62 @@ function findCust(low,hint){
   if(!c&&hint) c=cust(hint);
   return c||null;
 }
+/* The next step can be in any sentence, and at any place in the sentence. The date can be in a different sentence. */
 function tidy(raw,hint){
   var text=raw.trim(), low=text.toLowerCase(), c=findCust(low,hint);
-  var sents=(text.match(/[^.!?]+[.!?]*/g)||[text]).map(function(s){return s.trim()}).filter(Boolean);
-  var nextS=sents.find(function(s){return ACT_RE.test(s)&&DATE_RE.test(s)})||sents.find(function(s){return new RegExp('^'+ACT_RE.source.slice(2),'i').test(s)})||'';
-  var m=(nextS&&nextS.match(DATE_RE))||null, due=m?dueFrom(m[1]):null;
-  var next=nextS.replace(/[.!?]+$/,'').replace(new RegExp('\\s*\\b(by|on|before|this|next)?\\s*'+DATE_RE.source.slice(2),'i'),'').replace(/\s+/g,' ').trim();
-  if(next) next=next.charAt(0).toUpperCase()+next.slice(1);
-  var rest=sents.filter(function(s){ if(s===nextS) return false; if(/^(just left|spoke to|spoke with|visited|called|met)\b/i.test(s)) return false;
-    if(c&&c.keys.some(function(k){return s.toLowerCase().replace(/[.!?]+$/,'').indexOf(k)===0&&s.length<c.name.length+3})) return false; return true; });
+  var sents=(text.match(/[^.!?\n]+[.!?]*/g)||[text]).map(function(x){return x.trim()}).filter(Boolean);
+  var acts=sents.filter(function(x){return ACT_RE.test(x)&&!REPORT_RE.test(x)});
+  var nextS=acts.find(function(x){return !!dueOf(x)})||acts.find(function(x){return START_RE.test(x)})||acts[0]||'';
+  var due=nextS?dueOf(nextS):null, far=false;
+  if(nextS&&!due){ var o=sents.find(function(x){return x!==nextS&&!REPORT_RE.test(x)&&!!dueOf(x)}); if(o){ due=dueOf(o); far=true; } }
+  var next=nextS.replace(/[.!?]+$/,''), head='';
+  if(next&&!START_RE.test(next)){ var cut=next.match(CUT_RE); if(cut){ head=cut[1]; next=cut[2]; while(TAIL_RE.test(head)) head=head.replace(TAIL_RE,''); head=head.replace(/[\s,]+$/,''); if(head.split(/\s+/).length<3) head=''; } }
+  while(LEAD_RE.test(next)) next=next.replace(LEAD_RE,'');
+  if(due&&!far) next=next.replace(new RegExp('\\s*,?\\s*\\b(?:by|on|before|until|this|next|for)?\\s*(?:the\\s+)?'+due.word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i'),'');
+  next=next.replace(/\s+/g,' ').trim(); if(next) next=next.charAt(0).toUpperCase()+next.slice(1);
+  var rest=[]; sents.forEach(function(x){
+    if(x===nextS){ if(head) rest.push(head+'.'); return; }
+    if(REPORT_RE.test(x)) return;
+    if(c&&c.keys.some(function(k){return x.toLowerCase().replace(/[.!?]+$/,'').indexOf(k)===0&&x.length<c.name.length+3})) return;
+    rest.push(x); });
   var d=c?openOf(c.id)[0]:null, stageTo=d?d.stage:null;
   if(d){ if(/\b(order confirmed|confirmed the order|placed the order|signed)\b/.test(low)) stageTo='Won';
     else if(/\b(trial|test)\b/.test(low)) stageTo='Trial'; else if(/\b(quote|price)\b/.test(low)) stageTo='Quote'; else if(/\bsamples?\b/.test(low)) stageTo='Sample'; }
-  var prods=RANGES.filter(function(r){return low.indexOf(r.toLowerCase())>-1});
-  return {raw:text,cust:c?c.id:'',sure:!!c,summary:rest.join(' ')||text,next:next,iso:due?due.iso:'',dueCheck:due&&due.check?due.word:'',deal:d?d.id:'',stageTo:stageTo,prods:prods};
+  var prods=PRODK.filter(function(p){return p[1].test(low)}).map(function(p){return p[0]});
+  return {raw:text,cust:c?c.id:'',sure:!!c,summary:rest.join(' ')||text,what:rest.join(' '),next:next,iso:due?due.iso:'',dueCheck:due&&due.check&&!far?due.word:'',dueFar:!!(due&&far),deal:d?d.id:'',stageTo:stageTo,prods:prods};
 }
-
+/* ---------- the parts of a good note: each label gets a tick when the tool finds that part ---------- */
+var GUIDE=[['cust','Customer'],['what','What happened'],['next','Next step'],['date','Date'],['prod','Product']];
+function guideFound(text,hint){ if(!text||!text.trim()) return {cust:!!hint}; var r=tidy(text,hint); return {cust:!!r.cust,what:!!r.what,next:!!r.next,date:!!r.iso,prod:r.prods.length>0}; }
+function guideHTML(text,hint,small){
+  var f=guideFound(text,hint);
+  return '<div class="gd2'+(small?' sm':'')+'" id="n-guide"><p class="gl">'+hue(13)+'<span>A good note says these things. '+AI+' ticks each one that it finds.</span></p>'+
+   '<div class="gchips" role="list">'+GUIDE.map(function(g){return '<span class="gc'+(f[g[0]]?' ok':'')+'" role="listitem" data-g="'+g[0]+'" aria-label="'+g[1]+(f[g[0]]?': found':': not found yet')+'">'+ic('tick')+g[1]+'</span>'}).join('')+'</div>'+
+   (small?'':'<button class="link" data-act="gex" aria-expanded="false" aria-controls="n-gex">See an example</button><p class="gex" id="n-gex" hidden>Spoke to Mei Ling at <b>Ace Tees</b>. <b>She wants to test</b> the <b>water based</b> white first. <b>Send two kilos of sample</b> by <b>Friday</b>.</p>')+'</div>';
+}
+function guideSync(text,hint){
+  var box=$('#n-guide'); if(!box) return; var f=guideFound(text,hint);
+  box.querySelectorAll('.gc').forEach(function(el){ var on=!!f[el.dataset.g]; if(on!==el.classList.contains('ok')){ el.classList.toggle('ok',on); el.setAttribute('aria-label',el.textContent+(on?': found':': not found yet')); } });
+}
+/* ---------- notes to check: a note that he kept for later. It is not in the record yet. ---------- */
+var NOTEN=0, SRCN={talk:'Voice note',type:'Typed note',write:'Written note',photo:'Photo note'}, SRCI={talk:'mic',type:'key',write:'pen',photo:'cam'};
+function clone(o){ return JSON.parse(JSON.stringify(o)) }
+function noteLater(o,id){
+  var n=id?S.notes.find(function(x){return x.id===id}):null;
+  if(n){ if(o.draft){ n.draft=clone(o.draft); n.cust=o.draft.cust||''; } return n.id; }
+  var raw=o.draft?o.draft.raw:o.raw, c=o.draft?(o.draft.cust?cust(o.draft.cust):null):findCust(raw.toLowerCase(),o.hint);
+  n={id:'n'+(++NOTEN),src:o.draft?o.draft.src:o.src,raw:raw,hint:o.hint||null,cust:c?c.id:'',at:clockText(nowMin()),draft:o.draft?clone(o.draft):null};
+  S.notes.unshift(n); return n.id;
+}
+function noteGone(id){ S.notes=S.notes.filter(function(x){return x.id!==id}); if(S.notes.length<4) S.notesAll=false; }
+function notesHTML(){
+  var a=S.notes; if(!a.length) return '';
+  var show=S.notesAll?a:a.slice(0,3), more=a.length-3;
+  return '<section class="bsec kept notes" id="b-notes"><h2 class="sec"><span class="hl">Notes to check</span><span class="count">'+a.length+' not in the record yet</span></h2><div class="stack">'+
+   show.map(function(n){ var c=n.cust?cust(n.cust):null;
+     return '<button class="row" data-act="notecheck" data-id="'+n.id+'">'+ic(SRCI[n.src])+'<span><b>'+SRCN[n.src]+(c?' for '+esc(c.name):'')+'</b><br><span class="r2">'+esc(n.raw.replace(/\s+/g,' '))+'</span></span><span class="rr"><span class="r2">'+n.at+'</span>'+ic('go')+'</span></button>'}).join('')+'</div>'+
+   (more>0?'<button class="btn btn-quiet wide" data-act="notesall" aria-expanded="'+S.notesAll+'">'+(S.notesAll?'Show fewer':'Show '+more+' more')+'</button>':'')+'</section>';
+}
 /* ---------- brief pieces ---------- */
 var WXK={sun:{w:'Sunny',icon:'sun',fx:'sunny'},cloud:{w:'Cloudy',icon:'cloud',fx:'cloudy'},rain:{w:'Showers',icon:'rain',fx:'showers',tip:'Keep an umbrella in the car.'},storm:{w:'Storms',icon:'bolt',fx:'storm',tip:'Leave 15 minutes early.'}};
 /* four sample days. Each day has three parts, like the forecast of the national weather service: morning, afternoon, evening. */
@@ -1254,9 +1485,24 @@ var WX={sunny:[['sun',31],['sun',33],['cloud',29]],cloudy:[['cloud',29],['cloud'
 var PARTS=['Morning','Afternoon','Evening'];
 function nowMin(){ if(S.clock){ var p=S.clock.split(':'); return +p[0]*60+(+p[1]||0); } var d=new Date(); return d.getHours()*60+d.getMinutes() }
 function partNow(){ var m=nowMin(); return m<720?0:m<1080?1:2 }
-function wxFx(k){
+/* weather icons that move, drawn on a grid of 48 by 48 */
+var WCLOUD='M15 35h19a7.5 7.5 0 0 0 1-14.9A10.5 10.5 0 0 0 15 22a6.5 6.5 0 0 0 0 13z';
+var WRAYS=(function(){ var o='',i; for(i=0;i<8;i++){ var a=i*Math.PI/4, c=Math.cos(a), n=Math.sin(a); o+='<line x1="'+(24+c*14).toFixed(1)+'" y1="'+(24+n*14).toFixed(1)+'" x2="'+(24+c*19).toFixed(1)+'" y2="'+(24+n*19).toFixed(1)+'"/>' } return o })();
+var WXI={
+ sun:'<circle class="wh" cx="24" cy="24" r="16" fill="#F8D774"/><g class="wr" stroke="#E9A800" stroke-width="3" stroke-linecap="round">'+WRAYS+'</g><circle cx="24" cy="24" r="9.5" fill="#F6C343" stroke="#E9A800" stroke-width="1.5"/>',
+ cloud:'<g class="wc"><path d="'+WCLOUD+'" fill="#fff" stroke="#8FA4B6" stroke-width="2" stroke-linejoin="round"/></g>',
+ storm:'<g class="wc"><path d="'+WCLOUD+'" transform="translate(0 -6)" fill="#CBD6E0" stroke="#6F8598" stroke-width="2" stroke-linejoin="round"/></g><polygon class="wb" points="25,29 19,39 24,39 21,47 31,35 26,35 29,29" fill="#F2B52B" stroke="#C98E0A" stroke-width="1" stroke-linejoin="round"/><g stroke="#3274AE" stroke-width="2.4" stroke-linecap="round"><line class="wd" x1="13" y1="34" x2="11" y2="39"/><line class="wd" x1="36" y1="34" x2="34" y2="39"/></g>',
+ rain:'<g class="wc"><path d="'+WCLOUD+'" transform="translate(0 -6)" fill="#E3EAF0" stroke="#8FA4B6" stroke-width="2" stroke-linejoin="round"/></g><g stroke="#3274AE" stroke-width="2.4" stroke-linecap="round"><line class="wd" x1="17" y1="34" x2="15" y2="40"/><line class="wd" x1="25" y1="34" x2="23" y2="40"/><line class="wd" x1="33" y1="34" x2="31" y2="40"/></g>',
+ night:'<path d="M33 6a10 10 0 1 0 9 14.5A8 8 0 0 1 33 6z" fill="#F3D98B" stroke="#C9A93F" stroke-width="1.5" stroke-linejoin="round"/><circle class="wh" cx="14" cy="10" r="1.6" fill="#C9A93F"/><g class="wc"><path d="'+WCLOUD+'" transform="translate(-3 4)" fill="#fff" stroke="#8FA4B6" stroke-width="2" stroke-linejoin="round"/></g>',
+ moon:'<path d="M30 8a15 15 0 1 0 12 22A12 12 0 0 1 30 8z" fill="#F3D98B" stroke="#C9A93F" stroke-width="1.5" stroke-linejoin="round"/><circle class="wh" cx="12" cy="12" r="1.8" fill="#C9A93F"/><circle class="wh" cx="18" cy="38" r="1.4" fill="#C9A93F"/>'
+};
+function wxi(k,size){ return '<svg class="wxa" width="'+size+'" height="'+size+'" viewBox="0 0 48 48" aria-hidden="true">'+WXI[k]+'</svg>' }
+/* in the evening, the sun is a moon and a cloud has a moon behind it */
+function wxKey(f,i){ return i===2?(f==='sun'?'moon':f==='cloud'?'night':f):f }
+function wxFx(k,night){
   var t=Date.now()/1000, ph=function(dur,off){return '-'+((t+off)%dur).toFixed(2)+'s'}, h='', i;
-  if(k==='sunny') h='<i class="sun"></i><i class="ring"></i><i class="ring r2"></i>';
+  if(night){ for(i=0;i<14;i++) h+='<i class="star" style="left:'+((i*29+7)%96)+'%;top:'+((i*17+9)%70)+'%;animation-delay:'+ph(3+i%4,i*0.7)+'"></i>'; if(k==='sunny') h+='<i class="moon"></i>'; }
+  if(k==='sunny'){ if(!night) h+='<i class="sun"></i><i class="ring"></i><i class="ring r2"></i>'; }
   else for(i=0;i<3;i++) h+='<i class="cl c'+i+'" style="animation-delay:'+ph(38+i*9,i*13)+'"></i>';
   if(k==='showers'||k==='storm'){ var n=k==='storm'?24:14; for(i=0;i<n;i++){ var du=0.7+(i%5)*0.09; h+='<i class="drop" style="left:'+((i*37+11)%104)+'%;animation-duration:'+du.toFixed(2)+'s;animation-delay:'+ph(du,i*0.23)+'"></i>'; } }
   if(k==='storm') h+='<i class="flash" style="animation-delay:'+ph(7,0)+'"></i><svg class="bolt" style="animation-delay:'+ph(7,0)+'" viewBox="0 0 20 40"><path d="M11 0L2 22h7L6 40l12-24h-7z"/></svg>';
@@ -1274,18 +1520,23 @@ function helloHTML(){
   if(wxOn){
     var rank={storm:2,showers:1}, worst=function(vs,d){return vs.filter(function(v){return rank[KD(d,v.part).fx]}).sort(function(a,b){return rank[KD(d,b.part).fx]-rank[KD(d,a.part).fx]})[0]};
     var up=visitsToday().filter(function(v){return mins(v.when)>nm-15}), kn=KD(0,pn), line;
-    bg=kn.fx;
+    bg=kn.fx;   /* the background has the colour and the movement of the weather now */
     if(up.length){ var hit=worst(up,0);
-      if(hit){ var k=KD(0,hit.part); bg=k.fx; line=ic(k.icon)+'<b>'+k.w+' at '+hit.when+'</b>, when you visit '+esc(cust(hit.cust).name)+'. '+k.tip; }
+      if(hit){ var k=KD(0,hit.part); line=ic(k.icon)+'<b>'+k.w+' at '+hit.when+'</b>, when you visit '+esc(cust(hit.cust).name)+'. '+k.tip; }
       else line=ic(kn.icon)+'<b>No rain at your '+(up.length===1?'next visit':'visits')+' today.</b> '+kn.w+' now.';
     } else { var tv=visitsOn(TOMORROW), th=worst(tv,1);
       line=ic(kn.icon)+'<b>'+kn.w+' now.</b>'+(th?' Tomorrow: '+KD(1,th.part).w.toLowerCase()+' at '+th.when+', when you visit '+esc(cust(th.cust).name)+'. '+KD(1,th.part).tip:tv.length?' Tomorrow: no rain at your '+(tv.length===1?'visit':'visits')+'.':'');
     }
-    var parts=[0,1,2].map(function(j){ var i=pn+j, d=i>2?1:0; i=i%3; var f=(d?WX2:WX)[S.wx][i]; return {k:WXK[f[0]],t:f[1],now:j===0,label:j===0?'Now':d?DAYS3[dOf(TOMORROW).getDay()]+' '+PARTS[i].toLowerCase():PARTS[i],say:(d?'Tomorrow '+PARTS[i].toLowerCase():PARTS[i]+(j===0?', now':''))} });
+    /* now, the other parts of today, and the three parts of tomorrow */
+    var parts=[], j, tom=DAYS3[dOf(TOMORROW).getDay()];
+    for(j=0;j<=(2-pn)+3;j++){ var i=pn+j, d=i>2?1:0, ii=i%3, f=(d?WX2:WX)[S.wx][ii];
+      parts.push({k:WXK[f[0]],key:wxKey(f[0],ii),t:f[1],label:j===0?'Now':d?tom+' '+PARTS[ii].toLowerCase():PARTS[ii],say:j===0?'Now':d?'Tomorrow '+PARTS[ii].toLowerCase():PARTS[ii]}); }
+    var now=parts[0];
     body='<p class="wxline">'+line+'</p>'+
-      '<p class="wxrow" role="group" aria-label="Weather for the next hours">'+parts.map(function(p){return '<span class="wxi'+(p.now?' now':'')+'" role="img" aria-label="'+p.say+': '+p.k.w+', '+p.t+' degrees">'+ic(p.k.icon)+'<i>'+p.label+'</i><b>'+p.t+'°</b></span>'}).join('')+'</p>';
+      '<div class="wxnow"><span class="wxbig" role="img" aria-label="Now: '+now.k.w+', '+now.t+' degrees">'+wxi(now.key,40)+'<span><b>'+now.t+'°</b><i>Now</i></span></span>'+
+      '<div class="wxtick" data-drag role="group" tabindex="0" aria-label="The next parts of today and tomorrow. Slide to see more.">'+parts.slice(1).map(function(p){return '<span role="img" aria-label="'+p.say+': '+p.k.w+', '+p.t+' degrees">'+wxi(p.key,22)+p.label+' <b>'+p.t+'°</b></span>'}).join('')+'</div></div>';
   }
-  return '<header class="hero'+(bg?' wx-'+bg:'')+'" aria-label="Greeting'+(wxOn?' and weather':'')+'">'+(bg?wxFx(bg):'')+'<div class="hero-in">'+
+  return '<header class="hero'+(bg?' wx-'+bg:'')+(bg&&pn===2?' night':'')+(bg&&(pn===2||bg==='storm')?' dark':'')+'" aria-label="Greeting'+(wxOn?' and weather':'')+'">'+(bg?wxFx(bg,pn===2):'')+'<div class="hero-in">'+
    '<p class="date"><span>Monday 5 October · Singapore</span>'+(wxOn?'<a class="wxlink" href="https://www.weather.gov.sg/" target="_blank" rel="noopener">Full forecast'+ic('out')+'</a>':'')+'</p>'+
    '<h1 class="greet">'+hue(26,hi?'hi':'',hi?'style="--d:-'+el+'ms"':'')+'<span>Good '+part+', Daniel</span></h1>'+
    (body?'<div class="wxblock">'+body+'</div>':'')+
@@ -1328,10 +1579,10 @@ function weekHTML(){
 }
 function taskHTML(t){
   var done=S.done[t.id], d=deal(t.deal), chips='', write=t.act==='msg'&&!S.set.draft;
-  if(!done&&d&&S.set.warn&&isQuiet(d)) chips+=chip('warn','Quiet for '+d.touch+' days');
+  if(!done&&d&&S.set.warn&&isQuiet(d)) chips+=chip('warn','No reply for '+d.touch+' days');
   if(!done&&t.bad) chips+=chip('bad',t.bad);
   return '<div class="task'+(done?' done':'')+(S.just===t.id?' pop':'')+'"><button class="tick" data-act="done" data-id="'+t.id+'" aria-pressed="'+!!done+'" aria-label="'+(done?'Done. Tap to undo: ':'Mark as done: ')+esc(t.title)+'">'+ic('tick')+'</button>'+
-   '<div><button class="title" data-act="rec" data-id="'+t.cust+'">'+esc(t.title)+'</button><span class="why">'+(done?(done===2?'Done by your note.':'Done.'):esc(t.why))+'</span>'+
+   '<div><button class="title" data-act="rec" data-id="'+t.cust+'">'+esc(t.title)+'</button><span class="why">'+(done?(done===2?'Done. '+AI+' ticked it when you saved your note.':'Done.'):esc(t.why))+'</span>'+
    (chips?'<span class="chips">'+chips+'</span>':'')+
    (done?'':'<span class="acts"><button class="btn btn-soft" data-act="'+t.act+'" data-id="'+t.cust+'" data-deal="'+t.deal+'">'+(t.act==='call'?ic('phone'):t.act==='rec'?ic('file'):write?ic('msg'):hue(14))+(write?'Write message':t.label)+'</button></span>')+'</div></div>';
 }
@@ -1341,7 +1592,7 @@ function visitHTML(v){
   if(!done){
     meta+='<span class="vmeta">'+ic('pin')+esc(c.area||'No address yet')+'</span>';
     if(S.set.wx&&!past){ if(k.tip) chips+=chip('warn',k.w+'. '+k.tip); else meta+='<span class="vmeta">'+ic(k.icon)+k.w+'</span>'; }
-    if(d&&S.set.warn&&isQuiet(d)) chips+=chip('warn','Quiet for '+d.touch+' days');
+    if(d&&S.set.warn&&isQuiet(d)) chips+=chip('warn','No reply for '+d.touch+' days');
   }
   return '<div class="task visit'+(done?' done':'')+(S.just===id?' pop':'')+'"><button class="tick" data-act="done" data-id="'+id+'" aria-pressed="'+!!done+'" aria-label="'+(done?'Done. Tap to undo: ':'Mark as done: ')+'Visit '+esc(c.name)+'">'+ic('tick')+'</button>'+
    '<div><button class="title" data-act="rec" data-id="'+v.cust+'"><span class="vt">'+v.when+'</span>Visit '+esc(c.name)+'</button><span class="why">'+(done?(done===2?'Done by your note.':'Done.'):esc(v.note||v.why))+'</span>'+
@@ -1361,26 +1612,26 @@ function dayTasks(){
 }
 function topHTML(){
   var on=S.set.top, list=dayTasks(), first=list.slice(0,3), rest=list.slice(3), vs=visitsToday();
-  var doneN=first.filter(function(t){return S.done[t.id]}).length+vs.filter(function(v){return S.done['v-'+v.cust]}).length, total=first.length+vs.length;
-  if(!C.length) return sec('top',hue(15)+'Today','','<div class="estate">'+hue(40)+'<h3>Nothing for today yet</h3><p>Add your first customer. Then '+AI+' shows your visits and your tasks here.</p><button class="btn btn-soft" data-act="newcust">'+ic('plus')+'New customer</button></div>');
-  return sec('top',hue(15)+'Today',total?'<span class="count">'+doneN+' of '+total+' done</span>':'',
-   '<h3 class="grp">Visits<span class="count">In order of time</span></h3>'+
+  var vd=vs.filter(function(v){return S.done['v-'+v.cust]}).length, td=list.filter(function(t){return S.done[t.id]}).length;
+  if(!C.length) return sec('top',hue(15)+'Today','','<div class="estate">'+hue(40)+'<h3>Nothing for today yet</h3><p>Add your first customer. Then '+AI+' shows your visits and your follow ups here.</p><button class="btn btn-soft" data-act="newcust">'+ic('plus')+'New customer</button></div>');
+  return sec('top',hue(15)+'Today','',
+   '<h3 class="grp">Visits<span class="count">'+(vs.length?vd+' of '+vs.length+' done · ':'')+'In order of time</span></h3>'+
    '<div class="stack">'+(vs.map(visitHTML).join('')||'<p class="empty">No visits today.</p>')+'</div>'+
-   '<h3 class="grp">Tasks<span class="count">'+(on?'Most important first':'In order of customer name')+'</span></h3>'+
-   '<div class="stack">'+(first.map(taskHTML).join('')||'<p class="empty">No tasks for today.</p>')+'</div>'+
+   '<h3 class="grp">Follow ups<span class="count">'+(list.length?td+' of '+list.length+' done · ':'')+(on?'Most important first':'In order of customer name')+'</span></h3>'+
+   '<div class="stack">'+(first.map(taskHTML).join('')||'<p class="empty">No follow ups for today.</p>')+'</div>'+
    (rest.length?'<div class="fold'+(S.more?' open':'')+'"><div><div class="stack" style="padding-top:6px">'+rest.map(taskHTML).join('')+'</div></div></div>'+
    '<button class="btn btn-quiet wide" data-act="more" data-n="'+rest.length+'" aria-expanded="'+S.more+'">'+(S.more?'Show fewer':'Show '+rest.length+' more')+'</button>':''));
 }
 function attnHTML(){
   var a=[];
-  if(S.set.warn) D.filter(isQuiet).forEach(function(d){a.push({act:'warn',cust:d.cust,deal:d.id,val:d.value,why:d.last+' '+d.touch+' days ago, no reply since',chip:chip('warn','Quiet '+d.touch+' days')})});
-  C.filter(function(c){return c.late}).forEach(function(c){a.push({act:'rec',cust:c.id,deal:'',val:c.late.amt,why:'Payment is '+c.late.days+' days late',chip:chip('bad','Payment late')})});
+  if(S.set.warn) D.filter(isQuiet).forEach(function(d){a.push({act:'warn',cust:d.cust,deal:d.id,val:d.value,why:d.last+' '+d.touch+' days ago',chip:chip('warn','No reply for '+d.touch+' days')})});
+  C.filter(function(c){return c.late}).forEach(function(c){a.push({act:'late',cust:c.id,deal:'',val:c.late.amt,why:'Payment is '+c.late.days+' days late',chip:chip('bad','Payment late')})});
   a.sort(function(x,y){return y.val-x.val});
   var show=S.attnAll?a:a.slice(0,4);
   return sec('attn','Needs attention','<span class="count">'+(a.length?a.length+(a.length===1?' customer':' customers'):'')+'</span>','<div class="stack">'+
-   (show.map(function(x){return '<button class="row" data-act="'+x.act+'" data-id="'+x.cust+'" data-deal="'+x.deal+'"><span><b>'+esc(cust(x.cust).name)+'</b><br><span class="r2">'+esc(x.why)+'</span></span><span class="rr"><span class="val">'+money(x.val)+'</span>'+x.chip+'</span></button>'}).join('')||'<p class="empty">Nothing needs attention.</p>')+'</div>'+
+   (show.map(function(x){return '<button class="row" data-act="'+x.act+'" data-id="'+x.cust+'" data-deal="'+x.deal+'"><span><b>'+esc(cust(x.cust).name)+'</b><br><span class="r2">'+esc(x.why)+'</span></span><span class="rr"><span class="val">'+money(x.val)+'</span></span><span class="rc">'+x.chip+'</span></button>'}).join('')||'<p class="empty">Nothing needs attention.</p>')+'</div>'+
    (a.length>4?'<button class="btn btn-quiet wide" data-act="attnall" aria-expanded="'+S.attnAll+'">'+(S.attnAll?'Show fewer':'Show '+(a.length-4)+' more')+'</button>':'')+
-   (S.set.warn?'':'<p class="cap" style="margin-top:6px">Quiet deal warnings are off. Turn them on in Settings.</p>'));
+   (S.set.warn?'':'<p class="cap" style="margin-top:6px">The warnings about no reply are off. Turn them on in Settings.</p>'));
 }
 function dealsHTML(){
   var open=D.filter(isOpen), per=STAGES.map(function(s){var a=open.filter(function(d){return d.stage===s});return {s:s,n:a.length,v:sum(a)}});
@@ -1390,7 +1641,7 @@ function dealsHTML(){
   return sec('deals','Open deals','<span class="count">'+open.length+(open.length===1?' deal':' deals')+' · '+money(sum(open))+'</span>','<div class="card" style="padding-top:6px">'+
    per.map(function(p){return '<button class="st'+(S.stage===p.s?' on':'')+'" data-act="stage" data-id="'+p.s+'" aria-pressed="'+(S.stage===p.s)+'"><span class="sn">'+p.s+'</span><span class="sb"><i style="width:'+(p.v/max*100)+'%"></i></span><span class="sv">'+p.n+(p.n===1?' deal':' deals')+' · '+money(p.v)+'</span></button>'}).join('')+
    '<h3 class="sub3">'+(S.stage?S.stage+' deals <button class="link" data-act="stage" data-id="">Show all</button>':'Biggest first <span class="count">Tap a stage to filter</span>')+'</h3>'+
-   (list.slice(0,5).map(function(d){var c=cust(d.cust);return '<button class="mini" data-act="rec" data-id="'+c.id+'"><span><b style="font-weight:600">'+esc(c.name)+'</b><br><span class="cap">'+esc(d.name)+' · '+d.stage+(S.set.warn&&isQuiet(d)?' · quiet '+d.touch+' days':'')+'</span></span><span class="val">'+money(d.value)+'</span></button>'}).join('')||'<p class="cap">No deals at this stage.</p>')+
+   (list.slice(0,5).map(function(d){var c=cust(d.cust);return '<button class="mini" data-act="rec" data-id="'+c.id+'"><span><b style="font-weight:600">'+esc(c.name)+'</b><br><span class="cap">'+esc(d.name)+' · '+d.stage+'</span></span><span class="rr"><span class="val">'+money(d.value)+'</span></span><span class="rc">'+(S.set.warn&&isQuiet(d)?chip('warn','No reply for '+d.touch+' days'):'')+(c.late?chip('bad','Payment late'):'')+'</span></button>'}).join('')||'<p class="cap">No deals at this stage.</p>')+
    (list.length>5?'<button class="btn btn-quiet wide" data-act="alldeals" style="margin:6px 0 2px">See all '+list.length+' in Records</button>':'')+'</div>');
 }
 /* forms that he left with entries. He opens one to finish it. */
@@ -1399,7 +1650,7 @@ function keptHTML(){
   return '<section class="bsec kept" id="b-kept" aria-label="Forms that are not finished"><div class="stack">'+a.map(function(d){return '<button class="row" data-act="kept" data-id="'+esc(d.key)+'">'+ic('clock')+'<span><b>'+esc(d.title)+'</b><br><span class="r2">Not finished. Kept at '+d.at+'.</span></span><span class="rr">'+ic('go')+'</span></button>'}).join('')+'</div></section>';
 }
 function briefHTML(){
-  var hello=helloHTML(), sales=salesHTML(), top=keptHTML()+topHTML(), week=weekHTML(), attn=attnHTML(), deals=dealsHTML();
+  var hello=helloHTML(), sales=salesHTML(), top=notesHTML()+keptHTML()+topHTML(), week=weekHTML(), attn=attnHTML(), deals=dealsHTML();
   if(S.device==='phone'){
     var nav='<nav class="jump" aria-label="Sections">'+[['b-top','Today'],['b-week','This week'],['b-attn','Attention'],['b-deals','Open deals']].map(function(x){return '<button class="pill" data-act="jump" data-id="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</nav>';
     return '<div class="bhead">'+hello+sales+'</div>'+nav+'<div class="bgrid"><div>'+top+week+attn+deals+'</div></div>';
@@ -1410,26 +1661,30 @@ function briefHTML(){
 /* ---------- records ---------- */
 var FIL=[
  ['all','All',function(){return true}],
- ['move','Your move',function(c){return openOf(c.id).some(function(d){return d.wait==='you'})||c.promises.some(function(p){return !p.done})}],
- ['quiet','Quiet',function(c){return openOf(c.id).some(isQuiet)}],
- ['late','Late payment',function(c){return !!c.late}],
  ['open','Open deals',function(c){return openOf(c.id).length>0}],
- ['cold','Not spoken in 2 weeks',function(c){return c.last>=14}]
+ ['move','Your move',function(c){return openOf(c.id).some(function(d){return d.wait==='you'})||c.promises.some(function(p){return !p.done})}],
+ ['quiet','No reply',function(c){return openOf(c.id).some(isQuiet)}],
+ ['late','Late payment',function(c){return !!c.late}],
+ ['cold','Not in touch',function(c){return c.last>=14}]
 ];
-var FDESC={move:'The customer waits for you. A deal needs your reply, or you made a promise that is still open.',
- quiet:'The customer did not reply for longer than usual: 3 days for a new deal, 7 days for samples, 14 days for a trial, 5 days for a quote.',
- late:'A payment is past its due date.',
- open:'The customer has a deal that is not won or lost yet.',
- cold:'You had no call, message, visit or note with this customer for 14 days or more.'};
+var WEEKS=[[2,'2 weeks'],[3,'3 weeks'],[4,'4 weeks or more']];
+/* the second row: the stage for Open deals, the number of weeks for No contact */
+function subOK(c){ return S.f==='open'?(!S.fs||openOf(c.id).some(function(d){return d.stage===S.fs})):S.f==='cold'?c.last>=S.fw*7:true }
+var FDESC={open:'The customer has a deal that is not won or lost yet. You can choose one stage.',
+ move:'The customer waits for you. A deal needs your reply, or you made a promise that is still open.',
+ quiet:'The customer did not reply about a deal for longer than usual: 3 days for a new deal, 7 days for samples, 14 days for a trial, 5 days for a quote. These numbers are first values. A manager can change them, and '+AI+' learns the usual wait of each customer.',
+ late:'A payment is past its due date. The status comes from the accounts system.',
+ cold:'You and the customer had no contact for 2 weeks or more: no call, message, visit or note. A customer with no open deal can also be in this list. You can choose 3 weeks or 4 weeks.'};
 var SORTS=[['name','Name, A to Z'],['open','Biggest deals first'],['old','Longest since contact'],['recent','Most recent contact']];
 function custStatus(c){
   var s=''; if(c.late) s+=chip('bad','Payment late');
-  if(S.set.warn&&openOf(c.id).some(isQuiet)) s+=chip('warn','Quiet'); return s;
+  var q=S.set.warn?openOf(c.id).filter(isQuiet).sort(function(a,b){return b.touch-a.touch})[0]:null;
+  if(q) s+=chip('warn','No reply for '+q.touch+' days'); return s;
 }
 function matchQ(c,q){ return !q||(c.name+' '+c.area+' '+c.people.map(function(p){return p.name}).join(' ')+' '+c.products.join(' ')).toLowerCase().indexOf(q)>-1 }
 function recFiltered(){
   var q=S.q.trim().toLowerCase(), f=FIL.find(function(x){return x[0]===S.f})||FIL[0];
-  var a=C.filter(function(c){return f[2](c)&&matchQ(c,q)}), key=S.sort;
+  var a=C.filter(function(c){return f[2](c)&&subOK(c)&&matchQ(c,q)}), key=S.sort;
   return a.sort(function(x,y){ return key==='recent'?x.last-y.last:key==='old'?y.last-x.last:key==='open'?sum(openOf(y.id))-sum(openOf(x.id)):x.name.localeCompare(y.name) });
 }
 function recCount(n){ return n+(n===1?' customer':' customers') }
@@ -1439,11 +1694,12 @@ function recRows(){
   if(S.device==='computer'){
     var per=25, pages=Math.ceil(total/per); S.page=Math.max(0,Math.min(S.page,pages-1)); var from=S.page*per, part=a.slice(from,from+per);
     var th=function(k,l,n){return '<th'+(n?' class="n"':'')+'><button data-act="sort" data-id="'+k+'" class="'+(S.sort===k?'on':'')+'">'+l+(S.sort===k?' ↓':'')+'</button></th>'};
-    return '<div class="tblwrap"><table class="tbl"><thead><tr>'+th('name','Customer')+'<th>Main contact</th><th>Area</th>'+th('open','Open deals',1)+'<th>Next step</th>'+th('recent','Last spoke',1)+'<th>Status</th></tr></thead><tbody>'+
+    return '<div class="tblwrap"><table class="tbl"><thead><tr>'+th('name','Customer')+'<th>Main contact</th><th>Area</th>'+th('open','Open deals',1)+'<th>Next step</th>'+th('recent','Last contact',1)+'<th>Status</th></tr></thead><tbody>'+
      part.map(function(c){var o=sum(openOf(c.id)), nx=c.promises.find(function(p){return !p.done});return '<tr data-act="rec" data-id="'+c.id+'"><td><button data-act="rec" data-id="'+c.id+'">'+esc(c.name)+'</button><br><span class="cap">'+esc(c.type)+'</span></td><td class="nw">'+esc(c.people[0].name)+'</td><td class="nw">'+(esc(c.area)||'<span class="cap">None</span>')+'</td><td class="n">'+(o?money(o):'None')+'</td><td>'+(nx?esc(nx.t)+'<br><span class="cap">'+fmt(nx.iso)+'</span>':'<span class="cap">None</span>')+'</td><td class="n">'+ago(c.last)+'</td><td>'+(custStatus(c)||'<span class="cap">Up to date</span>')+'</td></tr>'}).join('')+'</tbody></table></div>'+
      (pages>1?'<div class="pager"><span class="count">'+(from+1)+' to '+Math.min(total,from+per)+' of '+total+'</span><span class="sp"></span><button class="btn btn-ghost" data-act="page" data-id="-1"'+(S.page===0?' disabled':'')+'>Previous</button><span class="count">Page '+(S.page+1)+' of '+pages+'</span><button class="btn btn-ghost" data-act="page" data-id="1"'+(S.page>=pages-1?' disabled':'')+'>Next</button></div>':'');
   }
-  return a.slice(0,S.recN).map(function(c){return '<button class="row" data-act="rec" data-id="'+c.id+'"><span><b>'+esc(c.name)+'</b><br><span class="r2">'+esc(c.people[0].name)+(c.area?' · '+esc(c.area):'')+'</span></span><span class="rr"><span class="r2">'+ago(c.last)+'</span>'+custStatus(c)+'</span></button>'}).join('')+
+  return a.slice(0,S.recN).map(function(c){ var od=S.f==='open'?openOf(c.id).filter(function(d){return !S.fs||d.stage===S.fs}):[];
+    return '<button class="row" data-act="rec" data-id="'+c.id+'"><span><b>'+esc(c.name)+'</b><br><span class="r2">'+(od.length?esc(od.map(function(d){return d.stage}).filter(function(x,i,l){return l.indexOf(x)===i}).join(', '))+' · ':'')+esc(c.people[0].name)+(c.area?' · '+esc(c.area):'')+'</span></span><span class="rr">'+(od.length?'<span class="val">'+money(sum(od))+'</span>':'<span class="r2">'+ago(c.last)+'</span>')+'</span><span class="rc">'+custStatus(c)+'</span></button>'}).join('')+
    (total>S.recN?'<button class="btn btn-quiet wide" data-act="recmore">Show '+Math.min(20,total-S.recN)+' more</button><p class="cap ctr">'+S.recN+' of '+total+' shown</p>':'');
 }
 function recListHTML(){
@@ -1451,7 +1707,9 @@ function recListHTML(){
   if(!C.length) return '<div class="rtop"><h1>Records</h1></div><div class="estate big"><span class="eic">'+ic('file')+'</span><h3>No customers yet</h3><p>Add your first customer. Only the company name is necessary.</p><button class="btn btn-soft" data-act="newcust">'+ic('plus')+'New customer</button></div>';
   return '<div class="rtop"><h1>Records</h1><button class="btn btn-soft" data-act="newcust">'+ic('plus')+'New customer</button></div>'+
    '<label class="search">'+ic('search')+'<input id="q" type="search" placeholder="Search company, person or product" value="'+esc(S.q)+'" aria-label="Search company, person or product"></label>'+
-   '<div class="filters" role="group" aria-label="Filter">'+FIL.map(function(f){var n=C.filter(function(c){return f[2](c)&&matchQ(c,q)}).length;return '<button class="pill'+(S.f===f[0]?' on':'')+'" data-act="filter" data-id="'+f[0]+'" aria-pressed="'+(S.f===f[0])+'">'+f[1]+' <span class="pn">'+n+'</span></button>'}).join('')+'</div>'+
+   '<div class="filters" data-drag role="group" aria-label="Show">'+FIL.map(function(f){var n=C.filter(function(c){return f[2](c)&&matchQ(c,q)}).length;return '<button class="pill'+(S.f===f[0]?' on':'')+'" data-act="filter" data-id="'+f[0]+'" aria-pressed="'+(S.f===f[0])+'">'+f[1]+' <span class="pn">'+n+'</span></button>'}).join('')+'</div>'+
+   (S.f==='open'?'<div class="fsub" role="group" aria-label="Stage of the deal"><span>Stage</span><div class="fsc" data-drag>'+[['','Any']].concat(STAGES.map(function(x){return [x,x]})).map(function(x){var n=C.filter(function(c){return matchQ(c,q)&&openOf(c.id).some(function(d){return !x[0]||d.stage===x[0]})}).length;return '<button class="pill'+((S.fs||'')===x[0]?' on':'')+'" data-act="fstage" data-id="'+x[0]+'" aria-pressed="'+((S.fs||'')===x[0])+'">'+x[1]+' <span class="pn">'+n+'</span></button>'}).join('')+'</div></div>':'')+
+   (S.f==='cold'?'<div class="fsub" role="group" aria-label="Not in touch for"><span>Not in touch for</span><div class="fsc" data-drag>'+WEEKS.map(function(x){var n=C.filter(function(c){return matchQ(c,q)&&c.last>=x[0]*7}).length;return '<button class="pill'+(S.fw===x[0]?' on':'')+'" data-act="fweeks" data-id="'+x[0]+'" aria-pressed="'+(S.fw===x[0])+'">'+x[1]+' <span class="pn">'+n+'</span></button>'}).join('')+'</div></div>':'')+
    '<div class="sortrow"><label for="r-sort">Sort by</label><select id="r-sort">'+SORTS.map(function(s){return '<option value="'+s[0]+'"'+(S.sort===s[0]?' selected':'')+'>'+s[1]+'</option>'}).join('')+'</select><span class="count" id="rcount">'+recCount(recFiltered().length)+'</span></div>'+
    '<div class="stack" id="rlist">'+recRows()+'</div>';
 }
@@ -1479,18 +1737,18 @@ function recordHTML(id){
      return '<div class="item"><div class="dealh"><b>'+esc(d.name)+'</b><span class="dv"><span class="val" style="font:700 12.5px/16px var(--fd)">'+money(d.value)+'</span>'+pen('deal',d.id,d.name)+'</span></div>'+
       (w||l?'<div class="chips">'+(w?chip('done','Won'):'<span class="chip">Lost</span>')+'</div>':'<div class="steps">'+STAGES.map(function(s,k){return '<i class="'+(k<=i?'on':'')+'"></i>'}).join('')+'</div><div class="stepl">'+STAGES.map(function(s,k){return k===i?'<b>'+s+'</b>':'<span>'+s+'</span>'}).join('')+'</div>')+
       '<p class="cap" style="margin-top:4px">'+esc(d.last)+' · '+ago(d.touch).toLowerCase()+(d.wait==='you'&&!w&&!l?' · your move':'')+'</p>'+
-      (S.set.warn&&isQuiet(d)?'<div class="chips"><button class="chip chip-warn" data-act="warn" data-deal="'+d.id+'">'+ic('warn')+'Quiet for '+d.touch+' days. See why</button></div>':'')+'</div>'}).join(''):'<p class="sub">No deals yet.</p>')+'</div>';
+      (S.set.warn&&isQuiet(d)?'<div class="chips"><button class="chip chip-warn" data-act="warn" data-deal="'+d.id+'">'+ic('warn')+'No reply for '+d.touch+' days. See why</button></div>':'')+'</div>'}).join(''):'<p class="sub">No deals yet.</p>')+'</div>';
   var proms='<div class="card" id="s-promises"><h3>Promises '+add('promise')+'</h3>'+(c.promises.length?lim('promises',c.promises).map(function(p,i){return '<div class="item itemrow"><button class="prom'+(p.done?' done':'')+'" data-act="prom" data-id="'+i+'" aria-pressed="'+!!p.done+'"><span class="box">'+(p.done?ic('tick'):'')+'</span><span><span class="pt">'+esc(p.t)+'</span><br><span class="cap">'+(p.done?'Done':'Due '+fmt(p.iso))+'</span></span></button>'+pen('promise',i,p.t)+'</div>'}).join('')+moreB('promises',c.promises.length):'<p class="sub">Nothing promised yet. '+AI+' adds the promises it finds in your notes.</p>')+'</div>';
   var people='<div class="card" id="s-people"><h3>People '+add('person')+'</h3>'+lim('people',c.people).map(function(p,i){
      if(p.none) return '<p class="sub">No contact yet.</p>';
      var bits=[]; if(p.role) bits.push(esc(p.role)); if(p.phone) bits.push('<span style="user-select:text">'+esc(p.phone)+'</span>');
      return '<div class="item itemrow"><span><b>'+esc(p.name)+'</b>'+(i===0?'<span class="tag">Main contact</span>':'')+(bits.length?'<br><span class="cap">'+bits.join(' · ')+'</span>':'')+(p.email?'<br><span class="cap" style="user-select:text;overflow-wrap:anywhere">'+esc(p.email)+'</span>':'')+'</span>'+pen('person',i,p.name)+'</div>'}).join('')+moreB('people',c.people.length)+'</div>';
-  var tl='<div class="card span" id="s-timeline"><h3>Timeline <button class="ib" data-act="cap" data-id="type" data-hint="'+id+'" title="Add" aria-label="Add a note">'+ic('plus')+'</button></h3>'+c.timeline.slice(0,S.tlN).map(function(x,i){return '<div class="item tl"><span class="d"><b>'+esc(x.d)+'</b>'+esc(x.how)+'</span><span>'+esc(x.t)+(x.next?'<br><span class="cap">Next step: '+esc(x.next)+'</span>':'')+(x.ai?'<br><span class="byhue">'+hue(12)+'Tidied by '+AI+'</span>':'')+'</span>'+(NOTES[x.how]?pen('note',i,'note of '+x.d):lock(x))+'</div>'}).join('')+
+  var tl='<div class="card span" id="s-timeline"><h3>Timeline <button class="ib" data-act="cap" data-id="type" data-hint="'+id+'" title="Add" aria-label="Add a note">'+ic('plus')+'</button></h3>'+c.timeline.slice(0,S.tlN).map(function(x,i){return '<div class="item tl"><span class="d"><b>'+esc(x.d)+'</b>'+esc(x.how)+'</span><span>'+esc(x.t)+(x.next?'<br><span class="cap">Next step: '+esc(x.next)+'</span>':'')+'</span>'+(NOTES[x.how]?pen('note',i,'note of '+x.d):lock(x))+'</div>'}).join('')+
      (c.timeline.length>S.tlN?'<button class="btn btn-quiet wide" data-act="tlmore" style="margin-top:8px">Show '+Math.min(10,c.timeline.length-S.tlN)+' earlier notes</button><p class="cap ctr">'+S.tlN+' of '+c.timeline.length+' shown</p>':'')+'</div>';
   var al=addrLine(c);
   var comp='<div class="card" id="s-company"><h3>Company <button class="ib" data-act="editco" title="Edit" aria-label="Edit the company details">'+ic('pen')+'</button></h3><dl class="dl"><dt>Type</dt><dd>'+esc(c.type)+'</dd><dt>Address</dt><dd>'+
      (al?esc(al)+'<br><a class="wxlink" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(mapQ(c))+'" target="_blank" rel="noopener">Open the map'+ic('out')+'</a>':'<button class="link" data-act="editco">'+ic('plus')+'Add the address</button>')+'</dd>'+
-     (c.area?'<dt>Area</dt><dd>'+esc(c.area)+(c.postal?' <span class="cap">· from the postal code</span>':'')+'</dd>':'')+'<dt>Payment terms</dt><dd>'+esc(c.terms)+'</dd><dt>Payment</dt><dd>'+(c.late?chip('bad',money(c.late.amt)+' is '+c.late.days+' days late'):'On time')+'</dd><dt>Last spoke</dt><dd>You, '+ago(c.last).toLowerCase()+'</dd></dl></div>';
+     (c.area?'<dt>Area</dt><dd>'+esc(c.area)+(c.postal?' <span class="cap">· from the postal code</span>':'')+'</dd>':'')+'<dt>Payment terms</dt><dd>'+esc(c.terms)+'</dd><dt>Payment</dt><dd>'+(c.late?'<button class="chip chip-bad" data-act="late" data-id="'+c.id+'">'+ic('x')+money(c.late.amt)+' is '+c.late.days+' days late. See why</button>':'On time')+'</dd><dt>Last contact</dt><dd>You, '+ago(c.last).toLowerCase()+'</dd></dl></div>';
   var prod='<div class="card" id="s-products"><h3>Products '+add('product')+'</h3>'+(c.products.length?lim('products',c.products).map(function(p,i){return '<div class="item itemrow"><span class="prow">'+esc(p)+'</span>'+pen('product',i,p)+'</div>'}).join('')+moreB('products',c.products.length):'<p class="sub">None yet.</p>')+'<p class="cap" style="margin-top:6px">'+AI+' also adds products you name in your notes.</p></div>';
   var files='<div class="card" id="s-files"><h3>Files '+add('file')+'</h3>'+(c.files.length?lim('files',c.files).map(function(f,i){return '<div class="item itemrow"><span class="filerow">'+ic('file')+esc(f)+'</span>'+pen('file',i,f)+'</div>'}).join('')+moreB('files',c.files.length):'<p class="sub">No files yet. Add a quote, a photo or a price list.</p>')+'</div>';
   return h+nav+'<div class="rgrid">'+tip+deals+proms+people+comp+tl+prod+files+'</div>';
@@ -1513,11 +1771,11 @@ function settingsHTML(){
    '<div class="srow stackd"><label for="s-lang"><b>Voice language</b><span class="cap">'+AI+' understands mixed speech.</span></label>'+sel('s-lang',['English','English and Mandarin','English and Malay'],s.lang)+'</div>'+
    '<div class="srow"><span class="cap">Voice notes record your voice only. Ask before you record a customer.</span></div></div>'+
    '<h2 class="sec"><span class="hl">'+hue(18)+AI+', your assistant</span></h2><div class="card set">'+
-   '<div class="srow"><span>Anything marked with '+hue(13)+' was written or selected by '+AI+'. Nothing is sent or saved until you say so. You can stop each task of '+AI+' here.</span></div>'+
-   row('tidy','Tidy up my notes',AI+' reads a note and fills in the customer, the next step, the date and the deal stage. You check them before you save.')+
+   '<div class="srow"><span>Anything marked with '+hue(13)+' was written or selected by '+AI+'. Nothing is sent or saved until you say so. You can turn off each job of '+AI+' here.</span></div>'+
+   row('tidy','Fill in the fields from my notes',AI+' reads a note and fills in the customer, the next step, the date, the products and the deal stage. You check them before the note goes to the record.')+
    row('draft','Draft my messages',AI+' writes a first message from your notes. You change it and send it.')+
-   row('top','Put my tasks in order',AI+' puts the three most important tasks first in Today. The order is new at the start of each day.')+
-   row('warn','Warn me when a deal goes quiet','A warning shows when a customer does not reply for longer than usual.')+
+   row('top','Put my follow ups in order',AI+' puts the three most important follow ups first in Today. The order is new at the start of each day.')+
+   row('warn','Warn me when a customer does not reply','A warning shows when a customer does not reply about a deal for longer than usual.')+
    row('tips','Suggestions in customer records','A short tip from your past notes with that customer.')+
    row('wx','Weather for my day','The weather that can delay a visit, and the morning, afternoon and evening.')+'</div>'+
    '<h2 class="sec">Help</h2><div class="card set">'+
@@ -1543,7 +1801,7 @@ var FT={
  role:{ex:'Purchasing manager',max:40,cap:'sentences'},
  phone:{ex:'9123 4567',max:20,type:'tel',mode:'tel',hint:'8 digits. For another country, start with + and the country code.'},
  email:{ex:'jasmine@company.com',max:80,type:'email',mode:'email',cap:'off'},
- money:{ex:'48,000',max:11,mode:'numeric',pre:'S$',need:'Add the amount.',hint:'Numbers only. An estimate is sufficient.'},
+ money:{ex:'48,000',max:11,mode:'numeric',pre:'$',need:'Add the amount.',hint:'Numbers only. An estimate is sufficient.'},
  unit:{ex:'#03-12',max:10,cap:'off'},
  deal:{ex:'Wilflex colours supply',max:60,min:3,cap:'sentences',need:'Say what the deal is for.'},
  promise:{ex:'Send the price list',max:120,min:3,cap:'sentences',need:'Say what you promised.'},
@@ -1574,7 +1832,7 @@ function fmsg(el){
     if(!/^[3689]/.test(dg)) return 'A Singapore number starts with 3, 6, 8 or 9.';
   }
   if(t==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'An email address looks like this: name@company.com.';
-  if(t==='money'&&+dg<1000) return 'The smallest amount is S$1,000.';
+  if(t==='money'&&+dg<1000) return 'The smallest amount is $1,000.';
   if(t==='unit'&&!/^#?\d{1,3}-\d{1,5}[A-Za-z]?$/.test(v)) return 'Write the unit like this: #03-12.';
   if(t==='date'&&el.min&&v<el.min&&v!==el.dataset.was) return 'Select today or a later date.';
   if(t==='addr'&&/^\d+$/.test(v)&&v.length!==6) return 'A Singapore postal code has 6 digits.';
@@ -1616,15 +1874,26 @@ function sheetHTML(){
   var b='', c=s.cust?cust(s.cust):null, d=s.deal?deal(s.deal):null;
   if(s.kind==='warn'){
     c=cust(d.cust);
-    b=sheetHead(esc(c.name))+'<p class="sub">'+esc(d.name)+' · '+money(d.value)+' · '+d.stage+'</p><div class="chips">'+chip('warn','Quiet for '+d.touch+' days')+'</div>'+
+    b=sheetHead(esc(c.name))+'<p class="sub">'+esc(d.name)+' · '+money(d.value)+' · '+d.stage+'</p><div class="chips">'+chip('warn','No reply for '+d.touch+' days')+'</div>'+
      '<p class="byhue" style="margin-top:12px">'+hue(14)+'Why '+AI+' flagged this</p><p>'+esc(d.last)+' '+d.touch+' days ago, and no contact since. '+NORMAL[d.stage]+'</p>'+
      '<div class="acts"><button class="btn btn-primary" data-act="msg" data-deal="'+d.id+'">'+ic('msg')+'Message '+esc(c.people[0].call)+'</button><button class="btn btn-soft" data-act="call" data-id="'+c.id+'">'+ic('phone')+'Call</button></div>'+
      '<div style="margin-top:12px"><button class="opt" data-act="snooze" data-deal="'+d.id+'">'+ic('clock')+'<span>Remind me in 3 days<small>Hide this warning until Thursday.</small></span></button>'+
      '<button class="opt" data-act="normal" data-deal="'+d.id+'">'+ic('tick')+'<span>This is normal for this customer<small>'+AI+' will wait longer before it warns you again.</small></span></button>'+
      '<button class="opt" data-act="rec" data-id="'+c.id+'">'+ic('file')+'<span>Open the customer record</span></button></div>';
   }
+  else if(s.kind==='late'){
+    var L=c.late, ap=payContact(c), pl=payPlan(L.amt), nd=openOf(c.id)[0];
+    b=sheetHead(esc(c.name))+'<p class="sub">'+money(L.amt)+' · due '+fmtBack(L.days)+' · payment terms: '+esc(c.terms)+'</p><div class="chips">'+chip('bad','Payment '+L.days+' days late')+'</div>'+
+     '<p class="byhue" style="margin-top:12px">'+hue(14)+'Why '+AI+' flagged this</p><p>The invoice of '+money(L.amt)+' was due on '+fmtBack(L.days)+'. It is '+L.days+' days late.'+(nd?' The new deal of '+money(nd.value)+' waits for this payment.':'')+'</p>'+
+     '<p class="byhue" style="margin-top:10px">'+hue(14)+'Possible reason</p><p>'+esc(L.why||'This is the first late payment of this customer this year. Maybe the invoice did not reach the correct person.')+'</p>'+
+     '<p class="byhue" style="margin-top:10px">'+hue(14)+'A plan that you can offer</p><div class="pplan">'+pl.rows.map(function(r,i){return '<div><span>Payment '+(i+1)+'</span><b>'+money(r[1])+'</b><span>'+fmt(r[0])+'</span></div>'}).join('')+'</div><p class="cap" style="margin-top:5px">'+pl.rule+'</p>'+
+     '<div class="acts"><button class="btn btn-primary" data-act="paymsg" data-id="'+c.id+'">'+ic('msg')+'Message '+esc(ap.call)+'</button><button class="btn btn-soft" data-act="paycall" data-id="'+c.id+'">'+ic('phone')+'Call</button></div>'+
+     '<p class="cap" style="margin-top:6px">'+esc(ap.name)+(ap.role?', '+esc(ap.role):'')+'.'+(ap!==c.people[0]?' This is the accounts contact, not the main contact.':'')+' The message has the plan.</p>'+
+     '<div style="margin-top:12px"><button class="opt" data-act="rec" data-id="'+c.id+'">'+ic('file')+'<span>Open the customer record</span></button></div>'+
+     '<p class="note">The payment status comes from the accounts system. The plan comes from the assistant of the finance team. It follows the finance rules, so you can offer it with no approval. Prototype: sample data.</p>';
+  }
   else if(s.kind==='msg'){
-    var p=c.people[0], text=!S.set.draft?'':(d&&MSG[d.id])||('Hi '+p.call+', just checking in'+(d?' on '+d.name.toLowerCase():'')+'. Is there anything you need from me? Daniel');
+    var p=s.pay?payContact(c):c.people[0], text=!S.set.draft?'':s.pay?payText(c):(d&&MSG[d.id])||('Hi '+p.call+', just checking in'+(d?' on '+d.name.toLowerCase():'')+'. Is there anything you need from me? Daniel');
     b=sheetHead('Message to '+esc(p.call))+'<p class="sub">'+esc(c.name)+' · <span style="user-select:text">'+esc(p.phone)+'</span></p>'+
      '<div class="f"><label for="m-text">'+(S.set.draft?hue(14)+'Drafted by '+AI+' from your notes. Change anything.':'Your message')+'</label><textarea id="m-text" data-ft="note" data-req data-need="Write a message before you send." maxlength="1000" rows="6" aria-describedby="m-text-e" placeholder="Example: Hi '+esc(p.call||'Jasmine')+', here is the price that you asked for.">'+esc(text)+'</textarea>'+ferrP('m-text')+'</div>'+
      (S.set.draft&&d&&d.id==='d5'?'<div class="chips"><span class="chip">'+ic('file')+'Colour chart.jpg</span></div>':'')+
@@ -1632,7 +1901,7 @@ function sheetHTML(){
      '<p class="note">Prototype: no real message is sent.</p>';
   }
   else if(s.kind==='call'){
-    var p1=c.people[0];
+    var p1=s.pay?payContact(c):c.people[0];
     if(s.phase==='on') b=sheetHead('Calling '+esc(p1.call))+'<div class="talk"><div class="who">'+esc(p1.name.split(' ').map(function(w){return w[0]}).slice(0,2).join(''))+'</div><p><b>'+esc(p1.name)+'</b><br><span class="sub">'+esc(c.name)+' · <span style="user-select:text">'+esc(p1.phone)+'</span></span></p></div>'+
      '<div class="acts" style="justify-content:center"><button class="btn btn-primary" data-act="endcall">End call</button></div><p class="note" style="text-align:center">Prototype: no real call is made.</p>';
     else b=sheetHead(s.visit?'Note about the visit':'Call ended')+'<p>Add a note about the '+(s.visit?'visit to '+esc(c.name):'call with '+esc(p1.call))+' while it is fresh? It takes about 20 seconds.</p>'+
@@ -1640,50 +1909,63 @@ function sheetHTML(){
   }
   else if(s.kind==='talk'){
     b=sheetHead('Talk a note')+'<div class="talk"><div class="micb">'+ic('mic')+'</div><p class="timer" id="k-time">0:00</p><p class="words" id="k-words" aria-live="polite"><span class="sub">Listening…</span></p></div>'+
-     '<div class="acts" style="justify-content:center"><button class="btn btn-primary" data-act="stoptalk">'+(S.set.tidy?hue(14,'w')+'Stop and tidy up':'Stop')+'</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
+     (S.set.tidy?guideHTML('',s.hint):'')+
+     '<div class="acts" style="justify-content:center">'+(S.set.tidy?'<button class="btn btn-primary" data-act="checknow">'+hue(14,'w')+'Stop and check now</button><button class="btn btn-soft" data-act="checklater">Check later</button>':'<button class="btn btn-primary" data-act="stoptalk">Stop</button>')+'<button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
      '<p class="note" style="text-align:center">Records your voice only. Ask before you record a customer.<br>Prototype: this plays a sample note. Your microphone is not used.</p>';
   }
   else if(s.kind==='type'){
-    var ty=S.set.tidy;
-    b=sheetHead('Type a note')+'<p class="sub">'+(ty?'Write it your way. Save it as it is, or let '+AI+' tidy it up first.':'Write it your way, then save it.')+'</p>'+
-     '<div class="f"><label for="t-cust">Customer'+(ty?' <span class="optl">(optional)</span>':'')+'</label><select id="t-cust" data-ft="pick" aria-describedby="t-cust-e">'+custOptions(s.hint||'',ty?'Let '+AI+' find the customer':'Choose a customer')+'</select>'+ferrP('t-cust')+'</div>'+
+    var ty=S.set.tidy, hc=s.hint?cust(s.hint):null;
+    b=sheetHead('Type a note')+'<p class="sub">'+(ty?'Write it your way. '+AI+' reads your note and fills in the fields.':'Write it your way, then save it.')+'</p>'+
+     (ty?(hc?'<p class="forc">'+ic('file')+'<span>For <b>'+esc(hc.name)+'</b></span></p>':'')
+        :'<div class="f"><label for="t-cust">Customer</label><select id="t-cust" data-ft="pick" aria-describedby="t-cust-e">'+custOptions(s.hint||'','Choose a customer')+'</select>'+ferrP('t-cust')+'</div>')+
      '<div class="f"><label for="t-text">Your note</label><textarea id="t-text" data-ft="note" data-req data-need="Type a note first, or use the sample note." maxlength="2000" rows="5" aria-describedby="t-text-e" placeholder="Example: Spoke to Jasmine at Best Printing. She is happy with the price. Send the formal quote by tomorrow.">'+esc(s.text||'')+'</textarea>'+ferrP('t-text')+'</div>'+
+     (ty?guideHTML(s.text||'',s.hint):'')+
      '<div class="chips"><button class="chip" data-act="sample">Use a sample note</button></div>'+
-     '<div class="acts">'+(ty?'<button class="btn btn-primary" data-act="tidy">'+hue(14,'w')+'Tidy up</button><button class="btn btn-soft" data-act="saveraw">Save</button>':'<button class="btn btn-primary" data-act="saveraw">Save</button>')+(S.device==='computer'?'<button class="btn btn-ghost" data-act="cap" data-id="talk"'+(s.hint?' data-hint="'+s.hint+'"':'')+'>'+ic('mic')+'Talk</button>':'')+'<button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
-     (ty?'<p class="note">Save keeps your words as they are and you are done. Tidy up lets '+AI+' find the customer, the next step and the date, then shows them for you to check.</p>':'');
+     '<div class="acts">'+(ty?'<button class="btn btn-primary" data-act="checknow">'+hue(14,'w')+'Check now</button><button class="btn btn-soft" data-act="checklater">Check later</button>':'<button class="btn btn-primary" data-act="saveraw">Save</button>')+(S.device==='computer'?'<button class="btn btn-ghost" data-act="cap" data-id="talk"'+(s.hint?' data-hint="'+s.hint+'"':'')+'>'+ic('mic')+'Talk</button>':'')+'<button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
+     (ty?'<p class="note">Check now shows you the fields before the note goes to the record. Check later keeps the note at the top of Home.</p>':'');
   }
   else if(s.kind==='write'){
     b=sheetHead('Write a note')+'<p class="sub">Write with a pen or a finger, like on paper. '+AI+' reads your writing.</p>'+
      '<div class="pad">'+handSVG(false)+'<canvas id="w-pad" width="820" height="420" aria-label="Writing area"></canvas></div>'+
-     '<div class="acts"><button class="btn btn-primary" data-act="tidyhand">'+(S.set.tidy?hue(14,'w')+'Tidy up':'Turn into text')+'</button><button class="btn btn-soft" data-act="clearpad">Clear</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
-     '<p class="note">Prototype: a sample note writes itself. You can also write here. The tidy up always reads the sample note.</p>';
+     (S.set.tidy?guideHTML('',null,true):'')+
+     '<div class="acts">'+(S.set.tidy?'<button class="btn btn-primary" data-act="checknow">'+hue(14,'w')+'Check now</button><button class="btn btn-soft" data-act="checklater">Check later</button>':'<button class="btn btn-primary" data-act="tidyhand">Turn into text</button>')+'<button class="btn btn-ghost" data-act="clearpad">Clear</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
+     '<p class="note">Prototype: a sample note writes itself. You can also write here. '+AI+' always reads the sample note.</p>';
   }
-  else if(s.kind==='photo'){
-    b=sheetHead('Photo of a notebook page')+'<p class="sub">Point the camera at the page. Then take the photo. '+AI+' reads the page.</p>'+
-     '<div class="finder"><i class="g a"></i><i class="g b"></i><i class="g c"></i><i class="g d"></i><div class="page">'+handSVG(true)+'</div></div>'+
-     '<button class="shut" data-act="tidyhand" aria-label="Take photo"></button><p class="note" style="text-align:center">Prototype: this is a sample page. Your camera is not used.</p>';
-  }
-  else if(s.kind==='attach'){
-    b=sheetHead('Attach a photo of a notebook page')+'<p class="sub">Choose a picture from this computer. '+AI+' reads the page.</p>'+
-     (s.file?'<div class="attz"><div class="attt">'+(s.file.url?'<img src="'+s.file.url+'" alt="The picture that you chose">':'<div class="page">'+handSVG(true)+'</div>')+'</div><p><b>'+esc(s.file.name)+'</b></p><button class="link" data-act="attpick">Choose a different file</button></div>'
-       :'<div class="attz'+(s.err?' bad':'')+'">'+ic('img')+'<p><b>A photo of your notes</b><br><span class="sub">JPG, PNG or HEIC</span></p><div class="acts" style="justify-content:center;margin-top:2px"><button class="btn btn-soft" data-act="attpick">'+ic('clip')+'Choose a file</button><button class="btn btn-ghost" data-act="attsample">Use the sample page</button></div></div>')+
-     (s.err?'<p class="err" role="alert">'+ic('x')+esc(s.err)+'</p>':'')+
-     '<input type="file" id="n-photo" accept="image/*" hidden aria-label="Choose a picture">'+
-     '<div class="acts"><button class="btn btn-primary" data-act="tidyhand">'+(S.set.tidy?hue(14,'w')+'Tidy up':'Turn into text')+'</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
-     '<p class="note">Prototype: the picture stays on this computer. The tidy up always reads the sample note.</p>';
+  else if(s.kind==='photo'||s.kind==='attach'){
+    var ph=s.kind==='photo', go='<div class="acts">'+(S.set.tidy?'<button class="btn btn-primary" data-act="checknow">'+hue(14,'w')+'Check now</button><button class="btn btn-soft" data-act="checklater">Check later</button>':'<button class="btn btn-primary" data-act="tidyhand">Turn into text</button>')+'<button class="btn btn-ghost" data-act="close">Cancel</button></div>';
+    var pic=s.file?'<div class="attz"><div class="attt">'+(s.file.url?'<img src="'+s.file.url+'" alt="The picture that you chose">':'<div class="page">'+handSVG(true)+'</div>')+'</div><p><b>'+esc(s.file.name)+'</b></p><button class="link" data-act="'+(ph?'retake':'attpick')+'">'+(ph?'Take the photo again':'Choose a different file')+'</button></div>':'';
+    var err=s.err?'<p class="err" role="alert">'+ic('x')+esc(s.err)+'</p>':'', inp='<input type="file" id="n-photo" accept="image/*" hidden aria-label="Choose a picture">';
+    if(ph&&!s.file)
+      b=sheetHead('Photo of a notebook page')+'<p class="sub">Point the camera at the page and take the photo. Or choose a photo from your album. '+AI+' reads the page.</p>'+
+       '<div class="finder"><i class="g a"></i><i class="g b"></i><i class="g c"></i><i class="g d"></i><div class="page">'+handSVG(true)+'</div></div>'+err+
+       '<div class="shotrow"><button class="btn btn-soft" data-act="attpick">'+ic('img')+'Album</button><button class="shut" data-act="shoot" aria-label="Take the photo"></button><span></span></div>'+inp+
+       '<p class="note" style="text-align:center">Prototype: this is a sample page. Your camera is not used.</p>';
+    else if(ph)
+      b=sheetHead('Photo of a notebook page')+'<p class="sub">'+AI+' reads the page and fills in the fields.</p>'+pic+err+inp+go+
+       '<p class="note">Prototype: '+AI+' always reads the sample note.</p>';
+    else
+      b=sheetHead('Attach a photo of a notebook page')+'<p class="sub">Choose a picture from this computer. '+AI+' reads the page.</p>'+
+       (pic||'<div class="attz'+(s.err?' bad':'')+'">'+ic('img')+'<p><b>A photo of your notes</b><br><span class="sub">JPG, PNG or HEIC</span></p><div class="acts" style="justify-content:center;margin-top:2px"><button class="btn btn-soft" data-act="attpick">'+ic('clip')+'Choose a file</button><button class="btn btn-ghost" data-act="attsample">Use the sample page</button></div></div>')+
+       err+inp+go+'<p class="note">Prototype: the picture stays on this computer. '+AI+' always reads the sample note.</p>';
   }
   else if(s.kind==='tidying'){
-    b='<div class="tidying">'+hue(64,'work')+'<p><b>'+AI+' is tidying up your note</b></p><ul class="tsteps"><li id="ts1">'+ic('tick')+'Finding the customer</li><li id="ts2">'+ic('tick')+'Finding the next step</li><li id="ts3">'+ic('tick')+'Checking the date</li></ul></div>';
+    b='<div class="tidying">'+hue(64,'work')+'<p><b>'+AI+' reads your note</b></p><ul class="tsteps"><li id="ts1">'+ic('tick')+'Finding the customer</li><li id="ts2">'+ic('tick')+'Finding the next step and the date</li><li id="ts3">'+ic('tick')+'Finding the products</li></ul></div>';
   }
   else if(s.kind==='review'){
     var r=S.draft, dd=r.deal?deal(r.deal):null, src={talk:'your voice note',type:'your typed note',write:'your handwriting',photo:'your photo'}[r.src];
-    b=sheetHead('Check and save')+'<p class="byhue">'+hue(14)+'Tidied by '+AI+' from '+src+'</p><p class="sub">Change anything that is wrong.</p>'+
-     '<div class="f"><label for="r-cust">Customer '+(r.cust&&r.sure?'':chip('warn','Please choose'))+'</label><select id="r-cust" data-ft="pick" data-req data-need="Choose a customer. Then the note goes to the correct record." aria-describedby="r-cust-e">'+custOptions(r.cust,'Choose a customer')+'</select>'+ferrP('r-cust')+'</div>'+
+    var left=RANGES.filter(function(x){return r.prods.indexOf(x)<0});
+    b=sheetHead('Check and save')+'<p class="rnote">'+hue(16)+'<span><b>'+AI+' filled in '+r.nf+(r.nf===1?' field':' fields')+' from '+src+'.</b> Check each field, then save.</span></p>'+
+     '<div class="f"><label for="r-cust">Customer</label><select id="r-cust" data-ft="pick" data-req data-need="Choose a customer. Then the note goes to the correct record." aria-describedby="r-cust-e">'+custOptions(r.cust,'Choose a customer')+'</select>'+(r.cust&&r.sure?'':'<span class="cap">'+AI+' found no customer in your note. Choose one.</span>')+ferrP('r-cust')+'</div>'+
      '<div class="f"><label for="r-sum">What happened</label><textarea id="r-sum" data-ft="note" data-req data-need="Say what happened." maxlength="2000" rows="4" aria-describedby="r-sum-e" placeholder="Example: Jasmine is happy with the price.">'+esc(r.summary)+'</textarea>'+ferrP('r-sum')+'</div>'+
      fld('r-next','Next step','next',{val:r.next,hint:r.next?'':AI+' found no next step in your note.'})+
-     '<div class="f"><label for="r-due">Date of the next step '+(r.dueCheck?chip('warn','Please check'):'')+'</label><input id="r-due" data-ft="date" type="date" value="'+esc(r.iso)+'" min="2026-10-05" aria-describedby="r-due-e">'+(r.dueCheck?'<span class="cap">You said "'+esc(r.dueCheck)+'". '+AI+' took the coming one, '+fmt(r.iso)+'.</span>':(r.iso?'':'<span class="cap">No date found in your note.</span>'))+ferrP('r-due')+'</div>'+
+     '<div class="f"><label for="r-due">Date of the next step</label><input id="r-due" data-ft="date" type="date" value="'+esc(r.iso)+'" min="2026-10-05" aria-describedby="r-due-e">'+
+       (r.dueCheck?'<span class="cap">You said "'+esc(r.dueCheck)+'". '+AI+' took the coming one, '+fmt(r.iso)+'.</span>':r.dueFar?'<span class="cap">'+AI+' took this date from another sentence of your note.</span>':r.iso?'':'<span class="cap">No date in your note.</span>')+ferrP('r-due')+'</div>'+
+     '<div class="f"><label for="r-padd">Products <span class="optl">(optional)</span></label>'+(r.prods.length?'<div class="prods">'+r.prods.map(function(p,i){return '<span class="pchip">'+esc(p)+'<button data-act="rprod" data-id="'+i+'" aria-label="Remove '+esc(p)+'">'+ic('x')+'</button></span>'}).join('')+'</div>':'')+
+       (left.length?'<select id="r-padd" aria-label="Add a product"><option value="">Add a product</option>'+left.map(function(x){return '<option>'+x+'</option>'}).join('')+'</select>':'')+
+       '<span class="cap">'+(r.prods.length?'The products go to the record of the customer.':AI+' found no product in your note.')+'</span></div>'+
      (dd?'<div class="f"><label for="r-stage">Deal stage: '+esc(dd.name)+'</label><select id="r-stage">'+STAGES.concat(['Won','Lost']).map(function(x){return '<option'+(x===r.stageTo?' selected':'')+'>'+x+'</option>'}).join('')+'</select><span class="cap">'+(r.stageTo!==dd.stage?'Was '+dd.stage+'. '+AI+' suggests this from your note.':'No change.')+'</span></div>':'')+
-     '<div class="acts"><button class="btn btn-primary" data-act="save">Save to record</button><button class="btn btn-ghost" data-act="close">Cancel</button></div>'+
+     '<div class="acts"><button class="btn btn-primary" data-act="save">Save to record</button><button class="btn btn-soft" data-act="checklater">Check later</button><button class="btn btn-ghost" data-act="close">Cancel</button>'+
+       (r.nid?'<span class="sp"></span><button class="btn btn-danger'+(s.sure?' sure':'')+'" data-act="notedrop">'+(s.sure?'Tap again to discard':'Discard')+'</button>':'')+'</div>'+
      '<details class="raw"><summary>Your original words</summary><p>'+esc(r.raw)+'</p></details>';
   }
   else if(s.kind==='newcust'){
@@ -1714,7 +1996,7 @@ function sheetHTML(){
     if(w==='file'&&ed) body=fld('a-1','File name','file',{req:1,val:it});
     if(w==='file'&&!ed) body='<div class="f"><label for="a-file">Choose a file or a photo</label><input id="a-file" type="file" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" aria-describedby="a-file-h a-file-e"><span class="hint" id="a-file-h">A photo, a PDF or an office file. 10 MB or smaller.</span>'+ferrP('a-file')+'</div>'+
       '<div class="chips"><button class="chip" data-act="samplefile">Use a sample file</button></div><p class="note">Prototype: only the file name is kept.</p>';
-    if(w==='note') body='<p class="cap" style="margin-top:8px">'+esc(it.d)+' · '+esc(it.how)+'</p><div class="f"><label for="a-1">What happened</label><textarea id="a-1" data-ft="note" data-req data-need="Say what happened." maxlength="2000" rows="5" aria-describedby="a-1-e">'+esc(it.t)+'</textarea>'+ferrP('a-1')+'</div>';
+    if(w==='note') body='<p class="cap" style="margin-top:8px">'+esc(it.d)+' · '+esc(it.how)+'</p><div class="f"><label for="a-1">What happened</label><textarea id="a-1" data-ft="note" data-req data-need="Say what happened." maxlength="2000" rows="5" aria-describedby="a-1-e">'+esc(it.t)+'</textarea>'+ferrP('a-1')+'</div>'+(it.raw&&it.raw!==it.t?'<details class="raw"><summary>Your original words</summary><p>'+esc(it.raw)+'</p></details>':'');
     if(w==='person') body=fld('a-1','Name','person',{req:1,val:it&&it.name})+fld('a-2','Role','role',{val:it&&it.role})+fld('a-3','Phone','phone',{val:it&&it.phone})+fld('a-4','Email','email',{val:it&&it.email})+
       (ed&&+s.i===0?'<p class="note">This person is the main contact. To change that, edit another person.</p>':cc.people[0].none?'':'<label class="chk"><input type="checkbox" id="a-main"> Make this person the main contact</label>');
     if(w==='deal') body=fld('a-1','What is the deal for','deal',{req:1,val:it&&it.name})+fld('a-money','Worth each year','money',{req:1,val:it?(it.value*1000).toLocaleString('en-US'):''})+
@@ -1729,21 +2011,22 @@ function sheetHTML(){
     var GS=[['g-status','Status'],['g-filters','Filters'],['g-stages','Deal stages'],['g-top','Today'],['g-visits','Weather'],['g-sales','Sales bar'],['g-forms','Forms'],['g-marks','Marks']];
     b='<div class="gtop">'+sheetHead('Guide')+'<nav class="jump" aria-label="Sections of the guide">'+GS.map(function(x){return '<button class="pill" data-act="gjump" data-id="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</nav></div>'+
      '<p class="sub" style="margin-top:10px">What the words, filters and marks mean.</p><div class="gd">'+
-     '<h3 id="g-status" style="margin-top:10px">Status</h3><dl>'+gi(chip('done','Up to date'),'Nothing waits for you or for the customer.')+gi(chip('warn','Quiet 9 days'),'The customer did not reply for longer than usual.')+gi(chip('bad','Payment late'),'A payment is past its due date.')+
-       gi('Your move','The customer waits for your reply.')+gi(chip('warn','Please check'),AI+' is not sure about this field. Check it before you save.')+'</dl>'+
+     '<h3 id="g-status" style="margin-top:10px">Status</h3><dl>'+gi(chip('done','Up to date'),'Nothing waits for you or for the customer.')+gi(chip('warn','No reply for 9 days'),'The customer did not reply about a deal for longer than usual.')+gi(chip('bad','Payment late'),'A payment is past its due date. The status comes from the accounts system.')+
+       gi('Your move','The customer waits for your reply.')+'</dl>'+
      '<h3 id="g-filters">Filters in Records</h3><dl>'+FIL.slice(1).map(function(f){return gi(f[1],FDESC[f[0]])}).join('')+'</dl>'+
      '<h3 id="g-stages">Deal stages</h3><dl>'+gi('New','First contact. The usual wait for a reply is 3 days.')+gi('Sample','The customer has samples. The usual wait is 7 days.')+gi('Trial','The customer tests the ink on the press. The usual wait is 14 days.')+gi('Quote','You sent a price. The usual wait is 5 days.')+gi('Won and Lost','The deal is closed. A lost deal stays in the record.')+'</dl>'+
      '<h3 id="g-top">'+hue(14)+' Today</h3><dl>'+
-       gi('Visits','The visits of today, in order of time. They come first. They come from your calendar. A task for a customer that you visit today is part of the visit. After the time of a visit, the button changes to "Add a note about the visit".')+
-       gi('Tasks',AI+' gives points to each task. A task gets more points when the deal is worth more, when the deal is near an order, and when the customer waits longer. A promise that is due today adds points. The three tasks with the most points come first. '+AI+' makes the order at the start of each day.')+
+       gi('Visits','The visits of today, in order of time. They come first. They come from your calendar. A follow up for a customer that you visit today is part of the visit. After the time of a visit, the button changes to "Add a note about the visit".')+
+       gi('Follow ups','A follow up is a thing to do for a customer that is not a visit: a call, a message, a quote or a question about a payment. The number shows all follow ups of today, also the ones below "Show more". '+AI+' gives points to each follow up. A follow up gets more points when the deal is worth more, when the deal is near an order, and when the customer waits longer. A promise that is due today adds points. A late payment gets points for the full amount and for each day that it is late. The three follow ups with the most points come first. '+AI+' makes the order at the start of each day.')+
+       gi('Notes to check','A note that you kept with "Check later". It is not in the record yet. Open it, check the fields, then save.')+
        gi('Done','Tap the circle when an item is done. A done item stays in the list until the next morning. Tap the tick again to undo it.')+
        gi('Later this week','Your visits and promises from tomorrow to Sunday. Each day shows one time, with three rows. A small link shows the other rows of that day.')+'</dl>'+
-     '<h3 id="g-visits">Weather</h3><dl>'+gi('Weather on Home','One sentence gives the weather that can delay a visit that is still to come today. When no visit is left today, it looks at tomorrow. One line gives the next three parts of the day. The forecast comes from the national weather service.')+
+     '<h3 id="g-visits">Weather</h3><dl>'+gi('Weather on Home','One sentence gives the weather that can delay a visit that is still to come today. When no visit is left today, it looks at tomorrow. The large picture is the weather now. The colour of the panel also shows the weather now. The line next to it gives the next parts of today and tomorrow. Slide the line to see more. The forecast comes from the national weather service.')+
        gi(chip('warn','Storms. Leave 15 minutes early.'),'This mark shows on a visit when showers or storms can delay you.')+'</dl>'+
      '<h3 id="g-sales">Sales bar</h3><dl>'+gi('<i class="k kw"></i>Solid bar','The sales that you won this year.')+gi('<i class="k ko"></i>Striped bar','Your open deals. They can add to your sales.')+gi('<i class="k kp"></i>Line','Where you should be today, if sales are equal in each month.')+'</dl>'+
      '<h3 id="g-forms">Forms</h3><dl>'+gi('<span class="ib" style="margin:0">'+ic('plus')+'</span>Add','In the heading of each list. It adds one item to that list.')+gi('<span class="ib" style="margin:0">'+ic('pen')+'</span>Edit','On each item that you can change. The Edit sheet has Save, Cancel and Remove. A deal cannot be removed: set its stage to Lost.')+gi('<span class="ib lk" style="margin:0">'+ic('lock')+'</span>Lock','On a timeline entry that is a record: a message, an email, or an entry that the tool made. It cannot be changed. Add a note to correct it.')+gi('(optional)','You can leave this field empty. All other fields are necessary.')+gi('Example: 9123 4567','The grey text in an empty field is an example. It shows the correct form.')+
        gi('<span class="ferr">'+ic('x')+'<span>Red text below a field</span></span>','The value is not correct. The text says how to correct it.')+
-       gi('Phone','8 digits for Singapore. For another country, start with + and the country code.')+gi('Amount','Singapore dollars. Numbers only. S$1,000 or more.')+gi('Date','Today or a later date.')+gi('Leave a form','If a form has entries, it does not close at once. You can keep the entries and finish later. Kept forms show at the top of Home.')+'</dl>'+
+       gi('Phone','8 digits for Singapore. For another country, start with + and the country code.')+gi('Amount','Singapore dollars. Numbers only. $1,000 or more.')+gi('Date','Today or a later date. Choose it in the calendar. Tap the month or the year to change it. Saturday and Sunday have a grey ground.')+gi('Address','Type a postal code, a street or a building. Then choose a suggestion.')+gi('Leave a form','If a form has entries, it does not close at once. You can keep the entries and finish later. Kept forms show at the top of Home.')+'</dl>'+
      '<h3 id="g-marks">Marks from '+AI+'</h3><dl>'+gi(hue(15)+AI+' mark',AI+' wrote or selected this item. You can change it.')+'</dl></div>'+
      '<div class="acts"><button class="btn btn-ghost" data-act="close">Close</button></div>';
   }
@@ -1759,7 +2042,7 @@ function viewKey(){
   if(S.device==='tablet'&&S.tab==='rec') return 'tablet:rec:'+(S.rec||'best')+(S.edit?':e':'');
   return S.device+':'+S.tab;
 }
-var lastSheet=null;
+var lastSheet=null, BACK=null;
 function render(){
   MENU=null;
   var live=S.sheet&&S.sheet===lastSheet&&S.sheet.kind!=='review'&&app.querySelector('.scrim:not(.out) .sheet')?sheetVals():null;
@@ -1788,6 +2071,10 @@ function render(){
   app.innerHTML=h+fabHTML()+sheetHTML();
   enhance(); if(live) applyVals(live); lastSheet=S.sheet;
   app.querySelectorAll('[data-scroll]').forEach(function(el){ if(keep[el.dataset.scroll]) el.scrollTop=keep[el.dataset.scroll] });
+  /* back from a record: the list is where he left it, and the row that he clicked lights up for a moment */
+  if(BACK&&!S.rec){ var bsc=app.querySelector('[data-scroll="'+BACK.key+'"]');
+    if(bsc){ bsc.scrollTop=BACK.y; var brow=bsc.querySelectorAll('[data-act="rec"][data-id="'+BACK.id+'"]')[BACK.i]; brow=brow&&(brow.closest('.task,tr')||brow); if(brow) brow.classList.add('cameback'); }
+    BACK=null; }
   var key=viewKey();
   if(mo){
     var main=app.querySelector('.view')||app.querySelector('main');
@@ -1811,10 +2098,26 @@ function render(){
   var ind=app.querySelector('.tabs .ind'), ti=Math.max(0,TABS.findIndex(function(t){return t[0]===S.tab}));
   if(ind&&ti!==lastTabI){ void ind.offsetWidth; ind.style.setProperty('--i',ti); }
   lastTabI=ti;
-  markReveal(mo); spyAll(); after();
+  markReveal(mo); spyAll(); after(); dragInit();
   if(introPending){ introPending=false; if(mo) countUp(); }
   S.just=null;
 }
+/* a row that slides. A finger slides it. A mouse drags it. The row keeps its place when the screen draws again. */
+var DX={}, dragEl=null, dragX=0, dragS=0, dragOn=false;
+function dragKey(el){ return el.className.split(' ')[0] }
+function edges(el){ var max=el.scrollWidth-el.clientWidth; el.classList.toggle('more-l',el.scrollLeft>2); el.classList.toggle('more-r',el.scrollLeft<max-2); }
+function dragInit(){
+  app.querySelectorAll('[data-drag]').forEach(function(el){
+    var k=dragKey(el), on=el.querySelector('.pill.on');
+    if(DX[k]) el.scrollLeft=DX[k];
+    if(on){ var a=on.offsetLeft-el.offsetLeft, b=a+on.offsetWidth; if(a<el.scrollLeft+8) el.scrollLeft=Math.max(0,a-24); else if(b>el.scrollLeft+el.clientWidth-8) el.scrollLeft=b-el.clientWidth+24; }
+    DX[k]=el.scrollLeft; edges(el);
+  });
+}
+screenEl.addEventListener('pointerdown',function(e){ if(e.pointerType!=='mouse'||e.button!==0) return; var el=e.target.closest('[data-drag]'); if(!el||el.scrollWidth<=el.clientWidth) return; dragEl=el; dragX=e.clientX; dragS=el.scrollLeft; dragOn=false; });
+document.addEventListener('pointermove',function(e){ if(!dragEl) return; var dx=e.clientX-dragX; if(!dragOn&&Math.abs(dx)<5) return;
+  dragOn=true; dragEl.classList.add('drag'); var k=dragEl.getBoundingClientRect().width/dragEl.offsetWidth||1; dragEl.scrollLeft=dragS-dx/k; });
+document.addEventListener('pointerup',function(){ if(!dragEl) return; dragEl.classList.remove('drag'); if(dragOn) swallow=Date.now()+350; dragEl=null; dragOn=false; });
 function markReveal(mo){
   app.querySelectorAll('[data-scroll]').forEach(function(sc){
     var sr=sc.getBoundingClientRect(), k=sc.dataset.scroll;
@@ -1851,7 +2154,8 @@ function after(){
     if(kd){ s.kept=kd.key; s.restore=kd.vals; s.keptAt=kd.at; if(kd.sheet.addr){ s.addr=kd.sheet.addr; s.picked=kd.sheet.picked; } } }
   if(s.restore){ applyVals(s.restore); delete s.restore; }
   if(s.kind==='talk'&&!talkTimer) startTalk();
-  if(s.kind==='write'){ bindPad(); startHand(); }
+  if(s.kind==='write'){ bindPad(); s.handLn=-1; startHand(); }
+  if(s.kind==='type'&&$('#t-text')) guideSync($('#t-text').value,s.hint);
   if($('#c-addr')){ var av=$('#c-addr').value; if(!s.addr){ s.addr=addrParse(av); s.picked=av; } s.sug=[]; addrMap(); }
   var f=app.querySelector('.sheet textarea, .sheet input[type=text]');
   if(f&&!s.kept&&(s.kind==='type'||s.kind==='newcust'||(s.kind==='add'&&s.i==null))) { try{f.focus({preventScroll:true})}catch(e){} }
@@ -1907,16 +2211,36 @@ function menuList(){
     return '<button type="button" class="mo'+(i===m.act?' act':'')+(i===0&&o.value===''?' ph':'')+'" role="option" id="mo-'+i+'" data-i="'+i+'" aria-selected="'+(i===el.selectedIndex)+'" tabindex="-1"><span>'+esc(o.textContent)+'</span>'+ic('tick')+'</button>' }).join('')||'<p class="mnone">No match. Check the spelling.</p>';
 }
 function calHTML(){
-  var m=MENU, el=m.el, p=m.view.split('-'), y=+p[0], mo=+p[1]-1, start=new Date(y,mo,1).getDay(), n=new Date(y,mo+1,0).getDate(), min=el.min||'', was=el.dataset.was||'', cells='', i, d;
+  var m=MENU, el=m.el, p=m.view.split('-'), y=+p[0], mo=+p[1]-1, min=el.min||'', was=el.dataset.was||'', low=was&&was<min?was:min, cells='', i, d, mode=m.mode||'days';
+  var head=function(l,r){return '<div class="ch"><button type="button" class="ib" data-cal="-1" aria-label="'+l+'"'+(l?'':' hidden')+'>'+ic('back')+'</button>'+
+     '<span class="ct"><button type="button" class="cb'+(mode==='months'?' on':'')+'" data-cmode="months" aria-expanded="'+(mode==='months')+'" aria-label="Month: '+MONL[mo]+'. Choose a month">'+MONL[mo]+ic('down')+'</button>'+
+     '<button type="button" class="cb'+(mode==='years'?' on':'')+'" data-cmode="years" aria-expanded="'+(mode==='years')+'" aria-label="Year: '+y+'. Choose a year">'+y+ic('down')+'</button></span>'+
+     '<button type="button" class="ib" data-cal="1" aria-label="'+r+'"'+(r?'':' hidden')+'>'+ic('go')+'</button></div>'};
+  if(mode==='months'){
+    for(i=0;i<12;i++){ var mk=y+'-'+('0'+(i+1)).slice(-2); cells+='<button type="button" class="cp'+(i===mo?' on':'')+'" data-cpick="m:'+i+'"'+(low&&mk<low.slice(0,7)?' disabled':'')+'>'+MON[i]+'</button>'; }
+    return head('The year before','The next year').replace('data-cal="-1"','data-cal="-12"'+(low&&String(y-1)<low.slice(0,4)?' disabled':'')).replace('data-cal="1"','data-cal="12"')+'<div class="cmg">'+cells+'</div>';
+  }
+  if(mode==='years'){
+    var y0=+(low||TODAY).slice(0,4); for(i=y0;i<y0+9;i++) cells+='<button type="button" class="cp'+(i===y?' on':'')+'" data-cpick="y:'+i+'">'+i+'</button>';
+    return head('','')+'<div class="cmg">'+cells+'</div>';
+  }
+  var start=new Date(y,mo,1).getDay(), n=new Date(y,mo+1,0).getDate();
   for(i=0;i<start;i++) cells+='<span></span>';
-  for(d=1;d<=n;d++){ var iso=m.view+'-'+('0'+d).slice(-2), off=min&&iso<min&&iso!==was;
-    cells+='<button type="button" class="cd'+(iso===TODAY?' today':'')+(iso===m.day?' act':'')+'" data-day="'+iso+'" aria-selected="'+(iso===el.value)+'"'+(off?' disabled':'')+' tabindex="-1" aria-label="'+fmtLong(iso)+'">'+d+'</button>'; }
-  var first=(min&&min.slice(0,7)>=m.view)&&!(was&&was.slice(0,7)<m.view), tm=addDays(TODAY,1);
-  return '<div class="ch"><button type="button" class="ib" data-cal="-1" aria-label="The month before"'+(first?' disabled':'')+'>'+ic('back')+'</button><b aria-live="polite">'+MONL[mo]+' '+y+'</b><button type="button" class="ib" data-cal="1" aria-label="The next month">'+ic('go')+'</button></div>'+
-   '<div class="cg">'+['Su','Mo','Tu','We','Th','Fr','Sa'].map(function(w){return '<span class="cw" aria-hidden="true">'+w+'</span>'}).join('')+cells+'</div>'+
+  for(d=1;d<=n;d++){ var iso=m.view+'-'+('0'+d).slice(-2), off=min&&iso<min&&iso!==was, wd=(start+d-1)%7;
+    cells+='<button type="button" class="cd'+(wd===0||wd===6?' we':'')+(iso===TODAY?' today':'')+(iso===m.day?' act':'')+'" data-day="'+iso+'" aria-selected="'+(iso===el.value)+'"'+(off?' disabled':'')+' tabindex="-1" aria-label="'+fmtLong(iso)+'">'+d+'</button>'; }
+  var first=(min&&min.slice(0,7)>=m.view)&&!(was&&was.slice(0,7)<m.view), tm=addDays(TODAY,1), sel=el.value&&el.value.slice(0,7)===m.view?el.value:'';
+  return head('The month before','The next month').replace('data-cal="-1"','data-cal="-1"'+(first?' disabled':''))+
+   '<div class="cg">'+['Su','Mo','Tu','We','Th','Fr','Sa'].map(function(w,j){return '<span class="cw'+(j===0||j===6?' we':'')+'" aria-hidden="true">'+w+'</span>'}).join('')+cells+'</div>'+
+   '<p class="ck"><i></i>Saturday and Sunday</p>'+
    '<div class="cf"><button type="button" class="btn btn-quiet" data-day="'+TODAY+'">Today</button><button type="button" class="btn btn-quiet" data-day="'+tm+'">Tomorrow</button>'+(el.hasAttribute('data-req')?'':'<button type="button" class="btn btn-quiet" data-day="">No date</button>')+'</div>';
 }
-/* put the list below the button. If there is no room below, put it above. The numbers hold for each text size and each device scale. */
+function calMode(mode){ var m=MENU; m.mode=m.mode===mode?'days':mode; m.pop.innerHTML=calHTML(); menuPlace(); }
+function calPick(v){
+  var m=MENU, p=m.view.split('-'), y=+p[0], mo=+p[1]-1, k=v.split(':'); if(k[0]==='m') mo=+k[1]; else y=+k[1];
+  var min=m.el.min||'', was=m.el.dataset.was||'', low=was&&was<min?was:min, view=y+'-'+('0'+(mo+1)).slice(-2); if(low&&view<low.slice(0,7)) view=low.slice(0,7);
+  var last=new Date(+view.slice(0,4),+view.slice(5),0).getDate();
+  m.view=view; m.day=view+'-'+('0'+Math.min(+m.day.slice(8),last)).slice(-2); m.mode='days'; m.pop.innerHTML=calHTML(); menuPlace();
+}
 function menuPlace(){
   var m=MENU, p=m.pop, list=p.querySelector('.mlist');
   p.style.cssText='left:0;top:0;width:100px;min-width:0;max-height:none;animation:none';
@@ -1962,7 +2286,8 @@ function menuAct(i){
 }
 function calNav(n){
   var m=MENU, p=m.view.split('-'), d=new Date(+p[0],+p[1]-1+(+n),1), last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
-  m.view=isoOf(d).slice(0,7); m.day=m.view+'-'+('0'+Math.min(+m.day.slice(8),last)).slice(-2); m.pop.innerHTML=calHTML(); menuPlace();
+  m.view=isoOf(d).slice(0,7); var lowv=(m.el.dataset.was&&m.el.dataset.was<(m.el.min||'')?m.el.dataset.was:(m.el.min||'')).slice(0,7); if(lowv&&m.view<lowv){ m.view=lowv; last=new Date(+lowv.slice(0,4),+lowv.slice(5),0).getDate(); }
+  m.day=m.view+'-'+('0'+Math.min(+m.day.slice(8),last)).slice(-2); m.pop.innerHTML=calHTML(); menuPlace();
 }
 /* the keys of an open menu. It returns true when the key is used. */
 function menuKey(e){
@@ -1971,6 +2296,7 @@ function menuKey(e){
   if(k==='Tab'){ menuClose(); return true }
   if(m.date){
     var step={ArrowLeft:-1,ArrowRight:1,ArrowUp:-7,ArrowDown:7}[k];
+    if(step&&m.mode&&m.mode!=='days') return true;
     if(step){ e.preventDefault(); m.day=addDays(m.day,step); m.view=m.day.slice(0,7); m.pop.innerHTML=calHTML(); menuPlace(); return true }
     if(k==='PageUp'||k==='PageDown'){ e.preventDefault(); calNav(k==='PageUp'?-1:1); return true }
     if(k==='Enter'){ if(e.target&&e.target.closest&&e.target.closest('#menu')) return true; e.preventDefault(); var c=m.pop.querySelector('.cd[data-day="'+m.day+'"]'); if(c&&!c.disabled) datePick(m.day); return true }
@@ -1991,12 +2317,12 @@ function menuKey(e){
 /* ---------- forms keep their entries ---------- */
 /* A sheet with fields does not close at once when it has entries. He can keep the entries and finish later, discard them, or stay.
    Kept forms show at the top of Home. A tap outside closes a sheet only when nothing can be lost. */
-var FORMS={newcust:1,company:1,add:1,type:1,review:1,msg:1}, HOLD={talk:1,write:1,tidying:1}, KEPTN=0;
-var DONE={create:1,saveco:1,addsave:1,save:1,saveraw:1,send:1,rmitem:1,tidy:1};
+var FORMS={newcust:1,company:1,add:1,type:1,review:1,msg:1}, HOLD={talk:1,write:1,photo:1,tidying:1}, KEPTN=0;
+var DONE={create:1,saveco:1,addsave:1,save:1,saveraw:1,send:1,rmitem:1,checknow:1,checklater:1};
 function isForm(s){ return !!s&&!!FORMS[s.kind]&&!(s.kind==='add'&&s.what==='file'&&s.i==null) }
 function sheetKey(s){
   var r=S.rec||'best';
-  return s.kind==='add'?'add:'+s.what+':'+(s.i==null?'new':s.i)+':'+r:s.kind==='company'?'company:'+r:s.kind==='type'?'type:'+(s.hint||''):s.kind==='msg'?'msg:'+s.cust+':'+(s.deal||''):s.kind;
+  return s.kind==='add'?'add:'+s.what+':'+(s.i==null?'new':s.i)+':'+r:s.kind==='company'?'company:'+r:s.kind==='type'?'type:'+(s.hint||''):s.kind==='msg'?'msg:'+s.cust+':'+(s.deal||'')+(s.pay?':pay':''):s.kind;
 }
 function sheetVals(){
   var o={}; app.querySelectorAll('.scrim:not(.out) .sheet input, .scrim:not(.out) .sheet textarea, .scrim:not(.out) .sheet select').forEach(function(el){
@@ -2009,7 +2335,7 @@ function applyVals(v){
 }
 function sheetDirty(){
   var s=S.sheet; if(!isForm(s)||!s.snap) return false;
-  if(s.kind==='review'&&!s.kept) return true;
+  if(s.kind==='review') return true;
   var v=sheetVals(), k; for(k in v) if(v[k]!==s.snap[k]) return true; return false;
 }
 function sheetTitle(s,v){
@@ -2019,10 +2345,11 @@ function sheetTitle(s,v){
   if(s.kind==='add') return (s.i==null?'Add a ':'Edit ')+s.what+': '+c.name;
   if(s.kind==='type'){ id=v['t-cust']||s.hint; return 'Note'+(id&&cust(id)?': '+cust(id).name:'') }
   if(s.kind==='review'){ id=v['r-cust']; return 'Note to check'+(id&&cust(id)?': '+cust(id).name:'') }
-  return 'Message to '+cust(s.cust).people[0].call;
+  return 'Message to '+(s.pay?payContact(cust(s.cust)):cust(s.cust).people[0]).call;
 }
 function keepForm(){
-  var s=S.sheet, v=sheetVals(), key=s.kept||sheetKey(s); if(s.kind==='review') readDraft();
+  var s=S.sheet, v=sheetVals(), key=s.kept||sheetKey(s);
+  if(s.kind==='review'){ readDraft(); var nk='note:'+noteLater({draft:S.draft},S.draft.nid); S.draft=null; return nk; }
   var copy=JSON.parse(JSON.stringify(s,function(k,x){return k==='snap'||k==='restore'||k==='sug'||k==='kept'||k==='keptAt'||k==='sure'?undefined:x}));
   S.kept[key]={key:key,title:sheetTitle(s,v),at:clockText(nowMin()),sheet:copy,vals:v,rec:s.kind==='add'||s.kind==='company'?(S.rec||'best'):null,note:s.kind==='review'?JSON.parse(JSON.stringify(S.draft)):null,n:++KEPTN};
   return key;
@@ -2031,8 +2358,9 @@ function askOpen(){ return app.querySelector('.scrim:not(.out) .ask') }
 function leaveAsk(){
   var sc=app.querySelector('.scrim:not(.out)'); if(!sc||askOpen()) return; menuClose();
   var d=document.createElement('div'); d.className='ask'; d.setAttribute('role','alertdialog'); d.setAttribute('aria-modal','true'); d.setAttribute('aria-labelledby','ask-t'); d.setAttribute('aria-describedby','ask-d');
-  d.innerHTML='<div class="askc"><h3 id="ask-t">Leave this form?</h3><p id="ask-d">Your entries are not saved. '+AI+' can keep them, and you can finish the form later.</p>'+
-   '<div class="acts"><button class="btn btn-primary" data-act="keep">Keep for later</button><button class="btn btn-danger" data-act="drop">Discard the entries</button><button class="btn btn-ghost" data-act="stay">Stay in the form</button></div></div>';
+  var rv=S.sheet&&S.sheet.kind==='review';
+  d.innerHTML='<div class="askc"><h3 id="ask-t">'+(rv?'Leave this note?':'Leave this form?')+'</h3><p id="ask-d">'+(rv?'The note is not in the record yet. '+AI+' can keep it, and you can check it later.':'Your entries are not saved. '+AI+' can keep them, and you can finish the form later.')+'</p>'+
+   '<div class="acts"><button class="btn btn-primary" data-act="keep">'+(rv?'Check later':'Keep for later')+'</button><button class="btn btn-danger" data-act="drop">'+(rv?'Discard the note':'Discard the entries')+'</button><button class="btn btn-ghost" data-act="stay">'+(rv?'Stay':'Stay in the form')+'</button></div></div>';
   sc.appendChild(d); try{ d.querySelector('[data-act=keep]').focus({preventScroll:true}) }catch(e){}
 }
 /* each way to close a sheet comes here: the cross, Cancel, the Escape key and a tap outside. It returns true when the sheet closed. */
@@ -2040,6 +2368,8 @@ function tryClose(out){
   var s=S.sheet; if(!s) return false;
   if(askOpen()) return false;
   if(out&&HOLD[s.kind]) return false;
+  /* a note that already waits at the top of Home goes back there, with the changes */
+  if(s.kind==='review'&&S.draft&&S.draft.nid){ keepForm(); closeSheet(); toast('The note waits at the top of Home.'); return true }
   if(sheetDirty()){ leaveAsk(); return false }
   closeSheet(); return true;
 }
@@ -2055,7 +2385,7 @@ function startTalk(){
   S.sheet.raw=words.join(' ');
   talkTimer=setInterval(function(){
     t++; if(tm) tm.textContent='0:'+('0'+Math.floor(t/5)).slice(-2);
-    if(t>3&&i<words.length&&out){ i++; out.textContent=words.slice(0,i).join(' '); }
+    if(t>3&&i<words.length&&out){ i++; out.textContent=words.slice(0,i).join(' '); guideSync(words.slice(0,i).join(' '),S.sheet&&S.sheet.hint); }
     if(i>=words.length&&t>words.length+40) stopTalk();
   },200);
 }
@@ -2072,16 +2402,17 @@ function bindPad(){
   cv.addEventListener('pointermove',function(e){if(!down)return;var p=pt(e);x.lineTo(p[0],p[1]);x.stroke()});
   var up=function(){down=false}; cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up);
 }
-function toReview(src,raw,hint){
+function toReview(src,raw,hint,nid){
   closeSheet(); S.sheet={kind:'tidying'}; render();
   var tick=function(id){return function(){var el=$('#'+id); if(el) el.classList.add('ok')}};
   tidyTimers=[setTimeout(tick('ts1'),380),setTimeout(tick('ts2'),780),setTimeout(tick('ts3'),1180),
-   setTimeout(function(){ if(!S.sheet||S.sheet.kind!=='tidying') return; S.draft=tidy(raw,hint); S.draft.src=src; S.sheet={kind:'review'}; render(); },1550)];
+   setTimeout(function(){ if(!S.sheet||S.sheet.kind!=='tidying') return; var r=tidy(raw,hint); r.src=src; r.nid=nid||null;
+     r.nf=(r.cust?1:0)+1+(r.next?1:0)+(r.iso?1:0)+(r.prods.length?1:0)+(r.deal?1:0); S.draft=r; S.sheet={kind:'review'}; render(); },1550)];
 }
 function readDraft(){
   var r=S.draft, g=function(id){var el=$('#'+id);return el?el.value.trim():null};
   var v=g('r-sum'); if(v!==null) r.summary=v; v=g('r-next'); if(v!==null) r.next=v;
-  v=g('r-due'); if(v!==null){ if(v!==r.iso) r.dueCheck=''; r.iso=v; }
+  v=g('r-due'); if(v!==null){ if(v!==r.iso){ r.dueCheck=''; r.dueFar=false; } r.iso=v; }
   v=g('r-stage'); if(v!==null) r.stageTo=v;
 }
 function markTouched(c,d){ c.last=0; if(d){d.touch=0;d.snooze=false;} }
@@ -2113,12 +2444,12 @@ function hideSplash(){
 var TOUR=[
  {mid:1,t:'Hello, Daniel. I am '+AI+'.',b:'I keep track of your deals, so you can sell. This short tour shows the main features. It takes one minute.'},
  {sel:'.sales',t:'Your sales progress',b:'The solid bar shows the sales that you won. The striped bar shows your open deals. The line shows where you should be today.'},
- {sel:'#b-top .task',scroll:1,t:'Today',b:'Your visits of today come first, in order of time. Below them, '+AI+' puts the most important tasks first. Each item gives the reason and one next step. Tap the circle when an item is done.'},
+ {sel:'#b-top .task',scroll:1,t:'Today',b:'Your visits of today come first, in order of time. Below them are your follow ups: the calls, messages and promises of today. '+AI+' puts the most important first. Each item gives the reason and one next step. Tap the circle when an item is done.'},
  {sel:function(){return S.device==='computer'?'.topbar .btn-primary':'#fab'},round:function(){return S.device!=='computer'},t:'Add a note in seconds',
   b:function(){return S.device==='computer'?'Select New note to type, to talk, or to attach a photo of your notes. Press N to type immediately. '+AI+' tidies the note and finds the next step.':'Tap the round button to talk, type, write or take a photo. Hold the button to talk immediately. '+AI+' tidies the note for you.'}},
- {sel:'#b-attn',scroll:1,t:'Customers that need you',b:AI+' warns you when a customer is quiet for too long, or when a payment is late. Tap a row to see the reason.'},
+ {sel:'#b-attn',scroll:1,t:'Customers that need you',b:AI+' warns you when a customer does not reply for too long, or when a payment is late. Tap a row to see the reason and what you can do.'},
  {sel:'[data-act=tab][data-id=rec]',pad:3,t:'Customer records',b:'Each customer has one page. Your notes, deals and promises go there.'},
- {sel:'[data-act=tab][data-id=set]',pad:3,t:'Settings',b:'Change the text size and the contrast here. You can also stop each task of '+AI+'. The guide and this tour are here too.'}
+ {sel:'[data-act=tab][data-id=set]',pad:3,t:'Settings',b:'Change the text size and the contrast here. You can also turn off each job of '+AI+'. The guide and this tour are here too.'}
 ];
 var tourEl=$('#tour'), tourTs=[], tourAuto=true;
 function tourSeen(set){
@@ -2185,8 +2516,10 @@ function tourEnd(done,quiet){
 
 /* ---------- actions ---------- */
 var A={
-  tab:function(id){S.tab=id;if(S.device!=='tablet')S.rec=null;S.fan=false;S.edit=false},
-  rec:function(id){if(S.sheet&&sheetDirty())keepForm();closeSheet();S.fan=false;S.edit=false;S.tlN=5;S.secAll={};S.rec=id;if(S.device==='tablet')S.tab='rec';toastEl.hidden=true},
+  tab:function(id){BACK=null;S.tab=id;if(S.device!=='tablet')S.rec=null;S.fan=false;S.edit=false},
+  rec:function(id,_,b){ var sc0=b&&b.closest?b.closest('[data-scroll]'):null;
+    if(sc0&&!S.rec){ var same=[].slice.call(sc0.querySelectorAll('[data-act="rec"][data-id="'+id+'"]')); BACK={key:sc0.dataset.scroll,y:sc0.scrollTop,id:id,i:Math.max(0,same.indexOf(b))}; }
+    if(S.sheet&&sheetDirty())keepForm();closeSheet();S.fan=false;S.edit=false;S.tlN=5;S.secAll={};S.rec=id;if(S.device==='tablet')S.tab='rec';toastEl.hidden=true},
   back:function(){S.rec=null;S.edit=false},
   secall:function(k){ S.secAll[k]=!S.secAll[k] },
   dayall:function(k){ S.dayAll[k]=!S.dayAll[k] },
@@ -2199,25 +2532,49 @@ var A={
   sales:function(_,__,b){ S.sales=!S.sales; var c=b.closest('.sales'); c.classList.toggle('open',S.sales); c.querySelector('.fold').classList.toggle('open',S.sales); b.querySelector('span').textContent=S.sales?'Less':'Detail'; b.setAttribute('aria-expanded',String(S.sales)); return false },
   done:function(id){ var was=S.done[id]; S.done[id]=was?0:1;
     if(id.indexOf('p-')===0) C.forEach(function(c){c.promises.forEach(function(p){ if('p-'+p.uid===id) p.done=!was })});
-    if(!was){ S.just=id; if(dayTasks().slice(0,3).every(function(t){return S.done[t.id]})&&visitsToday().every(function(v){return S.done['v-'+v.cust]})) toast('The first tasks and the visits of today are done.'); } },
+    if(!was){ S.just=id; if(dayTasks().slice(0,3).every(function(t){return S.done[t.id]})&&visitsToday().every(function(v){return S.done['v-'+v.cust]})) toast('The first three follow ups and the visits of today are done.'); } },
   stage:function(id){S.stage=(!id||S.stage===id)?null:id},
-  filter:function(id){S.f=id;S.recN=20;S.page=0}, sort:function(id){S.sort=id;S.page=0},
+  filter:function(id){S.f=id;if(id!=='open')S.fs=null;S.recN=20;S.page=0}, sort:function(id){S.sort=id;S.page=0},
+  fstage:function(id){S.fs=id||null;S.recN=20;S.page=0}, fweeks:function(id){S.fw=+id;S.recN=20;S.page=0},
   recmore:function(){S.recN+=20}, page:function(id){S.page+=+id}, tlmore:function(){S.tlN+=10},
   attnall:function(){S.attnAll=!S.attnAll}, weekall:function(){S.weekAll=!S.weekAll},
-  alldeals:function(){S.f='open';S.sort='open';S.q='';S.recN=20;S.page=0;S.tab='rec';if(S.device!=='tablet')S.rec=null},
+  alldeals:function(){BACK=null;S.f='open';S.fs=S.stage||null;S.sort='open';S.q='';S.recN=20;S.page=0;S.tab='rec';if(S.device!=='tablet')S.rec=null},
   guide:function(){S.sheet={kind:'guide'}},
   pickaddr:function(_,__,b){ var sh=S.sheet; if(sh&&sh.sug&&sh.sug[+b.dataset.i]) addrPick(sh.sug[+b.dataset.i]); return false },
   size:function(id,_,b){ S.set.size=id; applySettings(); pressOne(b); toast('Text size: '+{s:'Small',m:'Standard',l:'Large',xl:'Largest'}[id]+'.'); setTimeout(revealAll,60); return false },
   side:function(id,_,b){ S.set.left=id==='l'; pressOne(b); var w=app.querySelector('.fabwrap'); if(w) w.classList.toggle('left',S.set.left); screenEl.classList.toggle('fab-l',S.set.left); toast('Note button is on the '+(S.set.left?'left':'right')+'.'); return false },
-  tog:function(id,_,b){ var on=S.set[id]=!S.set[id]; applySettings(); b.setAttribute('aria-checked',String(on)); b.lastChild.textContent=on?'On':'Off'; toast({hc:'Stronger contrast is ',rm:'Less motion is ',tips:'Suggestions are ',warn:'Quiet deal warnings are ',tidy:'Tidy up is ',draft:'Message drafts are ',top:'Task order is ',wx:'Weather is '}[id]+(on?'on':'off')+'.'); return false },
+  tog:function(id,_,b){ var on=S.set[id]=!S.set[id]; applySettings(); b.setAttribute('aria-checked',String(on)); b.lastChild.textContent=on?'On':'Off'; toast({hc:'Stronger contrast is ',rm:'Less motion is ',tips:'Suggestions are ',warn:'The warnings about no reply are ',tidy:'Filling in the fields is ',draft:'Message drafts are ',top:'The order of follow ups is ',wx:'Weather is '}[id]+(on?'on':'off')+'.'); return false },
   jump:function(id,_,b){ var sc=b.closest('[data-scroll]'), el=sc&&sc.querySelector('#'+id); if(el) el.scrollIntoView({block:'start',behavior:S.set.rm?'auto':'smooth'}); return false },
   fanclose:function(){setFan(false);return false},
   close:function(){ return tryClose()?undefined:false },
-  keep:function(){ var k=keepForm(); closeSheet(); toast('Kept for later. Find it at the top of Home.',k,'kept') },
-  drop:function(){ var s=S.sheet; if(s){ delete S.kept[s.kept||sheetKey(s)]; if(s.kind==='review') S.draft=null; } closeSheet(); toast('Entries discarded.') },
+  keep:function(){ var rv=S.sheet.kind==='review', k=keepForm(); closeSheet(); toast(rv?'Kept. Check the note later at the top of Home.':'Kept for later. Find it at the top of Home.',k,'kept') },
+  drop:function(){ var s=S.sheet;
+    if(s&&s.kind==='review'){ if(S.draft&&S.draft.nid) noteGone(S.draft.nid); S.draft=null; closeSheet(); toast('Note discarded.'); return; }
+    if(s) delete S.kept[s.kept||sheetKey(s)]; closeSheet(); toast('Entries discarded.') },
+  notedrop:function(){ var s=S.sheet; readDraft(); if(!s.sure){ s.sure=true; return; } return A.drop() },
+  notecheck:function(id){ var n=S.notes.find(function(x){return x.id===id}); if(!n) return; closeSheet(); S.fan=false; toastEl.hidden=true;
+    if(n.draft){ S.draft=clone(n.draft); S.draft.nid=id; S.sheet={kind:'review'}; return; }
+    toReview(n.src,n.raw,n.hint,id); return false },
+  notesall:function(){ S.notesAll=!S.notesAll },
+  rprod:function(i){ readDraft(); S.draft.prods.splice(+i,1) },
+  gex:function(_,__,b){ var p=$('#n-gex'), open=p.hidden; p.hidden=!open; b.setAttribute('aria-expanded',String(open)); b.textContent=open?'Hide the example':'See an example'; return false },
+  shoot:function(){ S.sheet.file={name:'Photo from the camera',url:''}; S.sheet.err='' },
+  retake:function(){ S.sheet.file=null; S.sheet.err='' },
+  checknow:function(){ var s=S.sheet, k=s.kind;
+    if(k==='type'){ if(!fcheck()) return false; toReview('type',$('#t-text').value.trim(),s.hint); return false }
+    if(k==='talk'){ stopTalk(); toReview('talk',s.raw,s.hint); return false }
+    if(k==='attach'&&!s.file){ s.err='Choose a picture first. Or use the sample page.'; return; }
+    toReview(k==='attach'?'photo':k,SAMPLE.lion,null); return false },
+  checklater:function(){ var s=S.sheet, k=s.kind, id;
+    if(k==='review'){ id=keepForm().slice(5); }
+    else if(k==='type'){ if(!fcheck()) return false; id=noteLater({src:'type',raw:$('#t-text').value.trim(),hint:s.hint}); }
+    else if(k==='talk'){ stopTalk(); id=noteLater({src:'talk',raw:s.raw,hint:s.hint}); }
+    else { if(k==='attach'&&!s.file){ s.err='Choose a picture first. Or use the sample page.'; return; } id=noteLater({src:k==='attach'?'photo':k,raw:SAMPLE.lion,hint:null}); }
+    closeSheet(); toast('Kept. Check the note later at the top of Home.','note:'+id,'kept'); },
   keptdrop:function(){ return A.drop() },
   stay:function(){ var a=askOpen(); if(a) a.parentNode.removeChild(a); var f=app.querySelector('.scrim:not(.out) .sheet .xb'); if(f){ try{f.focus({preventScroll:true})}catch(e){} } return false },
   kept:function(key){
+    if(String(key).indexOf('note:')===0) return A.notecheck(key.slice(5));
     var d=S.kept[key]; if(!d) return; closeSheet(); S.fan=false; toastEl.hidden=true;
     if(d.rec&&cust(d.rec)){ S.rec=d.rec; if(S.device==='tablet') S.tab='rec'; }
     if(d.note) S.draft=JSON.parse(JSON.stringify(d.note));
@@ -2225,6 +2582,9 @@ var A={
   },
   locked:function(id){ toast(id==='made'?'The tool made this entry. It cannot be changed.':'This is a record of a message or an email. It cannot be changed. To correct it, add a note.'); return false },
   warn:function(_,dl){S.sheet={kind:'warn',deal:dl}},
+  late:function(id){ if(cust(id)&&cust(id).late) S.sheet={kind:'late',cust:id} },
+  paymsg:function(id){S.sheet={kind:'msg',cust:id,deal:null,pay:true}},
+  paycall:function(id){S.sheet={kind:'call',cust:id,phase:'on',pay:true}},
   msg:function(id,dl){var d=dl?deal(dl):(openOf(id)[0]||null);S.sheet={kind:'msg',cust:d?d.cust:id,deal:d?d.id:null}},
   call:function(id,dl){S.sheet={kind:'call',cust:dl?deal(dl).cust:id,phase:'on'}},
   endcall:function(){S.sheet.phase='after'},
@@ -2235,16 +2595,15 @@ var A={
     var s=S.sheet, c=cust(s.cust), d=s.deal?deal(s.deal):null, el=$('#m-text'), text=el.value.trim();
     if(text.indexOf('[price]')>-1){ fset(el,'Add the price before you send. Replace [price] with your number.'); el.focus(); return false }
     c.timeline.unshift({d:'Today',how:'Message',t:'You: '+text}); markTouched(c,d); if(d){d.wait='them';d.last='Message sent';}
-    var t=T.find(function(x){return d&&x.deal===d.id}); if(t){S.done[t.id]=1; if(t.promise){var p=c.promises.find(function(x){return !x.done}); if(p)p.done=true;}}
-    closeSheet(); toast('Sent to '+c.people[0].call+' and saved to the record.',c.id);
+    var t=s.pay?T.find(function(x){return x.pay&&x.cust===c.id}):T.find(function(x){return d&&x.deal===d.id&&!x.pay}); if(t){S.done[t.id]=1; if(t.promise){var p=c.promises.find(function(x){return !x.done}); if(p)p.done=true;}}
+    closeSheet(); toast('Sent to '+(s.pay?payContact(c):c.people[0]).call+' and saved to the record.',c.id);
   },
-  cap:function(kind,_,b){ var hint=(b&&b.dataset.hint)||null; closeSheet(); S.fan=false; S.capm=false; if(noCust()) return; S.sheet={kind:kind,hint:hint}; },
+  cap:function(kind,_,b){ var hint=(b&&b.dataset.hint)||null; closeSheet(); S.fan=false; S.capm=false; toastEl.hidden=true; if(noCust()) return; S.sheet={kind:kind,hint:hint}; },
   capmenu:function(){ S.capm=!S.capm; if(S.capm) setTimeout(function(){ var f=app.querySelector('.capm button'); if(f){ try{f.focus({preventScroll:true})}catch(_){} } },0); },
   attpick:function(){ var f=$('#n-photo'); if(f) f.click(); return false },
   attsample:function(){ S.sheet.file={name:'Sample page.jpg',url:''}; S.sheet.err=''; },
-  stoptalk:function(){ var s=S.sheet; stopTalk(); if(!S.set.tidy){ S.sheet={kind:'type',hint:s.hint,text:s.raw}; return; } toReview('talk',s.raw,s.hint); return false },
-  sample:function(){ var el=$('#t-text'); el.value=sampleFor($('#t-cust').value||S.sheet.hint||'best'); fshow(el); el.focus(); return false },
-  tidy:function(){ if(!fcheck()) return false; toReview('type',$('#t-text').value.trim(),$('#t-cust').value||S.sheet.hint); return false },
+  stoptalk:function(){ var s=S.sheet; stopTalk(); S.sheet={kind:'type',hint:s.hint,text:s.raw}; },
+  sample:function(){ var el=$('#t-text'), tc=$('#t-cust'); el.value=sampleFor((tc&&tc.value)||S.sheet.hint||'best'); fshow(el); guideSync(el.value,S.sheet.hint); el.focus(); return false },
   saveraw:function(){
     if(!fcheck()) return false;
     var v=$('#t-text').value.trim(), sel=$('#t-cust'), id=sel.value, c=id?cust(id):findCust(v.toLowerCase(),null);
@@ -2252,22 +2611,21 @@ var A={
     c.timeline.unshift({d:'Today',how:'Note',t:v}); markTouched(c,openOf(c.id)[0]||null);
     closeSheet(); toast('Saved to '+c.name+' as you wrote it.',c.id);
   },
-  tidyhand:function(){ var k=S.sheet.kind;
-    if(k==='attach'){ if(!S.sheet.file){ S.sheet.err='Choose a picture first. Or use the sample page.'; return; } k='photo'; }
-    if(!S.set.tidy){ S.sheet={kind:'type',hint:null,text:SAMPLE.lion}; return; } toReview(k,SAMPLE.lion,null); return false },
-  clearpad:function(){ var cv=$('#w-pad'); cv.getContext('2d').clearRect(0,0,cv.width,cv.height); cancelAnimationFrame(handRaf); S.sheet.handOff=true; $('#w-hand').style.display='none'; return false },
+  tidyhand:function(){ if(S.sheet.kind==='attach'&&!S.sheet.file){ S.sheet.err='Choose a picture first. Or use the sample page.'; return; } S.sheet={kind:'type',hint:null,text:SAMPLE.lion}; },
+  clearpad:function(){ var cv=$('#w-pad'); cv.getContext('2d').clearRect(0,0,cv.width,cv.height); cancelAnimationFrame(handRaf); S.sheet.handOff=true; $('#w-hand').style.display='none'; guideSync('',null); return false },
   save:function(){
     if(!fcheck()) return false;
     readDraft(); var r=S.draft, id=$('#r-cust').value, due=$('#r-due');
     if(r.next&&!r.iso){ fset(due,'Add a date for the next step. Then it shows in your week.'); due.focus(); return false }
     var c=cust(id), d=r.deal&&deal(r.deal).cust===id?deal(r.deal):null;
-    c.timeline.unshift({d:'Today',how:{talk:'Voice note',type:'Note',write:'Written note',photo:'Photo note'}[r.src],t:r.summary,ai:true,next:r.next?(r.next+(r.iso?' · '+fmt(r.iso):'')):''});
+    c.timeline.unshift({d:'Today',how:{talk:'Voice note',type:'Note',write:'Written note',photo:'Photo note'}[r.src],t:r.summary,ai:true,raw:r.raw,next:r.next?(r.next+(r.iso?' · '+fmt(r.iso):'')):''});
     if(r.next) c.promises.unshift({t:r.next,iso:r.iso});
     (r.prods||[]).forEach(function(p){ if(!c.products.some(function(x){return x.toLowerCase().indexOf(p.toLowerCase())===0})) c.products.push(p) });
     markTouched(c,d);
     if(d){ if(r.stageTo&&r.stageTo!==d.stage){d.stage=r.stageTo;d.last='Moved to '+r.stageTo;} else d.last='Note added'; d.wait=r.next?'you':'them'; }
     T.forEach(function(t){ if(t.cust===id&&!S.done[t.id]&&!t.promise) S.done[t.id]=2 });
     visitsToday().forEach(function(v){ if(v.cust===id&&!S.done['v-'+id]) S.done['v-'+id]=2 });
+    if(r.nid) noteGone(r.nid);
     closeSheet(); S.draft=null; toast('Saved to '+c.name+'.'+(r.next?' Next step added'+(r.iso?' for '+fmt(r.iso):'')+'.':''),c.id);
   },
   newcust:function(){S.sheet={kind:'newcust'}},
@@ -2278,7 +2636,7 @@ var A={
     var nc={id:id,keys:[name.toLowerCase()],name:name,type:$('#n-type').value,area:'',addr:'',bld:'',unit:'',postal:'',since:2026,terms:'Not set',last:0,
       people:[{name:none?'No contact yet':person,call:none?'':person.split(' ')[0],none:none,role:'',phone:phone,email:email}],products:[],timeline:[{d:'Today',how:'Created',t:'Record created.'}],promises:[],files:[],tip:''};
     applyAddr(nc,$('#c-addr').value,$('#c-unit').value.trim()); C.push(nc);
-    closeSheet(); S.q=''; S.f='all'; S.rec=id; if(S.device!=='computer')S.tab='rec'; toast('Record created for '+name+'.');
+    closeSheet(); S.q=''; S.f='all'; S.fs=null; S.rec=id; if(S.device!=='computer')S.tab='rec'; toast('Record created for '+name+'.');
   },
   add:function(what){S.sheet={kind:'add',what:what}},
   edititem:function(what,_,b){S.sheet={kind:'add',what:what,i:b.dataset.i}},
@@ -2329,8 +2687,8 @@ screenEl.addEventListener('click',function(e){
   if(Date.now()<swallow){ swallow=0; return; }
   var mbtn=e.target.closest('[data-menu]');
   if(MENU){
-    if(e.target.closest('#menu')){ var mo=e.target.closest('.mo'), cd=e.target.closest('[data-day]'), cn=e.target.closest('[data-cal]');
-      if(mo) menuPick(+mo.dataset.i); else if(cd){ if(!cd.disabled) datePick(cd.dataset.day); } else if(cn&&!cn.disabled) calNav(cn.dataset.cal);
+    if(e.target.closest('#menu')){ var mo=e.target.closest('.mo'), cd=e.target.closest('[data-day]'), cn=e.target.closest('[data-cal]'), cm=e.target.closest('[data-cmode]'), cp=e.target.closest('[data-cpick]');
+      if(mo) menuPick(+mo.dataset.i); else if(cd){ if(!cd.disabled) datePick(cd.dataset.day); } else if(cn&&!cn.disabled) calNav(cn.dataset.cal); else if(cm) calMode(cm.dataset.cmode); else if(cp&&!cp.disabled) calPick(cp.dataset.cpick);
       return; }
     var same=mbtn===MENU.btn; menuClose(same); if(same||!mbtn) return;   /* a tap outside an open menu only closes the menu */
   }
@@ -2361,6 +2719,7 @@ screenEl.addEventListener('input',function(e){
   if(e.target.classList&&e.target.classList.contains('nat')) faceSync(e.target);
   if(e.target.id==='q'){ S.q=e.target.value; S.recN=20; S.page=0; var l=$('#rlist'); if(l) l.innerHTML=recRows(); var rc=$('#rcount'); if(rc) rc.textContent=recCount(recFiltered().length); }
   if(e.target.id==='c-addr'&&S.sheet) addrInput(e.target.value);
+  if(e.target.id==='t-text'&&S.sheet) guideSync(e.target.value,S.sheet.hint);
   var ft=e.target.dataset?e.target.dataset.ft:'';
   if(ft==='phone'){ var pv=e.target.value, cl=pv.replace(/[^\d+ ]/g,'').replace(/(?!^)\+/g,''); if(cl!==pv){ var pos=Math.max(0,(e.target.selectionStart||cl.length)-(pv.length-cl.length)); e.target.value=cl; try{e.target.setSelectionRange(pos,pos)}catch(_){} } }
   if(ft==='money'){ var dg=e.target.value.replace(/[^\d]/g,'').slice(0,9); e.target.value=dg?Number(dg).toLocaleString('en-US'):''; }
@@ -2384,7 +2743,8 @@ screenEl.addEventListener('change',function(e){
   if(t.id==='r-cust'){ readDraft(); var r=S.draft, id=t.value, d=id?openOf(id)[0]:null; r.cust=id; r.sure=!!id; r.deal=d?d.id:''; r.stageTo=d?d.stage:null; render(); }
   if(t.id==='r-sort'){ S.sort=t.value; S.page=0; render(); }
   if(t.id==='s-lang'){ S.set.lang=t.value; toast('Voice language: '+t.value+'.'); }
-  if(t.id==='n-photo'&&t.files&&t.files[0]&&S.sheet&&S.sheet.kind==='attach'){ var pf=t.files[0];
+  if(t.id==='r-padd'&&t.value&&S.draft){ readDraft(); S.draft.prods.push(t.value); render(); }
+  if(t.id==='n-photo'&&t.files&&t.files[0]&&S.sheet&&(S.sheet.kind==='attach'||S.sheet.kind==='photo')){ var pf=t.files[0];
     if(!/^image\//.test(pf.type)&&!/\.(jpe?g|png|heic|webp|gif)$/i.test(pf.name)){ S.sheet.err='This file is not a picture. Choose a JPG, PNG or HEIC file.'; S.sheet.file=null; }
     else { S.sheet.file={name:pf.name,url:/heic$/i.test(pf.name)?'':URL.createObjectURL(pf)}; S.sheet.err=''; }
     render(); }
@@ -2428,7 +2788,7 @@ function setDevice(dv){
 }
 document.querySelector('.seg').addEventListener('click',function(e){var b=e.target.closest('[data-dev]'); if(b) setDevice(b.dataset.dev)});
 window.addEventListener('resize',function(){ menuClose(); fit(); tourPlace(); });
-screenEl.addEventListener('scroll',function(e){ if(MENU&&!MENU.pop.contains(e.target)) menuClose(); var sc=e.target; if(sc&&sc.dataset&&sc.dataset.scroll){ revealCheck(sc); spyOne(sc); } },true);
+screenEl.addEventListener('scroll',function(e){ if(MENU&&!MENU.pop.contains(e.target)) menuClose(); var sc=e.target; if(sc&&sc.dataset&&sc.dataset.scroll){ revealCheck(sc); spyOne(sc); } if(sc&&sc.hasAttribute&&sc.hasAttribute('data-drag')){ DX[dragKey(sc)]=sc.scrollLeft; edges(sc); } },true);
 setInterval(revealAll,500);
 $('#wx-sel').addEventListener('change',function(e){ S.wx=e.target.value; render(); });
 var DATA=/^(0|8|100)$/.test(QS.data||'')?QS.data:(QS.embed?'8':'100');
@@ -2437,15 +2797,13 @@ $('#data-sel').value=DATA; loadData(+DATA);
 $('#data-sel').addEventListener('change',function(e){
   if(S.tour) tourEnd(false,true);
   DATA=e.target.value; loadData(+DATA); closeSheet();
-  S.kept={}; S.done={}; S.rec=null; S.q=''; S.f='all'; S.sort='name'; S.recN=20; S.page=0; S.tlN=5; S.secAll={}; S.dayAll={}; S.attnAll=false; S.weekAll=false; S.more=false; S.stage=null; S.fan=false;
+  S.kept={}; S.done={}; S.rec=null; S.q=''; S.f='all'; S.fs=null; S.fw=2; S.notes=[]; S.notesAll=false; S.sort='name'; S.recN=20; S.page=0; S.tlN=5; S.secAll={}; S.dayAll={}; S.attnAll=false; S.weekAll=false; S.more=false; S.stage=null; S.fan=false;
   render(); toast('Sample data: '+DATA+' customers.');
 });
-window.__tidy=tidy;
+window.__tidy=tidy; window.__addr=addrLocal;
 if(QS.wx&&WX[QS.wx]){ S.wx=QS.wx; $('#wx-sel').value=QS.wx; }
-/* the time of day: the clock of the device, or a sample time. Inside the presentation the story starts in the morning. */
+/* the time of day: the clock of the device. A link can set a time for a recording. Inside the presentation the story starts in the morning. */
 if(/^\d{1,2}:\d{2}$/.test(QS.time||'')) S.clock=QS.time; else if(QS.embed&&QS.time!=='clock') S.clock='8:20';
-(function(){ var ts=$('#time-sel'); if(S.clock&&!ts.querySelector('option[value="'+S.clock+'"]')){ var o=document.createElement('option'); o.value=S.clock; o.textContent=S.clock; ts.appendChild(o); } ts.value=S.clock;
-  ts.addEventListener('change',function(e){ S.clock=e.target.value; greetAt=Date.now(); render(); toast(S.clock?'Sample time: '+e.target.options[e.target.selectedIndex].textContent+'.':'The prototype follows your clock.'); }); })();
 if(QS.tab==='rec'||QS.tab==='set') S.tab=QS.tab;
 if(QS.rec&&cust(QS.rec)){ S.rec=QS.rec; if(QS.device==='tablet') S.tab='rec'; }
 setDevice(DIM[QS.device]?QS.device:'phone');
