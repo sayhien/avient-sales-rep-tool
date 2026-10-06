@@ -23,6 +23,10 @@
 .prose .shot figcaption{max-width:300px;font-size:14.5px;line-height:1.45}
 .prose .shot.crops figcaption{max-width:420px}
 .prose .shot.n3 img.crop{width:250px}.prose .shot.n3 figcaption{max-width:250px}
+.prose .shot.n3.crops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+.prose .shot.n3.crops figure{display:grid;grid-template-rows:subgrid;grid-row:span 2;row-gap:0}.prose .shot.n3.crops img.crop{width:100%}.prose .shot.n3.crops figcaption{max-width:none}
+@media (max-width:640px){.prose .shot.n3.crops{grid-template-columns:minmax(0,1fr);max-width:420px}.prose .shot.n3.crops figure{grid-row:auto;display:block}}
+.prose .shot img.bare{width:420px;max-width:100%;border:0;box-shadow:none;border-radius:0;filter:drop-shadow(0 6px 18px rgba(48,60,64,.14))}
 .prose .shot.n4 img.ph{width:178px}.prose .shot.n4 figcaption{max-width:178px}
 .gets{background:var(--soft);border:1px solid var(--soft-b);border-radius:14px;padding:14px 18px;margin:14px 0 18px;font-size:19px;line-height:1.5}
 .gets b{color:var(--blue-d)}
@@ -256,7 +260,7 @@
 <p>A follow up for a customer that he visits today is part of the visit. So he does not see the same customer two times.</p>
 <h2 id="today-follow-ups">Today: follow ups</h2>
 <p class="gets"><b>What Daniel gets.</b> He does not decide where to start. The first follow up is the one where the most money and the most time are at risk. Each follow up gives its reason, so he can disagree.</p>
-<div class="shot n1 crops"><figure><img class="crop" src="../assets/guide/c-follow.webp" alt="The first three follow ups in Today. One: Send Jasmine the price for Wilflex white. Two: Ask Mei Yun about the late payment of $18k. Three: Ask Jia Hao about the late payment of $9k." width="884" height="1348" loading="lazy"><figcaption>The first three follow ups of the sample day.</figcaption></figure></div>
+<div class="shot n1 crops"><figure><img class="bare" src="../assets/guide/c-follow.webp" alt="The first three follow ups in Today. One: Send Jasmine the price for Wilflex white. Two: Ask Mei Yun about the late payment of $18k. Three: Ask Jia Hao about the late payment of $9k." width="884" height="1348" loading="lazy"><figcaption>The first three follow ups of the sample day.</figcaption></figure></div>
 
 <p><strong>What is a follow up.</strong> A call, a message, a quote or a question about a payment. Hue makes one follow up for a customer when one of these is true:</p>
 <ul>
