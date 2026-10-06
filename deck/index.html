@@ -29,10 +29,19 @@ body.notes .note{display:block}
 body.show{overflow:hidden}
 #show{position:fixed;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center}
 #show[hidden]{display:none}
-.stage{position:relative;flex:1;width:100%;min-height:0}
-.stage .sl{left:50%;top:50%;transform:translate(-50%,-50%) scale(var(--k,.5));transform-origin:50% 50%;box-shadow:0 0 0 1px #111}
-.stage .sl.in{animation:turn .28s ease-out}
-@keyframes turn{from{opacity:0;transform:translate(calc(-50% + var(--dx,24px)),-50%) scale(var(--k,.5))}to{opacity:1}}
+.stage{position:relative;flex:1;width:100%;min-height:0;display:grid;place-items:center;perspective:2600px;overflow:hidden}
+/* a page holds one slide. To go on, the page turns away to the left, like a page of a book. To go back, the page before turns in from the left */
+.pg{grid-area:1/1;position:relative;overflow:hidden;background:#F4F8FB;box-shadow:0 0 0 1px #111;transform-origin:0 50%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.pg:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(0,0,0,.04),rgba(0,0,0,.5))}
+.pg.out{z-index:2;animation:pgturn .62s cubic-bezier(.5,.05,.35,1) forwards;box-shadow:30px 0 60px rgba(0,0,0,.45)}
+.pg.in{z-index:2;animation:pgturn .62s cubic-bezier(.3,.55,.3,1) reverse both;box-shadow:30px 0 60px rgba(0,0,0,.45)}
+.pg.out:after{animation:pgshade .62s ease-in forwards}
+.pg.in:after{animation:pgshade .62s ease-out reverse both}
+.pg.under:after{background:#000;animation:pgdim .62s ease-out both}
+.pg.under.rev:after{animation-direction:reverse}
+@keyframes pgturn{to{transform:rotateY(-104deg)}}
+@keyframes pgshade{to{opacity:1}}
+@keyframes pgdim{from{opacity:.4}to{opacity:0}}
 .pnote{width:100%;max-height:26vh;overflow:auto;background:#12171A;color:#EEF3F6;border-top:1px solid #2A3238;padding:14px clamp(16px,5vw,72px) 76px;font:500 clamp(16px,1.5vw,21px)/1.55 var(--fb)}
 .pnote[hidden]{display:none}
 .ctl{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:4px;background:rgba(24,30,34,.86);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:6px 8px;color:#fff;transition:opacity .25s;backdrop-filter:blur(8px)}
@@ -1993,7 +2002,12 @@ body.show{overflow:hidden}
       show=document.getElementById('show'), stage=document.getElementById('stage'), pnote=document.getElementById('pnote'), count=document.getElementById('count'),
       prev=document.getElementById('prev'), next=document.getElementById('next'), bnote=document.getElementById('bnote'), bsnd=document.getElementById('bsnd'),
       on=false, cur=-1, sound=true, idle=0, last=null;
-  function size(){ var k=Math.min(stage.clientWidth/1920, stage.clientHeight/1080); if(cur>=0) sls[cur].style.setProperty('--k', k) }
+  var curP=null, busy=null, still=matchMedia('(prefers-reduced-motion: reduce)');
+  function size(){ var k=Math.min(stage.clientWidth/1920, stage.clientHeight/1080);
+    [].forEach.call(stage.querySelectorAll('.pg'), function(p){ p.style.width=(1920*k)+'px'; p.style.height=(1080*k)+'px'; var s=p.querySelector('.sl'); if(s) s.style.setProperty('--k', k) }) }
+  function mount(i){ var p=document.createElement('div'); p.className='pg'; p.appendChild(sls[i]); stage.appendChild(p); return p }
+  function unmount(p, i){ back(i); if(p&&p.parentNode) p.parentNode.removeChild(p) }
+  function settle(){ if(busy){ clearTimeout(busy.t); var d=busy.done; busy=null; d() } }
   /* the sound of a page: a short recording, stored with the site */
   var page=new Audio('../assets/media/page-flip.mp3'); page.preload='auto';
   function flip(){ if(!sound) return; try{ page.currentTime=0; var p=page.play(); if(p&&p.catch) p.catch(function(){}) }catch(e){} }
@@ -2005,17 +2019,26 @@ body.show{overflow:hidden}
   function back(i){ if(i<0) return; var s=sls[i]; s.classList.remove('in'); [].forEach.call(s.querySelectorAll('video'), function(v){ if(!v.muted) v.pause() }); var b=frs[i].querySelector('.box'); b.appendChild(s); s.style.setProperty('--k', b.clientWidth/1920); }
   function go(i, quiet){
     i=Math.max(0, Math.min(N-1, i)); if(i===cur) return;
-    var dir=i>cur?1:-1; back(cur); cur=i; var s=sls[i]; stage.appendChild(s); s.style.setProperty('--dx', (dir*28)+'px'); s.classList.add('in'); size();
+    settle();
+    var dir=i>cur?1:-1, old=cur, oldP=curP, p=mount(i); cur=i; curP=p; size();
+    if(old<0 || quiet || still.matches){ if(oldP) unmount(oldP, old) }
+    else {
+      /* forward: the old page is on top and turns away. Back: the new page is on top and turns in */
+      var top=dir>0?oldP:p, under=dir>0?p:oldP;
+      top.classList.add(dir>0?'out':'in'); under.classList.add('under'); if(dir<0) under.classList.add('rev');
+      busy={ done:function(){ top.classList.remove('out','in'); under.classList.remove('under','rev'); unmount(oldP, old) } };
+      busy.t=setTimeout(settle, 640);
+    }
     count.textContent=(i+1)+' / '+N; prev.disabled=i===0; next.disabled=i===N-1; pnote.textContent=notes[i]||'No notes for this slide.'; pnote.scrollTop=0;
     if(!quiet){ flip(); hintOff() }
   }
   function wake(){ show.classList.remove('idle'); clearTimeout(idle); if(matchMedia('(hover:hover)').matches) idle=setTimeout(function(){ show.classList.add('idle') }, 2600) }
   function open(i){
-    if(on) return; on=true; last=document.activeElement; document.body.classList.add('show'); show.hidden=false; cur=-1; go(i||0, true); hintOn(); document.getElementById('hintok').focus({preventScroll:true}); wake();
+    if(on) return; on=true; last=document.activeElement; document.body.classList.add('show'); show.hidden=false; cur=-1; curP=null; go(i||0, true); hintOn(); document.getElementById('hintok').focus({preventScroll:true}); wake();
     var el=document.documentElement, rf=el.requestFullscreen||el.webkitRequestFullscreen; if(rf){ try{ var p=rf.call(el); if(p&&p.catch) p.catch(function(){}) }catch(e){} }
   }
   function close(){
-    if(!on) return; on=false; hintOff(); var i=cur; back(cur); cur=-1; show.hidden=true; document.body.classList.remove('show'); fit();
+    if(!on) return; on=false; hintOff(); settle(); var i=cur; unmount(curP, cur); curP=null; cur=-1; show.hidden=true; document.body.classList.remove('show'); fit();
     if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document) }
     frs[i].scrollIntoView({block:'center'}); if(last&&last.focus) last.focus({preventScroll:true});
   }
