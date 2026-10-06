@@ -1,4 +1,4 @@
-/* Shared style for the pages around the Hue prototype: links, guide, working document, design system, deck. */
+/* Shared style for the pages around the Hue prototype: links, film, guide, design system, deck. */
 :root{
   --blue:#3274AE; --blue-d:#285F91; --hred:#D9624F; --hyel:#EFBE46;
   --ink:#303C40; --sub:#5F6F78; --ln:#E0E7ED; --ln-d:#BFCFDB;
@@ -27,9 +27,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .brand{display:inline-flex;align-items:center;gap:9px;font:800 20px/1 var(--fd);color:var(--ink);text-decoration:none}
 .brand svg{width:28px;height:28px;flex:none}
 .bar .name{color:var(--sub);font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bar .sp{flex:1}
-.bar a.all{font:700 15px/1 var(--fb);text-decoration:none;color:var(--blue-d);border:1.5px solid var(--soft-b);background:var(--soft);padding:10px 14px;border-radius:99px;white-space:nowrap}
-.bar a.all:hover{background:#DCE9F5}
+.bar a.back{flex:none;width:44px;height:44px;margin-left:-8px;border-radius:50%;display:grid;place-items:center;color:var(--blue-d);background:var(--soft);border:1.5px solid var(--soft-b)}
+.bar a.back:hover{background:#DCE9F5}
+.bar a.back svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 
 .wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
 .eyebrow{font:700 13px/1.3 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
