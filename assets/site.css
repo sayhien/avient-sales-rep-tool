@@ -40,10 +40,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .btn{display:inline-flex;align-items:center;gap:8px;font:700 16px/1 var(--fb);text-decoration:none;border-radius:99px;padding:13px 20px;border:1.5px solid transparent}
 .btn.p{background:var(--blue);color:#fff}.btn.p:hover{background:var(--blue-d)}
 .btn.s{background:var(--soft);border-color:var(--soft-b);color:var(--blue-d)}.btn.s:hover{background:#DCE9F5}
+/* a row of buttons: always with space between them, also when the row breaks */
+.tools{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 8px}
+.tools .btn{white-space:nowrap}
 .foot{border-top:1px solid var(--ln);margin-top:72px;padding:28px 0 44px;color:var(--sub);font-size:14.5px;line-height:1.6}
 .foot .wrap{display:grid;gap:8px}
-.foot nav{display:flex;flex-wrap:wrap;gap:6px 18px}
-.foot nav a{font-weight:600}
+.foot nav{display:flex;flex-wrap:wrap;gap:10px 24px;margin-bottom:6px}
+.foot nav a{font-weight:600;display:inline-block;padding:6px 0}
 
 /* long text pages: the guide and the working document */
 .doc{display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px;align-items:start;padding-top:36px}

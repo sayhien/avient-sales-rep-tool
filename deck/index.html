@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hue · Presentation deck</title>
-<meta name="description" content="The presentation deck of the Hue design challenge by Loo Say Hien: 33 slides, with a presentation mode and speaker notes.">
+<meta name="description" content="The presentation deck of the Hue design challenge by Loo Say Hien: 32 slides, with a presentation mode and speaker notes.">
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <link rel="stylesheet" href="../assets/site.css">
@@ -47,6 +47,26 @@ body.show{overflow:hidden}
 #bsnd[aria-pressed=true] .off,#bsnd[aria-pressed=false] .on{display:none}
 #count{font:700 15px/1 var(--fb);min-width:64px;text-align:center;font-variant-numeric:tabular-nums}
 .ctl i{width:1px;height:24px;background:rgba(255,255,255,.22);margin:0 6px}
+/* the first guide: how to turn the page on this device */
+.hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(520px,calc(100% - 32px));background:rgba(20,26,30,.94);border:1px solid rgba(255,255,255,.18);border-radius:28px;padding:28px 28px 24px;color:#fff;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:hin .35s ease-out;backdrop-filter:blur(10px)}
+.hint[hidden]{display:none}
+@keyframes hin{from{opacity:0;transform:translate(-50%,calc(-50% + 14px))}to{opacity:1}}
+.hint .touch{display:none}
+@media (hover:none),(pointer:coarse){.hint .keys{display:none}.hint .touch{display:block}}
+.hint .pic{display:flex;align-items:center;justify-content:center;gap:14px;height:76px;margin-bottom:14px}
+.hint .pic svg{width:30px;height:30px;fill:none;stroke:#8FC0EA;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.hint kbd{width:68px;height:64px;border-radius:14px;background:#2A343B;border:1px solid #46545E;border-bottom-width:5px;display:grid;place-items:center}
+.hint kbd svg{stroke:#fff}
+.hint kbd.go{animation:press 1.6s ease-in-out infinite;background:#3274AE;border-color:#285F91}
+@keyframes press{0%,55%,100%{transform:none;border-bottom-width:5px}70%,82%{transform:translateY(4px);border-bottom-width:1px}}
+.hint .touch .pic{gap:22px}
+.hint .touch i{width:128px;height:56px;border-radius:99px;background:rgba(255,255,255,.08);position:relative;display:block}
+.hint .touch i:after{content:"";position:absolute;top:6px;left:78px;width:44px;height:44px;border-radius:50%;background:#EFBE46;box-shadow:0 0 0 8px rgba(239,190,70,.22);animation:swipe 1.8s ease-in-out infinite}
+@keyframes swipe{0%,15%{left:78px;opacity:1}60%{left:6px;opacity:1}80%,100%{left:6px;opacity:0}}
+.hint .h{font:800 clamp(22px,3vw,28px)/1.2 var(--fd);margin-bottom:8px}
+.hint .d{font:500 16.5px/1.5 var(--fb);color:#C9D5DD}
+.hint button{margin-top:18px;font:700 16px/1 var(--fb);color:#fff;background:#3274AE;border:0;border-radius:99px;padding:13px 28px;cursor:pointer}
+.hint button:hover{background:#285F91}.hint button:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media(max-width:560px){.ctl{gap:0;padding:4px}.ctl button{width:40px;height:40px}.ctl i{margin:0 2px}#count{min-width:54px;font-size:14px}}
 @media print{.fr{break-inside:avoid}.dhead .tools,.num .go,#show{display:none}}
 
@@ -56,7 +76,7 @@ body.show{overflow:hidden}
 <a class="skip" href="#main">Go to the content</a>
 <header class="bar"><div class="in"><a class="back" href="../links/" aria-label="Back to all links"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a><a class="brand" href="../links/" aria-label="Hue, all links"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.6" cy="14.1" r="5.7" fill="#EFBE46" stroke="#fff" stroke-width=".7"/><circle cx="8.4" cy="14.1" r="5.7" fill="#D9624F" stroke="#fff" stroke-width=".7"/><circle cx="12" cy="7.9" r="5.7" fill="#3274AE" stroke="#fff" stroke-width=".7"/><circle cx="12" cy="12" r="1.6" fill="#fff"/></svg>Hue</a><span class="name">Presentation deck</span></div></header>
 <main id="main">
-<div class="wrap dhead"><p class="eyebrow">Presentation deck · 33 slides</p><h1>Hue. You sell. Hue keeps track.</h1><p class="lede">The full story in 33 slides. Present it on the full screen, or scroll.</p><p class="tools"><button class="btn p" id="present"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.500z"/></svg>Present</button><button class="btn s" id="notes" aria-pressed="false">Show my speaker notes</button></p></div>
+<div class="wrap dhead"><p class="eyebrow">Presentation deck · 32 slides</p><h1>Hue. You sell. Hue keeps track.</h1><p class="lede">The full story in 32 slides. Present it on the full screen, or scroll.</p><p class="tools"><button class="btn p" id="present"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.500z"/></svg>Present</button><button class="btn s" id="notes" aria-pressed="false">Show my speaker notes</button></p></div>
 <div class="deck"><article class="fr" id="cover"><div class="box"><section class="sl" id="s-cover" aria-label="Slide 1" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px;display:flex;flex-direction:row;gap:96px;align-items:flex-start">
 <div style="flex:1;height:824px;display:flex;flex-direction:column;gap:24px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">Design challenge · October 2026</p>
@@ -65,14 +85,14 @@ body.show{overflow:hidden}
 <h1 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:160px;font-weight:800;line-height:1.1;color:#303C40">Hue</h1>
 </div>
 <p style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1;color:#3274AE">You sell. Hue keeps track.</p>
-<p style="font-size:40px;line-height:1.3;color:#303C40">A sales assistant for one Avient Specialty Inks sales rep.</p>
+<p style="font-size:40px;line-height:1.3;color:#303C40">A light customer relationship management tool for Avient Specialty Inks sales reps</p>
 <div style="flex:1"></div>
-<p style="font-size:28px;font-weight:700;color:#303C40">Loo Say Hien · Product designer</p>
+<p style="font-size:28px;font-weight:700;color:#303C40">Loo Say Hien · User Experience Designer</p>
 <p style="font-size:24px;color:#5F6F78">A concept with sample data. Not an official Avient product.</p>
 </div>
 <img src="../assets/deck/phone-splash.png" alt="The first screen of Hue on a phone, with the Avient Specialty Inks logo and the words You sell. Hue keeps track." style="width:410px;height:824px;object-fit:contain">
 
-</section></div><p class="num"><span>1 of 33</span><button class="go" data-i="0">Present from this slide</button></p><p class="note"><b>Notes.</b> Hello, I am Say Hien. This is Hue. It is a sales assistant for one sales rep at Avient Specialty Inks. I designed it for this challenge. First, you see a short film of the result. Then I show the user, the ideas and the design. At the end, you can try it on your phone. It uses sample data. It is not an official Avient product.</p></article>
+</section></div><p class="num"><span>1 of 32</span><button class="go" data-i="0">Present from this slide</button></p><p class="note"><b>Notes.</b> Hello, I am Say Hien. This is Hue. It is a light customer relationship management tool for the sales reps of Avient Specialty Inks. I designed it around one sales rep, Daniel. I designed it for this challenge. First, you see a short film of the result. Then I show the user, the ideas and the design. At the end, you can try it on your phone. It uses sample data. It is not an official Avient product.</p></article>
 <article class="fr" id="brief"><div class="box"><section class="sl" id="s-brief" aria-label="Slide 2" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The start</p>
@@ -129,20 +149,20 @@ body.show{overflow:hidden}
 </div>
 <div style="display:flex;flex-direction:column;gap:12px">
 <p style="font-size:24px;line-height:1.4;color:#3274AE;font-weight:700">What I made</p>
-<div style="display:flex;flex-direction:row;gap:16px">
-<div style="flex:1;display:flex;flex-direction:row;gap:12px;align-items:center">
+<div style="display:flex;flex-direction:row;gap:20px">
+<div style="flex:1;display:flex;flex-direction:row;gap:14px;align-items:center;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:16px;padding:10px 18px 10px 12px">
 <div style="flex:none"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><g transform="scale(1.2727)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="13" height="10" rx="1.5"/><path d="M6 19h6M9 15v4"/><rect x="17" y="9" width="5" height="10" rx="1.2"/></g></g></svg></div>
 <p style="font-size:24px;line-height:1.4;color:#303C40;font-weight:600">A prototype for three devices</p>
 </div>
-<div style="flex:1;display:flex;flex-direction:row;gap:12px;align-items:center">
+<div style="flex:1;display:flex;flex-direction:row;gap:14px;align-items:center;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:16px;padding:10px 18px 10px 12px">
 <div style="flex:none"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><g transform="scale(1.2727)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 2-.9 2-2 0-.6-.300-1-.6-1.4-.300-.4-.5-.8-.5-1.3 0-1 .9-1.8 2-1.8H17a4 4 0 0 0 4-4c0-4.1-4-7.5-9-7.5z"/><path d="M7.5 12.5h.1M9 8.5h.1M13.5 7.5h.1"/></g></g></svg></div>
 <p style="font-size:24px;line-height:1.4;color:#303C40;font-weight:600">A design system</p>
 </div>
-<div style="flex:1;display:flex;flex-direction:row;gap:12px;align-items:center">
+<div style="flex:1;display:flex;flex-direction:row;gap:14px;align-items:center;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:16px;padding:10px 18px 10px 12px">
 <div style="flex:none"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><g transform="scale(1.2727)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 21H20v-4M9 8h7"/></g></g></svg></div>
 <p style="font-size:24px;line-height:1.4;color:#303C40;font-weight:600">A guide: How Hue Works</p>
 </div>
-<div style="flex:1;display:flex;flex-direction:row;gap:12px;align-items:center">
+<div style="flex:1;display:flex;flex-direction:row;gap:14px;align-items:center;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:16px;padding:10px 18px 10px 12px">
 <div style="flex:none"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><g transform="scale(1.2727)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5.5 3.5-5.5 3.5z"/></g></g></svg></div>
 <p style="font-size:24px;line-height:1.4;color:#303C40;font-weight:600">A short film</p>
 </div>
@@ -153,7 +173,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">2</p>
 </div>
 
-</section></div><p class="num"><span>2 of 33</span><button class="go" data-i="1">Present from this slide</button></p><p class="note"><b>Notes.</b> The brief has four goals. See sales progress. Know what is important. Act quickly. Find deals with no reply. The brief calls them stalled deals. I designed for one sales rep on one work day. A tool for all users helps no user. I made a prototype for three devices, a design system, a guide and a short film.</p></article>
+</section></div><p class="num"><span>2 of 32</span><button class="go" data-i="1">Present from this slide</button></p><p class="note"><b>Notes.</b> The brief has four goals. See sales progress. Know what is important. Act quickly. Find deals with no reply. The brief calls them stalled deals. I designed for one sales rep on one work day. A tool for all users helps no user. I made a prototype for three devices, a design system, a guide and a short film.</p></article>
 <article class="fr" id="film"><div class="box"><section class="sl" id="s-film" aria-label="Slide 3" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The start</p>
@@ -182,14 +202,14 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">3</p>
 </div>
 
-</section></div><p class="num"><span>3 of 33</span><button class="go" data-i="2">Present from this slide</button></p><p class="note"><b>Notes.</b> First, watch the film. It shows the result in 90 seconds. Click the picture to play the film. It has sound. Do not talk while it plays. Each screen in the film is the real prototype. If the film does not play, open the link, or play the film file from the computer.</p></article>
+</section></div><p class="num"><span>3 of 32</span><button class="go" data-i="2">Present from this slide</button></p><p class="note"><b>Notes.</b> First, watch the film. It shows the result in 90 seconds. Click the picture to play the film. It has sound. Do not talk while it plays. Each screen in the film is the real prototype. If the film does not play, open the link, or play the film file from the computer.</p></article>
 <article class="fr" id="daniel"><div class="box"><section class="sl" id="s-daniel" aria-label="Slide 4" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The user</p>
 <h2 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#303C40">The user: Daniel Lim. He sells printing inks to print shops.</h2>
 </div>
 <div style="display:flex;flex-direction:row;gap:48px;align-items:flex-start">
-<div style="flex:1;display:flex;flex-direction:column;gap:18px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
 <div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
 <div style="flex:none"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><g transform="scale(1.4545)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1.5-5h13L20 9M5 9v11h14V9M4 9h16M9.5 20v-5.5h5V20"/></g></g></svg></div>
 <div style="flex:1;display:flex;flex-direction:column;gap:4px">
@@ -218,8 +238,8 @@ body.show{overflow:hidden}
 <p style="font-size:24px;line-height:1.4;color:#5F6F78">8 years in screen printing, 2 years in sales. He does not accept long forms.</p>
 </div>
 </div>
-<div style="display:flex;flex-direction:column;gap:8px;background:#E7F0F8;border-radius:24px;padding:24px">
-<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:40px;font-weight:500;line-height:1.2;color:#3274AE">"To write a note is fast. To put it into a record that reminds him is slow."</p>
+<div style="display:flex;flex-direction:column;gap:4px;background:#E7F0F8;border-radius:24px;padding:18px">
+<p style="font-family:'Caveat', 'Brush Script MT', cursive;font-size:36px;font-weight:500;line-height:1.15;color:#3274AE">"To write a note is fast. To put it into a record is slow. And it is hard to keep track of many things: promises, prices, samples, payments and dates."</p>
 <p style="font-size:24px;line-height:1.4;color:#5F6F78">The most important finding</p>
 </div>
 </div>
@@ -233,7 +253,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">4</p>
 </div>
 
-</section></div><p class="num"><span>4 of 33</span><button class="go" data-i="3">Present from this slide</button></p><p class="note"><b>Notes.</b> This is Daniel Lim. He is not a real person. I made him from the job description, seven sales videos and a forum of sales reps. He has about 40 customers. He works from his car and his phone. In a meeting, he writes the important parts in a notepad. He records his voice only when the customer agrees, or after the visit. The most important finding is this: to write a note is fast. To put it into a record that reminds him is slow.</p></article>
+</section></div><p class="num"><span>4 of 32</span><button class="go" data-i="3">Present from this slide</button></p><p class="note"><b>Notes.</b> This is Daniel Lim. He is not a real person. I made him from the job description, seven sales videos and a forum of sales reps. He has about 40 customers. He works from his car and his phone. In a meeting, he writes the important parts in a notepad. He records his voice only when the customer agrees, or after the visit. The most important finding is this: to write a note is fast. To put it into a record is slow. And it is hard to keep track of many things: promises, prices, samples, payments and dates.</p></article>
 <article class="fr" id="journey"><div class="box"><section class="sl" id="s-journey" aria-label="Slide 5" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The user · Stages 1 to 3</p>
@@ -246,7 +266,7 @@ body.show{overflow:hidden}
 <h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">1. Plan the week</h3>
 <p style="font-size:24px;line-height:1.4;color:#7F5410;font-weight:600">He feels rushed</p>
 </div>
-<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> His facts are in chats, email, a notebook and a spreadsheet. He plans from memory.</p>
+<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> His facts are in chats, email, a notebook and a spreadsheet. He plans mostly from memory.</p>
 <p style="font-size:24px;line-height:1.4;color:#3274AE"><b>Hue.</b> Home shows the full week on one screen.</p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:24px">
@@ -255,7 +275,7 @@ body.show{overflow:hidden}
 <h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">2. Meet the customer</h3>
 <p style="font-size:24px;line-height:1.4;color:#7F5410;font-weight:600">He feels focused</p>
 </div>
-<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> He writes short notes by hand. They are fast, but not complete, and they stay in his notepad.</p>
+<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> He writes short notes by hand. They are fast, but often not complete, and they often stay in his notepad.</p>
 <p style="font-size:24px;line-height:1.4;color:#3274AE"><b>Hue.</b> He chooses how to record: talk, type, write, or take a photo.</p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:24px">
@@ -264,7 +284,7 @@ body.show{overflow:hidden}
 <h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">3. After the meeting</h3>
 <p style="font-size:24px;line-height:1.4;color:#7F5410;font-weight:600">He feels tired</p>
 </div>
-<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> He replies in WhatsApp, in calls and in email. No app keeps the record. He forgets promises.</p>
+<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> He replies in WhatsApp, in calls and in email. Later, he possibly does not remember where he kept a note about a promise.</p>
 <p style="font-size:24px;line-height:1.4;color:#3274AE"><b>Hue.</b> He records one note. Hue finds the customer, the next step and the date.</p>
 </div>
 </div>
@@ -273,7 +293,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">5</p>
 </div>
 
-</section></div><p class="num"><span>5 of 33</span><button class="go" data-i="4">Present from this slide</button></p><p class="note"><b>Notes.</b> I studied one week of his work. It has six stages. On Monday, he plans from memory, because his facts are in four places: chats, email, a notebook and a spreadsheet. In the meeting, he writes short notes by hand, and they stay in his notepad. After the meeting, he replies in three apps: WhatsApp, calls and email. No app keeps the record, so he forgets promises. For each stage, the blue line shows what Hue does.</p></article>
+</section></div><p class="num"><span>5 of 32</span><button class="go" data-i="4">Present from this slide</button></p><p class="note"><b>Notes.</b> I studied one week of his work. It has six stages. On Monday, he plans mostly from memory, because his facts are in four places: chats, email, a notebook and a spreadsheet. In the meeting, he writes short notes by hand, and they often stay in his notepad. After the meeting, he replies in three apps: WhatsApp, calls and email. Later, he possibly does not remember where he kept a note about a promise. For each stage, the blue line shows what Hue does.</p></article>
 <article class="fr" id="journey2"><div class="box"><section class="sl" id="s-journey2" aria-label="Slide 6" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The user · Stages 4 to 6</p>
@@ -286,7 +306,7 @@ body.show{overflow:hidden}
 <h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">4. Follow up and quote</h3>
 <p style="font-size:24px;line-height:1.4;color:#7F5410;font-weight:600">He feels worried</p>
 </div>
-<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> He makes many small promises. Nothing reminds him.</p>
+<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> He makes many small promises. He can forget some of them.</p>
 <p style="font-size:24px;line-height:1.4;color:#3274AE"><b>Hue.</b> Each promise has a date. Today shows the promise on that date.</p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:24px">
@@ -295,7 +315,7 @@ body.show{overflow:hidden}
 <h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">5. The customer does not reply</h3>
 <p style="font-size:24px;line-height:1.4;color:#7F5410;font-weight:600">He feels not sure</p>
 </div>
-<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> Is the customer busy? Is the trial slow? Is the deal lost? He does not know.</p>
+<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> Is the customer busy? Is the trial slow? Is the deal lost? He is often not sure.</p>
 <p style="font-size:24px;line-height:1.4;color:#3274AE"><b>Hue.</b> Hue compares the wait with the usual wait. It gives the reason and writes a message.</p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:24px">
@@ -304,7 +324,7 @@ body.show{overflow:hidden}
 <h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">6. Win the order</h3>
 <p style="font-size:24px;line-height:1.4;color:#7F5410;font-weight:600">He feels proud</p>
 </div>
-<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> He knows why he won or lost. But the reason stays in his head. A late payment is a surprise.</p>
+<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Problem.</b> He knows why he won or lost. But the reason stays in his head. A late payment can be a surprise.</p>
 <p style="font-size:24px;line-height:1.4;color:#3274AE"><b>Hue.</b> His notes keep what the customer said. The record shows the payments.</p>
 </div>
 </div>
@@ -313,7 +333,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">6</p>
 </div>
 
-</section></div><p class="num"><span>6 of 33</span><button class="go" data-i="5">Present from this slide</button></p><p class="note"><b>Notes.</b> In stage 4, he makes many small promises, and nothing reminds him. In stage 5, the customer does not reply. He does not know if the customer is busy or if the deal is lost. In stage 6, he wins the order. He knows why, because the customer tells him. But the reason stays in his head, and a late payment is a surprise. The prototype gives the most help in stage 3 and stage 5.</p></article>
+</section></div><p class="num"><span>6 of 32</span><button class="go" data-i="5">Present from this slide</button></p><p class="note"><b>Notes.</b> In stage 4, he makes many small promises, and he can forget some of them. In stage 5, the customer does not reply. He is often not sure if the customer is busy or if the deal is lost. In stage 6, he wins the order. He knows why, because the customer tells him. But the reason stays in his head, and a late payment can be a surprise.</p></article>
 <article class="fr" id="findings"><div class="box"><section class="sl" id="s-findings" aria-label="Slide 7" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The user</p>
@@ -351,10 +371,10 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">7</p>
 </div>
 
-</section></div><p class="num"><span>7 of 33</span><button class="go" data-i="6">Present from this slide</button></p><p class="note"><b>Notes.</b> I learned five things. I will tell you two. Number one: he learns the most in the meeting. He writes short notes there. The slow part comes later, when he must put them into a record. This is the reason for the round button: a note goes into the record in seconds. Number five: a recording can feel intrusive, also when the customer agrees. This is the reason that Hue records only the voice of Daniel, and that he can write by hand.</p></article>
+</section></div><p class="num"><span>7 of 32</span><button class="go" data-i="6">Present from this slide</button></p><p class="note"><b>Notes.</b> I learned five things. I will tell you two. Number one: he learns the most in the meeting. He writes short notes there. The slow part comes later, when he must put them into a record. This is the reason for the round button: a note goes into the record in seconds. Number five: a recording can feel intrusive, also when the customer agrees. This is the reason that Hue records only the voice of Daniel, and that he can write by hand.</p></article>
 <article class="fr" id="problem"><div class="box"><section class="sl" id="s-problem" aria-label="Slide 8" data-transition="fade" style="background:#3274AE;color:#FFFFFF;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#FFFFFF">The user · The problem</p>
-<h2 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#FFFFFF">The problem: Daniel must record what customers say, quickly and correctly. Then he must act on many small things at the right time.</h2>
+<h2 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#FFFFFF">The problem: Daniel must record what customers say, quickly and correctly. Then he must do many tasks, small and large, each at the right time.</h2>
 <div style="display:flex;flex-direction:row;gap:16px">
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center;background:#FFFFFF;border-radius:999px;padding:10px 24px 10px 16px">
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><g transform="scale(1.3333)" stroke="#3274AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1 1-1.1 1.8M12 17h.1"/></g></svg>
@@ -407,7 +427,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#FFFFFF">8</p>
 </div>
 
-</section></div><p class="num"><span>8 of 33</span><button class="go" data-i="7">Present from this slide</button></p><p class="note"><b>Notes.</b> This is the problem. Daniel must record what customers say, quickly and correctly. Then he must track many small things, and act on each at the right time: questions, promises, deals, payments, what each customer likes, and his sales target. He is like a busy waiter. He takes many orders and carries many plates, and each plate must arrive on time. It is harder because his information is in many places. He needs four answers. Each answer is one goal of the brief.</p></article>
+</section></div><p class="num"><span>8 of 32</span><button class="go" data-i="7">Present from this slide</button></p><p class="note"><b>Notes.</b> This is the problem. Daniel must record what customers say, quickly and correctly. Then he must do many tasks, small and large, each at the right time. He tracks questions, promises, deals, payments, what each customer likes, and his sales target. He is like a busy waiter. He takes many orders and carries many plates, and each plate must arrive on time. It is harder because his information is in many places. He needs four answers. Each answer is one goal of the brief.</p></article>
 <article class="fr" id="hmw"><div class="box"><section class="sl" id="s-hmw" aria-label="Slide 9" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The user</p>
@@ -425,7 +445,7 @@ body.show{overflow:hidden}
 <div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:28px">
 <div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
 <div style="flex:none"><svg width="96" height="96" viewBox="0 0 96 96" fill="none"><g transform="scale(2.1818)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2.5"/><circle cx="9" cy="8.5" r="1.8"/><path d="M13 8h4M8 13h8M8 17h5"/></g></g></svg></div>
-<p style="font-size:32px;line-height:1.3;color:#303C40;flex:1">Put each part of a note in the right place in the customer record, with no work from him?</p>
+<p style="font-size:32px;line-height:1.3;color:#303C40;flex:1">Put each part of a note in the right place in the customer record, with as little effort from him as possible?</p>
 </div>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:28px">
@@ -455,7 +475,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">9</p>
 </div>
 
-</section></div><p class="num"><span>9 of 33</span><button class="go" data-i="8">Present from this slide</button></p><p class="note"><b>Notes.</b> From the problem, I wrote five questions for the design. I read two. How might we let Daniel record what customers say in the way he already does, quickly and correctly? And how might we put each part of a note in the right place in the record, with no work from him? Each screen in the prototype answers one or more of these questions.</p></article>
+</section></div><p class="num"><span>9 of 32</span><button class="go" data-i="8">Present from this slide</button></p><p class="note"><b>Notes.</b> From the problem, I wrote five questions for the design. I read two. How might we let Daniel record what customers say in the way he already does, quickly and correctly? And how might we put each part of a note in the right place in the record, with as little effort from him as possible? Each screen in the prototype answers one or more of these questions.</p></article>
 <article class="fr" id="ideas"><div class="box"><section class="sl" id="s-ideas" aria-label="Slide 10" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The ideas</p>
@@ -500,7 +520,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">10</p>
 </div>
 
-</section></div><p class="num"><span>10 of 33</span><button class="go" data-i="9">Present from this slide</button></p><p class="note"><b>Notes.</b> I wrote 23 ideas. Each idea got three scores: impact, effort and privacy risk. First I removed the ideas with a high privacy risk. One example: to record the full meeting had a high impact, but also a high risk. When the customer agrees, the risk is lower. But a recording can still feel intrusive. So it stopped. The prototype has safer ways: Hue records only the voice of Daniel, and he can write by hand. Then 18 ideas passed. I built five groups of ideas first.</p></article>
+</section></div><p class="num"><span>10 of 32</span><button class="go" data-i="9">Present from this slide</button></p><p class="note"><b>Notes.</b> I wrote 23 ideas. Each idea got three scores: impact, effort and privacy risk. First I removed the ideas with a high privacy risk. One example: to record the full meeting had a high impact, but also a high risk. When the customer agrees, the risk is lower. But a recording can still feel intrusive. So it stopped. The prototype has safer ways: Hue records only the voice of Daniel, and he can write by hand. Then 18 ideas passed. I built five groups of ideas first.</p></article>
 <article class="fr" id="allideas"><div class="box"><section class="sl" id="s-allideas" aria-label="Slide 11" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The ideas</p>
@@ -718,7 +738,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">11</p>
 </div>
 
-</section></div><p class="num"><span>11 of 33</span><button class="go" data-i="10">Present from this slide</button></p><p class="note"><b>Notes.</b> These are all 23 ideas with their scores. The last column shows the prototype now. The blue rows are built. The red rows stopped because of privacy risk. Idea 1 is Hue. One large language model can do many of these jobs: it turns speech into text, reads handwriting, fills in the fields and writes drafts. So the developers connect one model. Then they test each job with real notes.</p></article>
+</section></div><p class="num"><span>11 of 32</span><button class="go" data-i="10">Present from this slide</button></p><p class="note"><b>Notes.</b> These are all 23 ideas with their scores. The last column shows the prototype now. The blue rows are built. The red rows stopped because of privacy risk. Idea 1 is Hue. One large language model can do many of these jobs: it turns speech into text, reads handwriting, fills in the fields and writes drafts. So the developers connect one model. Then they test each job with real notes.</p></article>
 <article class="fr" id="core"><div class="box"><section class="sl" id="s-core" aria-label="Slide 12" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The ideas · The first version</p>
@@ -782,7 +802,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">12</p>
 </div>
 
-</section></div><p class="num"><span>12 of 33</span><button class="go" data-i="11">Present from this slide</button></p><p class="note"><b>Notes.</b> The first version had five main parts. One: record a note in four ways, and Hue fills in the fields. Two: Today, with the visits and the follow ups. Three: Home, with the sales bar. Four: warnings when a customer does not reply. Five: the customer record, which all the other parts use. Together they answer the four goals of the brief. This was only the start. In fourteen reviews, I added the weather for his visits, a plan for a late payment, filters, settings and accessibility.</p></article>
+</section></div><p class="num"><span>12 of 32</span><button class="go" data-i="11">Present from this slide</button></p><p class="note"><b>Notes.</b> The first version had five main parts. One: record a note in four ways, and Hue fills in the fields. Two: Today, with the visits and the follow ups. Three: Home, with the sales bar. Four: warnings when a customer does not reply. Five: the customer record, which all the other parts use. Together they answer the four goals of the brief. This was only the start. In fourteen reviews, I added the weather for his visits, a plan for a late payment, filters, settings and accessibility.</p></article>
 <article class="fr" id="hue"><div class="box"><section class="sl" id="s-hue" aria-label="Slide 13" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The ideas · The brand</p>
@@ -868,7 +888,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">13</p>
 </div>
 
-</section></div><p class="num"><span>13 of 33</span><button class="go" data-i="12">Present from this slide</button></p><p class="note"><b>Notes.</b> The assistant is a brand. It has a name, a logo, colours and motion. Each part has a function. The name lets Daniel say: Hue wrote this. So he knows which text he must check. It is not a human name and it has no face, because people expect too much from a tool that looks human. The logo is the only part of the screen with three colours, so his eye finds each item that Hue made. The logo moves only when Hue works.</p></article>
+</section></div><p class="num"><span>13 of 32</span><button class="go" data-i="12">Present from this slide</button></p><p class="note"><b>Notes.</b> The assistant is a brand. It has a name, a logo, colours and motion. Each part has a function. The name lets Daniel say: Hue wrote this. So he knows which text he must check. It is not a human name and it has no face, because people expect too much from a tool that looks human. The logo is the only part of the screen with three colours, so his eye finds each item that Hue made. The logo moves only when Hue works.</p></article>
 <article class="fr" id="home"><div class="box"><section class="sl" id="s-home" aria-label="Slide 14" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:64px;align-items:flex-start">
 <div style="flex:1;display:flex;flex-direction:column;gap:24px">
 <div style="display:flex;flex-direction:column;gap:16px">
@@ -906,7 +926,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">14</p>
 </div>
 
-</section></div><p class="num"><span>14 of 33</span><button class="go" data-i="13">Present from this slide</button></p><p class="note"><b>Notes.</b> Home answers one question: is he on track to reach his sales target? The blue part of the bar is the sales that he won. The striped part is his open deals. The line shows where he must be today. One sentence gives the result: 288 thousand dollars to go, and his open deals can cover it.</p></article>
+</section></div><p class="num"><span>14 of 32</span><button class="go" data-i="13">Present from this slide</button></p><p class="note"><b>Notes.</b> Home answers one question: is he on track to reach his sales target? The blue part of the bar is the sales that he won. The striped part is his open deals. The line shows where he must be today. One sentence gives the result: 288 thousand dollars to go, and his open deals can cover it.</p></article>
 <article class="fr" id="weather"><div class="box"><section class="sl" id="s-weather" aria-label="Slide 15" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The design</p>
@@ -957,7 +977,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">15</p>
 </div>
 
-</section></div><p class="num"><span>15 of 33</span><button class="go" data-i="14">Present from this slide</button></p><p class="note"><b>Notes.</b> The weather is on Home for one reason: Daniel drives to his customers, and rain changes his plan. So the panel does not show only the forecast. It names the visit that the weather changes, and it gives one instruction: leave 15 minutes early. The same warning shows on that visit in Today. The colour of the panel shows the weather now: yellow for sun, grey for rain, dark blue for the night.</p></article>
+</section></div><p class="num"><span>15 of 32</span><button class="go" data-i="14">Present from this slide</button></p><p class="note"><b>Notes.</b> The weather is on Home for one reason: Daniel drives to his customers, and rain changes his plan. So the panel does not show only the forecast. It names the visit that the weather changes, and it gives one instruction: leave 15 minutes early. The same warning shows on that visit in Today. The colour of the panel shows the weather now: yellow for sun, grey for rain, dark blue for the night.</p></article>
 <article class="fr" id="today"><div class="box"><section class="sl" id="s-today" aria-label="Slide 16" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:64px;align-items:flex-start">
 <div style="flex:1;display:flex;flex-direction:column;gap:28px">
 <div style="display:flex;flex-direction:column;gap:16px">
@@ -1008,7 +1028,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">16</p>
 </div>
 
-</section></div><p class="num"><span>16 of 33</span><button class="go" data-i="15">Present from this slide</button></p><p class="note"><b>Notes.</b> Today shows the work of the day. The visits are first, in order of time, because a visit has a fixed time. Then come the follow ups. A follow up is a call, a message, a quote or a question about a payment. The most important is first. Each item gives the reason. The button changes with the time. One visit is at 3 pm. Before 3 pm, the button says prepare for the visit. From 3 pm, it says add a note about the visit.</p></article>
+</section></div><p class="num"><span>16 of 32</span><button class="go" data-i="15">Present from this slide</button></p><p class="note"><b>Notes.</b> Today shows the work of the day. The visits are first, in order of time, because a visit has a fixed time. Then come the follow ups. A follow up is a call, a message, a quote or a question about a payment. The most important is first. Each item gives the reason. The button changes with the time. One visit is at 3 pm. Before 3 pm, the button says prepare for the visit. From 3 pm, it says add a note about the visit.</p></article>
 <article class="fr" id="points"><div class="box"><section class="sl" id="s-points" aria-label="Slide 17" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The design</p>
@@ -1105,7 +1125,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">17</p>
 </div>
 
-</section></div><p class="num"><span>17 of 33</span><button class="go" data-i="16">Present from this slide</button></p><p class="note"><b>Notes.</b> How does Hue know which follow up is first? It uses a rule. Points are the deal value times the chance of an order, plus the waiting time. Waiting has three parts. A promise that is due today gets 50 points. When the customer waits for Daniel, each day gets 10 points. When Daniel waits for the customer, each day after the usual wait gets 5 points. Here is an example. The price for Jasmine has 139 points, so it is first. A late payment has its own rule, because money that a customer owes comes before most new deals. Daniel does not see the points. He sees the reason. These numbers are my first values. A test with real sales reps must confirm them.</p></article>
+</section></div><p class="num"><span>17 of 32</span><button class="go" data-i="16">Present from this slide</button></p><p class="note"><b>Notes.</b> How does Hue know which follow up is first? It uses a rule. Points are the deal value times the chance of an order, plus the waiting time. Waiting has three parts. A promise that is due today gets 50 points. When the customer waits for Daniel, each day gets 10 points. When Daniel waits for the customer, each day after the usual wait gets 5 points. Here is an example. The price for Jasmine has 139 points, so it is first. A late payment has its own rule, because money that a customer owes comes before most new deals. Daniel does not see the points. He sees the reason. These numbers are my first values. A test with real sales reps must confirm them.</p></article>
 <article class="fr" id="capture"><div class="box"><section class="sl" id="s-capture" aria-label="Slide 18" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The design</p>
@@ -1167,7 +1187,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">18</p>
 </div>
 
-</section></div><p class="num"><span>18 of 33</span><button class="go" data-i="17">Present from this slide</button></p><p class="note"><b>Notes.</b> Daniel records a note with one round button. He taps it for the menu, or he holds it to talk immediately. He has four ways to record, because the best way changes with the situation. He talks in the car. He types when the place is quiet. He writes with a pen or a finger, and a pen looks respectful in a meeting. Or he takes a photo of a page in his notebook. On the computer, he can type, talk, or attach a photo. While he talks or types, Hue ticks what the note already says: the customer, what happened, the next step, the date and the product.</p></article>
+</section></div><p class="num"><span>18 of 32</span><button class="go" data-i="17">Present from this slide</button></p><p class="note"><b>Notes.</b> Daniel records a note with one round button. He taps it for the menu, or he holds it to talk immediately. He has four ways to record, because the best way changes with the situation. He talks in the car. He types when the place is quiet. He writes with a pen or a finger, and a pen looks respectful in a meeting. Or he takes a photo of a page in his notebook. On the computer, he can type, talk, or attach a photo. While he talks or types, Hue ticks what the note already says: the customer, what happened, the next step, the date and the product.</p></article>
 <article class="fr" id="control"><div class="box"><section class="sl" id="s-control" aria-label="Slide 19" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:64px;align-items:flex-start">
 <div style="flex:1;display:flex;flex-direction:column;gap:24px">
 <div style="display:flex;flex-direction:column;gap:16px">
@@ -1236,7 +1256,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">19</p>
 </div>
 
-</section></div><p class="num"><span>19 of 33</span><button class="go" data-i="18">Present from this slide</button></p><p class="note"><b>Notes.</b> Hue fills in the fields, but Daniel decides. One line at the top says what Hue did: Hue filled in six fields, check each field, then save. Below a field, Hue gives the reason for a choice. He can also check later. Then the note waits at the top of Home, and it is not in the record yet. Hue saves nothing before he taps Save. And one note updates five parts. He does one thing. Hue does five.</p></article>
+</section></div><p class="num"><span>19 of 32</span><button class="go" data-i="18">Present from this slide</button></p><p class="note"><b>Notes.</b> Hue fills in the fields, but Daniel decides. One line at the top says what Hue did: Hue filled in six fields, check each field, then save. Below a field, Hue gives the reason for a choice. He can also check later. Then the note waits at the top of Home, and it is not in the record yet. Hue saves nothing before he taps Save. And one note updates five parts. He does one thing. Hue does five.</p></article>
 <article class="fr" id="quiet"><div class="box"><section class="sl" id="s-quiet" aria-label="Slide 20" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:32px;align-items:flex-start">
 <div style="flex:1;padding:0 24px 0 0;display:flex;flex-direction:column;gap:28px">
 <div style="display:flex;flex-direction:column;gap:16px">
@@ -1281,7 +1301,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">20</p>
 </div>
 
-</section></div><p class="num"><span>20 of 33</span><button class="go" data-i="19">Present from this slide</button></p><p class="note"><b>Notes.</b> Sometimes a customer does not reply. Hue warns Daniel with the label No reply, and it gives the reason. Here, the trial started 16 days ago, and a trial usually gives a result in 14 days. The usual wait is different for each stage. Daniel can tell Hue that it is wrong. Then Hue waits longer the next time. And Hue writes a message that he can change and send. A late payment comes with a plan that he can offer.</p></article>
+</section></div><p class="num"><span>20 of 32</span><button class="go" data-i="19">Present from this slide</button></p><p class="note"><b>Notes.</b> Sometimes a customer does not reply. Hue warns Daniel with the label No reply, and it gives the reason. Here, the trial started 16 days ago, and a trial usually gives a result in 14 days. The usual wait is different for each stage. Daniel can tell Hue that it is wrong. Then Hue waits longer the next time. And Hue writes a message that he can change and send. A late payment comes with a plan that he can offer.</p></article>
 <article class="fr" id="record"><div class="box"><section class="sl" id="s-record" aria-label="Slide 21" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The design</p>
@@ -1324,7 +1344,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">21</p>
 </div>
 
-</section></div><p class="num"><span>21 of 33</span><button class="go" data-i="20">Present from this slide</button></p><p class="note"><b>Notes.</b> Each note goes into one record for each customer. The record has the deals, the promises, the people, the timeline and the products. All the other screens use this record. Daniel can change his own notes. He cannot change a message or an email, and a lock shows this. A deal stays in the record. When the customer says no, the stage changes to Lost.</p></article>
+</section></div><p class="num"><span>21 of 32</span><button class="go" data-i="20">Present from this slide</button></p><p class="note"><b>Notes.</b> Each note goes into one record for each customer. The record has the deals, the promises, the people, the timeline and the products. All the other screens use this record. Daniel can change his own notes. He cannot change a message or an email, and a lock shows this. A deal stays in the record. When the customer says no, the stage changes to Lost.</p></article>
 <article class="fr" id="devices"><div class="box"><section class="sl" id="s-devices" aria-label="Slide 22" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The design</p>
@@ -1367,7 +1387,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">22</p>
 </div>
 
-</section></div><p class="num"><span>22 of 33</span><button class="go" data-i="21">Present from this slide</button></p><p class="note"><b>Notes.</b> Hue works on three devices, with the same rules. The phone is for the road. The tablet shows the list and the record side by side. The computer has a full table, and the New note button lets him type, talk or attach a photo. He learns Hue one time.</p></article>
+</section></div><p class="num"><span>22 of 32</span><button class="go" data-i="21">Present from this slide</button></p><p class="note"><b>Notes.</b> Hue works on three devices, with the same rules. The phone is for the road. The tablet shows the list and the record side by side. The computer has a full table, and the New note button lets him type, talk or attach a photo. He learns Hue one time.</p></article>
 <article class="fr" id="system"><div class="box"><section class="sl" id="s-system" aria-label="Slide 23" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The system</p>
@@ -1431,7 +1451,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">23</p>
 </div>
 
-</section></div><p class="num"><span>23 of 33</span><button class="go" data-i="22">Present from this slide</button></p><p class="note"><b>Notes.</b> A design system is the set of rules that keeps all screens the same. The blue is inspired by the Avient blue. It is more subdued, so it does not shout, and Daniel can focus on his work. Each screen has one dark button for the main action. Words and icons show the status. Colour is never the only sign. The words are short and clear.</p></article>
+</section></div><p class="num"><span>23 of 32</span><button class="go" data-i="22">Present from this slide</button></p><p class="note"><b>Notes.</b> A design system is the set of rules that keeps all screens the same. The blue is inspired by the Avient blue. It is more subdued, so it does not shout, and Daniel can focus on his work. Each screen has one dark button for the main action. Words and icons show the status. Colour is never the only sign. The words are short and clear.</p></article>
 <article class="fr" id="access"><div class="box"><section class="sl" id="s-access" aria-label="Slide 24" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:64px;align-items:flex-start">
 <div style="flex:1;display:flex;flex-direction:column;gap:22px">
 <div style="display:flex;flex-direction:column;gap:16px">
@@ -1513,7 +1533,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">24</p>
 </div>
 
-</section></div><p class="num"><span>24 of 33</span><button class="go" data-i="23">Present from this slide</button></p><p class="note"><b>Notes.</b> Accessibility means that Daniel can read and use Hue in his real conditions. He works in sunlight and often with one hand. So Hue has four text sizes, stronger contrast, less motion, and a round button for the left or the right hand. Each status has a word and an icon. The menus work with the keyboard. He also has control: each job of Hue has its own switch.</p></article>
+</section></div><p class="num"><span>24 of 32</span><button class="go" data-i="23">Present from this slide</button></p><p class="note"><b>Notes.</b> Accessibility means that Daniel can read and use Hue in his real conditions. He works in sunlight and often with one hand. So Hue has four text sizes, stronger contrast, less motion, and a round button for the left or the right hand. Each status has a word and an icon. The menus work with the keyboard. He also has control: each job of Hue has its own switch.</p></article>
 <article class="fr" id="real"><div class="box"><section class="sl" id="s-real" aria-label="Slide 25" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The checks</p>
@@ -1553,7 +1573,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">25</p>
 </div>
 
-</section></div><p class="num"><span>25 of 33</span><button class="go" data-i="24">Present from this slide</button></p><p class="note"><b>Notes.</b> I want to be clear about the prototype. Some parts work. The rule for the order of the follow ups works. The warnings, the forms and the search work. Other parts are only a sample. Talk shows a sample sentence. Write and Photo read a sample note. No message leaves the prototype. The payment status is sample data. In a real product, one large language model can do most of the sample jobs. The developers connect it to the records. Then they test each job with real notes.</p></article>
+</section></div><p class="num"><span>25 of 32</span><button class="go" data-i="24">Present from this slide</button></p><p class="note"><b>Notes.</b> I want to be clear about the prototype. Some parts work. The rule for the order of the follow ups works. The warnings, the forms and the search work. Other parts are only a sample. Talk shows a sample sentence. Write and Photo read a sample note. No message leaves the prototype. The payment status is sample data. In a real product, one large language model can do most of the sample jobs. The developers connect it to the records. Then they test each job with real notes.</p></article>
 <article class="fr" id="test"><div class="box"><section class="sl" id="s-test" aria-label="Slide 26" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The checks</p>
@@ -1612,49 +1632,50 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">26</p>
 </div>
 
-</section></div><p class="num"><span>26 of 33</span><button class="go" data-i="25">Present from this slide</button></p><p class="note"><b>Notes.</b> I did not interview sales reps. So the design uses nine assumptions. This slide shows how to test each assumption. The first test is easy. I show Today to five sales reps or more. I ask one question: do you agree with the order of the follow ups? If they do not agree, the rule for the order is wrong. I also ask for their usual steps before and after a visit.</p></article>
-<article class="fr" id="edges"><div class="box"><section class="sl" id="s-edges" aria-label="Slide 27" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+</section></div><p class="num"><span>26 of 32</span><button class="go" data-i="25">Present from this slide</button></p><p class="note"><b>Notes.</b> I did not interview sales reps. So the design uses nine assumptions. This slide shows how to test each assumption. The first test is easy. I show Today to five sales reps or more. I ask one question: do you agree with the order of the follow ups? If they do not agree, the rule for the order is wrong. I also ask for their usual steps before and after a visit.</p></article>
+<article class="fr" id="notin"><div class="box"><section class="sl" id="s-notin" aria-label="Slide 27" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The checks</p>
-<h2 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#303C40">I designed for four unusual cases.</h2>
+<h2 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#303C40">Features that I did not include, and why.</h2>
 </div>
-<div style="display:flex;flex-direction:column;gap:24px">
-<div style="display:flex;flex-direction:row;gap:24px">
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:32px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Views for other people.</b> I designed for one sales rep first.</p>
+<div style="display:flex;flex-direction:row;gap:20px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:28px">
+<div style="flex:none"><svg width="88" height="88" viewBox="0 0 88 88" fill="none"><g transform="scale(2.0000)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></g></g></svg></div>
+<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">The view for his manager</h3>
+<p style="font-size:24px;line-height:1.4;color:#5F6F78">A manager needs other screens: the team and the forecast.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:28px">
+<div style="flex:none"><svg width="88" height="88" viewBox="0 0 88 88" fill="none"><g transform="scale(2.0000)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></g></g></svg></div>
+<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">The view for the technical specialist</h3>
+<p style="font-size:24px;line-height:1.4;color:#5F6F78">She needs the details of each trial. That is a second user with a second job.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:28px">
+<div style="flex:none"><svg width="88" height="88" viewBox="0 0 88 88" fill="none"><g transform="scale(2.0000)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1.5-5h13L20 9M5 9v11h14V9M4 9h16M9.5 20v-5.5h5V20"/></g></g></svg></div>
+<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">The view for the distributor</h3>
+<p style="font-size:24px;line-height:1.4;color:#5F6F78">A distributor is outside Avient. Avient must first decide what he can see.</p>
+</div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Connections.</b> They need work with Avient systems.</p>
+<div style="display:flex;flex-direction:row;gap:20px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:28px">
 <div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
-<div style="flex:none"><svg width="104" height="104" viewBox="0 0 104 104" fill="none"><g transform="scale(2.3636)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></g></g></svg></div>
+<div style="flex:none"><svg width="88" height="88" viewBox="0 0 88 88" fill="none"><g transform="scale(2.0000)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.6-8A5.5 5.5 0 0 1 17 9.2 4.4 4.4 0 0 1 17 18z"/><path d="M12 13l-1.5 3h3L12 19"/></g></g></svg></div>
 <div style="flex:1;display:flex;flex-direction:column;gap:4px">
-<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:32px;font-weight:700;line-height:1.3;color:#303C40">A new user with no customers</h3>
-<p style="font-size:24px;line-height:1.4;color:#5F6F78">Each screen shows one next step.</p>
+<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">Work with no internet</h3>
+<p style="font-size:24px;line-height:1.4;color:#5F6F78">It needs storage on the device, and a rule for two versions of one record.</p>
 </div>
 </div>
 </div>
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:28px">
 <div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
-<div style="flex:none"><svg width="104" height="104" viewBox="0 0 104 104" fill="none"><g transform="scale(2.3636)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.8"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.8"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.8"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.8"/></g></g></svg></div>
+<div style="flex:none"><svg width="88" height="88" viewBox="0 0 88 88" fill="none"><g transform="scale(2.0000)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9c-.5-1.1-1.6-1.7-3-1.7-1.8 0-3.1.9-3.1 2.3 0 3.2 6.2 1.6 6.2 4.8 0 1.4-1.3 2.3-3.1 2.3-1.4 0-2.6-.6-3.1-1.7M12 5.5v13"/></g></g></svg></div>
 <div style="flex:1;display:flex;flex-direction:column;gap:4px">
-<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:32px;font-weight:700;line-height:1.3;color:#303C40">A user with 100 customers</h3>
-<p style="font-size:24px;line-height:1.4;color:#5F6F78">Search and filters are first. A list shows 20 rows, then more.</p>
-</div>
-</div>
-</div>
-</div>
-<div style="display:flex;flex-direction:row;gap:24px">
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:32px">
-<div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
-<div style="flex:none"><svg width="104" height="104" viewBox="0 0 104 104" fill="none"><g transform="scale(2.3636)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1 1-1.1 1.8M12 17h.1"/></g></g></svg></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:4px">
-<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:32px;font-weight:700;line-height:1.3;color:#303C40">A customer with missing details</h3>
-<p style="font-size:24px;line-height:1.4;color:#5F6F78">Each section tells him what is missing.</p>
-</div>
-</div>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:32px">
-<div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
-<div style="flex:none"><svg width="104" height="104" viewBox="0 0 104 104" fill="none"><g transform="scale(2.3636)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#D9624F" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.1"/></g></g></svg></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:4px">
-<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:32px;font-weight:700;line-height:1.3;color:#303C40">An error by Hue</h3>
-<p style="font-size:24px;line-height:1.4;color:#5F6F78">Hue gives its reason. His words stay. He can change each field.</p>
+<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">Import from a real system, such as accounts</h3>
+<p style="font-size:24px;line-height:1.4;color:#5F6F78">It shows who did not pay. It needs access to Avient systems, so the prototype has sample payments.</p>
 </div>
 </div>
 </div>
@@ -1665,81 +1686,8 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">27</p>
 </div>
 
-</section></div><p class="num"><span>27 of 33</span><button class="go" data-i="26">Present from this slide</button></p><p class="note"><b>Notes.</b> I designed for four unusual cases. A new user with no customers: each screen shows one next step. A user with 100 customers: search and filters are first. A customer with missing details: each section tells him what is missing. And an error by Hue: Hue gives its reason, his words stay, and he can change each field.</p></article>
-<article class="fr" id="notin"><div class="box"><section class="sl" id="s-notin" aria-label="Slide 28" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The checks</p>
-<h2 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#303C40">Features that I did not include, and the reason for each.</h2>
-</div>
-<div style="display:flex;flex-direction:column;gap:16px">
-<div style="display:flex;flex-direction:row;gap:20px">
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:24px">
-<div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
-<div style="flex:none"><svg width="72" height="72" viewBox="0 0 72 72" fill="none"><g transform="scale(1.6364)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></g></g></svg></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:4px">
-<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">The view for his manager</h3>
-<p style="font-size:24px;line-height:1.4;color:#5F6F78">I designed for one sales rep first. A manager needs other screens: the team and the forecast.</p>
-</div>
-</div>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:24px">
-<div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
-<div style="flex:none"><svg width="72" height="72" viewBox="0 0 72 72" fill="none"><g transform="scale(1.6364)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.6-8A5.5 5.5 0 0 1 17 9.2 4.4 4.4 0 0 1 17 18z"/><path d="M12 13l-1.5 3h3L12 19"/></g></g></svg></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:4px">
-<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">Work with no internet</h3>
-<p style="font-size:24px;line-height:1.4;color:#5F6F78">It needs storage on the device, and a rule for two versions of one record.</p>
-</div>
-</div>
-</div>
-</div>
-<div style="display:flex;flex-direction:row;gap:20px">
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:24px">
-<div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
-<div style="flex:none"><svg width="72" height="72" viewBox="0 0 72 72" fill="none"><g transform="scale(1.6364)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></g></g></svg></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:4px">
-<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">The view for the technical specialist</h3>
-<p style="font-size:24px;line-height:1.4;color:#5F6F78">She needs the details of each trial. That is a second user with a second job.</p>
-</div>
-</div>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:24px">
-<div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
-<div style="flex:none"><svg width="72" height="72" viewBox="0 0 72 72" fill="none"><g transform="scale(1.6364)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9c-.5-1.1-1.6-1.7-3-1.7-1.8 0-3.1.9-3.1 2.3 0 3.2 6.2 1.6 6.2 4.8 0 1.4-1.3 2.3-3.1 2.3-1.4 0-2.6-.6-3.1-1.7M12 5.5v13"/></g></g></svg></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:4px">
-<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">Import from a real system, such as accounts</h3>
-<p style="font-size:24px;line-height:1.4;color:#5F6F78">It shows who did not pay. It needs access to Avient systems, so the prototype has sample payments.</p>
-</div>
-</div>
-</div>
-</div>
-<div style="display:flex;flex-direction:row;gap:20px">
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:24px">
-<div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
-<div style="flex:none"><svg width="72" height="72" viewBox="0 0 72 72" fill="none"><g transform="scale(1.6364)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1.5-5h13L20 9M5 9v11h14V9M4 9h16M9.5 20v-5.5h5V20"/></g></g></svg></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:4px">
-<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">The view for the distributor</h3>
-<p style="font-size:24px;line-height:1.4;color:#5F6F78">A distributor is outside Avient. Avient must first decide what he can see.</p>
-</div>
-</div>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:24px">
-<div style="display:flex;flex-direction:row;gap:24px;align-items:flex-start">
-<div style="flex:none"><svg width="72" height="72" viewBox="0 0 72 72" fill="none"><g transform="scale(1.6364)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#D9624F" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/><path d="M4 3.5l16 17"/></g></g></svg></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:4px">
-<h3 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:28px;font-weight:700;line-height:1.3;color:#303C40">A recording of the full meeting</h3>
-<p style="font-size:24px;line-height:1.4;color:#5F6F78">It was one of my 23 ideas: no note to write. It stopped, because a customer can feel that it is intrusive.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
-<p style="font-size:24px;color:#5F6F78">Hue · Design challenge · Loo Say Hien</p>
-<p style="font-size:24px;color:#5F6F78">28</p>
-</div>
-
-</section></div><p class="num"><span>28 of 33</span><button class="go" data-i="27">Present from this slide</button></p><p class="note"><b>Notes.</b> I did not include six features. Three are views for other people: his manager, the technical specialist and the distributor. I designed for one sales rep first. Work with no internet needs storage on the device. Import from a real system, such as the accounts system, needs access to Avient systems. And a recording of the full meeting was one of my 23 ideas. It stopped because of privacy risk.</p></article>
-<article class="fr" id="measures"><div class="box"><section class="sl" id="s-measures" aria-label="Slide 29" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+</section></div><p class="num"><span>27 of 32</span><button class="go" data-i="26">Present from this slide</button></p><p class="note"><b>Notes.</b> I did not include five features. Three are views for other people: his manager, the technical specialist and the distributor. I designed for one sales rep first. Work with no internet needs storage on the device. Import from a real system, such as the accounts system, needs access to Avient systems. So the late payments in the prototype are sample data.</p></article>
+<article class="fr" id="measures"><div class="box"><section class="sl" id="s-measures" aria-label="Slide 28" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The checks</p>
 <h2 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#303C40">How to measure if Hue helps Daniel.</h2>
@@ -1777,7 +1725,7 @@ body.show{overflow:hidden}
 </div>
 <div style="display:flex;flex-direction:row;gap:20px;align-items:center;padding:7px 0;border-bottom:1px solid #E0E7ED">
 <div style="flex:none;width:44px"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><g transform="scale(1.0000)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19z"/><path d="M13.5 7.5l3 3"/></g></g></svg></div>
-<p style="width:330px;font-size:24px;line-height:1.4;color:#303C40;font-weight:600">Little time for notes</p>
+<p style="width:330px;font-size:24px;line-height:1.4;color:#303C40;font-weight:600">Notes are easy to do</p>
 <p style="flex:1;font-size:24px;line-height:1.4;color:#303C40;font-weight:400">Notes that are in the record on the day of the visit</p>
 <p style="width:400px;font-size:24px;line-height:1.4;color:#5F6F78;font-weight:400">9 of 10</p>
 </div>
@@ -1797,11 +1745,11 @@ body.show{overflow:hidden}
 <p style="font-size:24px;line-height:1.4;color:#5F6F78">These targets are my first values. The first week measures where he is today. Two slower results to watch: the deals with no reply for more than 30 days, and the sales against the target.</p>
 <div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
 <p style="font-size:24px;color:#5F6F78">Hue · Design challenge · Loo Say Hien</p>
-<p style="font-size:24px;color:#5F6F78">29</p>
+<p style="font-size:24px;color:#5F6F78">28</p>
 </div>
 
-</section></div><p class="num"><span>29 of 33</span><button class="go" data-i="28">Present from this slide</button></p><p class="note"><b>Notes.</b> How do we know that Hue helps Daniel? Each goal has one measure, and there are two more measures for trust and for the number of warnings. One example: when Daniel answers a warning with the words this is normal, the warning was not useful. If this happens for more than 3 of 10 warnings, Hue warns too early. These targets are my first values. The first week measures only where he is today.</p></article>
-<article class="fr" id="claude"><div class="box"><section class="sl" id="s-claude" aria-label="Slide 30" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+</section></div><p class="num"><span>28 of 32</span><button class="go" data-i="27">Present from this slide</button></p><p class="note"><b>Notes.</b> How do we know that Hue helps Daniel? Each goal has one measure, and there are two more measures for trust and for the number of warnings. One example: when Daniel answers a warning with the words this is normal, the warning was not useful. If this happens for more than 3 of 10 warnings, Hue warns too early. These targets are my first values. The first week measures only where he is today.</p></article>
+<article class="fr" id="claude"><div class="box"><section class="sl" id="s-claude" aria-label="Slide 29" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The checks</p>
 <h2 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#303C40">How I worked with Claude.</h2>
@@ -1862,11 +1810,11 @@ body.show{overflow:hidden}
 <p style="font-size:24px;line-height:1.4;color:#303C40"><b>The limits.</b> The sources are not from interviews. The people and the numbers in the prototype are not real. The film clips, the picture of Daniel and the voice are generated.</p>
 <div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
 <p style="font-size:24px;color:#5F6F78">Hue · Design challenge · Loo Say Hien</p>
-<p style="font-size:24px;color:#5F6F78">30</p>
+<p style="font-size:24px;color:#5F6F78">29</p>
 </div>
 
-</section></div><p class="num"><span>30 of 33</span><button class="go" data-i="29">Present from this slide</button></p><p class="note"><b>Notes.</b> This is how I worked with Claude. I brought the sources, my sketches and my feedback in fourteen review rounds. Claude made drafts, gave its opinion, and wrote the code. I made the decisions on the right. Some examples: four ways to record a note on the go. One language model for many jobs. The note guide, where Hue ticks what a good note says. And Hue as a brand. The limits: the sources are not from interviews, and the people and the numbers in the prototype are not real.</p></article>
-<article class="fr" id="more"><div class="box"><section class="sl" id="s-more" aria-label="Slide 31" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+</section></div><p class="num"><span>29 of 32</span><button class="go" data-i="28">Present from this slide</button></p><p class="note"><b>Notes.</b> This is how I worked with Claude. I brought the sources, my sketches and my feedback in fourteen review rounds. Claude made drafts, gave its opinion, and wrote the code. I made the decisions on the right. Some examples: four ways to record a note on the go. One language model for many jobs. The note guide, where Hue ticks what a good note says. And Hue as a brand. The limits: the sources are not from interviews, and the people and the numbers in the prototype are not real.</p></article>
+<article class="fr" id="more"><div class="box"><section class="sl" id="s-more" aria-label="Slide 30" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The other parts</p>
 <h2 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#303C40">The other parts of this project.</h2>
@@ -1919,11 +1867,11 @@ body.show{overflow:hidden}
 </div>
 <div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
 <p style="font-size:24px;color:#5F6F78">Hue · Design challenge · Loo Say Hien</p>
-<p style="font-size:24px;color:#5F6F78">31</p>
+<p style="font-size:24px;color:#5F6F78">30</p>
 </div>
 
-</section></div><p class="num"><span>31 of 33</span><button class="go" data-i="30">Present from this slide</button></p><p class="note"><b>Notes.</b> The project has four more parts. Each is a page on GitHub. The film shows one work day in 90 seconds. The guide, How Hue Works, explains each screen. The design system has the colours, the parts and the rules for words. And the code is one file.</p></article>
-<article class="fr" id="thanks"><div class="box"><section class="sl" id="s-thanks" aria-label="Slide 32" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px;display:flex;flex-direction:row;gap:96px;align-items:flex-start">
+</section></div><p class="num"><span>30 of 32</span><button class="go" data-i="29">Present from this slide</button></p><p class="note"><b>Notes.</b> The project has four more parts. Each is a page on GitHub. The film shows one work day in 90 seconds. The guide, How Hue Works, explains each screen. The design system has the colours, the parts and the rules for words. And the code is one file.</p></article>
+<article class="fr" id="thanks"><div class="box"><section class="sl" id="s-thanks" aria-label="Slide 31" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px;display:flex;flex-direction:row;gap:96px;align-items:flex-start">
 <div style="flex:1;height:824px;display:flex;flex-direction:column;gap:32px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">Questions</p>
 <h1 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:160px;font-weight:800;line-height:1.1;color:#303C40">Thank you</h1>
@@ -1932,15 +1880,10 @@ body.show{overflow:hidden}
 <p style="font-size:28px;font-weight:700;color:#303C40">Loo Say Hien</p>
 <p style="font-size:28px;line-height:1.4;color:#5F6F78">All links: <a href="https://sayhien.github.io/avient-sales-rep-tool/links/">sayhien.github.io/avient-sales-rep-tool/links</a></p>
 </div>
-<div style="flex:none;display:flex;flex-direction:column;gap:0px">
-<div style="display:flex;flex-direction:column;gap:16px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:32px">
-<img src="../assets/deck/qr-links.png" alt="A code that opens one page with all the links: the prototype, the deck, the film and the guide" style="width:380px;height:380px;object-fit:contain">
-<p style="font-size:24px;line-height:1.4;color:#5F6F78;width:380px;text-align:center">Scan for the prototype, the film and the guide.</p>
-</div>
-</div>
+<img src="../assets/deck/phone-home.png" alt="Home on a phone: the greeting with the weather, the sales bar at 68 percent, and the start of Today." style="width:410px;height:824px;object-fit:contain">
 
-</section></div><p class="num"><span>32 of 33</span><button class="go" data-i="31">Present from this slide</button></p><p class="note"><b>Notes.</b> Thank you. I am happy to answer your questions. On the next slide, you can try the prototype while we talk.</p></article>
-<article class="fr" id="try"><div class="box"><section class="sl" id="s-try" aria-label="Slide 33" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+</section></div><p class="num"><span>31 of 32</span><button class="go" data-i="30">Present from this slide</button></p><p class="note"><b>Notes.</b> Thank you. I am happy to answer your questions. On the next slide, you can try the prototype while we talk.</p></article>
+<article class="fr" id="try"><div class="box"><section class="sl" id="s-try" aria-label="Slide 32" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">Try it</p>
 <h2 style="font-family:'Bricolage Grotesque', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#303C40">Try the prototype on your phone.</h2>
@@ -1948,10 +1891,10 @@ body.show{overflow:hidden}
 <div style="display:flex;flex-direction:row;gap:48px;align-items:flex-start">
 <div style="flex:none;display:flex;flex-direction:column;gap:16px">
 <div style="display:flex;flex-direction:column;gap:16px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:32px">
-<img src="../assets/deck/qr-prototype.png" alt="A code that opens the Hue prototype" style="width:380px;height:380px;object-fit:contain">
-<p style="font-size:24px;line-height:1.4;color:#5F6F78;width:380px;text-align:center">Point your camera at the code.</p>
+<img src="../assets/deck/qr-links.png" alt="A code that opens the page with all links. The prototype is the first link." style="width:380px;height:380px;object-fit:contain">
+<p style="font-size:24px;line-height:1.4;color:#5F6F78;width:380px;text-align:center">Point your camera at the code. The prototype is the first link.</p>
 </div>
-<p style="font-size:24px;font-weight:700;line-height:1.4;color:#3274AE;width:444px"><a href="https://sayhien.github.io/avient-sales-rep-tool/prototype/">sayhien.github.io/<wbr>avient-sales-rep-tool/<wbr>prototype</a></p>
+<p style="font-size:24px;font-weight:700;line-height:1.4;color:#3274AE;width:444px"><a href="https://sayhien.github.io/avient-sales-rep-tool/links/">sayhien.github.io/<wbr>avient-sales-rep-tool/<wbr>links</a></p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:16px">
 <p style="font-size:28px;line-height:1.4;color:#303C40">It is the real prototype, with sample data. You can tap each part.</p>
@@ -2016,12 +1959,12 @@ body.show{overflow:hidden}
 </div>
 <div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
 <p style="font-size:24px;color:#5F6F78">Hue · Design challenge · Loo Say Hien</p>
-<p style="font-size:24px;color:#5F6F78">33</p>
+<p style="font-size:24px;color:#5F6F78">32</p>
 </div>
 
-</section></div><p class="num"><span>33 of 33</span><button class="go" data-i="32">Present from this slide</button></p><p class="note"><b>Notes.</b> The prototype is on the internet. Point your camera at the code. It opens on your phone with sample data. You can tap each part. Here are seven things to try. Hold the round button, and Hue starts to listen. Select Write, and a sample note writes itself. Record a note and tap Check later. Tap See the plan on a late payment, send the message, and find it in the timeline of that customer. Tap a stage in Open deals. Open a customer record and change a card. Open Settings.</p></article>
+</section></div><p class="num"><span>32 of 32</span><button class="go" data-i="31">Present from this slide</button></p><p class="note"><b>Notes.</b> The prototype is on the internet. Point your camera at the code. It opens the page with all links, and the prototype is the first link. It has sample data. You can tap each part. Here are seven things to try. Hold the round button, and Hue starts to listen. Select Write, and a sample note writes itself. Record a note and tap Check later. Tap See the plan on a late payment, send the message, and find it in the timeline of that customer. Tap a stage in Open deals. Open a customer record and change a card. Open Settings.</p></article>
 </div>
-<div id="show" hidden role="dialog" aria-modal="true" aria-label="Presentation"><div class="stage" id="stage"></div><div class="pnote" id="pnote" hidden></div><div class="ctl" id="ctl"><button id="prev" aria-label="Last slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><span id="count" aria-live="polite">1 / 33</span><button id="next" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><i></i><button id="bnote" aria-pressed="false" aria-label="Speaker notes" title="Speaker notes (N)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H10l-5 4z"/><path d="M9 9h6M9 12h4"/></svg></button><button id="bsnd" aria-pressed="true" aria-label="Sound of the page" title="Sound of the page (S)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h3l5 4V6L7 10z"/><path class="on" d="M16 9a4 4 0 0 1 0 6M18.500 6.500a7.500 7.500 0 0 1 0 11"/><path class="off" d="M16 9.500l5 5M21 9.500l-5 5"/></svg></button><button id="bfull" aria-label="Full screen" title="Full screen (F)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button><button id="bexit" aria-label="Close the presentation" title="Close (Esc)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>
+<div id="show" hidden role="dialog" aria-modal="true" aria-label="Presentation"><div class="stage" id="stage"></div><div class="pnote" id="pnote" hidden></div><div class="hint" id="hint" hidden role="status"><div class="keys"><p class="pic" aria-hidden="true"><kbd><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></kbd><kbd class="go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></kbd></p><p class="h">Press the arrow keys to turn the page</p><p class="d">Right arrow: the next slide. Left arrow: the slide before. Esc closes the presentation.</p></div><div class="touch"><p class="pic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><i></i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></p><p class="h">Swipe to turn the page</p><p class="d">Swipe left: the next slide. Swipe right: the slide before. The arrows at the bottom do the same.</p></div><button id="hintok">Start</button></div><div class="ctl" id="ctl"><button id="prev" aria-label="Last slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><span id="count" aria-live="polite">1 / 32</span><button id="next" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><i></i><button id="bnote" aria-pressed="false" aria-label="Speaker notes" title="Speaker notes (N)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H10l-5 4z"/><path d="M9 9h6M9 12h4"/></svg></button><button id="bsnd" aria-pressed="true" aria-label="Sound of the page" title="Sound of the page (S)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h3l5 4V6L7 10z"/><path class="on" d="M16 9a4 4 0 0 1 0 6M18.500 6.500a7.500 7.500 0 0 1 0 11"/><path class="off" d="M16 9.500l5 5M21 9.500l-5 5"/></svg></button><button id="bfull" aria-label="Full screen" title="Full screen (F)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button><button id="bexit" aria-label="Close the presentation" title="Close (Esc)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>
 </main>
 <footer class="foot"><div class="wrap"><nav aria-label="The pages of this project"><a href="../links/">All links</a><a href="../prototype/">Prototype</a><a href="../film/">Film</a><a href="../design-system/">Hue Design System</a><a href="../guide/">How Hue Works</a></nav><p>A design challenge by Loo Say Hien, October 2026. Hue is a concept with sample data. It is not an official Avient product. Daniel is not a real person.</p></div></footer>
 <script>
@@ -2049,37 +1992,30 @@ body.show{overflow:hidden}
       notes=frs.map(function(f){ var n=f.querySelector('.note'); return n? n.textContent.replace(/^Notes\.\s*/,'') : '' }),
       show=document.getElementById('show'), stage=document.getElementById('stage'), pnote=document.getElementById('pnote'), count=document.getElementById('count'),
       prev=document.getElementById('prev'), next=document.getElementById('next'), bnote=document.getElementById('bnote'), bsnd=document.getElementById('bsnd'),
-      on=false, cur=-1, sound=true, ac=null, idle=0, last=null;
+      on=false, cur=-1, sound=true, idle=0, last=null;
   function size(){ var k=Math.min(stage.clientWidth/1920, stage.clientHeight/1080); if(cur>=0) sls[cur].style.setProperty('--k', k) }
-  /* the sound of a page: a short swish of noise that rises, then a soft slap. It is made here, so there is no sound file */
-  function flip(){
-    if(!sound) return;
-    try{
-      ac=ac||new (window.AudioContext||window.webkitAudioContext)(); if(ac.state==='suspended') ac.resume();
-      var d=.34, n=Math.floor(ac.sampleRate*d), buf=ac.createBuffer(1,n,ac.sampleRate), x=buf.getChannelData(0), cr=1;
-      for(var i=0;i<n;i++){ var t=i/n; if(i%90===0) cr=.55+Math.random()*.45;
-        var sw=t<.72? Math.pow(Math.sin(Math.PI*t/.72),2)*.5 : 0, slap=t>.64? Math.exp(-(t-.64)*30)*.95 : 0;
-        x[i]=(Math.random()*2-1)*(sw*cr+slap); }
-      var s=ac.createBufferSource(), bp=ac.createBiquadFilter(), hp=ac.createBiquadFilter(), g=ac.createGain(), t0=ac.currentTime; s.buffer=buf;
-      bp.type='bandpass'; bp.Q.value=.8; bp.frequency.setValueAtTime(1500,t0); bp.frequency.exponentialRampToValueAtTime(5200,t0+d*.62); bp.frequency.exponentialRampToValueAtTime(2400,t0+d);
-      hp.type='highpass'; hp.frequency.value=650; g.gain.value=.55;
-      s.connect(bp); bp.connect(hp); hp.connect(g); g.connect(ac.destination); s.start();
-    }catch(e){}
-  }
+  /* the sound of a page: a short recording, stored with the site */
+  var page=new Audio('../assets/media/page-flip.mp3'); page.preload='auto'; page.volume=.9;
+  function flip(){ if(!sound) return; try{ page.currentTime=0; var p=page.play(); if(p&&p.catch) p.catch(function(){}) }catch(e){} }
+  /* the first guide: it goes away at the first page turn, at a tap, or after some seconds */
+  var hint=document.getElementById('hint'), hintT=0;
+  function hintOff(){ clearTimeout(hintT); hint.hidden=true }
+  function hintOn(){ hint.hidden=false; clearTimeout(hintT); hintT=setTimeout(hintOff, 9000) }
+  document.getElementById('hintok').addEventListener('click', function(){ hintOff(); next.focus({preventScroll:true}) });
   function back(i){ if(i<0) return; var s=sls[i]; s.classList.remove('in'); [].forEach.call(s.querySelectorAll('video'), function(v){ if(!v.muted) v.pause() }); var b=frs[i].querySelector('.box'); b.appendChild(s); s.style.setProperty('--k', b.clientWidth/1920); }
   function go(i, quiet){
     i=Math.max(0, Math.min(N-1, i)); if(i===cur) return;
     var dir=i>cur?1:-1; back(cur); cur=i; var s=sls[i]; stage.appendChild(s); s.style.setProperty('--dx', (dir*28)+'px'); s.classList.add('in'); size();
     count.textContent=(i+1)+' / '+N; prev.disabled=i===0; next.disabled=i===N-1; pnote.textContent=notes[i]||'No notes for this slide.'; pnote.scrollTop=0;
-    if(!quiet) flip();
+    if(!quiet){ flip(); hintOff() }
   }
   function wake(){ show.classList.remove('idle'); clearTimeout(idle); if(matchMedia('(hover:hover)').matches) idle=setTimeout(function(){ show.classList.add('idle') }, 2600) }
   function open(i){
-    if(on) return; on=true; last=document.activeElement; document.body.classList.add('show'); show.hidden=false; cur=-1; go(i||0, true); next.focus({preventScroll:true}); wake();
+    if(on) return; on=true; last=document.activeElement; document.body.classList.add('show'); show.hidden=false; cur=-1; go(i||0, true); hintOn(); document.getElementById('hintok').focus({preventScroll:true}); wake();
     var el=document.documentElement, rf=el.requestFullscreen||el.webkitRequestFullscreen; if(rf){ try{ var p=rf.call(el); if(p&&p.catch) p.catch(function(){}) }catch(e){} }
   }
   function close(){
-    if(!on) return; on=false; var i=cur; back(cur); cur=-1; show.hidden=true; document.body.classList.remove('show'); fit();
+    if(!on) return; on=false; hintOff(); var i=cur; back(cur); cur=-1; show.hidden=true; document.body.classList.remove('show'); fit();
     if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document) }
     frs[i].scrollIntoView({block:'center'}); if(last&&last.focus) last.focus({preventScroll:true});
   }
@@ -2095,7 +2031,7 @@ body.show{overflow:hidden}
   document.getElementById('bfull').addEventListener('click', toggleFull); document.getElementById('bexit').addEventListener('click', close);
   show.addEventListener('mousemove', wake); show.addEventListener('touchstart', wake, {passive:true});
   /* a click on the left or the right edge of the black area also changes the slide */
-  stage.addEventListener('click', function(e){ if(e.target!==stage) return; go(cur+(e.clientX>innerWidth/2?1:-1)) });
+  stage.addEventListener('click', function(e){ if(e.target!==stage) return; if(!hint.hidden){ hintOff(); return } go(cur+(e.clientX>innerWidth/2?1:-1)) });
   var tx=null; show.addEventListener('touchstart', function(e){ tx=e.touches[0].clientX }, {passive:true});
   show.addEventListener('touchend', function(e){ if(tx===null) return; var dx=e.changedTouches[0].clientX-tx; tx=null; if(Math.abs(dx)>60 && !e.target.closest('.ctl,video,.pnote')) go(cur+(dx<0?1:-1)) });
   addEventListener('keydown', function(e){
