@@ -1632,7 +1632,7 @@ function attnHTML(){
   return sec('attn','Needs attention','<span class="count">'+(a.length?a.length+(a.length===1?' customer':' customers'):'')+'</span>','<div class="stack">'+
    (show.map(function(x){return '<button class="row" data-act="'+x.act+'" data-id="'+x.cust+'" data-deal="'+x.deal+'"><span><b>'+esc(cust(x.cust).name)+'</b><br><span class="r2">'+esc(x.why)+'</span></span><span class="rr"><span class="val">'+money(x.val)+'</span></span><span class="rc">'+x.chip+'</span></button>'}).join('')||'<p class="empty">Nothing needs attention.</p>')+'</div>'+
    (a.length>4?'<button class="btn btn-quiet wide" data-act="attnall" aria-expanded="'+S.attnAll+'">'+(S.attnAll?'Show fewer':'Show '+(a.length-4)+' more')+'</button>':'')+
-   (S.set.warn?'':'<p class="cap" style="margin-top:6px">The warnings about no reply are off. Turn them on in Settings.</p>'));
+   (S.set.warn?'':'<p class="cap" style="margin-top:6px">The alerts about no reply are off. Turn them on in Settings.</p>'));
 }
 function dealsHTML(){
   var open=D.filter(isOpen), per=STAGES.map(function(s){var a=open.filter(function(d){return d.stage===s});return {s:s,n:a.length,v:sum(a)}});
@@ -1776,7 +1776,7 @@ function settingsHTML(){
    row('tidy','Fill in the fields from my notes',AI+' reads a note and fills in the customer, the next step, the date, the products and the deal stage. You check them before the note goes to the record.')+
    row('draft','Draft my messages',AI+' writes a first message from your notes. You change it and send it.')+
    row('top','Put my follow ups in order',AI+' puts the three most important follow ups first in Today. The order is new at the start of each day.')+
-   row('warn','Warn me when a customer does not reply','A warning shows when a customer does not reply about a deal for longer than usual.')+
+   row('warn','Alert me when a customer does not reply','An alert shows when a customer does not reply about a deal for longer than usual.')+
    row('tips','Suggestions in customer records','A short tip from your past notes with that customer.')+
    row('wx','Weather for my day','The weather that can delay a visit, and the morning, afternoon and evening.')+'</div>'+
    '<h2 class="sec">Help</h2><div class="card set">'+
@@ -1878,8 +1878,8 @@ function sheetHTML(){
     b=sheetHead(esc(c.name))+'<p class="sub">'+esc(d.name)+' · '+money(d.value)+' · '+d.stage+'</p><div class="chips">'+chip('warn','No reply for '+d.touch+' days')+'</div>'+
      '<p class="byhue" style="margin-top:12px">'+hue(14)+'Why '+AI+' flagged this</p><p>'+esc(d.last)+' '+d.touch+' days ago, and no contact since. '+NORMAL[d.stage]+'</p>'+
      '<div class="acts"><button class="btn btn-primary" data-act="msg" data-deal="'+d.id+'">'+ic('msg')+'Message '+esc(c.people[0].call)+'</button><button class="btn btn-soft" data-act="call" data-id="'+c.id+'">'+ic('phone')+'Call</button></div>'+
-     '<div style="margin-top:12px"><button class="opt" data-act="snooze" data-deal="'+d.id+'">'+ic('clock')+'<span>Remind me in 3 days<small>Hide this warning until Thursday.</small></span></button>'+
-     '<button class="opt" data-act="normal" data-deal="'+d.id+'">'+ic('tick')+'<span>This is normal for this customer<small>'+AI+' will wait longer before it warns you again.</small></span></button>'+
+     '<div style="margin-top:12px"><button class="opt" data-act="snooze" data-deal="'+d.id+'">'+ic('clock')+'<span>Remind me in 3 days<small>Hide this alert until Thursday.</small></span></button>'+
+     '<button class="opt" data-act="normal" data-deal="'+d.id+'">'+ic('tick')+'<span>This is normal for this customer<small>'+AI+' will wait longer before it alerts you again.</small></span></button>'+
      '<button class="opt" data-act="rec" data-id="'+c.id+'">'+ic('file')+'<span>Open the customer record</span></button></div>';
   }
   else if(s.kind==='late'){
@@ -2448,7 +2448,7 @@ var TOUR=[
  {sel:'#b-top .task',scroll:1,t:'Today',b:'Your visits of today come first, in order of time. Below them are your follow ups: the calls, messages and promises of today. '+AI+' puts the most important first. Each item gives the reason and one next step. Tap the circle when an item is done.'},
  {sel:function(){return S.device==='computer'?'.topbar .btn-primary':'#fab'},round:function(){return S.device!=='computer'},t:'Add a note in seconds',
   b:function(){return S.device==='computer'?'Select New note to type, to talk, or to attach a photo of your notes. Press N to type immediately. '+AI+' reads the note and fills in the fields.':'Tap the round button to talk, type, write or take a photo. Hold the button to talk immediately. '+AI+' reads the note and fills in the fields.'}},
- {sel:'#b-attn',scroll:1,t:'Customers that need you',b:AI+' warns you when a customer does not reply for too long, or when a payment is late. Tap a row to see the reason and what you can do.'},
+ {sel:'#b-attn',scroll:1,t:'Customers that need you',b:AI+' alerts you when a customer does not reply for too long, or when a payment is late. Tap a row to see the reason and what you can do.'},
  {sel:'[data-act=tab][data-id=rec]',pad:3,t:'Customer records',b:'Each customer has one page. Your notes, deals and promises go there.'},
  {sel:'[data-act=tab][data-id=set]',pad:3,t:'Settings',b:'Change the text size and the contrast here. You can also turn off each job of '+AI+'. The guide and this tour are here too.'}
 ];
@@ -2544,7 +2544,7 @@ var A={
   pickaddr:function(_,__,b){ var sh=S.sheet; if(sh&&sh.sug&&sh.sug[+b.dataset.i]) addrPick(sh.sug[+b.dataset.i]); return false },
   size:function(id,_,b){ S.set.size=id; applySettings(); pressOne(b); toast('Text size: '+{s:'Small',m:'Standard',l:'Large',xl:'Largest'}[id]+'.'); setTimeout(revealAll,60); return false },
   side:function(id,_,b){ S.set.left=id==='l'; pressOne(b); var w=app.querySelector('.fabwrap'); if(w) w.classList.toggle('left',S.set.left); screenEl.classList.toggle('fab-l',S.set.left); toast('Note button is on the '+(S.set.left?'left':'right')+'.'); return false },
-  tog:function(id,_,b){ var on=S.set[id]=!S.set[id]; applySettings(); b.setAttribute('aria-checked',String(on)); b.lastChild.textContent=on?'On':'Off'; toast({hc:'Stronger contrast is ',rm:'Less motion is ',tips:'Suggestions are ',warn:'The warnings about no reply are ',tidy:'Filling in the fields is ',draft:'Message drafts are ',top:'The order of follow ups is ',wx:'Weather is '}[id]+(on?'on':'off')+'.'); return false },
+  tog:function(id,_,b){ var on=S.set[id]=!S.set[id]; applySettings(); b.setAttribute('aria-checked',String(on)); b.lastChild.textContent=on?'On':'Off'; toast({hc:'Stronger contrast is ',rm:'Less motion is ',tips:'Suggestions are ',warn:'The alerts about no reply are ',tidy:'Filling in the fields is ',draft:'Message drafts are ',top:'The order of follow ups is ',wx:'Weather is '}[id]+(on?'on':'off')+'.'); return false },
   jump:function(id,_,b){ var sc=b.closest('[data-scroll]'), el=sc&&sc.querySelector('#'+id); if(el) el.scrollIntoView({block:'start',behavior:S.set.rm?'auto':'smooth'}); return false },
   fanclose:function(){setFan(false);return false},
   close:function(){ return tryClose()?undefined:false },
@@ -2590,7 +2590,7 @@ var A={
   call:function(id,dl){S.sheet={kind:'call',cust:dl?deal(dl).cust:id,phase:'on'}},
   endcall:function(){S.sheet.phase='after'},
   snooze:function(_,dl){var d=deal(dl);d.snooze=true;closeSheet();toast('Hidden until Thursday. '+cust(d.cust).name+' will come back then.')},
-  normal:function(_,dl){var d=deal(dl);d.limit=d.touch+7;closeSheet();toast('Noted. '+AI+' will wait longer before warning you about '+cust(d.cust).name+'.')},
+  normal:function(_,dl){var d=deal(dl);d.limit=d.touch+7;closeSheet();toast('Noted. '+AI+' will wait longer before alerting you about '+cust(d.cust).name+'.')},
   send:function(){
     if(!fcheck()) return false;
     var s=S.sheet, c=cust(s.cust), d=s.deal?deal(s.deal):null, el=$('#m-text'), text=el.value.trim();

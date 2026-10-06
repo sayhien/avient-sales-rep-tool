@@ -10,7 +10,7 @@ This is a concept prototype with sample data. It is not an official Avient produ
 | --- | --- |
 | `links/` | One page with all links. The scan code opens it. `index.html` also opens it. |
 | `prototype/` | The clickable prototype: phone, tablet and computer. |
-| `deck/` | The presentation deck, 33 slides. It has a full screen mode with speaker notes. |
+| `deck/` | The presentation deck, 34 slides. It has a full screen mode with speaker notes. |
 | `film/` | The film, 90 seconds, with its words. |
 | `design-system/` | Hue Design System: the colours, the parts and the rules. |
 | `guide/` | How Hue Works: what each screen does for Daniel, and how Hue knows. |
