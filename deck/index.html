@@ -33,11 +33,11 @@ body.show{overflow:hidden}
 /* a page holds one slide. To go on, the page turns away to the left, like a page of a book. To go back, the page before turns in from the left */
 .pg{grid-area:1/1;position:relative;overflow:hidden;background:#F4F8FB;box-shadow:0 0 0 1px #111;transform-origin:0 50%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .pg:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(0,0,0,.04),rgba(0,0,0,.5))}
-.pg.out{z-index:2;animation:pgturn .62s cubic-bezier(.5,.05,.35,1) forwards;box-shadow:30px 0 60px rgba(0,0,0,.45)}
-.pg.in{z-index:2;animation:pgturn .62s cubic-bezier(.3,.55,.3,1) reverse both;box-shadow:30px 0 60px rgba(0,0,0,.45)}
-.pg.out:after{animation:pgshade .62s ease-in forwards}
-.pg.in:after{animation:pgshade .62s ease-out reverse both}
-.pg.under:after{background:#000;animation:pgdim .62s ease-out both}
+.pg.out{z-index:2;animation:pgturn .3s cubic-bezier(.5,.05,.35,1) forwards;box-shadow:30px 0 60px rgba(0,0,0,.45)}
+.pg.in{z-index:2;animation:pgturn .3s cubic-bezier(.3,.55,.3,1) reverse both;box-shadow:30px 0 60px rgba(0,0,0,.45)}
+.pg.out:after{animation:pgshade .3s ease-in forwards}
+.pg.in:after{animation:pgshade .3s ease-out reverse both}
+.pg.under:after{background:#000;animation:pgdim .3s ease-out both}
 .pg.under.rev:after{animation-direction:reverse}
 @keyframes pgturn{to{transform:rotateY(-104deg)}}
 @keyframes pgshade{to{opacity:1}}
@@ -2027,7 +2027,7 @@ body.show{overflow:hidden}
       var top=dir>0?oldP:p, under=dir>0?p:oldP;
       top.classList.add(dir>0?'out':'in'); under.classList.add('under'); if(dir<0) under.classList.add('rev');
       busy={ done:function(){ top.classList.remove('out','in'); under.classList.remove('under','rev'); unmount(oldP, old) } };
-      busy.t=setTimeout(settle, 640);
+      busy.t=setTimeout(settle, 320);
     }
     count.textContent=(i+1)+' / '+N; prev.disabled=i===0; next.disabled=i===N-1; pnote.textContent=notes[i]||'No notes for this slide.'; pnote.scrollTop=0;
     if(!quiet){ flip(); hintOff() }
