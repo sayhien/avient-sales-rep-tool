@@ -1113,7 +1113,7 @@ body.show{overflow:hidden}
 </div>
 <div style="width:560px;display:flex;flex-direction:column;gap:12px">
 <div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E7ED;border-radius:24px;padding:20px">
-<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Waiting has three parts.</b> A promise that is due today: 50 points. The customer waits for Daniel: 10 points each day. Daniel waits for the customer: 5 points each day after the usual wait.</p>
+<p style="font-size:24px;line-height:1.4;color:#303C40"><b>Waiting has three parts.</b> A promise due today: 50 points, because a broken promise costs trust. The customer waits for Daniel: 10 points each day. Daniel waits for the customer: 5 points each day after the usual wait. His own delay counts double.</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:8px;background:#E7F0F8;border-radius:24px;padding:20px">
 <p style="font-size:24px;line-height:1.4;color:#303C40"><b>Daniel does not see the points.</b> He sees the reason in words. These numbers are my first values. Real sales reps must test them.</p>
@@ -1125,7 +1125,7 @@ body.show{overflow:hidden}
 <p style="font-size:24px;color:#5F6F78">17</p>
 </div>
 
-</section></div><p class="num"><span>17 of 32</span><button class="go" data-i="16">Present from this slide</button></p><p class="note"><b>Notes.</b> How does Hue know which follow up is first? It uses a rule. Points are the deal value times the chance of an order, plus the waiting time. Waiting has three parts. A promise that is due today gets 50 points. When the customer waits for Daniel, each day gets 10 points. When Daniel waits for the customer, each day after the usual wait gets 5 points. Here is an example. The price for Jasmine has 139 points, so it is first. A late payment has its own rule, because money that a customer owes comes before most new deals. Daniel does not see the points. He sees the reason. These numbers are my first values. A test with real sales reps must confirm them.</p></article>
+</section></div><p class="num"><span>17 of 32</span><button class="go" data-i="16">Present from this slide</button></p><p class="note"><b>Notes.</b> How does Hue know which follow up is first? It uses a rule. Points are the deal value times the chance of an order, plus the waiting time. Waiting has three parts. A promise that is due today gets 50 points, because a broken promise costs trust. This is as much as a large deal. When the customer waits for Daniel, each day gets 10 points. When Daniel waits for the customer, each day after the usual wait gets 5 points. His own delay counts double, because he can end it today. Each of these two stops at 30 points, so a small old item does not stay at the top. Here is an example. The price for Jasmine has 139 points, so it is first. A late payment has its own rule, because money that a customer owes comes before most new deals. Daniel does not see the points. He sees the reason. These numbers are my first values. A test with real sales reps must confirm them.</p></article>
 <article class="fr" id="capture"><div class="box"><section class="sl" id="s-capture" aria-label="Slide 18" data-transition="fade" style="background:#F4F8FB;color:#303C40;font-family:'Figtree', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#3274AE">The design</p>
@@ -1726,8 +1726,8 @@ body.show{overflow:hidden}
 <div style="display:flex;flex-direction:row;gap:20px;align-items:center;padding:7px 0;border-bottom:1px solid #E0E7ED">
 <div style="flex:none;width:44px"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><g transform="scale(1.0000)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19z"/><path d="M13.5 7.5l3 3"/></g></g></svg></div>
 <p style="width:330px;font-size:24px;line-height:1.4;color:#303C40;font-weight:600">Notes are easy to do</p>
-<p style="flex:1;font-size:24px;line-height:1.4;color:#303C40;font-weight:400">Notes that are in the record on the day of the visit</p>
-<p style="width:400px;font-size:24px;line-height:1.4;color:#5F6F78;font-weight:400">9 of 10</p>
+<p style="flex:1;font-size:24px;line-height:1.4;color:#303C40;font-weight:400">Visits that have a note in Hue on the same day</p>
+<p style="width:400px;font-size:24px;line-height:1.4;color:#5F6F78;font-weight:400">9 of 10 visits</p>
 </div>
 <div style="display:flex;flex-direction:row;gap:20px;align-items:center;padding:7px 0;border-bottom:1px solid #E0E7ED">
 <div style="flex:none;width:44px"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><g transform="scale(1.0000)"><rect width="44" height="44" rx="12" fill="#E7F0F8"/><circle cx="31" cy="31" r="8.5" fill="#EFBE46" opacity=".85"/><g transform="translate(10 10)" stroke="#3274AE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.2 7.9-8 9-4.8-1.1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></g></g></svg></div>
@@ -1995,7 +1995,7 @@ body.show{overflow:hidden}
       on=false, cur=-1, sound=true, idle=0, last=null;
   function size(){ var k=Math.min(stage.clientWidth/1920, stage.clientHeight/1080); if(cur>=0) sls[cur].style.setProperty('--k', k) }
   /* the sound of a page: a short recording, stored with the site */
-  var page=new Audio('../assets/media/page-flip.mp3'); page.preload='auto'; page.volume=.9;
+  var page=new Audio('../assets/media/page-flip.mp3'); page.preload='auto';
   function flip(){ if(!sound) return; try{ page.currentTime=0; var p=page.play(); if(p&&p.catch) p.catch(function(){}) }catch(e){} }
   /* the first guide: it goes away at the first page turn, at a tap, or after some seconds */
   var hint=document.getElementById('hint'), hintT=0;
